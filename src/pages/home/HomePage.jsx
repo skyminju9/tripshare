@@ -1,10 +1,11 @@
 import React from 'react';
 import { Text, SafeAreaView, StyleSheet } from 'react-native';
+import fontStyles from '../../styles/fontStyles';
 
 const HomePage = () => {
   return (
     <SafeAreaView style={styles.wrapper}>
-      <Text>home Page</Text>
+      <Text style={fontStyles.basicFont}>home Page</Text>
     </SafeAreaView>
   );
 };
