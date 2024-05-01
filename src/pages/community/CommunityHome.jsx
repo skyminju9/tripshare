@@ -1,10 +1,13 @@
 import React from 'react';
-import { Text, SafeAreaView, StyleSheet } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
 
-const CommunityHome = () => {
+const CommunityHome = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.wrapper}>
       <Text>Community Page</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('CommunityMeetingMap')}>
+        <Text>지도로이동</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };

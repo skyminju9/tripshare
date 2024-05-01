@@ -1,12 +1,14 @@
 import { SafeAreaView, Text, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 
 import HomePage from './pages/home/HomePage';
 import TripPlanHome from './pages/tripPlan/TripPlanHome';
 import CommunityHome from './pages/community/CommunityHome';
 import ChattingHome from './pages/chat/ChattingPage';
 import MyPageHome from './pages/myPage/MyPageHome';
+import CommunityMeetingMap from './pages/community/CommunityMeetingMap';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -23,6 +25,7 @@ const CommunityStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="CommunityHome" component={CommunityHome} />
+      <Stack.Screen name="CommunityMeetingMap" component={CommunityMeetingMap} />
     </Stack.Navigator>
   );
 };
@@ -51,7 +54,19 @@ const BottomTab = () => {
       }}>
       <Tab.Screen name="Home" component={HomePage} />
       <Tab.Screen name="TripPlan" component={TripPlanStack} />
-      <Tab.Screen name="Community" component={CommunityStack} />
+      <Tab.Screen
+        name="Community"
+        component={CommunityStack}
+        options={({ route }) => ({
+          tabBarStyle: (route => {
+            const routeName = getFocusedRouteNameFromRoute(route) ?? '';
+            if (routeName === 'CommunityMeetingMap') {
+              return { display: 'none' };
+            }
+            return;
+          })(route),
+        })}
+      />
       <Tab.Screen name="Chat" component={ChatStack} />
       <Tab.Screen name="MyPage" component={MyPageStack} />
     </Tab.Navigator>
