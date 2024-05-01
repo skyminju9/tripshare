@@ -1,0 +1,25 @@
+const color = {
+  WHITE: '#FFF',
+  TEXT_PRIMARY: '#222',
+  BLACK: '#333',
+  GRAY_50: '#EEE',
+  GRAY_100: '#E3E3E3',
+  GRAY_200: '#C8C8C8',
+  GRAY_300: '#ACACAC',
+  GRAY_400: '#666',
+  TEXT_SECONDARY: '#777',
+  BLUEGRAY: '#647599',
+  BLUE_30: '#F0F5FF',
+  BLUE_50: '#E7EFFF',
+  BLUE_75: '#CBDDFF',
+  BLUE_200: '#7CA6FF',
+  BLUE_400: '#4F85F6',
+  BLUE_500: '#3370F0',
+  BLUE_600: '#0041CB',
+  NAVY: '#002674',
+  RED_400: '#FF5E5E',
+  RED_500: '#FF4747',
+  RED_800: '#C70000',
+};
+
+export default color;
