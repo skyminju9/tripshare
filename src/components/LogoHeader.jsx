@@ -8,13 +8,16 @@ import DropDownIcon from '../assets/icons/header/arrow_drop_down.svg';
 const LogoHeader = ({ location }) => {
   return (
     <View style={styles.headerWrapper}>
-      <View style={styles.halfSection}>
-        <TouchableOpacity style={styles.locationDropdown}>
-          <Text style={styles.locationText}>{location}</Text>
-          <DropDownIcon width={32} height={32} />
-        </TouchableOpacity>
-        <LogoIcon width={52} height={52} />
+      <TouchableOpacity style={styles.locationDropdown}>
+        <Text style={styles.locationText}>{location}</Text>
+        <DropDownIcon width={32} height={32} />
+      </TouchableOpacity>
+      <View style={{ alignItems: 'center', position: 'absolute', left: 170 }}>
+        <View>
+          <LogoIcon width={52} height={52} />
+        </View>
       </View>
+
       <TouchableOpacity>
         <NotiIcon width={28} height={28} />
       </TouchableOpacity>
@@ -32,8 +35,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     paddingHorizontal: 16,
     paddingVertical: 4,
+    height: 60,
   },
-  halfSection: { flexDirection: 'row', gap: 82 },
   locationDropdown: { flexDirection: 'row', alignItems: 'center' },
   locationText: {
     fontSize: 20,
