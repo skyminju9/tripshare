@@ -1,10 +1,39 @@
 import React from 'react';
-import { Text, SafeAreaView, StyleSheet } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import Explore from './Explore';
 
-const TripPlanHome = () => {
+const Tab = createMaterialTopTabNavigator();
+
+const MyTripTab = () => {
   return (
     <SafeAreaView style={styles.wrapper}>
-      <Text>Trip Plan Page</Text>
+      <View>
+        <Text>MyTripScreen</Text>
+      </View>
+    </SafeAreaView>
+  );
+};
+
+const ExploreTab = () => {
+  return <Explore />;
+};
+
+const TripPlanHome = ({ navigation }) => {
+  return (
+    <SafeAreaView style={styles.wrapper}>
+      <Tab.Navigator
+        screenOptions={{
+          tabBarInactiveTintColor: '#333',
+          tabBarActiveTintColor: '#4F85F6',
+          tabBarIndicatorStyle: {
+            borderColor: '#4F85F6',
+            borderWidth: 2,
+          },
+        }}>
+        <Tab.Screen name="나의 여행" component={MyTripTab} />
+        <Tab.Screen name="탐색" component={ExploreTab} />
+      </Tab.Navigator>
     </SafeAreaView>
   );
 };
