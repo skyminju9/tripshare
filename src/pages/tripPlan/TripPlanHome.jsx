@@ -2,17 +2,12 @@ import React from 'react';
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Explore from './Explore';
+import MyTrip from './MyTrip';
 
 const Tab = createMaterialTopTabNavigator();
 
 const MyTripTab = () => {
-  return (
-    <SafeAreaView style={styles.wrapper}>
-      <View>
-        <Text>MyTripScreen</Text>
-      </View>
-    </SafeAreaView>
-  );
+  return <MyTrip />;
 };
 
 const ExploreTab = () => {
