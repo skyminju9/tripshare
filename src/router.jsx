@@ -9,6 +9,7 @@ import ChattingHome from './pages/chat/ChattingPage';
 import MyPageHome from './pages/myPage/MyPageHome';
 import TripShareBottomTab from './components/TripShareBottomTab';
 import LoginPage from './pages/LoginPage';
+import CommunityBoard from './pages/community/CommunityBoard';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
