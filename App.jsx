@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import Router from './src/router';
+import { LoginStack, MainStack } from './src/router';
 
 function App() {
-  return (
-    <NavigationContainer>
-      <Router />
-    </NavigationContainer>
-  );
+  const [loginUser, setLoginUser] = useState(false);
+
+  useEffect(() => {
+    // TODO: Auth User
+    setLoginUser(true);
+  }, []);
+
+  return <NavigationContainer>{loginUser ? <MainStack /> : <LoginStack />}</NavigationContainer>;
 }
 
 export default App;
