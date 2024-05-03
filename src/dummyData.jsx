@@ -55,6 +55,7 @@ export const dummy_article = [
     createdAt: new Date(),
     like: 1,
     bookmark: 1,
+    userId: 4,
     tag: '질문',
   },
   {
@@ -65,6 +66,7 @@ export const dummy_article = [
     createdAt: new Date('2024-05-03 10:20'),
     like: 2,
     bookmark: 2,
+    userId: 4,
     tag: '질문',
   },
   {
@@ -75,6 +77,7 @@ export const dummy_article = [
     createdAt: new Date('2024-05-02 10:20'),
     like: 3,
     bookmark: 3,
+    userId: 4,
     tag: '질문',
   },
   {
@@ -85,6 +88,7 @@ export const dummy_article = [
     createdAt: new Date('2024-05-01 10:20'),
     like: 4,
     bookmark: 4,
+    userId: 4,
     tag: '질문',
   },
   {
@@ -95,6 +99,7 @@ export const dummy_article = [
     createdAt: new Date('2024-04-15 10:20'),
     like: 5,
     bookmark: 5,
+    userId: 4,
     tag: '질문',
   },
 ];
@@ -106,7 +111,8 @@ export const dummy_comment = [
     articleId: 1,
     content: '마지막날 일정이 좀 빡빡한 것 같아요?',
     like: 1,
-    createdAt: new Date('2024-05-17 10:20'),
+    userId: 1,
+    createdAt: new Date(),
   },
   {
     id: 2,
@@ -114,6 +120,7 @@ export const dummy_comment = [
     articleId: 1,
     content: '마지막날 일정이 좀 빡빡한 것 같아요??',
     like: 5,
+    userId: 1,
     createdAt: new Date('2024-05-18 10:20'),
   },
   {
@@ -122,29 +129,7 @@ export const dummy_comment = [
     articleId: 1,
     content: '마지막날 일정이 좀 빡빡한 것 같아요???',
     like: 3,
-    createdAt: new Date('2024-05-18 16:20'),
-  },
-];
-
-export const dummy_meet = [
-  {
-    id: 1,
-    location: '',
-    title: '도쿄 타워 같이 가실 분',
-    content: '도쿄타워 야경 보고 같이 저녁 먹을 한국인 분들 구해요!',
-    userId: '일본만열번',
-    category: 'ACCOMPANY',
-    createdAt: new Date('2024-05-17 10:20'),
-    meetingAt: new Date('2024-05-18 10:20'),
-  },
-  {
-    id: 2,
-    location: '',
-    title: '도쿄 타워 같이 가실 분',
-    content: '지금 도쿄타워인데 야경 같이 구경하실 분들 구해요!',
-    userId: '일본만열번',
-    category: 'IMPROMPTU',
-    createdAt: new Date('2024-05-17 10:20'),
-    meetingAt: new Date('2024-05-18 10:20'),
+    userId: 1,
+    createdAt: new Date('2024-05-20 16:20'),
   },
 ];
