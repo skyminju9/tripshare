@@ -8,6 +8,11 @@ import PlanIconOn from './icons/bottomIcons/planIconOn.svg';
 import ChatIconOn from './icons/bottomIcons/chatIconOn.svg';
 import MyPageIconOn from './icons/bottomIcons/myPageIconOn.svg';
 
+import FlashIcon from './icons/community/flash.svg';
+import PlaceIcon from './icons/community/place.svg';
+import EventIcon from './icons/community/event.svg';
+import FreeTalkIcon from './icons/community/free.svg';
+
 export {
   HomeIcon,
   PlanIcon,
@@ -18,4 +23,8 @@ export {
   PlanIconOn,
   ChatIconOn,
   MyPageIconOn,
+  FlashIcon,
+  PlaceIcon,
+  EventIcon,
+  FreeTalkIcon,
 };
