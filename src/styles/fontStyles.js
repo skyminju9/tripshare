@@ -14,6 +14,12 @@ const fontStyles = StyleSheet.create({
     color: color.TEXT_PRIMARY,
     letterSpacing: -0.28,
   },
+  boldFont01: {
+    fontFamily: 'Pretendard-SemiBold',
+    fontSize: 16,
+    color: color.TEXT_PRIMARY,
+    letterSpacing: -0.32,
+  },
   title01: {
     fontFamily: 'Pretendard-SemiBold',
     fontSize: 28,
