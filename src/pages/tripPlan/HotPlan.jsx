@@ -1,30 +1,59 @@
 import React, { useState } from 'react';
-import { View, SafeAreaView, StyleSheet, Image, Text, ScrollView } from 'react-native';
+import { View, SafeAreaView, StyleSheet, Image, Text, ScrollView, TextInput } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import fontStyles from '../../styles/fontStyles';
 import color from '../../styles/colorPalette';
 import BasicHeader from '../../components/BasicHeader';
 import SearchBarIcon from '../../assets/icons/Explore/searchbaricon.png';
+import PlanList from './ExploreComponents/PlanList';
 
-const PlanSearch = () => {
+const HotPlan = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [open, setOpen] = useState(false);
+  const [searchText, setSearchText] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
 
   const items = [
     { label: '최신순', value: 'latest' },
     { label: '인기순', value: 'popular' },
   ];
 
+  const handleFocus = () => {
+    setIsSearchFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsSearchFocused(false);
+  };
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <BasicHeader />
       <View style={styles.container}>
-        <View style={styles.searchBar}>
+        <View style={[styles.searchBar, isSearchFocused && styles.searchBarFocused]}>
           <Image source={SearchBarIcon} style={styles.icon} />
-          <Text style={[fontStyles.basicFont02, { color: color.BLUE_500 }]}>
-            계정 또는 키워드로 검색
-          </Text>
+          <TextInput
+            style={fontStyles.basicFont02}
+            placeholder="계정 또는 키워드로 검색"
+            value={searchText}
+            onChangeText={setSearchText}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+          />
         </View>
+        {isSearchFocused && (
+          <View style={styles.hashTagArea}>
+            <View style={styles.hashTag}>
+              <Text style={styles.hashText}>#축제</Text>
+            </View>
+            <View style={styles.hashTag}>
+              <Text style={styles.hashText}>#쇼핑</Text>
+            </View>
+            <View style={styles.hashTag}>
+              <Text style={styles.hashText}>#디즈니랜드</Text>
+            </View>
+          </View>
+        )}
         <DropDownPicker
           open={open}
           value={selectedOption}
@@ -37,17 +66,18 @@ const PlanSearch = () => {
           listItemContainerStyle={styles.listItemContainerStyle}
         />
 
-        <View style={styles.hashTagArea}>
-          <View style={styles.hashTag}>
-            <Text style={styles.hashText}>#축제</Text>
+        <ScrollView>
+          <View style={[styles.planListContainer, isSearchFocused && styles.hidden]}>
+            <PlanList />
+            <PlanList />
+            <PlanList />
+            <PlanList />
+            <PlanList />
+            <PlanList />
+            <PlanList />
+            <PlanList />
           </View>
-          <View style={styles.hashTag}>
-            <Text style={styles.hashText}>#쇼핑</Text>
-          </View>
-          <View style={styles.hashTag}>
-            <Text style={styles.hashText}>#디즈니랜드</Text>
-          </View>
-        </View>
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -71,6 +101,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginTop: 16,
     marginBottom: 8,
+  },
+  searchBarFocused: {
+    borderColor: color.BLUE_500,
+    borderWidth: 1,
   },
   icon: {
     width: 20,
@@ -101,6 +135,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: 30,
   },
+  planListContainer: {
+    alignItems: 'center',
+    marginVertical: 8,
+  },
+  hidden: {
+    display: 'none',
+  },
   hashTag: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -120,7 +161,8 @@ const styles = StyleSheet.create({
   hashTagArea: {
     flexDirection: 'row',
     alignItems: 'flex-start',
+    marginBottom: 8,
   },
 });
 
-export default PlanSearch;
+export default HotPlan;

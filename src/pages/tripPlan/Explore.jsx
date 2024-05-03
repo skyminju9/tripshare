@@ -10,8 +10,12 @@ const Explore = () => {
   const [moreView, setMoreView] = useState(false);
 
   // 더보기 버튼 클릭 시 페이지 이동 함수
-  const handleMorePress = () => {
-    navigation.navigate('PlanSearch');
+  const handleMorePress1 = () => {
+    navigation.navigate('HotPlan');
+  };
+
+  const handleMorePress2 = () => {
+    navigation.navigate('HotDiary');
   };
 
   return (
@@ -21,7 +25,7 @@ const Explore = () => {
           <View style={styles.categoryArea}>
             <View style={styles.categoryTextArea}>
               <Text style={styles.categoryTitle}>실시간 인기 계획</Text>
-              <TouchableOpacity style={styles.myTripMore} onPress={handleMorePress}>
+              <TouchableOpacity style={styles.myTripMore} onPress={handleMorePress1}>
                 <Text>더보기</Text>
                 <RightArrow width={24} height={24} />
               </TouchableOpacity>
@@ -37,7 +41,7 @@ const Explore = () => {
             <View style={styles.categoryTextArea}>
               <Text style={styles.categoryTitle}>실시간 인기 기록</Text>
               <View style={styles.moreArea}>
-                <TouchableOpacity style={styles.myTripMore} onPress={handleMorePress}>
+                <TouchableOpacity style={styles.myTripMore} onPress={handleMorePress2}>
                   <Text>더보기</Text>
                   <RightArrow width={24} height={24} />
                 </TouchableOpacity>

@@ -9,8 +9,10 @@ import ChattingHome from './pages/chat/ChattingPage';
 import MyPageHome from './pages/myPage/MyPageHome';
 import TripShareBottomTab from './components/TripShareBottomTab';
 import LoginPage from './pages/LoginPage';
-import PlanSearch from './pages/tripPlan/PlanSearch';
+import HotPlan from './pages/tripPlan/HotPlan';
 import PlanDetail from './pages/tripPlan/PlanDetail';
+import HotDiary from './pages/tripPlan/HotDiary';
+import DiaryDetail from './pages/tripPlan/DiaryDetail';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -29,8 +31,10 @@ const TripPlanStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="TripPlanHome" component={TripPlanHome} />
-      <Stack.Screen name="PlanSearch" component={PlanSearch} />
+      <Stack.Screen name="HotPlan" component={HotPlan} />
       <Stack.Screen name="PlanDetail" component={PlanDetail} />
+      <Stack.Screen name="HotDiary" component={HotDiary} />
+      <Stack.Screen name="DiaryDetail" component={DiaryDetail} />
     </Stack.Navigator>
   );
 };
@@ -62,7 +66,6 @@ const MyPageStack = () => {
 const BottomTab = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
       tabBar={renderTabBar}
       screenOptions={{
         headerShown: false,
