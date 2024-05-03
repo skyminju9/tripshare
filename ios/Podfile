@@ -17,6 +17,11 @@ end
 target 'tripshare' do
   config = use_native_modules!
 
+  rn_maps_path = '../node_modules/react-native-maps'
+  pod 'react-native-google-maps', :path => rn_maps_path
+  pod 'GoogleMaps', '7.4.0'
+  pod 'Google-Maps-iOS-Utils', '4.2.2'
+
   use_react_native!(
     :path => config[:reactNativePath],
     # An absolute path to your application root.

@@ -1,5 +1,6 @@
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect } from 'react';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 const CommunityMeetingMap = ({ navigation }) => {
   React.useLayoutEffect(() => {
@@ -8,10 +9,16 @@ const CommunityMeetingMap = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <View>
-        <Text>헤더영역</Text>
-      </View>
-      <View></View>
+      <MapView
+        style={{ flex: 1 }}
+        provider={PROVIDER_GOOGLE}
+        initialRegion={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      />
     </SafeAreaView>
   );
 };
