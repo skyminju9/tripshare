@@ -8,7 +8,9 @@ import CommunityHome from './pages/community/CommunityHome';
 import ChattingHome from './pages/chat/ChattingPage';
 import MyPageHome from './pages/myPage/MyPageHome';
 import TripShareBottomTab from './components/TripShareBottomTab';
-import LoginPage from './pages/LoginPage';
+import LoginPage from './pages/register/LoginPage';
+import Splash from './pages/register/Splash';
+import SignUpPage from './pages/register/SignUpPage';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -67,7 +69,10 @@ const BottomTab = () => {
 export const LoginStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="LoginPage" component={LoginPage} />
+      <Stack.Screen name="SignUpPage" component={SignUpPage} />
+      <Stack.Screen name="MainPage" component={MainStack} />
     </Stack.Navigator>
   );
 };
