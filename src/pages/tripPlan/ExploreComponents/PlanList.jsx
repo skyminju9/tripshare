@@ -1,60 +1,68 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
-import HeartIcon from '../ExploreIcons/heart.png';
-import HeartIconFilled from '../ExploreIcons/heartfilled.png';
-import BookmarkIcon from '../ExploreIcons/bookmark.png';
-import BookmarkIconFilled from '../ExploreIcons/bookmarkfilled.png';
+import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
+import HeartIcon from '../../../assets/icons/Explore/heart.png';
+import HeartIconFilled from '../../../assets/icons/Explore/heartfilled.png';
+import BookmarkIcon from '../../../assets/icons/Explore/bookmark.png';
+import BookmarkIconFilled from '../../../assets/icons/Explore/bookmarkfilled.png';
+import { useNavigation } from '@react-navigation/native'; // 추가
 
 const PlanList = () => {
+  const navigation = useNavigation();
+  const handleDetailPress = () => {
+    navigation.navigate('PlanDetail');
+  };
+
   const [heartSelected, setHeartSelected] = useState(false);
   const [bookmarkSelected, setBookmarkSelected] = useState(false);
 
   return (
-    <View>
-      <View style={styles.planListbox}>
-        <Text style={styles.planTitle}>뼈 J가 계획한 3박 4일 홍콩 여행</Text>
-        <View style={styles.bottomArea}>
-          <View style={styles.hashTagArea}>
-            <View style={styles.hashTag}>
-              <Text style={styles.hashText}>#축제</Text>
+    <View style={{ width: '100%' }}>
+      <TouchableOpacity onPress={handleDetailPress}>
+        <View style={styles.planListbox}>
+          <Text style={styles.planTitle}>뼈 J가 계획한 3박 4일 홍콩 여행</Text>
+          <View style={styles.bottomArea}>
+            <View style={styles.hashTagArea}>
+              <View style={styles.hashTag}>
+                <Text style={styles.hashText}>#축제</Text>
+              </View>
+              <View style={styles.hashTag}>
+                <Text style={styles.hashText}>#쇼핑</Text>
+              </View>
+              <View style={styles.hashTag}>
+                <Text style={styles.hashText}>#디즈니랜드</Text>
+              </View>
             </View>
-            <View style={styles.hashTag}>
-              <Text style={styles.hashText}>#쇼핑</Text>
-            </View>
-            <View style={styles.hashTag}>
-              <Text style={styles.hashText}>#디즈니랜드</Text>
-            </View>
-          </View>
 
-          <View style={styles.statsArea}>
-            <View style={styles.statsContainer}>
-              <TouchableOpacity onPress={() => setHeartSelected(!heartSelected)}>
-                <Image source={heartSelected ? HeartIconFilled : HeartIcon} style={styles.icon} />
-              </TouchableOpacity>
-              <Text style={styles.statsText1}>16</Text>
-            </View>
-            <View style={styles.statsContainer}>
-              <TouchableOpacity onPress={() => setBookmarkSelected(!bookmarkSelected)}>
-                <Image
-                  source={bookmarkSelected ? BookmarkIconFilled : BookmarkIcon}
-                  style={styles.icon}
-                />
-              </TouchableOpacity>
-              <Text style={styles.statsText2}>32</Text>
+            <View style={styles.statsArea}>
+              <View style={styles.statsContainer}>
+                <TouchableOpacity onPress={() => setHeartSelected(!heartSelected)}>
+                  <Image source={heartSelected ? HeartIconFilled : HeartIcon} style={styles.icon} />
+                </TouchableOpacity>
+                <Text style={styles.statsText1}>16</Text>
+              </View>
+              <View style={styles.statsContainer}>
+                <TouchableOpacity onPress={() => setBookmarkSelected(!bookmarkSelected)}>
+                  <Image
+                    source={bookmarkSelected ? BookmarkIconFilled : BookmarkIcon}
+                    style={styles.icon}
+                  />
+                </TouchableOpacity>
+                <Text style={styles.statsText2}>32</Text>
+              </View>
             </View>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   planListbox: {
-    width: 350,
+    width: '100%',
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: '#EDF2FF',
+    borderColor: '#EEEEEE',
     borderRadius: 8,
     marginBottom: 8,
     padding: 12,
@@ -116,4 +124,3 @@ const styles = StyleSheet.create({
 });
 
 export default PlanList;
-

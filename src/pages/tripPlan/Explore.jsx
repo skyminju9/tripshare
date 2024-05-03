@@ -1,39 +1,61 @@
-import React from 'react';
-import { Text, View, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, SafeAreaView, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; // 추가
 import PlanList from './ExploreComponents/PlanList';
 import DiaryList from './ExploreComponents/DiaryList';
+import RightArrow from '../../assets/icons/myTrip/arrow_right.svg';
 
 const Explore = () => {
+  const navigation = useNavigation(); // 추가
+  const [moreView, setMoreView] = useState(false);
+
+  // 더보기 버튼 클릭 시 페이지 이동 함수
+  const handleMorePress = () => {
+    navigation.navigate('PlanSearch');
+  };
+
   return (
     <SafeAreaView style={styles.wrapper}>
-      <View style={styles.categoryArea1}>
-        <View style={styles.categoryTextArea}>
-          <Text style={styles.categoryTitle}>실시간 인기 계획</Text>
-          <Text style={styles.moreViewText}>더보기..</Text>
-        </View>
-        <View style={styles.planListContiner}>
-          <PlanList />
-          <PlanList />
-          <PlanList />
-        </View>
-      </View>
+      <ScrollView style={styles.container}>
+        <View>
+          <View style={styles.categoryArea}>
+            <View style={styles.categoryTextArea}>
+              <Text style={styles.categoryTitle}>실시간 인기 계획</Text>
+              <TouchableOpacity style={styles.myTripMore} onPress={handleMorePress}>
+                <Text>더보기</Text>
+                <RightArrow width={24} height={24} />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.planListContiner}>
+              <PlanList />
+              <PlanList />
+              <PlanList />
+            </View>
+          </View>
 
-      <View style={styles.categoryArea2}>
-        <View style={styles.categoryTextArea}>
-          <Text style={styles.categoryTitle}>실시간 인기 기록</Text>
-          <Text style={styles.moreViewText}>더보기..</Text>
+          <View style={styles.categoryArea}>
+            <View style={styles.categoryTextArea}>
+              <Text style={styles.categoryTitle}>실시간 인기 기록</Text>
+              <View style={styles.moreArea}>
+                <TouchableOpacity style={styles.myTripMore} onPress={handleMorePress}>
+                  <Text>더보기</Text>
+                  <RightArrow width={24} height={24} />
+                </TouchableOpacity>
+              </View>
+            </View>
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              style={styles.diaryListContiner}>
+              <DiaryList />
+              <DiaryList />
+              <DiaryList />
+              <DiaryList />
+              <DiaryList />
+            </ScrollView>
+          </View>
         </View>
-        <ScrollView
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          style={styles.diaryListContiner}>
-          <DiaryList />
-          <DiaryList />
-          <DiaryList />
-          <DiaryList />
-          <DiaryList />
-        </ScrollView>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -43,14 +65,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFF',
   },
-  categoryArea1: {
+  container: {
     flex: 1,
     padding: 20,
-    marginBottom: 30,
   },
-  categoryArea2: {
-    padding: 20,
+  categoryArea: {
     flex: 1,
+    marginBottom: 10,
   },
   categoryTextArea: {
     flexDirection: 'row',
@@ -63,6 +84,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     letterSpacing: -0.4,
     fontWeight: '500',
+  },
+  myTripMore: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  moreIcon: {
+    width: 8,
+    height: 8,
   },
   moreViewText: {
     fontSize: 14,
@@ -79,4 +108,3 @@ const styles = StyleSheet.create({
 });
 
 export default Explore;
-

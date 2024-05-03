@@ -9,16 +9,28 @@ import ChattingHome from './pages/chat/ChattingPage';
 import MyPageHome from './pages/myPage/MyPageHome';
 import TripShareBottomTab from './components/TripShareBottomTab';
 import LoginPage from './pages/LoginPage';
+import PlanSearch from './pages/tripPlan/PlanSearch';
+import PlanDetail from './pages/tripPlan/PlanDetail';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const renderTabBar = props => <TripShareBottomTab {...props} />;
 
+const HomeStack = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="HomePage" component={HomePage} />
+    </Stack.Navigator>
+  );
+};
+
 const TripPlanStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="TripPlanHome" component={TripPlanHome} />
+      <Stack.Screen name="PlanSearch" component={PlanSearch} />
+      <Stack.Screen name="PlanDetail" component={PlanDetail} />
     </Stack.Navigator>
   );
 };
@@ -50,11 +62,12 @@ const MyPageStack = () => {
 const BottomTab = () => {
   return (
     <Tab.Navigator
+      initialRouteName="Home"
       tabBar={renderTabBar}
       screenOptions={{
         headerShown: false,
       }}>
-      <Tab.Screen name="Home" component={HomePage} />
+      <Tab.Screen name="Home" component={HomeStack} />
       <Tab.Screen name="TripPlan" component={TripPlanStack} />
       <Tab.Screen name="Community" component={CommunityStack} />
       <Tab.Screen name="Chat" component={ChatStack} />

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
-import HeartIcon from '../ExploreIcons/heart.png';
-import HeartIconFilled from '../ExploreIcons/heartfilled.png';
-import BookmarkIcon from '../ExploreIcons/bookmark.png';
-import BookmarkIconFilled from '../ExploreIcons/bookmarkfilled.png';
-import DiaryImage from '../ExploreIcons/diaryimage.png';
+import HeartIcon from '../../../assets/icons/Explore/heart.png';
+import HeartIconFilled from '../../../assets/icons/Explore/heartfilled.png';
+import BookmarkIcon from '../../../assets/icons/Explore/bookmark.png';
+import BookmarkIconFilled from '../../../assets/icons/Explore/bookmarkfilled.png';
+import DiaryImage from '../../../assets/icons/Explore/diaryimage.png';
 
 const DiaryList = () => {
   const [heartSelected, setHeartSelected] = useState(false);
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 0, // 상단 테두리 제거
     borderBottomRightRadius: 8,
     borderBottomLeftRadius: 8,
-    borderColor: '#EDF2FF',
+    borderColor: '#EEEEEE',
   },
   diaryTitle: {
     fontSize: 16,
@@ -88,7 +88,6 @@ const styles = StyleSheet.create({
   icon: {
     width: 16,
     height: 16,
-    marginRight: 5,
   },
   statsText1: {
     color: '#FF5E5E',
