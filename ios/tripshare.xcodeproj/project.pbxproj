@@ -7,22 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		004AAECEF023EE7D00A18FB3 /* libPods-tripshare-tripshareTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37565D139C0156610AC00095 /* libPods-tripshare-tripshareTests.a */; };
 		00E356F31AD99517003FC87E /* tripshareTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* tripshareTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2342C43B839F48CEA2D7B712 /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = C6D3B6A0EFBD4F75B635123D /* Pretendard-Thin.otf */; };
-		2452A223A4769501F8EF8CB9 /* libPods-tripshare-tripshareTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 755ACB21CF92CCFC3DB43177 /* libPods-tripshare-tripshareTests.a */; };
 		5B322FECB8E344439691309A /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 33662ABF679B411CA5053643 /* Pretendard-Light.otf */; };
 		603323D164ED438CA67C6864 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C8DC28C01B24A3882D0BF5A /* Pretendard-Regular.otf */; };
 		7EC88F02BC58422B83F45F35 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F7514B5A666F46549EC45FA1 /* Pretendard-SemiBold.otf */; };
 		80B6CE77935D4BB78B4EE504 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = E6BE9F2803C844F9AD770175 /* Pretendard-Medium.otf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		866C04FF93294FADAE638776 /* Pretendard-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = CFE06595D26041038F6CA594 /* Pretendard-ExtraLight.otf */; };
-		9CB53FFB03E50E8F7987865D /* libPods-tripshare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CDB61AD314B21B5E76764ED /* libPods-tripshare.a */; };
 		9E1F983D956148BEA806C245 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00319623B7E245BEB95085CC /* Pretendard-ExtraBold.otf */; };
 		A90836F9466D473EB2098B07 /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 47218157530949EFA678924F /* Pretendard-Black.otf */; };
 		C515BABB400345DCB299C74E /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 86A285E34CA7469BA7BCEEA4 /* Pretendard-Bold.otf */; };
+		E8F54AEBD36A4E453ED03AAD /* libPods-tripshare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F8E01B924A45E1F34C3917A /* libPods-tripshare.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00319623B7E245BEB95085CC /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-ExtraBold.otf"; path = "../src/assets/fonts/Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
+		00319623B7E245BEB95085CC /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-ExtraBold.otf"; path = "../src/assets/fonts/Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* tripshareTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tripshareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* tripshareTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tripshareTests.m; sourceTree = "<group>"; };
@@ -47,22 +47,22 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = tripshare/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = tripshare/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = tripshare/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		31813867CE9D149F249D8FC0 /* Pods-tripshare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tripshare.release.xcconfig"; path = "Target Support Files/Pods-tripshare/Pods-tripshare.release.xcconfig"; sourceTree = "<group>"; };
-		33662ABF679B411CA5053643 /* Pretendard-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Light.otf"; path = "../src/assets/fonts/Pretendard-Light.otf"; sourceTree = "<group>"; };
-		4350AE3D80BBD351EF065A87 /* Pods-tripshare-tripshareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tripshare-tripshareTests.release.xcconfig"; path = "Target Support Files/Pods-tripshare-tripshareTests/Pods-tripshare-tripshareTests.release.xcconfig"; sourceTree = "<group>"; };
-		47218157530949EFA678924F /* Pretendard-Black.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Black.otf"; path = "../src/assets/fonts/Pretendard-Black.otf"; sourceTree = "<group>"; };
-		5CDB61AD314B21B5E76764ED /* libPods-tripshare.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tripshare.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6C8DC28C01B24A3882D0BF5A /* Pretendard-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Regular.otf"; path = "../src/assets/fonts/Pretendard-Regular.otf"; sourceTree = "<group>"; };
-		755ACB21CF92CCFC3DB43177 /* libPods-tripshare-tripshareTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tripshare-tripshareTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F8E01B924A45E1F34C3917A /* libPods-tripshare.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tripshare.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		31FD513E8394097101495D36 /* Pods-tripshare-tripshareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tripshare-tripshareTests.release.xcconfig"; path = "Target Support Files/Pods-tripshare-tripshareTests/Pods-tripshare-tripshareTests.release.xcconfig"; sourceTree = "<group>"; };
+		33662ABF679B411CA5053643 /* Pretendard-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Light.otf"; path = "../src/assets/fonts/Pretendard-Light.otf"; sourceTree = "<group>"; };
+		37565D139C0156610AC00095 /* libPods-tripshare-tripshareTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tripshare-tripshareTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		44B794163A69BB24DD52AEE2 /* Pods-tripshare-tripshareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tripshare-tripshareTests.debug.xcconfig"; path = "Target Support Files/Pods-tripshare-tripshareTests/Pods-tripshare-tripshareTests.debug.xcconfig"; sourceTree = "<group>"; };
+		47218157530949EFA678924F /* Pretendard-Black.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Black.otf"; path = "../src/assets/fonts/Pretendard-Black.otf"; sourceTree = "<group>"; };
+		4F8CB001344462E44A070FB8 /* Pods-tripshare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tripshare.release.xcconfig"; path = "Target Support Files/Pods-tripshare/Pods-tripshare.release.xcconfig"; sourceTree = "<group>"; };
+		6C8DC28C01B24A3882D0BF5A /* Pretendard-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Regular.otf"; path = "../src/assets/fonts/Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = tripshare/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		83ABE388F8A096FE3F35BE03 /* Pods-tripshare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tripshare.debug.xcconfig"; path = "Target Support Files/Pods-tripshare/Pods-tripshare.debug.xcconfig"; sourceTree = "<group>"; };
-		86A285E34CA7469BA7BCEEA4 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Bold.otf"; path = "../src/assets/fonts/Pretendard-Bold.otf"; sourceTree = "<group>"; };
-		86CEE7B8BE33FA828B1BC2AE /* Pods-tripshare-tripshareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tripshare-tripshareTests.debug.xcconfig"; path = "Target Support Files/Pods-tripshare-tripshareTests/Pods-tripshare-tripshareTests.debug.xcconfig"; sourceTree = "<group>"; };
-		C6D3B6A0EFBD4F75B635123D /* Pretendard-Thin.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Thin.otf"; path = "../src/assets/fonts/Pretendard-Thin.otf"; sourceTree = "<group>"; };
-		CFE06595D26041038F6CA594 /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-ExtraLight.otf"; path = "../src/assets/fonts/Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
-		E6BE9F2803C844F9AD770175 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Medium.otf"; path = "../src/assets/fonts/Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		86A285E34CA7469BA7BCEEA4 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Bold.otf"; path = "../src/assets/fonts/Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		C6D3B6A0EFBD4F75B635123D /* Pretendard-Thin.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Thin.otf"; path = "../src/assets/fonts/Pretendard-Thin.otf"; sourceTree = "<group>"; };
+		CFE06595D26041038F6CA594 /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-ExtraLight.otf"; path = "../src/assets/fonts/Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
+		E4297392927B8DF976F081C6 /* Pods-tripshare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tripshare.debug.xcconfig"; path = "Target Support Files/Pods-tripshare/Pods-tripshare.debug.xcconfig"; sourceTree = "<group>"; };
+		E6BE9F2803C844F9AD770175 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Medium.otf"; path = "../src/assets/fonts/Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F7514B5A666F46549EC45FA1 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-SemiBold.otf"; path = "../src/assets/fonts/Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		F7514B5A666F46549EC45FA1 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-SemiBold.otf"; path = "../src/assets/fonts/Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2452A223A4769501F8EF8CB9 /* libPods-tripshare-tripshareTests.a in Frameworks */,
+				004AAECEF023EE7D00A18FB3 /* libPods-tripshare-tripshareTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,7 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CB53FFB03E50E8F7987865D /* libPods-tripshare.a in Frameworks */,
+				E8F54AEBD36A4E453ED03AAD /* libPods-tripshare.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,8 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5CDB61AD314B21B5E76764ED /* libPods-tripshare.a */,
-				755ACB21CF92CCFC3DB43177 /* libPods-tripshare-tripshareTests.a */,
+				1F8E01B924A45E1F34C3917A /* libPods-tripshare.a */,
+				37565D139C0156610AC00095 /* libPods-tripshare-tripshareTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -172,15 +172,16 @@
 				C6D3B6A0EFBD4F75B635123D /* Pretendard-Thin.otf */,
 			);
 			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				83ABE388F8A096FE3F35BE03 /* Pods-tripshare.debug.xcconfig */,
-				31813867CE9D149F249D8FC0 /* Pods-tripshare.release.xcconfig */,
-				86CEE7B8BE33FA828B1BC2AE /* Pods-tripshare-tripshareTests.debug.xcconfig */,
-				4350AE3D80BBD351EF065A87 /* Pods-tripshare-tripshareTests.release.xcconfig */,
+				E4297392927B8DF976F081C6 /* Pods-tripshare.debug.xcconfig */,
+				4F8CB001344462E44A070FB8 /* Pods-tripshare.release.xcconfig */,
+				44B794163A69BB24DD52AEE2 /* Pods-tripshare-tripshareTests.debug.xcconfig */,
+				31FD513E8394097101495D36 /* Pods-tripshare-tripshareTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -456,7 +457,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 86CEE7B8BE33FA828B1BC2AE /* Pods-tripshare-tripshareTests.debug.xcconfig */;
+			baseConfigurationReference = 44B794163A69BB24DD52AEE2 /* Pods-tripshare-tripshareTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -483,7 +484,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4350AE3D80BBD351EF065A87 /* Pods-tripshare-tripshareTests.release.xcconfig */;
+			baseConfigurationReference = 31FD513E8394097101495D36 /* Pods-tripshare-tripshareTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -507,7 +508,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83ABE388F8A096FE3F35BE03 /* Pods-tripshare.debug.xcconfig */;
+			baseConfigurationReference = E4297392927B8DF976F081C6 /* Pods-tripshare.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -534,7 +535,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 31813867CE9D149F249D8FC0 /* Pods-tripshare.release.xcconfig */;
+			baseConfigurationReference = 4F8CB001344462E44A070FB8 /* Pods-tripshare.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -592,7 +593,7 @@
 				CXX = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -622,6 +623,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
@@ -675,7 +677,7 @@
 				CXX = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -697,6 +699,7 @@
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",

@@ -1,4 +1,4 @@
-import { SafeAreaView, Text, View } from 'react-native';
+import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
@@ -9,9 +9,13 @@ import CommunityHome from './pages/community/CommunityHome';
 import ChattingHome from './pages/chat/ChattingPage';
 import MyPageHome from './pages/myPage/MyPageHome';
 import CommunityMeetingMap from './pages/community/CommunityMeetingMap';
+import TripShareBottomTab from './components/TripShareBottomTab';
+import LoginPage from './pages/LoginPage';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const renderTabBar = props => <TripShareBottomTab {...props} />;
 
 const TripPlanStack = () => {
   return (
@@ -49,6 +53,7 @@ const MyPageStack = () => {
 const BottomTab = () => {
   return (
     <Tab.Navigator
+      tabBar={renderTabBar}
       screenOptions={{
         headerShown: false,
       }}>
@@ -73,8 +78,16 @@ const BottomTab = () => {
   );
 };
 
-const Router = () => {
-  return <BottomTab />;
+// 로그인, 회원가입 페이지
+export const LoginStack = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="LoginPage" component={LoginPage} />
+    </Stack.Navigator>
+  );
 };
 
-export default Router;
+// 홈
+export const MainStack = () => {
+  return <BottomTab />;
+};

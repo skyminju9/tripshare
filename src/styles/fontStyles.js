@@ -1,16 +1,42 @@
 import { StyleSheet } from 'react-native';
+import color from './colorPalette';
 
 const fontStyles = StyleSheet.create({
   basicFont: {
     fontFamily: 'Pretendard-Regular',
     fontSize: 16,
-    color: '#333',
+    color: color.TEXT_PRIMARY,
+    letterSpacing: -0.32,
   },
-  titleFont: {
+  basicFont02: {
     fontFamily: 'Pretendard-Regular',
+    fontSize: 14,
+    color: color.TEXT_PRIMARY,
+    letterSpacing: -0.28,
+  },
+  boldFont01: {
+    fontFamily: 'Pretendard-SemiBold',
+    fontSize: 16,
+    color: color.TEXT_PRIMARY,
+    letterSpacing: -0.32,
+  },
+  title01: {
+    fontFamily: 'Pretendard-SemiBold',
+    fontSize: 28,
+    color: color.TEXT_PRIMARY,
+    letterSpacing: -0.56,
+  },
+  title02: {
+    fontFamily: 'Pretendard-SemiBold',
+    fontSize: 20,
+    color: color.TEXT_PRIMARY,
+    letterSpacing: -0.4,
+  },
+  title03: {
+    fontFamily: 'Pretendard-SemiBold',
     fontSize: 18,
-    fontWeight: '500',
-    color: '#333',
+    color: color.TEXT_PRIMARY,
+    letterSpacing: -0.36,
   },
 });
 
