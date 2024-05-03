@@ -9,7 +9,8 @@ import ChattingHome from './pages/chat/ChattingPage';
 import MyPageHome from './pages/myPage/MyPageHome';
 import TripShareBottomTab from './components/TripShareBottomTab';
 import LoginPage from './pages/LoginPage';
-import CommunityBoard from './pages/community/CommunityBoard';
+import CommunityFreeBoard from './pages/community/CommunityFreeBoard';
+import CommunityHotBoard from './pages/community/CommunityHotBoard';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -32,7 +33,6 @@ const BottomTab = () => {
   );
 };
 
-// 로그인, 회원가입 페이지
 export const LoginStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
