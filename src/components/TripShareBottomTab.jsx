@@ -102,13 +102,13 @@ const styles = StyleSheet.create({
   communityIcon: {
     backgroundColor: '#4F85F6',
     borderRadius: 50,
-    padding: 16,
+    padding: 12,
     position: 'absolute',
     bottom: -18,
-    shadowColor: '#2170F0',
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.2,
-    shadowRadius: 20,
+    shadowColor: '#A5C2FF',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 1,
+    shadowRadius: 5,
     elevation: 10,
   },
 });
