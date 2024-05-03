@@ -1,30 +1,16 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
-
-import HomeIcon from '../assets/icons/bottomIcons/homeIcon.svg';
-import PlanIcon from '../assets/icons/bottomIcons/planIcon.svg';
-import ChatIcon from '../assets/icons/bottomIcons/chatIcon.svg';
-import MyPageIcon from '../assets/icons/bottomIcons/myPageIcon.svg';
-import CommunityIcon from '../assets/logo/bottomLogo.svg';
-
-// TODO: svg color 변경 방법
-import HomeIconOn from '../assets/icons/bottomIcons/homeIconOn.svg';
-import PlanIconOn from '../assets/icons/bottomIcons/planIconOn.svg';
-import ChatIconOn from '../assets/icons/bottomIcons/chatIconOn.svg';
-import MyPageIconOn from '../assets/icons/bottomIcons/myPageIconOn.svg';
-
-const tabs = {
-  Home: <HomeIcon />,
-  TripPlan: <PlanIcon />,
-  Chat: <ChatIcon />,
-  MyPage: <MyPageIcon />,
-  Community: <CommunityIcon />,
-  HomeOn: <HomeIconOn />,
-  TripPlanOn: <PlanIconOn />,
-  CommunityOn: <CommunityIcon />,
-  ChatOn: <ChatIconOn />,
-  MyPageOn: <MyPageIconOn />,
-};
+import {
+  HomeIcon,
+  PlanIcon,
+  ChatIcon,
+  MyPageIcon,
+  CommunityIcon,
+  HomeIconOn,
+  PlanIconOn,
+  ChatIconOn,
+  MyPageIconOn,
+} from '../assets/index';
 
 const TripShareBottomTab = ({ state, navigation, insets }) => {
   const { routes, index: focusedIndex } = state;
@@ -43,7 +29,7 @@ const TripShareBottomTab = ({ state, navigation, insets }) => {
   };
 
   return (
-    <View style={[styles.bottomTabWrapper, { paddingBottom: insets.bottom }]}>
+    <View style={[styles.bottomTabWrapper, { paddingBottom: insets.bottom + 10 }]}>
       <View style={styles.bottomTabBar}>
         {routes.map((route, index) => {
           const isFocused = routes[focusedIndex].name === route.name;
@@ -68,6 +54,20 @@ const TripShareBottomTab = ({ state, navigation, insets }) => {
       </View>
     </View>
   );
+};
+
+// TODO: svg color 변경 방법
+const tabs = {
+  Home: <HomeIcon />,
+  TripPlan: <PlanIcon />,
+  Chat: <ChatIcon />,
+  MyPage: <MyPageIcon />,
+  Community: <CommunityIcon />,
+  HomeOn: <HomeIconOn />,
+  TripPlanOn: <PlanIconOn />,
+  CommunityOn: <CommunityIcon />,
+  ChatOn: <ChatIconOn />,
+  MyPageOn: <MyPageIconOn />,
 };
 
 const styles = StyleSheet.create({
