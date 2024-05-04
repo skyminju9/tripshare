@@ -1,15 +1,15 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-
 import NotiIcon from '../assets/icons/header/notification.svg';
 import LogoIcon from '../assets/icons/header/blue_logo.svg';
 import DropDownIcon from '../assets/icons/header/arrow_drop_down.svg';
+import fontStyles from '../styles/fontStyles';
 
 const LogoHeader = ({ location }) => {
   return (
     <View style={styles.headerWrapper}>
       <TouchableOpacity style={styles.locationDropdown}>
-        <Text style={styles.locationText}>{location}</Text>
+        <Text style={fontStyles.title03}>{location}</Text>
         <DropDownIcon width={32} height={32} />
       </TouchableOpacity>
       <View style={{ alignItems: 'center', position: 'absolute', left: 170 }}>
@@ -38,12 +38,6 @@ const styles = StyleSheet.create({
     height: 60,
   },
   locationDropdown: { flexDirection: 'row', alignItems: 'center' },
-  locationText: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#222',
-    letterSpacing: -0.4,
-  },
 });
 
 export default LogoHeader;
