@@ -1,3 +1,4 @@
+// bottom icon
 import HomeIcon from './icons/bottomIcons/homeIcon.svg';
 import PlanIcon from './icons/bottomIcons/planIcon.svg';
 import ChatIcon from './icons/bottomIcons/chatIcon.svg';
@@ -7,6 +8,12 @@ import HomeIconOn from './icons/bottomIcons/homeIconOn.svg';
 import PlanIconOn from './icons/bottomIcons/planIconOn.svg';
 import ChatIconOn from './icons/bottomIcons/chatIconOn.svg';
 import MyPageIconOn from './icons/bottomIcons/myPageIconOn.svg';
+
+// article icon
+import BookmarkIcon from './icons/articleIcons/bookmarkIcon.svg';
+import CommentIcon from './icons/articleIcons/commentIcon.svg';
+import HeartIcon from './icons/articleIcons/heartIcon.svg';
+import SearchIcon from './icons/articleIcons/searchIcon.svg';
 
 export {
   HomeIcon,
@@ -18,4 +25,8 @@ export {
   PlanIconOn,
   ChatIconOn,
   MyPageIconOn,
+  BookmarkIcon,
+  CommentIcon,
+  HeartIcon,
+  SearchIcon,
 };
