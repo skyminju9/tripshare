@@ -20,8 +20,8 @@ const Explore = () => {
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <ScrollView style={styles.container}>
-        <View>
+      <ScrollView>
+        <View style={styles.container}>
           <View style={styles.categoryArea}>
             <View style={styles.categoryTextArea}>
               <Text style={styles.categoryTitle}>실시간 인기 계획</Text>
