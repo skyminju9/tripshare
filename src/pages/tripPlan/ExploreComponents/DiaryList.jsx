@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native'; // 추가
 import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 import HeartIcon from '../../../assets/icons/Explore/heart.png';
 import HeartIconFilled from '../../../assets/icons/Explore/heartfilled.png';
@@ -7,36 +8,48 @@ import BookmarkIconFilled from '../../../assets/icons/Explore/bookmarkfilled.png
 import DiaryImage from '../../../assets/icons/Explore/diaryimage.png';
 
 const DiaryList = () => {
+  const navigation = useNavigation();
+  const handleDetailPress = () => {
+    navigation.navigate('DiaryDetail');
+  };
+
   const [heartSelected, setHeartSelected] = useState(false);
   const [bookmarkSelected, setBookmarkSelected] = useState(false);
 
   return (
-    <View style={styles.diaryListBox}>
-      <Image source={DiaryImage} style={styles.imageExample} />
-      <View style={styles.infoContainer}>
-        <Text style={styles.diaryTitle}>오사카 마지막 날!</Text>
-        <View style={styles.bottomArea}>
-          <View style={styles.statsArea}>
-            <View style={styles.statsArea}>
-              <View style={styles.statsContainer}>
-                <TouchableOpacity onPress={() => setHeartSelected(!heartSelected)}>
-                  <Image source={heartSelected ? HeartIconFilled : HeartIcon} style={styles.icon} />
-                </TouchableOpacity>
-                <Text style={styles.statsText1}>16</Text>
-              </View>
-              <View style={styles.statsContainer}>
-                <TouchableOpacity onPress={() => setBookmarkSelected(!bookmarkSelected)}>
-                  <Image
-                    source={bookmarkSelected ? BookmarkIconFilled : BookmarkIcon}
-                    style={styles.icon}
-                  />
-                </TouchableOpacity>
-                <Text style={styles.statsText2}>32</Text>
+    <View>
+      <TouchableOpacity onPress={handleDetailPress}>
+        <View style={styles.diaryListBox}>
+          <Image source={DiaryImage} style={styles.imageExample} />
+          <View style={styles.infoContainer}>
+            <Text style={styles.diaryTitle}>오사카 마지막 날!</Text>
+            <View style={styles.bottomArea}>
+              <View style={styles.statsArea}>
+                <View style={styles.statsArea}>
+                  <View style={styles.statsContainer}>
+                    <TouchableOpacity onPress={() => setHeartSelected(!heartSelected)}>
+                      <Image
+                        source={heartSelected ? HeartIconFilled : HeartIcon}
+                        style={styles.icon}
+                      />
+                    </TouchableOpacity>
+                    <Text style={styles.statsText1}>16</Text>
+                  </View>
+                  <View style={styles.statsContainer}>
+                    <TouchableOpacity onPress={() => setBookmarkSelected(!bookmarkSelected)}>
+                      <Image
+                        source={bookmarkSelected ? BookmarkIconFilled : BookmarkIcon}
+                        style={styles.icon}
+                      />
+                    </TouchableOpacity>
+                    <Text style={styles.statsText2}>32</Text>
+                  </View>
+                </View>
               </View>
             </View>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };

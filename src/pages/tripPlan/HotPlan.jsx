@@ -25,10 +25,11 @@ const HotPlan = () => {
   const handleBlur = () => {
     setIsSearchFocused(false);
   };
+  console.log('HotPlan에서 BasicHeader로 전달하는 text:', '실시간 인기 계획');
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <BasicHeader />
+      <BasicHeader text="실시간 인기 계획" />
       <View style={styles.container}>
         <View style={[styles.searchBar, isSearchFocused && styles.searchBarFocused]}>
           <Image source={SearchBarIcon} style={styles.icon} />

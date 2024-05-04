@@ -6,7 +6,7 @@ import BasicHeader from '../../components/BasicHeader';
 import ScheduleList from './ExploreComponents/ScheduleList';
 
 const PlanDetail = () => {
-  const [selectedDay, setSelectedDay] = useState(1); // 1일차를 기본 선택으로 초기화
+  const [selectedDay, setSelectedDay] = useState(1);
 
   const handleDayClick = day => {
     setSelectedDay(day);
@@ -14,7 +14,7 @@ const PlanDetail = () => {
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <BasicHeader />
+      <BasicHeader text="계획 상세보기" />
       <ScrollView>
         <View style={styles.container}>
           <View>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 12,
     paddingVertical: 14,
-    maxHeight: 450, // area의 최대 높이 설정
+    maxHeight: 540, // area의 최대 높이 설정
   },
 });
 

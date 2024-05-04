@@ -13,7 +13,7 @@ const HotDiary = () => {
   };
   return (
     <SafeAreaView style={styles.wrapper}>
-      <BasicHeader />
+      <BasicHeader text="실시간 인기 기록" />
       <ScrollView>
         <View style={styles.container}>
           <TouchableOpacity onPress={handleDetailPress}>
