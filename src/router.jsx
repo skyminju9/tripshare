@@ -29,7 +29,6 @@ const CommunityStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="CommunityHome" component={CommunityHome} />
-      <Stack.Screen name="CommunityMeetingMap" component={CommunityMeetingMap} />
     </Stack.Navigator>
   );
 };
@@ -59,19 +58,7 @@ const BottomTab = () => {
       }}>
       <Tab.Screen name="Home" component={HomePage} />
       <Tab.Screen name="TripPlan" component={TripPlanStack} />
-      <Tab.Screen
-        name="Community"
-        component={CommunityStack}
-        options={({ route }) => ({
-          tabBarStyle: (route => {
-            const routeName = getFocusedRouteNameFromRoute(route) ?? '';
-            if (routeName === 'CommunityMeetingMap') {
-              return { display: 'none' };
-            }
-            return;
-          })(route),
-        })}
-      />
+      <Tab.Screen name="Community" component={CommunityStack} />
       <Tab.Screen name="Chat" component={ChatStack} />
       <Tab.Screen name="MyPage" component={MyPageStack} />
     </Tab.Navigator>
@@ -89,5 +76,15 @@ export const LoginStack = () => {
 
 // 홈
 export const MainStack = () => {
-  return <BottomTab />;
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="BottomTab" component={BottomTab} />
+      {/* HOME */}
+      {/* COMMUNITY */}
+      <Stack.Screen name="CommunityMeetingMap" component={CommunityMeetingMap} />
+      {/* TRIP PLAN */}
+      {/* CHATTING */}
+      {/* MY PAGE */}
+    </Stack.Navigator>
+  );
 };

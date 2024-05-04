@@ -7,6 +7,8 @@ import HomeIconOn from './icons/bottomIcons/homeIconOn.svg';
 import PlanIconOn from './icons/bottomIcons/planIconOn.svg';
 import ChatIconOn from './icons/bottomIcons/chatIconOn.svg';
 import MyPageIconOn from './icons/bottomIcons/myPageIconOn.svg';
+import ImpromptuIcon from './icons/meeting/impromptu.png';
+import AccompanyIcon from './icons/meeting/accompany.png';
 
 export {
   HomeIcon,
@@ -18,4 +20,6 @@ export {
   PlanIconOn,
   ChatIconOn,
   MyPageIconOn,
+  ImpromptuIcon,
+  AccompanyIcon,
 };

@@ -133,3 +133,46 @@ export const dummy_comment = [
     createdAt: new Date('2024-05-20 16:20'),
   },
 ];
+
+export const dummy_meet = [
+  {
+    id: 1,
+    location: { latitude: 37.78827, longitude: -122.4322 },
+    title: '도쿄타워 같이 가실 분',
+    content: '도쿄타워 야경 보고 같이 저녁 먹을 한국인 분들 구해요!',
+    name: '도쿄최고',
+    category: 'impromptu',
+    createAt: new Date('2024-05-20 16:20'),
+    meetingAt: new Date('2024-05-20 20:00'),
+  },
+  {
+    id: 2,
+    location: { latitude: 37.78825, longitude: -122.4324 },
+    title: '도쿄타워 같이 가실 분',
+    content: '도쿄타워 야경 보고 같이 저녁 먹을 한국인 분들 구해요!',
+    name: '도쿄최고',
+    category: 'impromptu',
+    createAt: new Date('2024-05-20 16:20'),
+    meetingAt: new Date('2024-05-20 20:00'),
+  },
+  {
+    id: 3,
+    location: { latitude: 37.7883, longitude: -122.432 },
+    title: '도쿄타워 같이 가실 분',
+    content: '도쿄타워 야경 보고 같이 저녁 먹을 한국인 분들 구해요!',
+    name: '도쿄최고',
+    category: 'accompany',
+    createAt: new Date('2024-05-20 16:20'),
+    meetingAt: new Date('2024-05-20 20:00'),
+  },
+  {
+    id: 4,
+    location: { latitude: 37.78815, longitude: -122.4318 },
+    title: '도쿄타워 같이 가실 분',
+    content: '도쿄타워 야경 보고 같이 저녁 먹을 한국인 분들 구해요!',
+    name: '도쿄최고',
+    category: 'impromptu',
+    createAt: new Date('2024-05-20 16:20'),
+    meetingAt: new Date('2024-05-20 20:00'),
+  },
+];
