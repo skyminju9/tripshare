@@ -32,11 +32,21 @@ const CommunityMeetingMap = ({ navigation }) => {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}>
-        {dummy_meet.map(marker => (
-          <Marker key={marker.id} coordinate={marker.location}>
-            <CustomMarker marker={marker} />
-          </Marker>
-        ))}
+        {dummy_meet.map(marker => {
+          if (marker.category === 'impromptu' && !impromptuIsVisible) {
+            return;
+          }
+
+          if (marker.category === 'accompany' && !accompanyIsVisible) {
+            return;
+          }
+
+          return (
+            <Marker key={marker.id} coordinate={marker.location}>
+              <CustomMarker marker={marker} />
+            </Marker>
+          );
+        })}
       </MapView>
       <View style={[styles.topCheckWrapper, { top: safeArea.top + 60 + 20 }]}>
         <TouchableOpacity

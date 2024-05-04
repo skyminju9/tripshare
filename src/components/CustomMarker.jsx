@@ -3,7 +3,7 @@ import React from 'react';
 import color from '../styles/colorPalette';
 import Svg, { Polygon } from 'react-native-svg';
 const CustomMarker = ({ marker }) => {
-  const markerColor = marker.category === 'impromptu' ? color.BLUE_500 : '#FFD83B';
+  const markerColor = marker.category === 'impromptu' ? '#FFD83B' : color.BLUE_500;
   return (
     <View style={{ flex: 1, height: 80 }}>
       <View style={[styles.markerImageWrapper, { backgroundColor: markerColor }]}>
