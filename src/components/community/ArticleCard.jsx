@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
   articleBottom: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   articleIconContainer: {
     flexDirection: 'row',
