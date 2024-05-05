@@ -8,8 +8,8 @@ import CommunityHome from './pages/community/CommunityHome';
 import ChattingHome from './pages/chat/ChattingPage';
 import MyPageHome from './pages/myPage/MyPageHome';
 import TripShareBottomTab from './components/TripShareBottomTab';
-import CommunityBoard from './pages/community/CommunityBoard';
 import LoginPage from './pages/register/LoginPage';
+import CommunityBoard from './pages/community/CommunityBoard';
 import SignUpPage from './pages/register/SignUpPage';
 import Splash from './pages/register/Splash';
 
