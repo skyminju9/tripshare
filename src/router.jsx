@@ -8,7 +8,14 @@ import CommunityHome from './pages/community/CommunityHome';
 import ChattingHome from './pages/chat/ChattingPage';
 import MyPageHome from './pages/myPage/MyPageHome';
 import TripShareBottomTab from './components/TripShareBottomTab';
+<<<<<<< HEAD
 import LoginPage from './pages/LoginPage';
+=======
+import LoginPage from './pages/register/LoginPage';
+import CommunityBoard from './pages/community/CommunityBoard';
+import SignUpPage from './pages/register/SignUpPage';
+import Splash from './pages/register/Splash';
+>>>>>>> 7eef2c5 (fix : router conflicts)
 import CommunityFreeBoard from './pages/community/CommunityFreeBoard';
 import CommunityHotBoard from './pages/community/CommunityHotBoard';
 
