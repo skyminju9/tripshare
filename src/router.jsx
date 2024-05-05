@@ -8,8 +8,10 @@ import CommunityHome from './pages/community/CommunityHome';
 import ChattingHome from './pages/chat/ChattingPage';
 import MyPageHome from './pages/myPage/MyPageHome';
 import TripShareBottomTab from './components/TripShareBottomTab';
-import LoginPage from './pages/LoginPage';
 import CommunityBoard from './pages/community/CommunityBoard';
+import LoginPage from './pages/register/LoginPage';
+import SignUpPage from './pages/register/SignUpPage';
+import Splash from './pages/register/Splash';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -36,10 +38,9 @@ const BottomTab = () => {
 export const LoginStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="LoginPage" component={LoginPage} />
       <Stack.Screen name="SignUpPage" component={SignUpPage} />
-      <Stack.Screen name="MainPage" component={MainStack} />
+      <Stack.Screen name="MainStack" component={MainStack} />
     </Stack.Navigator>
   );
 };
@@ -48,6 +49,8 @@ export const LoginStack = () => {
 export const MainStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Splash" component={Splash} />
+      <Stack.Screen name="LoginStack" component={LoginStack} />
       <Stack.Screen name="BottomTab" component={BottomTab} />
       {/* HOME */}
       {/* COMMUNITY */}

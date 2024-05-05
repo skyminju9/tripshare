@@ -28,7 +28,7 @@ const LoginPage = ({ navigation }) => {
     setShow(!show);
   };
   const handleLogin = () => {
-    navigation.navigate('MainPage');
+    navigation.navigate('BottomTab');
   };
   const handleSignUp = () => {
     navigation.navigate('SignUpPage');

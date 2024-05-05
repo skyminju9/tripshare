@@ -28,7 +28,7 @@ const SignUpPage = ({ navigation }) => {
   const [passwordCheck, setPasswordCheck] = useState('');
 
   const handleSignUp = () => {
-    navigation.navigate('MainPage');
+    navigation.navigate('BottomTab');
   };
 
   const handleLogin = () => {
