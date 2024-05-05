@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     marginBottom: 26,
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 30,
+    justifyContent: 'center',
     gap: 12,
   },
   titleText: [fontStyles.title03, { color: color.BLUE_500 }],
