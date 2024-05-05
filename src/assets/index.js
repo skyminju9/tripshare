@@ -9,6 +9,8 @@ import ChatIconOn from './icons/bottomIcons/chatIconOn.svg';
 import MyPageIconOn from './icons/bottomIcons/myPageIconOn.svg';
 import ImpromptuIcon from './icons/meeting/impromptu.png';
 import AccompanyIcon from './icons/meeting/accompany.png';
+import CloseIcon from './icons/meeting/closeIcon.svg';
+import WriteIcon from './icons/meeting/writeIcon.svg';
 
 export {
   HomeIcon,
@@ -22,4 +24,6 @@ export {
   MyPageIconOn,
   ImpromptuIcon,
   AccompanyIcon,
+  CloseIcon,
+  WriteIcon,
 };
