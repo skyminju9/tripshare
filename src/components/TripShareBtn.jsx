@@ -23,8 +23,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,
+    paddingVertical: 24,
   },
-  btnText: { color: color.WHITE, paddingVertical: 16, paddingHorizontal: 130 },
+  btnText: { color: color.WHITE },
 });
 
 export default TripShareBtn;
