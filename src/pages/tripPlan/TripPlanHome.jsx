@@ -1,8 +1,8 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import Explore from './Explore';
-import MyTrip from './MyTrip';
+import Explore from './ExploreTab/Explore';
+import MyTrip from './MyTribTab/MyTrip';
 
 const Tab = createMaterialTopTabNavigator();
 

@@ -4,12 +4,12 @@ import fontStyles from '../../styles/fontStyles';
 import color from '../../styles/colorPalette';
 import shadowStyles from '../../styles/shadowStyles';
 import LogoHeader from '../../components/LogoHeader';
-import { useLocation } from '../../contexts/LocationContext'; // LocationContext 가져오기
+import { useLocation } from '../../contexts/LocationContext';
 import Cloudy from './HomeComponents/cloudy.png';
 import MainPostSlide from './HomeComponents/MainPostSlide';
 
 const HomePage = () => {
-  const { selectedCountry, selectedCity } = useLocation(); // Context에서 위치 정보 가져오기
+  const { selectedCountry, selectedCity } = useLocation();
 
   const location = selectedCountry && selectedCity ? `${selectedCity}` : '위치미정';
 
