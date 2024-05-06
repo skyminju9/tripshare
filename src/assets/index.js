@@ -21,6 +21,13 @@ import CommentIcon from './icons/articleIcons/commentIcon.svg';
 import HeartIcon from './icons/articleIcons/heartIcon.svg';
 import SearchIcon from './icons/articleIcons/searchIcon.svg';
 
+//register icon
+import PersonIcon from './icons/register/person.svg';
+import FaceIcon from './icons/register/face.svg';
+import LockIcon from './icons/register/lock.svg';
+import CheckIcon from './icons/register/check_circle_outline.svg';
+import Google from './icons/register/Google.svg';
+
 export {
   HomeIcon,
   PlanIcon,
@@ -35,6 +42,11 @@ export {
   CommentIcon,
   HeartIcon,
   SearchIcon,
+  PersonIcon,
+  FaceIcon,
+  LockIcon,
+  CheckIcon,
+  Google,
   FlashIcon,
   PlaceIcon,
   EventIcon,

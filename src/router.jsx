@@ -8,7 +8,9 @@ import CommunityHome from './pages/community/CommunityHome';
 import ChattingHome from './pages/chat/ChattingPage';
 import MyPageHome from './pages/myPage/MyPageHome';
 import TripShareBottomTab from './components/TripShareBottomTab';
-import LoginPage from './pages/LoginPage';
+import LoginPage from './pages/register/LoginPage';
+import SignUpPage from './pages/register/SignUpPage';
+import Splash from './pages/register/Splash';
 import CommunityFreeBoard from './pages/community/CommunityFreeBoard';
 import CommunityHotBoard from './pages/community/CommunityHotBoard';
 
@@ -33,11 +35,12 @@ const BottomTab = () => {
   );
 };
 
-// 로그인, 회원가입 페이지
 export const LoginStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="LoginPage" component={LoginPage} />
+      <Stack.Screen name="SignUpPage" component={SignUpPage} />
+      <Stack.Screen name="MainStack" component={MainStack} />
     </Stack.Navigator>
   );
 };
@@ -46,6 +49,8 @@ export const LoginStack = () => {
 export const MainStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Splash" component={Splash} />
+      <Stack.Screen name="LoginStack" component={LoginStack} />
       <Stack.Screen name="BottomTab" component={BottomTab} />
       {/* HOME */}
       {/* COMMUNITY */}
