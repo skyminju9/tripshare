@@ -1,13 +1,16 @@
 import React from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import fontStyles from '../styles/fontStyles';
 import color from '../styles/colorPalette';
 
-const TripShareBtn = ({ text }) => {
+const TripShareBtn = ({ text, address }) => {
+  const navigation = useNavigation();
+
   return (
-    <View style={styles.buttonWrapper}>
+    <TouchableOpacity style={styles.buttonWrapper} onPress={() => navigation.navigate(address)}>
       <Text style={[fontStyles.title03, styles.btnText]}>{text}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
