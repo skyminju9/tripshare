@@ -7,6 +7,7 @@ import LogoHeader from '../../components/LogoHeader';
 import { useLocation } from '../../contexts/LocationContext';
 import Cloudy from './HomeComponents/cloudy.png';
 import MainPostSlide from './HomeComponents/MainPostSlide';
+import { Shadow } from 'react-native-shadow-2';
 
 const HomePage = () => {
   const { selectedCountry, selectedCity } = useLocation();
@@ -26,17 +27,14 @@ const HomePage = () => {
           <View style={styles.infoArea}>
             <View style={styles.infoTop}>
               <View style={styles.box1}>
-                <View style={styles.flatContainer} />
+                <View style={styles.flagContainer} />
                 <View style={styles.subInfo}>
                   <Text style={fontStyles.title02}>도쿄,</Text>
                   <Text style={fontStyles.title02}>일본</Text>
                 </View>
               </View>
               <View style={styles.box1}>
-                <Image
-                  source={Cloudy}
-                  style={{ width: 40, height: 40, marginHorizontal: 20, marginVertical: 25 }}
-                />
+                <Image source={Cloudy} style={{ width: 40, height: 40 }} />
                 <View style={styles.subInfo}>
                   <Text style={[fontStyles.title02, { color: color.BLUE_500 }]}>10°C</Text>
                   <Text style={[fontStyles.title02, { color: color.RED_400 }]}>18°C</Text>
@@ -45,48 +43,51 @@ const HomePage = () => {
             </View>
             <View style={styles.infoBottom}>
               <View style={styles.box2}>
-                <Text style={[fontStyles.title03, { marginBottom: 5 }]}>환율</Text>
+                <Text style={[fontStyles.title03, { marginBottom: 3 }]}>환율</Text>
                 <Text style={fontStyles.basicFont02}>892.67원</Text>
                 <Text style={[fontStyles.basicFont02, { color: color.TEXT_SECONDARY }]}>
                   / 100JPY
                 </Text>
               </View>
               <View style={styles.box2}>
-                <Text style={[fontStyles.title03, { marginBottom: 5 }]}>시차</Text>
+                <Text style={[fontStyles.title03, { marginBottom: 3 }]}>시차</Text>
                 <Text style={fontStyles.basicFont02}>차이 없음</Text>
               </View>
               <View style={styles.box2}>
-                <Text style={[fontStyles.title03, { marginBottom: 5 }]}>전압</Text>
+                <Text style={[fontStyles.title03, { marginBottom: 3 }]}>전압</Text>
                 <Text style={fontStyles.basicFont02}>100V</Text>
               </View>
             </View>
           </View>
           <View style={styles.postArea}>
             <Text style={[fontStyles.title03, styles.postAreaText]}>✈️ 다가오는 여행 일정</Text>
-            <View style={[styles.postBox, shadowStyles.smallShadow]}>
-              <View style={styles.postBoxInner}>
-                <Text style={fontStyles.title03}>도쿄여행</Text>
-                <Text
+
+            <Shadow {...shadowStyles.smallShadow} stretch>
+              <View style={styles.postBox}>
+                <View style={styles.postBoxInner}>
+                  <Text style={fontStyles.title03}>도쿄여행</Text>
+                  <Text
+                    style={[
+                      fontStyles.boldFont02,
+                      { color: color.TEXT_SECONDARY, alignSelf: 'flex-end', marginLeft: 10 },
+                    ]}>
+                    24.05.01 ~ 24.05.14
+                  </Text>
+                </View>
+                <View
                   style={[
-                    fontStyles.boldFont02,
-                    { color: color.TEXT_SECONDARY, alignSelf: 'flex-end', marginLeft: 10 },
+                    styles.postBoxInner,
+                    { alignItems: 'center', justifyContent: 'space-between' },
                   ]}>
-                  24.05.01 ~ 24.05.14
-                </Text>
+                  <Text style={[fontStyles.basicFont02, { color: color.TEXT_SECONDARY }]}>
+                    예인, 정혁, 서흔, 가연
+                  </Text>
+                  <Text style={[fontStyles.title03, { color: color.BLUE_500, marginLeft: 10 }]}>
+                    D-day
+                  </Text>
+                </View>
               </View>
-              <View
-                style={[
-                  styles.postBoxInner,
-                  { alignItems: 'center', justifyContent: 'space-between' },
-                ]}>
-                <Text style={[fontStyles.basicFont02, { color: color.TEXT_SECONDARY }]}>
-                  예인, 정혁, 서흔, 가연
-                </Text>
-                <Text style={[fontStyles.title03, { color: color.BLUE_500, marginLeft: 10 }]}>
-                  D-day
-                </Text>
-              </View>
-            </View>
+            </Shadow>
             <MainPostSlide />
           </View>
         </View>
@@ -101,70 +102,75 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
   container: {
-    flex: 1,
+    display: 'flex',
     paddingHorizontal: 20,
     paddingVertical: 28,
   },
   infoArea: {
     marginVertical: 20,
+    alignItems: 'center',
   },
   infoTop: {
     flexDirection: 'row',
     gap: 6,
     marginBottom: 7,
+    justifyContent: 'center',
   },
   infoBottom: {
     flexDirection: 'row',
     gap: 7,
+    justifyContent: 'center',
   },
+
   box1: {
-    width: 172,
+    flex: 1,
     height: 90,
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
     borderColor: '#EEEEEE',
     borderRadius: 16,
     flexDirection: 'row',
+    padding: 20,
+    alignItems: 'center',
   },
   box2: {
-    width: 112,
-    height: 90,
+    flex: 1,
+    minHeight: 90,
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
     borderColor: '#EEEEEE',
     borderRadius: 16,
     paddingHorizontal: 18,
-    paddingTop: 14,
+    paddingTop: 10,
+  },
+  flagContainer: {
+    width: 40, // 조절 가능한 사이즈
+    height: 40, // 조절 가능한 사이즈
+    borderRadius: 20, // 절반으로 설정하여 동그랗게
+    backgroundColor: 'red',
   },
   postAreaText: {
     marginVertical: 12,
-    marginLef: 3,
+    marginLeft: 3,
   },
   postBox: {
-    width: 350,
     height: 100,
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
     borderColor: '#EEEEEE',
     borderRadius: 16,
-    marginBottom: 10,
+    marginBottom: 15,
     paddingHorizontal: 20,
     paddingTop: 20,
   },
+
   postBoxInner: {
     flexDirection: 'row',
     marginBottom: 12,
   },
-  flatContainer: {
-    width: 40, // 조절 가능한 사이즈
-    height: 40, // 조절 가능한 사이즈
-    borderRadius: 20, // 절반으로 설정하여 동그랗게
-    backgroundColor: 'red',
-    marginHorizontal: 20,
-    marginVertical: 25,
-  },
+
   subInfo: {
-    justifyContent: 'center',
+    marginLeft: 20,
   },
 });
 

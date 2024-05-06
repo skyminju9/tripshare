@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Modal, Button, StyleSheet } from 'react-native';
+import { View, Modal, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import data from '../PrimaryRegions.json';
 import { useLocation } from '../contexts/LocationContext';
@@ -71,8 +71,12 @@ const Dropdown = ({ showModal, setShowModal, handleCloseModal }) => {
                 ))}
               </Picker>
               <View style={styles.buttonGroup}>
-                <Button title="취소" onPress={handleCancel} color="red" />
-                <Button title="선택" onPress={confirmSelection} />
+                <TouchableOpacity onPress={handleCancel}>
+                  <Text>취소</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={confirmSelection}>
+                  <Text>선택</Text>
+                </TouchableOpacity>
               </View>
             </View>
           ) : (
@@ -87,8 +91,12 @@ const Dropdown = ({ showModal, setShowModal, handleCloseModal }) => {
                 ))}
               </Picker>
               <View style={styles.buttonGroup}>
-                <Button title="이전" onPress={handlePrevious} />
-                <Button title="완료" onPress={handleComplete} />
+                <TouchableOpacity onPress={handlePrevious} style={styles.button}>
+                  <Text>이전</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleComplete} style={styles.button}>
+                  <Text>완료</Text>
+                </TouchableOpacity>
               </View>
             </View>
           )}
