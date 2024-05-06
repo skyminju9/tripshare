@@ -9,7 +9,8 @@ import ChattingHome from './pages/chat/ChattingPage';
 import MyPageHome from './pages/myPage/MyPageHome';
 import TripShareBottomTab from './components/TripShareBottomTab';
 import LoginPage from './pages/LoginPage';
-import CommunityBoard from './pages/community/CommunityBoard';
+import CommunityFreeBoard from './pages/community/CommunityFreeBoard';
+import CommunityHotBoard from './pages/community/CommunityHotBoard';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -48,7 +49,8 @@ export const MainStack = () => {
       <Stack.Screen name="BottomTab" component={BottomTab} />
       {/* HOME */}
       {/* COMMUNITY */}
-      <Stack.Screen name="CommunityDetail" component={CommunityBoard} />
+      <Stack.Screen name="CommunityFreeBoard" component={CommunityFreeBoard} />
+      <Stack.Screen name="CommunityHotBoard" component={CommunityHotBoard} />
       {/* TRIP PLAN */}
       {/* CHATTING */}
       {/* MY PAGE */}
