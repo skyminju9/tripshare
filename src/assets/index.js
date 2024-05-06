@@ -9,6 +9,12 @@ import PlanIconOn from './icons/bottomIcons/planIconOn.svg';
 import ChatIconOn from './icons/bottomIcons/chatIconOn.svg';
 import MyPageIconOn from './icons/bottomIcons/myPageIconOn.svg';
 
+// community main icon
+import FlashIcon from './icons/community/flash.svg';
+import PlaceIcon from './icons/community/place.svg';
+import EventIcon from './icons/community/event.svg';
+import FreeTalkIcon from './icons/community/free.svg';
+
 // article icon
 import BookmarkIcon from './icons/articleIcons/bookmarkIcon.svg';
 import CommentIcon from './icons/articleIcons/commentIcon.svg';
@@ -29,4 +35,8 @@ export {
   CommentIcon,
   HeartIcon,
   SearchIcon,
+  FlashIcon,
+  PlaceIcon,
+  EventIcon,
+  FreeTalkIcon,
 };
