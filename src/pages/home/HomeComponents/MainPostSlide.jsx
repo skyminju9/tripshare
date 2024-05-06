@@ -41,7 +41,6 @@ const MainPostSlide = () => {
 
 const styles = StyleSheet.create({
   slide: {
-    width: 350,
     height: 100,
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
