@@ -22,7 +22,7 @@ const CommunityHome = ({ navigation }) => {
     return (
       <TouchableOpacity
         key={index}
-        style={[shadowStyles.largeShadow, styles.hotPostListItemWarpper]}>
+        style={[shadowStyles.smallShadow, styles.hotPostListItemWarpper]}>
         <View style={styles.hotPostListItemDot} />
         <Text style={fontStyles.basicFont}>{item.title}</Text>
       </TouchableOpacity>
@@ -91,9 +91,9 @@ const styles = StyleSheet.create({
 
   mainWrapper: {
     flex: 1,
-    paddingTop: 24,
+    paddingTop: 16,
     paddingHorizontal: 24,
-    gap: 40,
+    gap: 32,
   },
   hotPostContainer: {
     gap: 16,
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   hotPostListWrapper: {
-    gap: 12,
+    gap: 8,
   },
   hotPostListItemWarpper: {
     flexDirection: 'row',
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   },
   communityListWrapper: {
     height: '44%',
-    gap: 24,
+    gap: 16,
   },
   communityList: {
     flexDirection: 'row',
