@@ -88,7 +88,9 @@ const HomePage = () => {
                 </View>
               </View>
             </Shadow>
-            <MainPostSlide />
+            <Shadow {...shadowStyles.smallShadow} style={{ borderRadius: 16 }} stretch>
+              <MainPostSlide />
+            </Shadow>
           </View>
         </View>
       </ScrollView>
@@ -144,9 +146,9 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   flagContainer: {
-    width: 40, // 조절 가능한 사이즈
-    height: 40, // 조절 가능한 사이즈
-    borderRadius: 20, // 절반으로 설정하여 동그랗게
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     backgroundColor: 'red',
   },
   postAreaText: {
