@@ -1,31 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, View, TouchableOpacity } from 'react-native';
 import LogoHeader from '../../components/LogoHeader';
 import fontStyles from '../../styles/fontStyles';
+import shadowStyles from '../../styles/shadowStyles.js';
 import color from '../../styles/colorPalette';
+import SeeMoreBtn from '../../components/SeeMoreBtn.jsx';
+import { getHotArticle } from '../../utils/sortArticle.js';
+
 import { FlashIcon, PlaceIcon, EventIcon, FreeTalkIcon } from '../../assets/index.js';
 
 import { dummy_article } from '../../dummyData';
 
-const CommunityHome = () => {
+const CommunityHome = ({ navigation }) => {
   const [hotTitle, setHotTitle] = useState([]);
 
   useEffect(() => {
-    getHotTitle(dummy_article);
+    setHotTitle(getHotArticle(dummy_article, 3));
   }, []);
-
-  const getHotTitle = list => {
-    list.sort((a, b) => b.like - a.like);
-    const result = list.slice(0, 3);
-    setHotTitle(result);
-  };
 
   const renderHotPost = (item, index) => {
     return (
-      <View key={index} style={styles.hotPostListItemWarpper}>
+      <TouchableOpacity
+        key={index}
+        style={[shadowStyles.smallShadow, styles.hotPostListItemWarpper]}>
         <View style={styles.hotPostListItemDot} />
         <Text style={fontStyles.basicFont}>{item.title}</Text>
-      </View>
+      </TouchableOpacity>
     );
   };
 
@@ -36,7 +36,7 @@ const CommunityHome = () => {
         <View style={styles.hotPostContainer}>
           <View style={styles.hotPostTopWrapper}>
             <Text style={fontStyles.title03}>HOT한 게시글 보기</Text>
-            <Text style={fontStyles.basicFont02}>더보기</Text>
+            <SeeMoreBtn address="CommunityHotBoard" />
           </View>
           <View style={styles.hotPostListWrapper}>
             {hotTitle.map((item, index) => {
@@ -48,27 +48,29 @@ const CommunityHome = () => {
           <Text style={fontStyles.title03}>커뮤니티</Text>
           <View style={styles.communityListWrapper}>
             <View style={styles.communityList}>
-              <View style={styles.communityListItem}>
+              <TouchableOpacity style={[shadowStyles.largeShadow, styles.communityListItem]}>
                 <Text style={fontStyles.basicFont}>번개/동행</Text>
                 <FlashIcon />
-              </View>
-              <View style={styles.communityListItem}>
+              </TouchableOpacity>
+              <TouchableOpacity style={[shadowStyles.largeShadow, styles.communityListItem]}>
                 <Text style={fontStyles.basicFont}>맛집/명소</Text>
                 <PlaceIcon />
-              </View>
-              <View style={styles.communityListItem}>
+              </TouchableOpacity>
+              <TouchableOpacity style={[shadowStyles.largeShadow, styles.communityListItem]}>
                 <Text style={fontStyles.basicFont}>이벤트</Text>
                 <EventIcon />
-              </View>
+              </TouchableOpacity>
             </View>
             <View style={styles.communityList}>
-              <View style={styles.communityListBigItem}>
+              <TouchableOpacity style={[shadowStyles.largeShadow, styles.communityListBigItem]}>
                 <Text>지도</Text>
-              </View>
-              <View style={styles.communityListFreeTalk}>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[shadowStyles.largeShadow, styles.communityListFreeTalk]}
+                onPress={() => navigation.navigate('CommunityFreeBoard')}>
                 <Text style={fontStyles.title03}>자유 게시판</Text>
                 <FreeTalkIcon />
-              </View>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
 
   mainWrapper: {
     flex: 1,
-    paddingVertical: 20,
+    paddingTop: 16,
     paddingHorizontal: 24,
     gap: 32,
   },
@@ -98,7 +100,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   hotPostListWrapper: {
-    gap: 12,
+    gap: 8,
   },
   hotPostListItemWarpper: {
     flexDirection: 'row',
@@ -110,12 +112,6 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 18,
     backgroundColor: color.WHITE,
-
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 10,
-    elevation: 5,
   },
   hotPostListItemDot: {
     width: 8,
@@ -127,7 +123,8 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   communityListWrapper: {
-    gap: 24,
+    height: '44%',
+    gap: 16,
   },
   communityList: {
     flexDirection: 'row',
@@ -144,12 +141,6 @@ const styles = StyleSheet.create({
     backgroundColor: color.WHITE,
     alignItems: 'center',
     gap: 8,
-
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 10,
-    elevation: 7,
   },
   communityListBigItem: {
     width: '47%',
@@ -158,13 +149,8 @@ const styles = StyleSheet.create({
     borderColor: color.GRAY_50,
     borderRadius: 16,
     backgroundColor: color.WHITE,
+    justifyContent: 'center',
     alignItems: 'center',
-
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 10,
-    elevation: 7,
   },
   communityListFreeTalk: {
     width: '47%',
@@ -174,14 +160,9 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 32,
     backgroundColor: color.WHITE,
+    justifyContent: 'center',
     alignItems: 'center',
     gap: 8,
-
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 10,
-    elevation: 7,
   },
 });
 

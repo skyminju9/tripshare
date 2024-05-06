@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { SafeAreaView, StyleSheet, FlatList } from 'react-native';
 
 import BasicHeader from '../../components/BasicHeader';
 import ArticleCard from '../../components/community/ArticleCard';
+import { getHotArticle } from '../../utils/sortArticle';
 import { dummy_article, dummy_user } from '../../dummyData';
 
 const CommunityHotBoard = () => {
-  // TODO: HOT 게시글 리스트 정렬
-  const initialArticles = dummy_article.map(article => {
+  const [hotArticle, setHotArticle] = useState([]);
+
+  useEffect(() => {
+    setHotArticle(getHotArticle(dummy_article, 10));
+  }, []);
+
+  const initialArticles = hotArticle.map(article => {
     const articleUser = dummy_user.find(user => user.id === article.userId);
 
     return {
