@@ -11,6 +11,7 @@ import {
 import PlusIcon from '../../assets/icons/myTrip/add.svg';
 import RightArrow from '../../assets/icons/myTrip/arrow_right.svg';
 import PeopleIcon from '../../assets/icons/myTrip/people.svg';
+import { useNavigation } from '@react-navigation/native'; // 추가
 
 const dummyCoverImage = require('../../assets/images/myTrip/singapore.jpeg');
 
@@ -80,7 +81,12 @@ const dummyPlans = [
   },
 ];
 
-const MyTrip = ({ navigation }) => {
+const MyTrip = () => {
+  const navigation = useNavigation();
+  const handleMorePress = () => {
+    navigation.navigate('AddSchedule');
+  };
+
   const renderPlan = ({ item }) => {
     return (
       <TouchableOpacity style={styles.tripPlanCard}>
@@ -125,7 +131,7 @@ const MyTrip = ({ navigation }) => {
             </TouchableOpacity>
           </View>
           <View>
-            <TouchableOpacity style={styles.myTripMore}>
+            <TouchableOpacity style={styles.myTripMore} onPress={handleMorePress}>
               <Text>더보기</Text>
               <RightArrow width={24} height={24} />
             </TouchableOpacity>

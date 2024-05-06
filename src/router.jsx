@@ -10,10 +10,11 @@ import ChattingHome from './pages/chat/ChattingPage';
 import MyPageHome from './pages/myPage/MyPageHome';
 import LoginPage from './pages/LoginPage';
 import CommunityBoard from './pages/community/CommunityBoard';
-import HotPlan from './pages/tripPlan/HotPlan';
-import PlanDetail from './pages/tripPlan/PlanDetail';
-import HotDiary from './pages/tripPlan/HotDiary';
-import DiaryDetail from './pages/tripPlan/DiaryDetail';
+import HotPlan from './pages/tripPlan/ExploreTab/HotPlan';
+import PlanDetail from './pages/tripPlan/ExploreTab/PlanDetail';
+import HotDiary from './pages/tripPlan/ExploreTab/HotDiary';
+import DiaryDetail from './pages/tripPlan/ExploreTab/DiaryDetail';
+import AddSchedule from './pages/tripPlan/MyTripTab/AddSchedule';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -50,6 +51,7 @@ export const MainStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="BottomTab" component={BottomTab} />
+      <Stack.Screen name="AddSchedule" component={AddSchedule} />
       <Stack.Screen name="HotPlan" component={HotPlan} />
       <Stack.Screen name="PlanDetail" component={PlanDetail} />
       <Stack.Screen name="HotDiary" component={HotDiary} />

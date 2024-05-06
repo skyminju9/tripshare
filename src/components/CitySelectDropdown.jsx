@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Modal, Button, StyleSheet } from 'react-native';
+import { View, Modal, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import data from '../PrimaryRegions.json';
 import { useLocation } from '../contexts/LocationContext';
@@ -56,7 +56,8 @@ const Dropdown = ({ showModal, setShowModal, handleCloseModal }) => {
       animationType="slide"
       transparent={true}
       visible={showModal}
-      onRequestClose={handleCancel}>
+      onRequestClose={handleCancel}
+      style={styles.modal}>
       <View style={styles.modalWrapper}>
         <View style={styles.modalContent}>
           {!countryConfirmed ? (
@@ -71,8 +72,12 @@ const Dropdown = ({ showModal, setShowModal, handleCloseModal }) => {
                 ))}
               </Picker>
               <View style={styles.buttonGroup}>
-                <Button title="취소" onPress={handleCancel} color="red" />
-                <Button title="선택" onPress={confirmSelection} />
+                <TouchableOpacity onPress={handleCancel}>
+                  <Text>취소</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={confirmSelection}>
+                  <Text>선택</Text>
+                </TouchableOpacity>
               </View>
             </View>
           ) : (
@@ -87,8 +92,12 @@ const Dropdown = ({ showModal, setShowModal, handleCloseModal }) => {
                 ))}
               </Picker>
               <View style={styles.buttonGroup}>
-                <Button title="이전" onPress={handlePrevious} />
-                <Button title="완료" onPress={handleComplete} />
+                <TouchableOpacity onPress={handlePrevious} style={styles.button}>
+                  <Text>이전</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleComplete} style={styles.button}>
+                  <Text>완료</Text>
+                </TouchableOpacity>
               </View>
             </View>
           )}
@@ -105,6 +114,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
+  modal: {},
   modalContent: {
     width: 350,
     backgroundColor: '#fff',
@@ -112,6 +122,7 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     padding: 20,
     borderRadius: 30,
+    maxHeight: '50%', // 모달의 최대 높이를 설정합니다.
   },
   pickerContainer: {
     flexDirection: 'column',
@@ -119,10 +130,14 @@ const styles = StyleSheet.create({
   },
   picker: {
     marginBottom: 10,
+    maxHeight: 50,
   },
   buttonGroup: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  button: {
+    padding: 10,
   },
 });
 

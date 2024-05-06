@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, SafeAreaView, StyleSheet, Image, Text, ScrollView, TextInput } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import fontStyles from '../../styles/fontStyles';
-import color from '../../styles/colorPalette';
-import BasicHeader from '../../components/BasicHeader';
-import SearchBarIcon from '../../assets/icons/Explore/searchbaricon.png';
+import fontStyles from '../../../styles/fontStyles';
+import color from '../../../styles/colorPalette';
+import BasicHeader from '../../../components/BasicHeader';
+import SearchBarIcon from '../../../assets/icons/Explore/searchbaricon.png';
 import PlanList from './ExploreComponents/PlanList';
 
 const HotPlan = () => {

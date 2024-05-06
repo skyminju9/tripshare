@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native'; // 추가
 import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
-import HeartIcon from '../../../assets/icons/Explore/heart.png';
-import HeartIconFilled from '../../../assets/icons/Explore/heartfilled.png';
-import BookmarkIcon from '../../../assets/icons/Explore/bookmark.png';
-import BookmarkIconFilled from '../../../assets/icons/Explore/bookmarkfilled.png';
-import DiaryImage from '../../../assets/icons/Explore/diaryimage.png';
+import HeartIcon from '../../../../assets/icons/Explore/heart.png';
+import HeartIconFilled from '../../../../assets/icons/Explore/heartfilled.png';
+import BookmarkIcon from '../../../../assets/icons/Explore/bookmark.png';
+import BookmarkIconFilled from '../../../../assets/icons/Explore/bookmarkfilled.png';
+import DiaryImage from '../../../../assets/icons/Explore/diaryimage.png';
 
 const DiaryList = () => {
   const navigation = useNavigation();

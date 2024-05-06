@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
-import fontStyles from '../../../styles/fontStyles';
-import color from '../../../styles/colorPalette';
-import ProfileExample2 from '../../../assets/icons/Explore/profileexample2.png';
+import fontStyles from '../../../../styles/fontStyles';
+import color from '../../../../styles/colorPalette';
+import ProfileExample2 from '../../../../assets/icons/Explore/profileexample2.png';
 
 const DiaryReply = () => {
   return (

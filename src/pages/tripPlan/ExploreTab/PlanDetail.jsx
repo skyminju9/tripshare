@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { View, SafeAreaView, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-native';
-import fontStyles from '../../styles/fontStyles';
-import color from '../../styles/colorPalette';
-import BasicHeader from '../../components/BasicHeader';
+import { useNavigation } from '@react-navigation/native';
+import fontStyles from '../../../styles/fontStyles';
+import color from '../../../styles/colorPalette';
+import BasicHeader from '../../../components/BasicHeader';
 import ScheduleList from './ExploreComponents/ScheduleList';
 
 const PlanDetail = () => {

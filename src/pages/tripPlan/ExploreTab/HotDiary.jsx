@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, SafeAreaView, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import fontStyles from '../../styles/fontStyles';
-import color from '../../styles/colorPalette';
-import BasicHeader from '../../components/BasicHeader';
+import fontStyles from '../../../styles/fontStyles';
+import color from '../../../styles/colorPalette';
+import BasicHeader from '../../../components/BasicHeader';
 import DiaryListBig from './ExploreComponents/DiaryListBig';
 import { useNavigation } from '@react-navigation/native'; // 추가
 

@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { Text, View, SafeAreaView, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; // 추가
+import { useNavigation } from '@react-navigation/native';
 import PlanList from './ExploreComponents/PlanList';
 import DiaryList from './ExploreComponents/DiaryList';
-import RightArrow from '../../assets/icons/myTrip/arrow_right.svg';
+import RightArrow from '../../../assets/icons/myTrip/arrow_right.svg';
 
 const Explore = () => {
-  const navigation = useNavigation(); // 추가
+  const navigation = useNavigation();
   const [moreView, setMoreView] = useState(false);
 
-  // 더보기 버튼 클릭 시 페이지 이동 함수
   const handleMorePress1 = () => {
     navigation.navigate('HotPlan');
   };
