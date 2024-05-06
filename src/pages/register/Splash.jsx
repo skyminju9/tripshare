@@ -4,15 +4,8 @@ import Airplane from '../../assets/icons/register/Airplane.svg';
 import color from '../../styles/colorPalette';
 
 const Splash = ({ navigation }) => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-  const [loginUser, setLoginUser] = useState(true);
-=======
   const [loginUser, setLoginUser] = useState(false);
->>>>>>> c0fa720 (design : 스플래시 / 로그인 / 회원가입 화면 퍼블리싱 + 라우터 수정)
-=======
-  const [loginUser, setLoginUser] = useState(true);
->>>>>>> 53c2642 (fix : router 관련 이슈)
+
   useEffect(() => {
     setTimeout(() => {
       loginUser ? navigation.navigate('BottomTab') : navigation.navigate('LoginStack');

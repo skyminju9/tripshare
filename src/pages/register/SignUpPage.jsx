@@ -8,20 +8,12 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import Logo from '../../assets/icons/register/blue_logo.svg';
-import PersonIcon from '../../assets/icons/register/person.svg';
-import FaceIcon from '../../assets/icons/register/face.svg';
-import LockIcon from '../../assets/icons/register/lock.svg';
-import CheckIcon from '../../assets/icons/register/check_circle_outline.svg';
-import Google from '../../assets/icons/register/Google.svg';
 
 import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
+import { PersonIcon, FaceIcon, LockIcon, CheckIcon, Google } from '../../assets/index';
 
-<<<<<<< HEAD
-=======
 const appLogo = require('../../assets/icons/register/logo_blue.png');
->>>>>>> c0fa720 (design : 스플래시 / 로그인 / 회원가입 화면 퍼블리싱 + 라우터 수정)
 const appleIcon = require('../../assets/icons/register/apple.png');
 const talkIcon = require('../../assets/icons/register/talk.png');
 
@@ -42,11 +34,7 @@ const SignUpPage = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.titleWrapper}>
-<<<<<<< HEAD
-        <Logo width={100} height={100} />
-=======
         <Image source={appLogo} style={{ width: 100, height: 100 }} />
->>>>>>> c0fa720 (design : 스플래시 / 로그인 / 회원가입 화면 퍼블리싱 + 라우터 수정)
         <Text style={styles.titleText}>계정을 만들고{'\n'}다양한 기능을 즐겨보세요!</Text>
       </View>
       <View style={styles.inputsContainer}>

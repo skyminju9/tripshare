@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -10,19 +10,9 @@ import {
 } from 'react-native';
 import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
-<<<<<<< HEAD
+import { PersonIcon, LockIcon, Google } from '../../assets/index';
 
-import Logo from '../../assets/icons/register/blue_logo_text.svg';
-=======
->>>>>>> c0fa720 (design : 스플래시 / 로그인 / 회원가입 화면 퍼블리싱 + 라우터 수정)
-import PersonIcon from '../../assets/icons/register/person.svg';
-import LockIcon from '../../assets/icons/register/lock.svg';
-import Google from '../../assets/icons/register/Google.svg';
-
-<<<<<<< HEAD
-=======
 const appLogo = require('../../assets/icons/register/logo_text.png');
->>>>>>> c0fa720 (design : 스플래시 / 로그인 / 회원가입 화면 퍼블리싱 + 라우터 수정)
 const appleIcon = require('../../assets/icons/register/apple.png');
 const talkIcon = require('../../assets/icons/register/talk.png');
 
@@ -44,12 +34,7 @@ const LoginPage = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.container}>
-<<<<<<< HEAD
-        <Logo width={120} height={138} />
-=======
-        <Image source={appLogo} style={{ width: 120, height: 138 }} />
-        {/* <Logo width={120} height={138} /> */}
->>>>>>> c0fa720 (design : 스플래시 / 로그인 / 회원가입 화면 퍼블리싱 + 라우터 수정)
+        <Image source={appLogo} style={styles.appLogoStyle} />
         <View style={styles.inputsContainer}>
           <View style={styles.inputWrapper}>
             <View style={styles.inputIcon}>
@@ -108,10 +93,10 @@ const LoginPage = ({ navigation }) => {
               <Google width={60} height={60} />
             </TouchableOpacity>
             <TouchableOpacity>
-              <Image source={appleIcon} style={{ width: 60, height: 60 }} />
+              <Image source={appleIcon} style={styles.loginButtonIcon} />
             </TouchableOpacity>
             <TouchableOpacity>
-              <Image source={talkIcon} style={{ width: 60, height: 60 }} />
+              <Image source={talkIcon} style={styles.loginButtonIcon} />
             </TouchableOpacity>
           </View>
         </View>
@@ -127,6 +112,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   container: { marginTop: 80, alignItems: 'center' },
+  appLogoStyle: { width: 120, height: 138 },
   inputsContainer: { marginTop: 50, marginBottom: 60, alignItems: 'center', gap: 8 },
   inputWrapper: {
     width: 330,
@@ -164,6 +150,7 @@ const styles = StyleSheet.create({
   loginButtonsWrapper: { alignItems: 'center', gap: 30 },
   seperateText: [fontStyles.title03, { fontFamily: 'Pretendard-Regular' }],
   loginButtons: { flexDirection: 'row', gap: 8 },
+  loginButtonIcon: { width: 60, height: 60 },
 });
 
 export default LoginPage;
