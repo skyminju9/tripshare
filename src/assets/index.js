@@ -20,7 +20,8 @@ import PlaceIcon from './icons/community/place.svg';
 import EventIcon from './icons/community/event.svg';
 import FreeTalkIcon from './icons/community/free.svg';
 
-import UploadImage from './images/uploadImage.svg';
+import PostIcon from './icons/community/postIcon.svg';
+import UploadIcon from './icons/community/uploadIcon.svg';
 
 export {
   HomeIcon,
@@ -40,5 +41,6 @@ export {
   PlaceIcon,
   EventIcon,
   FreeTalkIcon,
-  UploadImage,
+  PostIcon,
+  UploadIcon,
 };
