@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Explore from './ExploreTab/Explore';
-import MyTrip from './MyTrip';
+import MyTrip from './MyTripTab/MyTrip';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -18,8 +18,8 @@ const TripPlanHome = () => {
           tabBarStyle: {
             height: 60,
           },
-          tabBarActiveTintColor: '#3370F0', // 활성 탭의 글자 색상
-          tabBarInactiveTintColor: '#777', // 비활성 탭의 글자 색상
+          tabBarActiveTintColor: '#3370F0',
+          tabBarInactiveTintColor: '#777',
           tabBarLabelStyle: {
             fontFamily: 'Pretendard-SemiBold',
             fontSize: 20,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Modal, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, Modal, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import data from '../PrimaryRegions.json';
 import { useLocation } from '../contexts/LocationContext';
@@ -56,8 +56,7 @@ const Dropdown = ({ showModal, setShowModal, handleCloseModal }) => {
       animationType="slide"
       transparent={true}
       visible={showModal}
-      onRequestClose={handleCancel}
-      style={styles.modal}>
+      onRequestClose={handleCancel}>
       <View style={styles.modalWrapper}>
         <View style={styles.modalContent}>
           {!countryConfirmed ? (
@@ -114,15 +113,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-  modal: {},
   modalContent: {
     width: 350,
     backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: '#ccc',
-    padding: 20,
+
     borderRadius: 30,
-    maxHeight: '50%', // 모달의 최대 높이를 설정합니다.
   },
   pickerContainer: {
     flexDirection: 'column',
@@ -130,14 +127,10 @@ const styles = StyleSheet.create({
   },
   picker: {
     marginBottom: 10,
-    maxHeight: 50,
   },
   buttonGroup: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-  },
-  button: {
-    padding: 10,
   },
 });
 

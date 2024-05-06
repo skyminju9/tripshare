@@ -8,12 +8,12 @@ import {
   Image,
   FlatList,
 } from 'react-native';
-import PlusIcon from '../../assets/icons/myTrip/add.svg';
-import RightArrow from '../../assets/icons/myTrip/arrow_right.svg';
-import PeopleIcon from '../../assets/icons/myTrip/people.svg';
-import { useNavigation } from '@react-navigation/native'; // 추가
+import PlusIcon from '../../../assets/icons/myTrip/add.svg';
+import RightArrow from '../../../assets/icons/myTrip/arrow_right.svg';
+import PeopleIcon from '../../../assets/icons/myTrip/people.svg';
+import { useNavigation } from '@react-navigation/native';
 
-const dummyCoverImage = require('../../assets/images/myTrip/singapore.jpeg');
+const dummyCoverImage = require('../../../assets/images/myTrip/singapore.jpeg');
 
 const dummyPlans = [
   {
@@ -34,7 +34,7 @@ const dummyPlans = [
         name: '한서흔',
       },
     ],
-    coverImage: require('../../assets/images/myTrip/singapore.jpeg'),
+    coverImage: require('../../../assets/images/myTrip/singapore.jpeg'),
     dDay: 2,
   },
   {
@@ -55,7 +55,7 @@ const dummyPlans = [
         name: '한서흔',
       },
     ],
-    coverImage: require('../../assets/images/myTrip/singapore.jpeg'),
+    coverImage: require('../../../assets/images/myTrip/singapore.jpeg'),
     dDay: 0,
   },
   {
@@ -76,7 +76,7 @@ const dummyPlans = [
         name: '한서흔',
       },
     ],
-    coverImage: require('../../assets/images/myTrip/singapore.jpeg'),
+    coverImage: require('../../../assets/images/myTrip/singapore.jpeg'),
     dDay: -1,
   },
 ];
