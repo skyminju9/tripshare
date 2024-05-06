@@ -4,7 +4,9 @@ import HeartIcon from '../../../../assets/icons/Explore/heart.png';
 import HeartIconFilled from '../../../../assets/icons/Explore/heartfilled.png';
 import BookmarkIcon from '../../../../assets/icons/Explore/bookmark.png';
 import BookmarkIconFilled from '../../../../assets/icons/Explore/bookmarkfilled.png';
-import { useNavigation } from '@react-navigation/native'; // 추가
+import { useNavigation } from '@react-navigation/native';
+import fontStyles from '../../../../styles/fontStyles';
+import color from '../../../../styles/colorPalette';
 
 const PlanList = () => {
   const navigation = useNavigation();
@@ -19,17 +21,17 @@ const PlanList = () => {
     <View style={{ width: '100%' }}>
       <TouchableOpacity onPress={handleDetailPress}>
         <View style={styles.planListbox}>
-          <Text style={styles.planTitle}>뼈 J가 계획한 3박 4일 홍콩 여행</Text>
+          <Text style={fontStyles.basicFont}>뼈 J가 계획한 3박 4일 홍콩 여행</Text>
           <View style={styles.bottomArea}>
             <View style={styles.hashTagArea}>
               <View style={styles.hashTag}>
-                <Text style={styles.hashText}>#축제</Text>
+                <Text style={[fontStyles.basicFont02, { color: color.BLUE_600 }]}>#축제</Text>
               </View>
               <View style={styles.hashTag}>
-                <Text style={styles.hashText}>#쇼핑</Text>
+                <Text style={[fontStyles.basicFont02, { color: color.BLUE_600 }]}>#쇼핑</Text>
               </View>
               <View style={styles.hashTag}>
-                <Text style={styles.hashText}>#디즈니랜드</Text>
+                <Text style={[fontStyles.basicFont02, { color: color.BLUE_600 }]}>#디즈니랜드</Text>
               </View>
             </View>
 
@@ -67,11 +69,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     padding: 12,
   },
-  planTitle: {
-    fontWeight: '400',
-    fontSize: 18,
-    letterSpacing: -0.4,
-  },
+
   bottomArea: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -87,12 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#CBDDFF',
     borderRadius: 24,
   },
-  hashText: {
-    fontWeight: '300',
-    fontSize: 14,
-    letterSpacing: -0.28,
-    color: '#002676',
-  },
+
   hashTagArea: {
     flexDirection: 'row',
     alignItems: 'flex-start',

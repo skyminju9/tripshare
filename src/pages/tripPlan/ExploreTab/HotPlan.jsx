@@ -33,7 +33,7 @@ const HotPlan = () => {
         <View style={[styles.searchBar, isSearchFocused && styles.searchBarFocused]}>
           <Image source={SearchBarIcon} style={styles.icon} />
           <TextInput
-            style={fontStyles.basicFont02}
+            style={[fontStyles.basicFont02, styles.textInput]}
             placeholder="계정 또는 키워드로 검색"
             value={searchText}
             onChangeText={setSearchText}
@@ -68,6 +68,8 @@ const HotPlan = () => {
 
         <ScrollView>
           <View style={[styles.planListContainer, isSearchFocused && styles.hidden]}>
+            <PlanList />
+            <PlanList />
             <PlanList />
             <PlanList />
             <PlanList />
@@ -111,6 +113,10 @@ const styles = StyleSheet.create({
     height: 20,
     marginHorizontal: 8,
   },
+  textInput: {
+    flex: 1,
+    padding: 0,
+  },
   dropdownContainer: {
     backgroundColor: 'white',
     borderColor: '#ccc',
@@ -119,14 +125,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 0,
     alignSelf: 'flex-end',
-    width: 90,
+    width: 100,
     minHeight: 30,
   },
   pickerStyle: {
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 8,
-    width: 90,
+    width: 100,
     minHeight: 30,
     alignSelf: 'flex-end',
     marginTop: 5,

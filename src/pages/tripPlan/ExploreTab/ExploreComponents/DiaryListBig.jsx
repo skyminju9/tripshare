@@ -50,24 +50,24 @@ const DiaryList = () => {
 const styles = StyleSheet.create({
   diaryListBoxBig: {
     padding: 20,
-    borderBottomColor: color.GRAY_50, // 아랫쪽 선 색상
-    borderBottomWidth: 1, // 아랫쪽 선 굵기
+    borderBottomColor: color.GRAY_50,
+    borderBottomWidth: 1,
   },
   authorInfoArea: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   authorInfo: {
-    flexDirection: 'column', // 세로 방향으로 정렬
-    marginLeft: 8, // 이름과 이미지 사이 간격 조절
+    flexDirection: 'column',
+    marginLeft: 8,
     gap: 4,
   },
   name: {
-    alignSelf: 'flex-start', // 이름은 위로 정렬
+    alignSelf: 'flex-start',
     fontWeight: 'bold',
   },
   time: {
-    alignSelf: 'flex-end', // 작성 시간은 아래로 정렬
+    alignSelf: 'flex-end',
     color: color.TEXT_SECONDARY,
   },
   profileImage: {
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     height: 50,
   },
   imageExampleBig: {
-    width: 292,
+    width: '100%',
     height: 160,
     marginTop: 4,
   },
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   },
   statsArea: {
     flexDirection: 'row',
-    justifyContent: 'flex-end', // 아이템들을 오른쪽으로 정렬
+    justifyContent: 'flex-end',
     marginTop: 10,
   },
   statsContainer: {
