@@ -4,6 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 import PlanList from './ExploreComponents/PlanList';
 import DiaryList from './ExploreComponents/DiaryList';
 import RightArrow from '../../../assets/icons/myTrip/arrow_right.svg';
+import fontStyles from '../../../styles/fontStyles';
+import color from '../../../styles/colorPalette';
 
 const Explore = () => {
   const navigation = useNavigation();
@@ -23,9 +25,11 @@ const Explore = () => {
         <View style={styles.container}>
           <View style={styles.categoryArea}>
             <View style={styles.categoryTextArea}>
-              <Text style={styles.categoryTitle}>실시간 인기 계획</Text>
+              <Text style={fontStyles.title02}>실시간 인기 계획</Text>
               <TouchableOpacity style={styles.myTripMore} onPress={handleMorePress1}>
-                <Text>더보기</Text>
+                <Text style={[fontStyles.basicFont02, { color: color.TEXT_SECONDARY }]}>
+                  더보기
+                </Text>
                 <RightArrow width={24} height={24} />
               </TouchableOpacity>
             </View>
@@ -38,10 +42,12 @@ const Explore = () => {
 
           <View style={styles.categoryArea}>
             <View style={styles.categoryTextArea}>
-              <Text style={styles.categoryTitle}>실시간 인기 기록</Text>
+              <Text style={fontStyles.title02}>실시간 인기 기록</Text>
               <View style={styles.moreArea}>
                 <TouchableOpacity style={styles.myTripMore} onPress={handleMorePress2}>
-                  <Text>더보기</Text>
+                  <Text style={[fontStyles.basicFont02, { color: color.TEXT_SECONDARY }]}>
+                    더보기
+                  </Text>
                   <RightArrow width={24} height={24} />
                 </TouchableOpacity>
               </View>
@@ -82,11 +88,6 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     marginVertical: 16,
     alignItems: 'center',
-  },
-  categoryTitle: {
-    fontSize: 20,
-    letterSpacing: -0.4,
-    fontWeight: '500',
   },
   myTripMore: {
     flexDirection: 'row',

@@ -6,6 +6,8 @@ import HeartIconFilled from '../../../../assets/icons/Explore/heartfilled.png';
 import BookmarkIcon from '../../../../assets/icons/Explore/bookmark.png';
 import BookmarkIconFilled from '../../../../assets/icons/Explore/bookmarkfilled.png';
 import DiaryImage from '../../../../assets/icons/Explore/diaryimage.png';
+import fontStyles from '../../../../styles/fontStyles';
+import color from '../../../../styles/colorPalette';
 
 const DiaryList = () => {
   const navigation = useNavigation();
@@ -22,7 +24,7 @@ const DiaryList = () => {
         <View style={styles.diaryListBox}>
           <Image source={DiaryImage} style={styles.imageExample} />
           <View style={styles.infoContainer}>
-            <Text style={styles.diaryTitle}>오사카 마지막 날!</Text>
+            <Text style={fontStyles.basicFont}>오사카 마지막 날!</Text>
             <View style={styles.bottomArea}>
               <View style={styles.statsArea}>
                 <View style={styles.statsArea}>
@@ -78,11 +80,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 8,
     borderColor: '#EEEEEE',
   },
-  diaryTitle: {
-    fontSize: 16,
-    fontWeight: '400',
-    letterSpacing: -0.32,
-  },
+
   bottomArea: {
     flex: 1,
     justifyContent: 'flex-end', // 요소들을 아래로 정렬
