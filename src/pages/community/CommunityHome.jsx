@@ -36,11 +36,8 @@ const CommunityHome = ({ navigation }) => {
         <View style={styles.hotPostContainer}>
           <View style={styles.hotPostTopWrapper}>
             <Text style={fontStyles.title03}>HOT한 게시글 보기</Text>
-            <TouchableOpacity
-              style={styles.seeMoreBtn}
-              onPress={() => navigation.navigate('CommunityHotBoard')}>
-              <SeeMoreBtn />
-            </TouchableOpacity>
+
+            <SeeMoreBtn address="CommunityHotBoard" />
           </View>
           <View style={styles.hotPostListWrapper}>
             {hotTitle.map((item, index) => {
@@ -101,11 +98,6 @@ const styles = StyleSheet.create({
   hotPostTopWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  seeMoreBtn: {
-    paddingVertical: 4,
-    justifyContent: 'center',
     alignItems: 'center',
   },
   hotPostListWrapper: {
