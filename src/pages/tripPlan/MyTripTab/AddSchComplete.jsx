@@ -1,22 +1,17 @@
 import React from 'react';
-import { Text, View, SafeAreaView, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'; // Import navigation hook
 import BasicHeader from '../../../components/BasicHeader';
 import fontStyles from '../../../styles/fontStyles';
 import color from '../../../styles/colorPalette';
-import { BlueButton, GrayButton } from '../../../components/BasicButtons';
 
 const AddSchComplete = () => {
   const navigation = useNavigation(); // Initialize navigation
 
-  const handlePreviousPress = () => {
-    navigation.navigate('AddSchHash');
-  };
-
   return (
     <View style={styles.wrapper}>
       <SafeAreaView />
-      <BasicHeader text="나의 여행 일정 추가" />
+      <BasicHeader text="나의 여행 일정 추가" backToScreen="TripPlan" />
       <View style={styles.container}>
         <View>
           <Text style={[fontStyles.title01, { marginVertical: 20 }]}>
@@ -28,9 +23,11 @@ const AddSchComplete = () => {
             여행 일정 페이지로 이동해 더 자세한 계획을 세워보세요.
           </Text>
         </View>
-        <View style={styles.buttonContainer}>
-          <GrayButton title="이전" onPress={handlePreviousPress} />
-        </View>
+        <TouchableOpacity style={styles.completeButton}>
+          <Text style={[fontStyles.title03, { color: color.WHITE }]}>
+            마이 트립 메인으로 돌아가기
+          </Text>
+        </TouchableOpacity>
       </View>
       <View style={{ backgroundColor: color.BLUE_30 }}>
         <SafeAreaView />
@@ -49,23 +46,17 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: color.BLUE_30,
   },
-  inputContainer: {
+
+  completeButton: {
+    position: 'absolute',
+    bottom: 20,
+    left: 20,
     width: '100%',
-    height: 50,
-    backgroundColor: color.WHITE,
+    height: 54,
     borderRadius: 12,
-    borderStyle: 'solid',
-    borderWidth: 1,
-    borderColor: color.GRAY_50,
-    padding: 15,
-    marginBottom: 20, // 입력 필드와 버튼 사이 간격
-  },
-  buttonContainer: {
-    width: '50%',
-    paddingLeft: 20,
-    position: 'absolute', // 절대적 배치
-    bottom: 20, // 바닥에 고정
-    Left: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: color.BLUE_500,
   },
 });
 

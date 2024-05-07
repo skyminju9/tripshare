@@ -9,7 +9,6 @@ import CommunityHome from './pages/community/CommunityHome';
 import ChattingHome from './pages/chat/ChattingPage';
 import MyPageHome from './pages/myPage/MyPageHome';
 import LoginPage from './pages/LoginPage';
-import CommunityBoard from './pages/community/CommunityBoard';
 import HotPlan from './pages/tripPlan/ExploreTab/HotPlan';
 import PlanDetail from './pages/tripPlan/ExploreTab/PlanDetail';
 import HotDiary from './pages/tripPlan/ExploreTab/HotDiary';

@@ -51,7 +51,7 @@ const AddSchWith = () => {
   return (
     <View style={styles.wrapper}>
       <SafeAreaView />
-      <BasicHeader text="나의 여행 일정 추가" />
+      <BasicHeader text="나의 여행 일정 추가" backToScreen="TripPlan" />
       <View style={styles.container}>
         <View>
           <Text style={[fontStyles.title02, { marginVertical: 20 }]}>
