@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { View } from 'react-native';
 import Airplane from '../../assets/icons/register/Airplane.svg';
 import color from '../../styles/colorPalette';
 
 const Splash = ({ navigation }) => {
-  const [loginUser, setLoginUser] = useState(false);
-
   useEffect(() => {
     setTimeout(() => {
-      loginUser ? navigation.navigate('BottomTab') : navigation.navigate('LoginStack');
+      navigation.navigate('BottomTab');
     }, 2000);
   });
 
