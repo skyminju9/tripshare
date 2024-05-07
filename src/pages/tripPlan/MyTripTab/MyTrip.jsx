@@ -84,7 +84,7 @@ const dummyPlans = [
 const MyTrip = () => {
   const navigation = useNavigation();
   const handleMorePress = () => {
-    navigation.navigate('AddSchNaming');
+    navigation.navigate('AddSchedule');
   };
 
   const renderPlan = ({ item }) => {

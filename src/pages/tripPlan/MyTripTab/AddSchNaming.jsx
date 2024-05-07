@@ -24,9 +24,9 @@ const AddSchNaming = () => {
         <View style={styles.inputContainer}>
           <TextInput placeholder="제목을 입력하세요." />
         </View>
-        <View style={styles.buttonContainer}>
+        {/* <View style={styles.buttonContainer}>
           <BlueButton title="다음" onPress={handleNextPress} />
-        </View>
+        </View> */}
       </View>
       <View style={{ backgroundColor: color.BLUE_30 }}>
         <SafeAreaView />

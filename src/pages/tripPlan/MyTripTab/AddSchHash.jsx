@@ -7,7 +7,7 @@ import color from '../../../styles/colorPalette';
 import { BlueButton, GrayButton } from '../../../components/BasicButtons';
 
 const AddSchHash = () => {
-  const navigation = useNavigation(); // Initialize navigation
+  const navigation = useNavigation();
 
   const handleNextPress = () => {
     navigation.navigate('AddSchComplete');
@@ -35,10 +35,10 @@ const AddSchHash = () => {
         <View style={styles.inputContainer}>
           <TextInput placeholder="해시태그를 입력하세요." />
         </View>
-        <View style={styles.buttonContainer}>
+        {/* <View style={styles.buttonContainer}>
           <GrayButton title="이전" onPress={handlePreviousPress} />
           <BlueButton title="다음" onPress={handleNextPress} />
-        </View>
+        </View> */}
       </View>
       <View style={{ backgroundColor: color.BLUE_30 }}>
         <SafeAreaView />

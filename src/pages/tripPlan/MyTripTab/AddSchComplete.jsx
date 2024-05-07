@@ -23,11 +23,11 @@ const AddSchComplete = () => {
             여행 일정 페이지로 이동해 더 자세한 계획을 세워보세요.
           </Text>
         </View>
-        <TouchableOpacity style={styles.completeButton}>
+        {/* <TouchableOpacity style={styles.completeButton}>
           <Text style={[fontStyles.title03, { color: color.WHITE }]}>
             마이 트립 메인으로 돌아가기
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
       <View style={{ backgroundColor: color.BLUE_30 }}>
         <SafeAreaView />

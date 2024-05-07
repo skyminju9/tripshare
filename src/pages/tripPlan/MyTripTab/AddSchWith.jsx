@@ -105,10 +105,10 @@ const AddSchWith = () => {
             ))}
           </View>
         </ScrollView>
-        <View style={styles.buttonContainer}>
+        {/* <View style={styles.buttonContainer}>
           <GrayButton title="이전" onPress={handlePreviousPress} />
           <BlueButton title="다음" onPress={handleNextPress} />
-        </View>
+        </View> */}
       </View>
       <View style={{ backgroundColor: color.BLUE_30 }}>
         <SafeAreaView />

@@ -25,11 +25,12 @@ const GrayButton = ({ title, onPress }) => {
 
 const styles = StyleSheet.create({
   button: {
-    width: '100%',
+    width: '50%',
     height: 54,
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
+    marginRight: 20,
   },
   buttonText: {
     fontFamily: 'Pretendard',
