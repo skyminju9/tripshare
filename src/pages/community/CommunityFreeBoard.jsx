@@ -8,6 +8,8 @@ import { SearchIcon, PostIcon } from '../../assets/index';
 import { dummy_article, dummy_user } from '../../dummyData';
 import color from '../../styles/colorPalette';
 import shadowStyles from '../../styles/shadowStyles';
+import { Shadow } from 'react-native-shadow-2';
+import { APP_HEIGHT } from '../../constants';
 
 const tags = ['잡담', '질문', '정보'];
 
@@ -38,11 +40,13 @@ const CommunityFreeBoard = ({ navigation }) => {
         pressRightIcon={() => console.log('search icon')}
       />
       <ArticleTagList tags={tags} onPressTag={onPressTag} />
-      <TouchableOpacity
-        style={[styles.postIconBtn, shadowStyles.largeShadow]}
-        onPress={() => navigation.navigate('CommunityPostPage')}>
-        <PostIcon />
-      </TouchableOpacity>
+      <Shadow style={styles.postIconWrapper} {...shadowStyles.smallShadow} stretch>
+        <TouchableOpacity
+          style={styles.postIconBtn}
+          onPress={() => navigation.navigate('CommunityPostPage')}>
+          <PostIcon />
+        </TouchableOpacity>
+      </Shadow>
       <FlatList
         data={articles}
         removeClippedSubviews
@@ -60,14 +64,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFF',
   },
+  postIconWrapper: { position: 'absolute', right: 16, top: APP_HEIGHT / 1.4, zIndex: 5 },
   postIconBtn: {
-    position: 'absolute',
-    right: 16,
-    bottom: 50,
     padding: 20,
     backgroundColor: color.BLUE_30,
     borderRadius: 50,
-    zIndex: 1,
   },
 });
 

@@ -14,6 +14,7 @@ import color from '../../styles/colorPalette';
 import { UploadIcon, DeleteIcon } from '../../assets/index';
 import TripShareBtn from '../../components/TripShareBtn';
 import ArticleTagList from './ArticleTagList';
+import { APP_WIDTH } from '../../constants';
 
 import ImagePicker from 'react-native-image-crop-picker';
 
@@ -158,7 +159,7 @@ const styles = StyleSheet.create({
     paddingRight: 64,
   },
   contentInput: {
-    height: 240,
+    height: APP_WIDTH - 180,
     backgroundColor: color.BLUE_30,
     borderRadius: 20,
     marginHorizontal: 8,
@@ -181,7 +182,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  imageStyle: { width: 80, height: 80, borderRadius: 12 },
+  imageStyle: { width: (APP_WIDTH - 80) / 4, height: (APP_WIDTH - 80) / 4, borderRadius: 12 },
   imageDeleteBtn: {
     position: 'absolute',
     right: -10,
