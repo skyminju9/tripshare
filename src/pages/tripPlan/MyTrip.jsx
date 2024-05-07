@@ -1,10 +1,10 @@
 import React from 'react';
 import { Text, SafeAreaView, StyleSheet } from 'react-native';
 
-const CommunityBoard = () => {
+const MyTrip = () => {
   return (
     <SafeAreaView style={styles.wrapper}>
-      <Text>Community Board Page</Text>
+      <Text>MyTrip Page</Text>
     </SafeAreaView>
   );
 };
@@ -16,4 +16,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CommunityBoard;
+export default MyTrip;
