@@ -8,9 +8,11 @@ import { useLocation } from '../../contexts/LocationContext';
 import Cloudy from './HomeComponents/cloudy.png';
 import MainPostSlide from './HomeComponents/MainPostSlide';
 import { Shadow } from 'react-native-shadow-2';
+import { useAuthUser } from '../../contexts/AuthUserContext';
 
 const HomePage = () => {
   const { selectedCountry, selectedCity } = useLocation();
+  const user = useAuthUser();
 
   const location = selectedCountry && selectedCity ? `${selectedCity}` : '위치미정';
 
@@ -19,7 +21,7 @@ const HomePage = () => {
       <LogoHeader />
       <ScrollView>
         <View style={styles.container}>
-          <Text style={fontStyles.title01}>김민주 님, </Text>
+          <Text style={fontStyles.title01}>{user.name}님,</Text>
           <Text style={fontStyles.title01}>
             지금 <Text style={{ color: color.BLUE_500 }}>{location}</Text>에 계시는군요!
           </Text>

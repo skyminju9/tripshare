@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { LocationProvider } from './src/contexts/LocationContext';
 import { LoginStack, MainStack } from './src/router';
+
+import { LocationProvider } from './src/contexts/LocationContext';
 import { GeolocationProvider } from './src/contexts/GeolocationContext';
 import { AuthUserProvider } from './src/contexts/AuthUserContext';
 

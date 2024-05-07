@@ -11,6 +11,10 @@ import {
 import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 import { PersonIcon, LockIcon, Google } from '../../assets/index';
+import { useAutuUserDispatch } from '../../contexts/AuthUserContext';
+
+// TODO: change DUMMY DATA
+import { dummy_user } from '../../dummyData';
 
 const appLogo = require('../../assets/icons/register/logo_text.png');
 const appleIcon = require('../../assets/icons/register/apple.png');
@@ -21,11 +25,16 @@ const LoginPage = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // TODO: Login Logic
+  const { login } = useAutuUserDispatch();
+
   const handleShowButton = () => {
     setShow(!show);
   };
   const handleLogin = () => {
-    navigation.navigate('BottomTab');
+    const testUser = dummy_user[4];
+    login(testUser);
+    navigation.navigate('MainStack');
   };
   const handleSignUp = () => {
     navigation.navigate('SignUpPage');
