@@ -2,23 +2,19 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import TripShareBottomTab from './components/TripShareBottomTab';
 import HomePage from './pages/home/HomePage';
 import TripPlanHome from './pages/tripPlan/TripPlanHome';
 import CommunityHome from './pages/community/CommunityHome';
 import ChattingHome from './pages/chat/ChattingPage';
 import MyPageHome from './pages/myPage/MyPageHome';
-import TripShareBottomTab from './components/TripShareBottomTab';
-
+import LoginPage from './pages/LoginPage';
+import CommunityBoard from './pages/community/CommunityBoard';
 import HotPlan from './pages/tripPlan/ExploreTab/HotPlan';
 import PlanDetail from './pages/tripPlan/ExploreTab/PlanDetail';
 import HotDiary from './pages/tripPlan/ExploreTab/HotDiary';
 import DiaryDetail from './pages/tripPlan/ExploreTab/DiaryDetail';
-import LoginPage from './pages/register/LoginPage';
-import SignUpPage from './pages/register/SignUpPage';
-import Splash from './pages/register/Splash';
-import CommunityFreeBoard from './pages/community/CommunityFreeBoard';
-import CommunityHotBoard from './pages/community/CommunityHotBoard';
-import CommunityPostPage from './pages/community/CommunityPostPage';
+import AddSchedule from './pages/tripPlan/MyTripTab/AddSchedule';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -41,12 +37,11 @@ const BottomTab = () => {
   );
 };
 
+// 로그인, 회원가입 페이지
 export const LoginStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="LoginPage" component={LoginPage} />
-      <Stack.Screen name="SignUpPage" component={SignUpPage} />
-      <Stack.Screen name="MainStack" component={MainStack} />
     </Stack.Navigator>
   );
 };
@@ -55,19 +50,12 @@ export const LoginStack = () => {
 export const MainStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Splash" component={Splash} />
-      <Stack.Screen name="LoginStack" component={LoginStack} />
       <Stack.Screen name="BottomTab" component={BottomTab} />
+      <Stack.Screen name="AddSchedule" component={AddSchedule} />
       <Stack.Screen name="HotPlan" component={HotPlan} />
       <Stack.Screen name="PlanDetail" component={PlanDetail} />
       <Stack.Screen name="HotDiary" component={HotDiary} />
       <Stack.Screen name="DiaryDetail" component={DiaryDetail} />
-      <Stack.Screen name="CommunityFreeBoard" component={CommunityFreeBoard} />
-      <Stack.Screen name="CommunityHotBoard" component={CommunityHotBoard} />
-      <Stack.Screen name="CommunityPostPage" component={CommunityPostPage} />
-      {/* TRIP PLAN */}
-      {/* CHATTING */}
-      {/* MY PAGE */}
     </Stack.Navigator>
   );
 };
