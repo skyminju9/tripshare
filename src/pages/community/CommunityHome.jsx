@@ -9,11 +9,6 @@ const CommunityHome = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    backgroundColor: '#FFF',
-  },
-});
+const styles = StyleSheet.create({});
 
 export default CommunityHome;

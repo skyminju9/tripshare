@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: '#ccc',
-
+    padding: 20,
     borderRadius: 30,
   },
   pickerContainer: {

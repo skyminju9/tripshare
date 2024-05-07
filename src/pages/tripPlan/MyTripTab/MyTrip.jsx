@@ -84,7 +84,7 @@ const dummyPlans = [
 const MyTrip = () => {
   const navigation = useNavigation();
   const handleMorePress = () => {
-    navigation.navigate('AddSchedule');
+    navigation.navigate('AddSchNaming');
   };
 
   const renderPlan = ({ item }) => {
@@ -126,12 +126,12 @@ const MyTrip = () => {
         <View style={styles.myTripTitleWrapper}>
           <View style={styles.myTripTitles}>
             <Text style={styles.myTripTitle}>나의 여행 일정</Text>
-            <TouchableOpacity>
+            <TouchableOpacity style={styles.myTripMore} onPress={handleMorePress}>
               <PlusIcon width={24} height={24} />
             </TouchableOpacity>
           </View>
           <View>
-            <TouchableOpacity style={styles.myTripMore} onPress={handleMorePress}>
+            <TouchableOpacity style={styles.myTripMore}>
               <Text>더보기</Text>
               <RightArrow width={24} height={24} />
             </TouchableOpacity>

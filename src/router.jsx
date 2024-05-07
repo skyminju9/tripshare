@@ -14,7 +14,13 @@ import HotPlan from './pages/tripPlan/ExploreTab/HotPlan';
 import PlanDetail from './pages/tripPlan/ExploreTab/PlanDetail';
 import HotDiary from './pages/tripPlan/ExploreTab/HotDiary';
 import DiaryDetail from './pages/tripPlan/ExploreTab/DiaryDetail';
-import AddSchedule from './pages/tripPlan/MyTripTab/AddSchedule';
+import AddSchNaming from './pages/tripPlan/MyTripTab/AddSchNaming';
+import AddSchWhen from './pages/tripPlan/MyTripTab/AddSchWhen';
+import AddSchWhere from './pages/tripPlan/MyTripTab/AddSchWhere';
+import AddSchWith from './pages/tripPlan/MyTripTab/AddSchWith';
+import AddSchImage from './pages/tripPlan/MyTripTab/AddSchImage';
+import AddSchHash from './pages/tripPlan/MyTripTab/AddSchHash';
+import AddSchComplete from './pages/tripPlan/MyTripTab/AddSchComplete';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -51,7 +57,14 @@ export const MainStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="BottomTab" component={BottomTab} />
-      <Stack.Screen name="AddSchedule" component={AddSchedule} />
+      <Stack.Screen name="AddSchNaming" component={AddSchNaming} />
+      <Stack.Screen name="AddSchWhen" component={AddSchWhen} />
+      <Stack.Screen name="AddSchWhere" component={AddSchWhere} />
+      <Stack.Screen name="AddSchWith" component={AddSchWith} />
+      <Stack.Screen name="AddSchImage" component={AddSchImage} />
+      <Stack.Screen name="AddSchHash" component={AddSchHash} />
+      <Stack.Screen name="AddSchComplete" component={AddSchComplete} />
+
       <Stack.Screen name="HotPlan" component={HotPlan} />
       <Stack.Screen name="PlanDetail" component={PlanDetail} />
       <Stack.Screen name="HotDiary" component={HotDiary} />
