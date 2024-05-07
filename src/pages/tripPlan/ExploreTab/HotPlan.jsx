@@ -68,16 +68,9 @@ const HotPlan = () => {
 
         <ScrollView>
           <View style={[styles.planListContainer, isSearchFocused && styles.hidden]}>
-            <PlanList />
-            <PlanList />
-            <PlanList />
-            <PlanList />
-            <PlanList />
-            <PlanList />
-            <PlanList />
-            <PlanList />
-            <PlanList />
-            <PlanList />
+            {[...Array(9)].map((_, index) => (
+              <PlanList key={index} id={index} />
+            ))}
           </View>
         </ScrollView>
       </View>

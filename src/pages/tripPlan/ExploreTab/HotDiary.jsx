@@ -16,21 +16,11 @@ const HotDiary = () => {
       <BasicHeader text="실시간 인기 기록" />
       <ScrollView>
         <View style={styles.container}>
-          <TouchableOpacity onPress={handleDetailPress}>
-            <DiaryListBig />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleDetailPress}>
-            <DiaryListBig />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleDetailPress}>
-            <DiaryListBig />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleDetailPress}>
-            <DiaryListBig />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleDetailPress}>
-            <DiaryListBig />
-          </TouchableOpacity>
+          {[...Array(6)].map((_, index) => (
+            <TouchableOpacity key={index} onPress={handleDetailPress}>
+              <DiaryListBig />
+            </TouchableOpacity>
+          ))}
         </View>
       </ScrollView>
     </SafeAreaView>
