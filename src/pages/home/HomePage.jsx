@@ -74,11 +74,7 @@ const HomePage = () => {
                     24.05.01 ~ 24.05.14
                   </Text>
                 </View>
-                <View
-                  style={[
-                    styles.postBoxInner,
-                    { alignItems: 'center', justifyContent: 'space-between' },
-                  ]}>
+                <View style={styles.postBoxInner}>
                   <Text style={[fontStyles.basicFont02, { color: color.TEXT_SECONDARY }]}>
                     예인, 정혁, 서흔, 가연
                   </Text>
@@ -88,7 +84,7 @@ const HomePage = () => {
                 </View>
               </View>
             </Shadow>
-            <Shadow {...shadowStyles.smallShadow} style={{ borderRadius: 16 }} stretch>
+            <Shadow {...shadowStyles.smallShadow} style={{ borderRadius: 16, height: 110 }} stretch>
               <MainPostSlide />
             </Shadow>
           </View>
@@ -146,9 +142,9 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   flagContainer: {
-    width: 40, // 조절 가능한 사이즈
-    height: 40, // 조절 가능한 사이즈
-    borderRadius: 20, // 절반으로 설정하여 동그랗게
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     backgroundColor: 'red',
   },
   postAreaText: {
@@ -169,6 +165,8 @@ const styles = StyleSheet.create({
   postBoxInner: {
     flexDirection: 'row',
     marginBottom: 12,
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
 
   subInfo: {
