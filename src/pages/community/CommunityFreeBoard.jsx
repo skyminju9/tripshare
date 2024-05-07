@@ -1,15 +1,17 @@
 import React, { useCallback, useState } from 'react';
-import { SafeAreaView, StyleSheet, FlatList } from 'react-native';
+import { SafeAreaView, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 
 import BasicHeader from '../../components/BasicHeader';
 import ArticleCard from '../../components/community/ArticleCard';
 import ArticleTagList from './ArticleTagList';
-import { SearchIcon } from '../../assets/index';
+import { SearchIcon, PostIcon } from '../../assets/index';
 import { dummy_article, dummy_user } from '../../dummyData';
+import color from '../../styles/colorPalette';
+import shadowStyles from '../../styles/shadowStyles';
 
 const tags = ['잡담', '질문', '정보'];
 
-const CommunityFreeBoard = () => {
+const CommunityFreeBoard = ({ navigation }) => {
   const [articles, setArticles] = useState(initialArticles);
   const initialArticles = dummy_article.map(article => {
     const articleUser = dummy_user.find(user => user.id === article.userId);
@@ -36,6 +38,11 @@ const CommunityFreeBoard = () => {
         pressRightIcon={() => console.log('search icon')}
       />
       <ArticleTagList tags={tags} onPressTag={onPressTag} />
+      <TouchableOpacity
+        style={[styles.postIconBtn, shadowStyles.largeShadow]}
+        onPress={() => navigation.navigate('CommunityPostPage')}>
+        <PostIcon />
+      </TouchableOpacity>
       <FlatList
         data={articles}
         removeClippedSubviews
@@ -52,6 +59,15 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     backgroundColor: '#FFF',
+  },
+  postIconBtn: {
+    position: 'absolute',
+    right: 16,
+    bottom: 50,
+    padding: 20,
+    backgroundColor: color.BLUE_30,
+    borderRadius: 50,
+    zIndex: 1,
   },
 });
 

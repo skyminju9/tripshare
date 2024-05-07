@@ -22,6 +22,7 @@ import EventIcon from './icons/community/event.svg';
 import FreeTalkIcon from './icons/community/free.svg';
 import PostIcon from './icons/community/postIcon.svg';
 import UploadIcon from './icons/community/uploadIcon.svg';
+import DeleteIcon from './icons/community/deleteIcon.svg';
 
 // register
 import PersonIcon from './icons/register/person.svg';
@@ -55,4 +56,5 @@ export {
   FreeTalkIcon,
   PostIcon,
   UploadIcon,
+  DeleteIcon,
 };
