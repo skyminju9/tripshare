@@ -58,16 +58,19 @@ export const MainStack = () => {
       <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="LoginStack" component={LoginStack} />
       <Stack.Screen name="BottomTab" component={BottomTab} />
+      {/* TRIP PLAN */}
       <Stack.Screen name="HotPlan" component={HotPlan} />
       <Stack.Screen name="PlanDetail" component={PlanDetail} />
       <Stack.Screen name="HotDiary" component={HotDiary} />
       <Stack.Screen name="DiaryDetail" component={DiaryDetail} />
+      {/* COMMUNITY */}
       <Stack.Screen name="CommunityFreeBoard" component={CommunityFreeBoard} />
       <Stack.Screen name="CommunityHotBoard" component={CommunityHotBoard} />
       <Stack.Screen name="CommunityPostPage" component={CommunityPostPage} />
-      {/* TRIP PLAN */}
       {/* CHATTING */}
       {/* MY PAGE */}
+      {/* CHATTING */}
+      {/* MYPAGE */}
     </Stack.Navigator>
   );
 };
