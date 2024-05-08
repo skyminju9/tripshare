@@ -30,7 +30,8 @@ import {
 } from '../../assets';
 import fontStyles from '../../styles/fontStyles';
 import { hourList, minuteList } from '../../dateData';
-import { convertLocationToAddress } from '../../utils/convertLocation.js';
+import DatePicker from 'react-native-date-picker';
+import { formatDate } from '../../utils/date';
 
 const CommunityMeetingMap = ({ navigation }) => {
   // 마커 표시 state
@@ -49,6 +50,8 @@ const CommunityMeetingMap = ({ navigation }) => {
   const [impromptuContent, setImpromptuContent] = useState('');
   // 동행 모달 state
   const [address, setAddress] = useState('');
+  const [accompanyDate, setAccompanyDate] = useState(new Date());
+  const [isAccompanyDateModalVisible, setIsAccompanyDateModalVisible] = useState(false);
   const [accompanyTitle, setAccompanyTitle] = useState('');
   const [accompanyContent, setAccompanyContent] = useState('');
 
@@ -110,7 +113,12 @@ const CommunityMeetingMap = ({ navigation }) => {
 
   const accompanyRegisterHandler = () => {
     setAccompanyModalIsVisible(false);
+    // db연결
   };
+
+  useEffect(() => {
+    console.log(accompanyDate);
+  }, [accompanyDate]);
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -371,8 +379,12 @@ const CommunityMeetingMap = ({ navigation }) => {
             </View>
             <View style={{ flex: 1 }}>
               <Text style={[fontStyles.boldFont01, { marginTop: 16 }]}>날짜 선택</Text>
-              <TouchableOpacity style={[styles.selectBoxWrapper, { marginTop: 12 }]}>
-                <Text style={fontStyles.basicFont02}>20</Text>
+              <TouchableOpacity
+                style={[styles.selectBoxWrapper, { marginTop: 12, width: 120 }]}
+                onPress={() => setIsAccompanyDateModalVisible(true)}>
+                <Text style={fontStyles.basicFont02}>
+                  {accompanyDate.toLocaleString('ko-KR').slice(9, -3)}
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -401,6 +413,16 @@ const CommunityMeetingMap = ({ navigation }) => {
             </TouchableOpacity>
           </View>
         </View>
+        <DatePicker
+          modal
+          open={isAccompanyDateModalVisible}
+          date={accompanyDate}
+          onConfirm={date => {
+            setIsAccompanyDateModalVisible(false);
+            setAccompanyDate(date);
+          }}
+          onCancel={() => setIsAccompanyDateModalVisible(false)}
+        />
       </Modal>
     </SafeAreaView>
   );
