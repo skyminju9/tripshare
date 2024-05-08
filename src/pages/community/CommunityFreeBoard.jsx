@@ -4,6 +4,7 @@ import { SafeAreaView, StyleSheet, FlatList, TouchableOpacity, View } from 'reac
 import BasicHeader from '../../components/BasicHeader';
 import ArticleCard from '../../components/community/ArticleCard';
 import ArticleTagList from './ArticleTagList';
+import { setAgoDays } from '../../utils/date';
 import { SearchIcon, PostIcon } from '../../assets/index';
 import { dummy_article, dummy_user } from '../../dummyData';
 import color from '../../styles/colorPalette';
@@ -21,6 +22,7 @@ const CommunityFreeBoard = ({ navigation }) => {
       ...article,
       authorName: articleUser.name,
       authorImage: articleUser.profileImage,
+      createdAt: setAgoDays(article.createdAt),
     };
   });
 
