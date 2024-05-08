@@ -80,7 +80,7 @@ const CommunityPostPage = ({
       <BasicHeader text={headerText} />
       <View style={styles.mainWrapper}>
         <View style={styles.titleWrapper}>
-          <Text style={fontStyles.title03}>글 제목</Text>
+          <Text style={fontStyles.title03}>제목</Text>
           <View style={styles.titleInputBox}>
             <TextInput
               style={[fontStyles.basicFont, styles.titleInput]}
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   titleInputBox: { justifyContent: 'center' },
   titleInput: {
     backgroundColor: color.BLUE_30,
-    borderRadius: 20,
+    borderRadius: 14,
     marginHorizontal: 8,
     paddingLeft: 24,
     paddingRight: 64,
