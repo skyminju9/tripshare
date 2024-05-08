@@ -17,6 +17,7 @@ const HomePage = () => {
   const geolocation = useGeolocation();
 
   // TEST get geolocation
+  console.log('user =======> ', user);
   console.log('position ========> ', geolocation);
   const location = selectedCountry && selectedCity ? `${selectedCity}` : '위치미정';
 

@@ -34,7 +34,7 @@ const LoginPage = ({ navigation }) => {
   const handleLogin = () => {
     const testUser = dummy_user[4];
     login(testUser);
-    navigation.navigate('MainStack');
+    navigation.navigate('BottomTab');
   };
   const handleSignUp = () => {
     navigation.navigate('SignUpPage');

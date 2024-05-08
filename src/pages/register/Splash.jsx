@@ -1,26 +1,38 @@
-import React, { useEffect } from 'react';
-import { View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet } from 'react-native';
 import Airplane from '../../assets/icons/register/Airplane.svg';
 import color from '../../styles/colorPalette';
+import { useAutuUserDispatch } from '../../contexts/AuthUserContext';
+
+import { dummy_user } from '../../dummyData';
 
 const Splash = ({ navigation }) => {
+  const [isLoginUser, setIsLoginUser] = useState(false);
+  const { login } = useAutuUserDispatch();
+
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('BottomTab');
+      if (isLoginUser) {
+        login(dummy_user[0]);
+        navigation.navigate('BottomTab');
+      } else navigation.navigate('LoginStack');
     }, 2000);
-  });
+  }, []);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: color.BLUE_30,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
+    <View style={styles.wrapper}>
       <Airplane width={150} height={240} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    backgroundColor: color.BLUE_30,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 export default Splash;

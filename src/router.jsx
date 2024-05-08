@@ -54,7 +54,7 @@ export const LoginStack = () => {
 // 홈
 export const MainStack = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="LoginStack" component={LoginStack} />
       <Stack.Screen name="BottomTab" component={BottomTab} />
