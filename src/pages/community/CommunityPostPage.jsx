@@ -14,7 +14,7 @@ import color from '../../styles/colorPalette';
 import { UploadIcon, DeleteIcon } from '../../assets/index';
 import TripShareBtn from '../../components/TripShareBtn';
 import ArticleTagList from './ArticleTagList';
-import { APP_WIDTH } from '../../constants';
+import { APP_WIDTH, APP_HEIGHT } from '../../constants';
 
 import ImagePicker from 'react-native-image-crop-picker';
 
@@ -157,6 +157,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
     paddingLeft: 24,
     paddingRight: 64,
+    paddingHorizontal: 14,
   },
   contentInput: {
     height: APP_WIDTH - 180,
