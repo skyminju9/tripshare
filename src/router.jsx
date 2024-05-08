@@ -18,6 +18,7 @@ import SignUpPage from './pages/register/SignUpPage';
 import Splash from './pages/register/Splash';
 import CommunityFreeBoard from './pages/community/CommunityFreeBoard';
 import CommunityHotBoard from './pages/community/CommunityHotBoard';
+import CommunityPostPage from './pages/community/CommunityPostPage';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -63,6 +64,10 @@ export const MainStack = () => {
       <Stack.Screen name="DiaryDetail" component={DiaryDetail} />
       <Stack.Screen name="CommunityFreeBoard" component={CommunityFreeBoard} />
       <Stack.Screen name="CommunityHotBoard" component={CommunityHotBoard} />
+      <Stack.Screen name="CommunityPostPage" component={CommunityPostPage} />
+      {/* TRIP PLAN */}
+      {/* CHATTING */}
+      {/* MY PAGE */}
     </Stack.Navigator>
   );
 };
