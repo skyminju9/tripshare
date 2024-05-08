@@ -69,8 +69,6 @@ export const MainStack = () => {
       <Stack.Screen name="CommunityPostPage" component={CommunityPostPage} />
       {/* CHATTING */}
       {/* MY PAGE */}
-      {/* CHATTING */}
-      {/* MYPAGE */}
     </Stack.Navigator>
   );
 };
