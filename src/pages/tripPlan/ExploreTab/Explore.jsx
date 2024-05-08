@@ -97,11 +97,7 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
   },
-  moreViewText: {
-    fontSize: 14,
-    letterSpacing: -0.28,
-    color: '#707070',
-  },
+
   planListContiner: {
     flex: 1,
     alignItems: 'center', // 수평 가운데 정렬

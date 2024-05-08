@@ -1,10 +1,10 @@
 import React from 'react';
 import { Text, View, SafeAreaView, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'; // Import navigation hook
-import BasicHeader from '../../../components/BasicHeader';
-import fontStyles from '../../../styles/fontStyles';
-import color from '../../../styles/colorPalette';
-import { BlueButton, GrayButton } from '../../../components/BasicButtons';
+import BasicHeader from '../../../../components/BasicHeader';
+import fontStyles from '../../../../styles/fontStyles';
+import color from '../../../../styles/colorPalette';
+import { BlueButton, GrayButton } from '../../../../components/BasicButtons';
 
 const AddSchWith4 = () => {
   const navigation = useNavigation(); // Initialize navigation
