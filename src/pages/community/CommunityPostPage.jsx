@@ -195,7 +195,6 @@ const styles = StyleSheet.create({
   lengthFont: {
     color: color.GRAY_300,
     position: 'absolute',
-    paddingVertical: 18,
     right: 28,
   },
 });
