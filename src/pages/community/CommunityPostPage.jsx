@@ -14,7 +14,7 @@ import color from '../../styles/colorPalette';
 import { UploadIcon, DeleteIcon } from '../../assets/index';
 import TripShareBtn from '../../components/TripShareBtn';
 import ArticleTagList from './ArticleTagList';
-import { APP_WIDTH, APP_HEIGHT } from '../../constants';
+import { APP_WIDTH } from '../../constants';
 
 import ImagePicker from 'react-native-image-crop-picker';
 
@@ -29,8 +29,6 @@ const CommunityPostPage = ({
   const [contentText, setContentText] = useState('');
   const [tag, setTag] = useState('');
   const [imagePath, setImagePath] = useState('');
-
-  const [postData, setPostData] = useState();
 
   const onPressTag = useCallback(activeTag => {
     if (activeTag) {
