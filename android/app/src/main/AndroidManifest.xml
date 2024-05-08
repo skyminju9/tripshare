@@ -2,6 +2,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA"/>
+<<<<<<< HEAD
+=======
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+
+>>>>>>> 6c933f75ab396a99262c7e695522fc8ee8aaa9e6
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
@@ -22,4 +27,7 @@
         </intent-filter>
       </activity>
     </application>
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 </manifest>
