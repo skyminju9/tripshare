@@ -11,6 +11,9 @@ import ImpromptuIcon from './icons/meeting/impromptu.png';
 import AccompanyIcon from './icons/meeting/accompany.png';
 import CloseIcon from './icons/meeting/closeIcon.svg';
 import WriteIcon from './icons/meeting/writeIcon.svg';
+import LocationIcon from './icons/meeting/locationIcon.svg';
+import TimeIcon from './icons/meeting/timeIcon.svg';
+import DoneIcon from './icons/meeting/doneIcon.svg';
 
 export {
   HomeIcon,
@@ -26,4 +29,7 @@ export {
   AccompanyIcon,
   CloseIcon,
   WriteIcon,
+  LocationIcon,
+  TimeIcon,
+  DoneIcon,
 };

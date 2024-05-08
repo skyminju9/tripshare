@@ -11,6 +11,7 @@ import MyPageHome from './pages/myPage/MyPageHome';
 import CommunityMeetingMap from './pages/community/CommunityMeetingMap';
 import TripShareBottomTab from './components/TripShareBottomTab';
 import LoginPage from './pages/LoginPage';
+import LocationSetting from './pages/community/LocationSetting';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -82,6 +83,7 @@ export const MainStack = () => {
       {/* HOME */}
       {/* COMMUNITY */}
       <Stack.Screen name="CommunityMeetingMap" component={CommunityMeetingMap} />
+      <Stack.Screen name="LocationSetting" component={LocationSetting} />
       {/* TRIP PLAN */}
       {/* CHATTING */}
       {/* MY PAGE */}

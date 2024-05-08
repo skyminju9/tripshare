@@ -5,7 +5,7 @@ import Svg, { Polygon } from 'react-native-svg';
 const CustomMarker = ({ marker }) => {
   const markerColor = marker.category === 'impromptu' ? '#FFD83B' : color.BLUE_500;
   return (
-    <View style={{ flex: 1, height: 80 }}>
+    <View style={{ height: 80 }}>
       <View style={[styles.markerImageWrapper, { backgroundColor: markerColor }]}>
         <Image
           source={{ uri: 'https://xsgames.co/randomusers/avatar.php?g=male' }}
@@ -13,7 +13,7 @@ const CustomMarker = ({ marker }) => {
         />
       </View>
       <Svg height="100%" width="100%" style={styles.markerPolygon}>
-        <Polygon points="0,0 13,25 26,0" fill={markerColor} />
+        <Polygon points="0,0 10,20 20,0" fill={markerColor} />
       </Svg>
     </View>
   );
@@ -27,6 +27,6 @@ const styles = StyleSheet.create({
     backgroundColor: color.BLUE_500,
     borderRadius: 200,
   },
-  markerImage: { width: 25, height: 25, borderRadius: 200 },
-  markerPolygon: { position: 'absolute', top: 27, left: 4 },
+  markerImage: { width: 20, height: 20, borderRadius: 200 },
+  markerPolygon: { position: 'absolute', top: 23, left: 4 },
 });
