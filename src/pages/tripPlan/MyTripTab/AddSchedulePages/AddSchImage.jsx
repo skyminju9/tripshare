@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Text,
   Image,
@@ -14,6 +14,7 @@ import fontStyles from '../../../../styles/fontStyles';
 import color from '../../../../styles/colorPalette';
 import ImageCropPicker from 'react-native-image-crop-picker';
 import UploadImageIcon from '../../../../assets/icons/myTrip/uploadimage.png';
+import CloseIcon from '../../../../assets/icons/myTrip/closeicon.png';
 
 const imagesImports = [
   require('../../../../assets/images/myTrip/basicimage1.jpeg'),
@@ -28,13 +29,25 @@ const imagesImports = [
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const imageWidth = (windowWidth - 40) / 3 - 5; // 각 이미지의 너비 계산
+const imageWidth = (windowWidth - 40) / 3 - 5;
 
 const AddSchImage = () => {
   const navigation = useNavigation();
 
   const [images, setImages] = useState([null, ...imagesImports.map(() => null)]);
-  const [fullImage, setFullImage] = useState(null); // 추가: 전체 화면 이미지 상태
+  const [fullImage, setFullImage] = useState(null);
+  const [containerStyle, setContainerStyle] = useState(styles.container);
+  const [textColor, setTextColor] = useState(fontStyles.title02.color);
+
+  useEffect(() => {
+    if (fullImage) {
+      setContainerStyle(styles.containerGray);
+      setTextColor(color.WHITE);
+    } else {
+      setContainerStyle(styles.container);
+      setTextColor(fontStyles.title02.color);
+    }
+  }, [fullImage]);
 
   const pickImage = index => {
     if (index === 0) {
@@ -50,21 +63,19 @@ const AddSchImage = () => {
           const newImages = [...images];
           newImages[index] = { uri: image.path };
           setImages(newImages);
-          setFullImage({ uri: image.path }); // 선택한 이미지를 풀이미지로 설정
+          setFullImage({ uri: image.path });
         })
         .catch(error => {
           console.log('이미지 선택 오류:', error);
-          setFullImage(null); // 오류 발생 시 풀이미지 초기화
+          setFullImage(null);
         });
     } else {
-      // 베이직 이미지를 선택할 때
-      setFullImage(imagesImports[index - 1]); // 선택한 이미지를 풀이미지로 설정
+      setFullImage(imagesImports[index - 1]);
     }
   };
 
   const renderImage = (image, index) => {
     const imageStyle = index === 0 ? styles.uploadIcon : styles.image;
-    // 업로드 이미지를 누르면 피커가 열리도록 설정, 베이직 이미지를 누르면 해당 이미지가 풀이미지로 설정
     const onPressAction = () => pickImage(index);
     const source = index === 0 ? UploadImageIcon : image || imagesImports[index - 1];
     return (
@@ -80,6 +91,9 @@ const AddSchImage = () => {
         <TouchableOpacity onPress={() => setFullImage(null)}>
           <Image source={fullImage} style={styles.fullImage} />
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => setFullImage(null)} style={styles.closeIconContainer}>
+          <Image source={CloseIcon} style={styles.closeIcon} />
+        </TouchableOpacity>
       </View>
     );
   };
@@ -91,14 +105,14 @@ const AddSchImage = () => {
       <SafeAreaView>
         <BasicHeader text="나의 여행 일정 추가" backToScreen="TripPlan" />
 
-        <View style={styles.container}>
+        <View style={containerStyle}>
           <View style={styles.titleContainer}>
-            <Text style={[fontStyles.title02]}>여행을 대표하는 이미지를 골라보세요.</Text>
+            <Text style={[fontStyles.title02, { color: textColor }]}>
+              여행을 대표하는 이미지를 골라보세요.
+            </Text>
           </View>
           {fullImage ? (
-            <View style={styles.fullImageContainer}>
-              <Image source={fullImage} style={styles.fullImage} />
-            </View>
+            renderFullImage()
           ) : (
             <View style={styles.imageGridContainer}>
               {images.map((image, index) => renderImage(image, index))}
@@ -119,6 +133,12 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: color.BLUE_30,
   },
+  containerGray: {
+    height: '100%',
+    padding: 20,
+    backgroundColor: color.GRAY_300,
+  },
+
   titleContainer: {
     marginVertical: 20,
   },
@@ -132,9 +152,9 @@ const styles = StyleSheet.create({
     width: imageWidth,
     height: imageWidth,
     aspectRatio: 1,
-    marginBottom: 10, // 이미지 아래쪽에 간격 추가
+    marginBottom: 10,
     resizeMode: 'cover',
-    borderRadius: 10,
+
     borderColor: color.GRAY_50,
     borderWidth: 1,
     borderStyle: 'solid',
@@ -145,14 +165,13 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     marginBottom: 10,
     resizeMode: 'contain',
-    borderRadius: 10,
   },
   imageGridContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     marginTop: 10,
-    marginBottom: 80, // 이미지 그리드 아래 마진 추가
+    marginBottom: 80,
   },
   fullImageContainer: {
     ...StyleSheet.absoluteFillObject,
@@ -164,6 +183,23 @@ const styles = StyleSheet.create({
     width: windowWidth - 25,
     height: windowHeight - 25,
     resizeMode: 'contain',
+  },
+  closeIconContainer: {
+    position: 'absolute',
+    top: 86,
+    right: 3,
+    backgroundColor: color.BLUE_500,
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 4,
+    borderWidth: 4,
+    borderColor: 'white',
+    borderStyle: 'solid',
+  },
+  closeIcon: {
+    width: 20,
+    height: 20,
   },
 });
 

@@ -4,7 +4,7 @@ import BasicHeader from '../../../../components/BasicHeader';
 import fontStyles from '../../../../styles/fontStyles';
 import color from '../../../../styles/colorPalette';
 
-const AddSchWhen = () => {
+const AddSchComplete = () => {
   return (
     <View>
       <SafeAreaView style={styles.wrapper} />
@@ -14,7 +14,12 @@ const AddSchWhen = () => {
 
         <View style={styles.container}>
           <View style={styles.titleContainer}>
-            <Text style={fontStyles.title02}>얼마나 오래 떠나시나요?</Text>
+            <Text style={fontStyles.title01}>여행 일정 등록이 완료되었어요.</Text>
+          </View>
+          <View>
+            <Text style={[fontStyles.basicFont02, { color: color.TEXT_SECONDARY }]}>
+              여행 일정 페이지로 이동해 더 자세한 계획을 세워보세요.
+            </Text>
           </View>
         </View>
       </SafeAreaView>
@@ -34,6 +39,17 @@ const styles = StyleSheet.create({
   titleContainer: {
     marginVertical: 20,
   },
+  completeButton: {
+    position: 'absolute',
+    bottom: 20,
+    left: 20,
+    width: '100%',
+    height: 54,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: color.BLUE_500,
+  },
 });
 
-export default AddSchWhen;
+export default AddSchComplete;

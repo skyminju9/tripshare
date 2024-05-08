@@ -1,10 +1,8 @@
-// FriendsList.js
-
 import React from 'react';
 import { View, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import fontStyles from '../../../../styles/fontStyles';
-import ProfileImageExample from '../../../../assets/images/myTrip/profileImageExample.png';
-import PlusIcon from '../../../../assets/icons/myTrip/add.svg';
+import fontStyles from '../../styles/fontStyles';
+import PlusIcon from '../../assets/icons/myTrip/plusicon.png';
+import ProfileImageExample from '../../assets/images/myTrip/profilexample.png';
 
 const FriendsList = ({ name, friend, onSelectFriend }) => {
   return (
@@ -16,7 +14,7 @@ const FriendsList = ({ name, friend, onSelectFriend }) => {
         <Text style={fontStyles.basicFont}>{name}</Text>
       </View>
       <TouchableOpacity onPress={() => onSelectFriend(friend)} style={styles.plusIconContainer}>
-        <PlusIcon />
+        <Image source={PlusIcon} style={{ width: 26, height: 26 }} />
       </TouchableOpacity>
     </View>
   );

@@ -5,13 +5,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import fontStyles from '../../../styles/fontStyles';
 import color from '../../../styles/colorPalette';
 import { BlueButton, GrayButton } from '../../../components/BasicButtons';
-import AddSchNaming from './MyTripTabComponents/AddSchNaming';
-import AddSchWhen from './MyTripTabComponents/AddSchWhen';
-import AddSchWhere from './MyTripTabComponents/AddSchWhere';
-import AddSchWith from './MyTripTabComponents/AddSchWith';
-import AddSchImage from './MyTripTabComponents/AddSchImage';
-import AddSchHash from './MyTripTabComponents/AddSchHash';
-import AddSchComplete from './MyTripTabComponents/AddSchComplete';
+import AddSchNaming from './AddSchedulePages/AddSchNaming';
+import AddSchWhen from './AddSchedulePages/AddSchWhen';
+import AddSchWhere from './AddSchedulePages/AddSchWhere';
+import AddSchWith from './AddSchedulePages/AddSchWith';
+import AddSchImage from './AddSchedulePages/AddSchImage';
+import AddSchHash from './AddSchedulePages/AddSchHash';
+import AddSchComplete from './AddSchedulePages/AddSchComplete';
 
 const Stack = createNativeStackNavigator();
 
@@ -74,9 +74,7 @@ const AddScheduleStack = () => {
         <TouchableOpacity
           style={styles.completeButton}
           onPress={() => navigation.navigate('TripPlan')}>
-          <Text style={[fontStyles.title03, { color: color.WHITE }]}>
-            마이 트립 메인으로 돌아가기
-          </Text>
+          <Text style={[fontStyles.title03, { color: color.WHITE }]}>나의 여행으로 돌아가기</Text>
         </TouchableOpacity>
       ) : (
         <View style={styles.buttonContainer}>

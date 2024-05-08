@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import BasicHeader from '../../../../components/BasicHeader';
-import fontStyles from '../../../../styles/fontStyles';
-import color from '../../../../styles/colorPalette';
-import FriendsList from './FriendsList';
+import BasicHeader from '../../../../components/BasicHeader.jsx';
+import fontStyles from '../../../../styles/fontStyles.js';
+import color from '../../../../styles/colorPalette.js';
+import FriendsList from '../../../../components/AddScheduleComponents/FriendsList.jsx';
 import PeopleIcon from '../../../../assets/icons/myTrip/people.svg';
 
 const dummyData = [
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     backgroundColor: color.BLUE_30,
     borderRadius: 6,
-    paddingHorizontal: 6, // 좌우 여백 감소
+    paddingHorizontal: 6,
     marginRight: 6,
     alignItems: 'center',
   },

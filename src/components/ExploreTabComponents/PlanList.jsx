@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
-import HeartIcon from '../../../../assets/icons/Explore/heart.png';
-import HeartIconFilled from '../../../../assets/icons/Explore/heartfilled.png';
-import BookmarkIcon from '../../../../assets/icons/Explore/bookmark.png';
-import BookmarkIconFilled from '../../../../assets/icons/Explore/bookmarkfilled.png';
+import HeartIcon from '../../assets/icons/Explore/heart.png';
+import HeartIconFilled from '../../assets/icons/Explore/heartfilled.png';
+import BookmarkIcon from '../../assets/icons/Explore/bookmark.png';
+import BookmarkIconFilled from '../../assets/icons/Explore/bookmarkfilled.png';
 import { useNavigation } from '@react-navigation/native';
-import fontStyles from '../../../../styles/fontStyles';
-import color from '../../../../styles/colorPalette';
+import fontStyles from '../../styles/fontStyles';
+import color from '../../styles/colorPalette';
 
 const PlanList = () => {
   const navigation = useNavigation();

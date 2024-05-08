@@ -92,15 +92,13 @@ const AddSchWhere = () => {
           <View style={[styles.inputContainer, selectedRegion && styles.selectedInputContainer]}>
             <TextInput
               placeholder="국가나 지역을 검색하세요"
+              placeholderTextColor={color.GRAY_300}
               onChangeText={onTextChanged}
               value={searchText}
               onFocus={() =>
                 setShowSuggestions(searchText.length > 0 && filteredRegions.length > 0)
               }
-              style={[
-                styles.input,
-                selectedRegion ? { color: color.WHITE } : { color: 'black' }, // 선택된 지역이 있으면 흰색, 없으면 검은색
-              ]}
+              style={[styles.input, selectedRegion ? { color: color.WHITE } : { color: 'black' }]}
             />
             {selectedRegion ? (
               <TouchableOpacity onPress={handleReset}>
@@ -139,17 +137,17 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderWidth: 1,
     borderColor: color.GRAY_50,
-    padding: 16,
+    paddingHorizontal: 16,
     marginBottom: 20,
     alignItems: 'center',
     justifyContent: 'space-between',
   },
   selectedInputContainer: {
-    backgroundColor: color.BLUE_200, // 선택된 영역의 배경색
+    backgroundColor: color.BLUE_200,
   },
   input: {
-    flex: 1, // 인풋을 늘리기 위해 추가
-    color: 'black', // 입력된 텍스트 색상
+    flex: 1,
+    color: 'black',
   },
   suggestionsContainer: {
     maxHeight: 200,
@@ -164,7 +162,7 @@ const styles = StyleSheet.create({
   text: {
     ...fontStyles.basicFont02,
     marginVertical: 8,
-    color: 'black', // 기본 텍스트 색상
+    color: 'black',
   },
 });
 

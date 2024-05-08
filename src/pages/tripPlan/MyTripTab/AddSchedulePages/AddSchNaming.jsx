@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, SafeAreaView, StyleSheet, TextInput } from 'react-native';
 import BasicHeader from '../../../../components/BasicHeader';
 import fontStyles from '../../../../styles/fontStyles';
 import color from '../../../../styles/colorPalette';
 
-const AddSchComplete = () => {
+const AddSchNaming = () => {
   return (
     <View>
       <SafeAreaView style={styles.wrapper} />
@@ -14,12 +14,14 @@ const AddSchComplete = () => {
 
         <View style={styles.container}>
           <View style={styles.titleContainer}>
-            <Text style={fontStyles.title01}>여행 일정 등록이 완료되었어요.</Text>
+            <Text style={fontStyles.title02}>여행의 이름을 지어주세요</Text>
           </View>
-          <View>
-            <Text style={[fontStyles.basicFont02, { color: color.TEXT_SECONDARY }]}>
-              여행 일정 페이지로 이동해 더 자세한 계획을 세워보세요.
-            </Text>
+          <View style={styles.inputContainer}>
+            <TextInput
+              placeholder="제목을 입력하세요."
+              placeholderTextColor={color.GRAY_300}
+              style={[fontStyles.basicFont02, styles.textInput]}
+            />
           </View>
         </View>
       </SafeAreaView>
@@ -39,17 +41,17 @@ const styles = StyleSheet.create({
   titleContainer: {
     marginVertical: 20,
   },
-  completeButton: {
-    position: 'absolute',
-    bottom: 20,
-    left: 20,
-    width: '100%',
-    height: 54,
+  inputContainer: {
+    height: 50,
+    backgroundColor: color.WHITE,
     borderRadius: 12,
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderColor: color.GRAY_50,
+    paddingHorizontal: 16,
+    marginBottom: 20,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: color.BLUE_500,
   },
 });
 
-export default AddSchComplete;
+export default AddSchNaming;

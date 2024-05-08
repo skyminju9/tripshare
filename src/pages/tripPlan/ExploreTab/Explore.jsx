@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Text, View, SafeAreaView, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import PlanList from './ExploreComponents/PlanList';
-import DiaryList from './ExploreComponents/DiaryList';
+import PlanList from '../../../components/ExploreTabComponents/PlanList';
+import DiaryList from '../../../components/ExploreTabComponents/DiaryList';
 import RightArrow from '../../../assets/icons/myTrip/arrow_right.svg';
 import fontStyles from '../../../styles/fontStyles';
 import color from '../../../styles/colorPalette';
