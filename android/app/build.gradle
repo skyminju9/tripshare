@@ -83,6 +83,7 @@ android {
         versionCode 1
         versionName "1.0"
         manifestPlaceholders = [googleMapApiKey: project.env.get("GOOGLEMAP_ANDROID_KEY")]
+        vectorDrawables.useSupportLibrary = true
     }
     signingConfigs {
         debug {

@@ -52,6 +52,7 @@
 		279FE677818ECEA7B7C8FF7E /* Pods-tripshare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tripshare.release.xcconfig"; path = "Target Support Files/Pods-tripshare/Pods-tripshare.release.xcconfig"; sourceTree = "<group>"; };
 		280E5A27C5F3E7EDCC88C8AC /* Pods-tripshare-tripshareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tripshare-tripshareTests.debug.xcconfig"; path = "Target Support Files/Pods-tripshare-tripshareTests/Pods-tripshare-tripshareTests.debug.xcconfig"; sourceTree = "<group>"; };
 		33662ABF679B411CA5053643 /* Pretendard-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Light.otf"; path = "../src/assets/fonts/Pretendard-Light.otf"; sourceTree = "<group>"; };
+		38D092592BEBB57F0049C8EE /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		47218157530949EFA678924F /* Pretendard-Black.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Black.otf"; path = "../src/assets/fonts/Pretendard-Black.otf"; sourceTree = "<group>"; };
 		5F86B198D5A599974E033DA5 /* Pods-tripshare-tripshareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tripshare-tripshareTests.release.xcconfig"; path = "Target Support Files/Pods-tripshare-tripshareTests/Pods-tripshare-tripshareTests.release.xcconfig"; sourceTree = "<group>"; };
 		6C8DC28C01B24A3882D0BF5A /* Pretendard-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Regular.otf"; path = "../src/assets/fonts/Pretendard-Regular.otf"; sourceTree = "<group>"; };
@@ -136,6 +137,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				38D092592BEBB57F0049C8EE /* Config.xcconfig */,
 				13B07FAE1A68108700A75B9A /* tripshare */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* tripshareTests */,
@@ -196,8 +198,9 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				7140EDF7057477E0B65AA805 /* [CP] Embed Pods Frameworks */,
+				7140EDF7057477E0B65AA805 /* [CP] Copy Pods Resources */,
 				29DA4280CACCE5535AF51D83 /* [CP] Copy Pods Resources */,
+				7725A1ABD79FCC4FF4DA140E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -213,7 +216,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "tripshare" */;
 			buildPhases = (
-				8B78CF2F5EEFB6D9271763E5 /* [CP] Check Pods Manifest.lock */,
+				6A0F77FE15DE031DE54A1B27 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
@@ -328,24 +331,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tripshare-tripshareTests/Pods-tripshare-tripshareTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7140EDF7057477E0B65AA805 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-tripshare-tripshareTests/Pods-tripshare-tripshareTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-tripshare-tripshareTests/Pods-tripshare-tripshareTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tripshare-tripshareTests/Pods-tripshare-tripshareTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8B78CF2F5EEFB6D9271763E5 /* [CP] Check Pods Manifest.lock */ = {
+		6A0F77FE15DE031DE54A1B27 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -367,12 +353,47 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		7140EDF7057477E0B65AA805 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tripshare-tripshareTests/Pods-tripshare-tripshareTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tripshare-tripshareTests/Pods-tripshare-tripshareTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tripshare-tripshareTests/Pods-tripshare-tripshareTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7725A1ABD79FCC4FF4DA140E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tripshare-tripshareTests/Pods-tripshare-tripshareTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tripshare-tripshareTests/Pods-tripshare-tripshareTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tripshare-tripshareTests/Pods-tripshare-tripshareTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E81AAC71E228DB5057C4799A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tripshare/Pods-tripshare-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
@@ -380,6 +401,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tripshare/Pods-tripshare-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-tripshare-tripshareTests-checkManifestLockResult.txt",
@@ -559,6 +581,7 @@
 		};
 		83CBBA201A601CBA00E9B192 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38D092592BEBB57F0049C8EE /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CC = "";
@@ -643,6 +666,7 @@
 		};
 		83CBBA211A601CBA00E9B192 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38D092592BEBB57F0049C8EE /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CC = "";

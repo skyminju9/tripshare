@@ -1,3 +1,4 @@
+// bottom icon
 import HomeIcon from './icons/bottomIcons/homeIcon.svg';
 import PlanIcon from './icons/bottomIcons/planIcon.svg';
 import ChatIcon from './icons/bottomIcons/chatIcon.svg';
@@ -14,6 +15,28 @@ import WriteIcon from './icons/meeting/writeIcon.svg';
 import LocationIcon from './icons/meeting/locationIcon.svg';
 import TimeIcon from './icons/meeting/timeIcon.svg';
 import DoneIcon from './icons/meeting/doneIcon.svg';
+
+// article icon
+import BookmarkIcon from './icons/articleIcons/bookmarkIcon.svg';
+import CommentIcon from './icons/articleIcons/commentIcon.svg';
+import HeartIcon from './icons/articleIcons/heartIcon.svg';
+import SearchIcon from './icons/articleIcons/searchIcon.svg';
+
+// community icon
+import FlashIcon from './icons/community/flash.svg';
+import PlaceIcon from './icons/community/place.svg';
+import EventIcon from './icons/community/event.svg';
+import FreeTalkIcon from './icons/community/free.svg';
+import PostIcon from './icons/community/postIcon.svg';
+import UploadIcon from './icons/community/uploadIcon.svg';
+import DeleteIcon from './icons/community/deleteIcon.svg';
+
+// register
+import PersonIcon from './icons/register/person.svg';
+import FaceIcon from './icons/register/face.svg';
+import LockIcon from './icons/register/lock.svg';
+import CheckIcon from './icons/register/check_circle_outline.svg';
+import Google from './icons/register/Google.svg';
 
 export {
   HomeIcon,
@@ -32,4 +55,20 @@ export {
   LocationIcon,
   TimeIcon,
   DoneIcon,
+  BookmarkIcon,
+  CommentIcon,
+  HeartIcon,
+  SearchIcon,
+  PersonIcon,
+  FaceIcon,
+  LockIcon,
+  CheckIcon,
+  Google,
+  FlashIcon,
+  PlaceIcon,
+  EventIcon,
+  FreeTalkIcon,
+  PostIcon,
+  UploadIcon,
+  DeleteIcon,
 };

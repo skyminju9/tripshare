@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
+import fontStyles from '../styles/fontStyles';
 import BackIcon from '../assets/icons/header/back_arrow.svg';
 
 const BasicHeader = ({ text, RightIcon, pressRightIcon }) => {
@@ -11,7 +11,7 @@ const BasicHeader = ({ text, RightIcon, pressRightIcon }) => {
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <BackIcon width={36} height={36} />
       </TouchableOpacity>
-      <Text style={styles.headerText}>{text}</Text>
+      <Text style={fontStyles.title03}>{text}</Text>
       {RightIcon ? (
         <TouchableOpacity onPress={pressRightIcon}>
           <RightIcon width={36} height={36} />
@@ -31,13 +31,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#CBDCFF',
     paddingVertical: 12,
-    paddingHorizontal: 4,
-  },
-  headerText: {
-    fontSize: 18,
-    fontWeight: '600',
-    letterSpacing: -0.5,
-    color: '#000',
+    paddingHorizontal: 8,
   },
   blankArea: {
     width: 36,

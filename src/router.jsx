@@ -10,45 +10,22 @@ import ChattingHome from './pages/chat/ChattingPage';
 import MyPageHome from './pages/myPage/MyPageHome';
 import CommunityMeetingMap from './pages/community/CommunityMeetingMap';
 import TripShareBottomTab from './components/TripShareBottomTab';
-import LoginPage from './pages/LoginPage';
 import LocationSetting from './pages/community/LocationSetting';
+import HotPlan from './pages/tripPlan/ExploreTab/HotPlan';
+import PlanDetail from './pages/tripPlan/ExploreTab/PlanDetail';
+import HotDiary from './pages/tripPlan/ExploreTab/HotDiary';
+import DiaryDetail from './pages/tripPlan/ExploreTab/DiaryDetail';
+import LoginPage from './pages/register/LoginPage';
+import SignUpPage from './pages/register/SignUpPage';
+import Splash from './pages/register/Splash';
+import CommunityFreeBoard from './pages/community/CommunityFreeBoard';
+import CommunityHotBoard from './pages/community/CommunityHotBoard';
+import CommunityPostPage from './pages/community/CommunityPostPage';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const renderTabBar = props => <TripShareBottomTab {...props} />;
-
-const TripPlanStack = () => {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="TripPlanHome" component={TripPlanHome} />
-    </Stack.Navigator>
-  );
-};
-
-const CommunityStack = () => {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="CommunityHome" component={CommunityHome} />
-    </Stack.Navigator>
-  );
-};
-
-const ChatStack = () => {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="ChattingHome" component={ChattingHome} />
-    </Stack.Navigator>
-  );
-};
-
-const MyPageStack = () => {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="MyPageHome" component={MyPageHome} />
-    </Stack.Navigator>
-  );
-};
 
 const BottomTab = () => {
   return (
@@ -58,19 +35,20 @@ const BottomTab = () => {
         headerShown: false,
       }}>
       <Tab.Screen name="Home" component={HomePage} />
-      <Tab.Screen name="TripPlan" component={TripPlanStack} />
-      <Tab.Screen name="Community" component={CommunityStack} />
-      <Tab.Screen name="Chat" component={ChatStack} />
-      <Tab.Screen name="MyPage" component={MyPageStack} />
+      <Tab.Screen name="TripPlan" component={TripPlanHome} />
+      <Tab.Screen name="Community" component={CommunityHome} />
+      <Tab.Screen name="Chat" component={ChattingHome} />
+      <Tab.Screen name="MyPage" component={MyPageHome} />
     </Tab.Navigator>
   );
 };
 
-// 로그인, 회원가입 페이지
 export const LoginStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="LoginPage" component={LoginPage} />
+      <Stack.Screen name="SignUpPage" component={SignUpPage} />
+      <Stack.Screen name="MainStack" component={MainStack} />
     </Stack.Navigator>
   );
 };
@@ -78,13 +56,21 @@ export const LoginStack = () => {
 // 홈
 export const MainStack = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Splash" component={Splash} />
+      <Stack.Screen name="LoginStack" component={LoginStack} />
       <Stack.Screen name="BottomTab" component={BottomTab} />
-      {/* HOME */}
+      {/* TRIP PLAN */}
+      <Stack.Screen name="HotPlan" component={HotPlan} />
+      <Stack.Screen name="PlanDetail" component={PlanDetail} />
+      <Stack.Screen name="HotDiary" component={HotDiary} />
+      <Stack.Screen name="DiaryDetail" component={DiaryDetail} />
       {/* COMMUNITY */}
+      <Stack.Screen name="CommunityFreeBoard" component={CommunityFreeBoard} />
+      <Stack.Screen name="CommunityHotBoard" component={CommunityHotBoard} />
+      <Stack.Screen name="CommunityPostPage" component={CommunityPostPage} />
       <Stack.Screen name="CommunityMeetingMap" component={CommunityMeetingMap} />
       <Stack.Screen name="LocationSetting" component={LocationSetting} />
-      {/* TRIP PLAN */}
       {/* CHATTING */}
       {/* MY PAGE */}
     </Stack.Navigator>

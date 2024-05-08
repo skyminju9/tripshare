@@ -19,6 +19,8 @@ target 'tripshare' do
 
   rn_maps_path = '../node_modules/react-native-maps'
   pod 'react-native-google-maps', :path => rn_maps_path
+  pod 'react-native-config', :path => '../node_modules/react-native-config'
+  pod 'react-native-config/Extension', :path => '../node_modules/react-native-config'
   pod 'GoogleMaps', '7.4.0'
   pod 'Google-Maps-iOS-Utils', '4.2.2'
 

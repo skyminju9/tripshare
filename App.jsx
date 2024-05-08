@@ -1,17 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { MainStack } from './src/router';
 
-import { LoginStack, MainStack } from './src/router';
+import { LocationProvider } from './src/contexts/LocationContext';
+import { GeolocationProvider } from './src/contexts/GeolocationContext';
+import { AuthUserProvider } from './src/contexts/AuthUserContext';
 
 function App() {
-  const [loginUser, setLoginUser] = useState(false);
-
-  useEffect(() => {
-    // TODO: Auth User
-    setLoginUser(true);
-  }, []);
-
-  return <NavigationContainer>{loginUser ? <MainStack /> : <LoginStack />}</NavigationContainer>;
+  return (
+    <AuthUserProvider>
+      <GeolocationProvider>
+        <LocationProvider>
+          <NavigationContainer>
+            <MainStack />
+          </NavigationContainer>
+        </LocationProvider>
+      </GeolocationProvider>
+    </AuthUserProvider>
+  );
 }
 
 export default App;

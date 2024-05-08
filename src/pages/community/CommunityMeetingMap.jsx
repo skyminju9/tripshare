@@ -30,6 +30,7 @@ import {
 } from '../../assets';
 import fontStyles from '../../styles/fontStyles';
 import { hourList, minuteList } from '../../dateData';
+import { convertLocationToAddress } from '../../utils/convertLocation.js';
 
 const CommunityMeetingMap = ({ navigation }) => {
   // 마커 표시 state
@@ -47,19 +48,11 @@ const CommunityMeetingMap = ({ navigation }) => {
   const [impromptuTitle, setImpromptuTitle] = useState('');
   const [impromptuContent, setImpromptuContent] = useState('');
   // 동행 모달 state
-  const [accompanyLocation, setAccompanyLocation] = useState({
-    latitude: 0,
-    longitude: 0,
-  });
   const [address, setAddress] = useState('');
   const [accompanyTitle, setAccompanyTitle] = useState('');
   const [accompanyContent, setAccompanyContent] = useState('');
 
   const screenIsFocused = useIsFocused();
-
-  const a = async () => {
-    console.log(await addressForCoordinate({ latitude: 37.78825, longitude: -122.4324 }));
-  };
 
   const { width } = useWindowDimensions();
 
@@ -75,7 +68,7 @@ const CommunityMeetingMap = ({ navigation }) => {
 
   const accompanyLocationHandler = () => {
     navigation.navigate('LocationSetting', {
-      setLocation: setAccompanyLocation,
+      setAddress: setAddress,
     });
   };
 
@@ -365,16 +358,21 @@ const CommunityMeetingMap = ({ navigation }) => {
             <View style={{ flex: 1 }}>
               <Text style={[fontStyles.boldFont01, { marginTop: 16 }]}>장소 선택</Text>
               <TouchableOpacity
-                style={[styles.selectBoxWrapper, { marginTop: 12 }]}
+                style={[styles.selectBoxWrapper, { marginTop: 12, gap: 8 }]}
                 onPress={() => accompanyLocationHandler()}>
                 <LocationIcon />
-                <Text style={fontStyles.basicFont02}>{address}</Text>
+                <Text
+                  style={[fontStyles.basicFont02, { flex: 1 }]}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}>
+                  {address}
+                </Text>
               </TouchableOpacity>
             </View>
             <View style={{ flex: 1 }}>
               <Text style={[fontStyles.boldFont01, { marginTop: 16 }]}>날짜 선택</Text>
               <TouchableOpacity style={[styles.selectBoxWrapper, { marginTop: 12 }]}>
-                <Text>20</Text>
+                <Text style={fontStyles.basicFont02}>20</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -471,7 +469,7 @@ const styles = StyleSheet.create({
     borderColor: color.GRAY_200,
     width: 120,
     paddingVertical: 12,
-    paddingHorizontal: 20,
+    paddingHorizontal: 12,
   },
   textInputWrapper: {
     width: '100%',
