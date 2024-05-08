@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
     paddingLeft: 24,
     paddingRight: 64,
-    paddingHorizontal: 14,
+    paddingVertical: 14,
   },
   contentInput: {
     height: APP_WIDTH - 180,
