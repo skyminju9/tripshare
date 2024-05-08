@@ -5,8 +5,8 @@ import color from '../../styles/colorPalette';
 import shadowStyles from '../../styles/shadowStyles';
 import LogoHeader from '../../components/LogoHeader';
 import { useLocation } from '../../contexts/LocationContext';
-import Cloudy from './HomeComponents/cloudy.png';
-import MainPostSlide from './HomeComponents/MainPostSlide';
+import Cloudy from '../../assets/cloudy.png';
+import MainPostSlide from '../../components/home/MainPostSlide';
 import { Shadow } from 'react-native-shadow-2';
 import { useAuthUser } from '../../contexts/AuthUserContext';
 import { useGeolocation } from '../../contexts/GeolocationContext';
@@ -28,7 +28,7 @@ const HomePage = () => {
         <View style={styles.container}>
           <Text style={fontStyles.title01}>{user.name}님,</Text>
           <Text style={fontStyles.title01}>
-            지금 <Text style={{ color: color.BLUE_500 }}>{location}</Text>에 계시는군요!
+            지금 <Text style={styles.blueText}>{location}</Text>에 계시는군요!
           </Text>
 
           <View style={styles.infoArea}>
@@ -41,27 +41,25 @@ const HomePage = () => {
                 </View>
               </View>
               <View style={styles.box1}>
-                <Image source={Cloudy} style={{ width: 40, height: 40 }} />
+                <Image source={Cloudy} style={styles.weatherImg} />
                 <View style={styles.subInfo}>
-                  <Text style={[fontStyles.title02, { color: color.BLUE_500 }]}>10°C</Text>
-                  <Text style={[fontStyles.title02, { color: color.RED_400 }]}>18°C</Text>
+                  <Text style={[fontStyles.title02, styles.blueText]}>10°C</Text>
+                  <Text style={[fontStyles.title02, styles.redText]}>18°C</Text>
                 </View>
               </View>
             </View>
             <View style={styles.infoBottom}>
               <View style={styles.box2}>
-                <Text style={[fontStyles.title03, { marginBottom: 3 }]}>환율</Text>
+                <Text style={[fontStyles.title03, styles.infoTitle]}>환율</Text>
                 <Text style={fontStyles.basicFont02}>892.67원</Text>
-                <Text style={[fontStyles.basicFont02, { color: color.TEXT_SECONDARY }]}>
-                  / 100JPY
-                </Text>
+                <Text style={[fontStyles.basicFont02, styles.subText]}>/ 100JPY</Text>
               </View>
               <View style={styles.box2}>
-                <Text style={[fontStyles.title03, { marginBottom: 3 }]}>시차</Text>
+                <Text style={[fontStyles.title03, styles.infoTitle]}>시차</Text>
                 <Text style={fontStyles.basicFont02}>차이 없음</Text>
               </View>
               <View style={styles.box2}>
-                <Text style={[fontStyles.title03, { marginBottom: 3 }]}>전압</Text>
+                <Text style={[fontStyles.title03, styles.infoTitle]}>전압</Text>
                 <Text style={fontStyles.basicFont02}>100V</Text>
               </View>
             </View>
@@ -73,25 +71,17 @@ const HomePage = () => {
               <View style={styles.postBox}>
                 <View style={styles.postBoxInner}>
                   <Text style={fontStyles.title03}>도쿄여행</Text>
-                  <Text
-                    style={[
-                      fontStyles.boldFont02,
-                      { color: color.TEXT_SECONDARY, alignSelf: 'flex-end', marginLeft: 10 },
-                    ]}>
-                    24.05.01 ~ 24.05.14
-                  </Text>
+                  <Text style={[fontStyles.boldFont02, styles.subText]}>24.05.01 ~ 24.05.14</Text>
                 </View>
                 <View style={styles.postBoxInner}>
-                  <Text style={[fontStyles.basicFont02, { color: color.TEXT_SECONDARY }]}>
+                  <Text style={[fontStyles.basicFont02, styles.subText]}>
                     예인, 정혁, 서흔, 가연
                   </Text>
-                  <Text style={[fontStyles.title03, { color: color.BLUE_500, marginLeft: 10 }]}>
-                    D-day
-                  </Text>
+                  <Text style={[fontStyles.title03, styles.blueText]}>D-day</Text>
                 </View>
               </View>
             </Shadow>
-            <Shadow {...shadowStyles.smallShadow} style={{ borderRadius: 16, height: 110 }} stretch>
+            <Shadow {...shadowStyles.smallShadow} style={styles.shadowBox} stretch>
               <MainPostSlide />
             </Shadow>
           </View>
@@ -126,7 +116,6 @@ const styles = StyleSheet.create({
     gap: 7,
     justifyContent: 'center',
   },
-
   box1: {
     flex: 1,
     height: 90,
@@ -148,6 +137,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     paddingTop: 10,
   },
+  infoTitle: {
+    marginBottom: 3,
+  },
+  weatherImg: { width: 40, height: 40 },
   flagContainer: {
     width: 40,
     height: 40,
@@ -168,17 +161,24 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 20,
   },
-
   postBoxInner: {
     flexDirection: 'row',
     marginBottom: 12,
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-
   subInfo: {
     marginLeft: 20,
   },
+  subText: { color: color.TEXT_SECONDARY },
+  shadowBox: {
+    borderRadius: 16,
+    height: 110,
+  },
+  blueText: {
+    color: color.BLUE_500,
+  },
+  redText: { color: color.RED_400 },
 });
 
 export default HomePage;
