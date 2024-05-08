@@ -197,8 +197,8 @@ const styles = StyleSheet.create({
   lengthFont: {
     color: color.GRAY_300,
     position: 'absolute',
-    marginVertical: 14,
-    right: 24,
+    paddingVertical: 18,
+    right: 28,
   },
 });
 
