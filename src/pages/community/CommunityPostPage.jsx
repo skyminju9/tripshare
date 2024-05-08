@@ -30,8 +30,6 @@ const CommunityPostPage = ({
   const [tag, setTag] = useState('');
   const [imagePath, setImagePath] = useState('');
 
-  const [postData, setPostData] = useState();
-
   const onPressTag = useCallback(activeTag => {
     if (activeTag) {
       setTag(activeTag);
@@ -82,8 +80,8 @@ const CommunityPostPage = ({
       <BasicHeader text={headerText} />
       <View style={styles.mainWrapper}>
         <View style={styles.titleWrapper}>
-          <Text style={fontStyles.title03}>글 제목</Text>
-          <View>
+          <Text style={fontStyles.title03}>제목</Text>
+          <View style={styles.titleInputBox}>
             <TextInput
               style={[fontStyles.basicFont, styles.titleInput]}
               placeholder="제목"
@@ -137,7 +135,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: color.WHITE,
   },
-
   mainWrapper: {
     flex: 1,
     paddingTop: 20,
@@ -151,12 +148,14 @@ const styles = StyleSheet.create({
     marginTop: -16,
     marginLeft: -12,
   },
+  titleInputBox: { justifyContent: 'center' },
   titleInput: {
     backgroundColor: color.BLUE_30,
-    borderRadius: 20,
+    borderRadius: 14,
     marginHorizontal: 8,
     paddingLeft: 24,
     paddingRight: 64,
+    paddingVertical: 14,
   },
   contentInput: {
     height: APP_WIDTH - 180,
@@ -196,8 +195,7 @@ const styles = StyleSheet.create({
   lengthFont: {
     color: color.GRAY_300,
     position: 'absolute',
-    marginVertical: 14,
-    right: 24,
+    right: 28,
   },
 });
 
