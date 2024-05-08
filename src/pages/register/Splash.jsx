@@ -13,8 +13,9 @@ const Splash = ({ navigation }) => {
   useEffect(() => {
     setTimeout(() => {
       if (isLoginUser) {
-        login(dummy_user[0]);
+        login(dummy_user[4]);
         navigation.navigate('BottomTab');
+        setIsLoginUser(true);
       } else navigation.navigate('LoginStack');
     }, 2000);
   }, []);
