@@ -9,11 +9,15 @@ import Cloudy from './HomeComponents/cloudy.png';
 import MainPostSlide from './HomeComponents/MainPostSlide';
 import { Shadow } from 'react-native-shadow-2';
 import { useAuthUser } from '../../contexts/AuthUserContext';
+import { useGeolocation } from '../../contexts/GeolocationContext';
 
 const HomePage = () => {
   const { selectedCountry, selectedCity } = useLocation();
   const user = useAuthUser();
+  const geolocation = useGeolocation();
 
+  // TEST get geolocation
+  console.log('position ========> ', geolocation);
   const location = selectedCountry && selectedCity ? `${selectedCity}` : '위치미정';
 
   return (
