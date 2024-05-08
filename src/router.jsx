@@ -18,6 +18,7 @@ import SignUpPage from './pages/register/SignUpPage';
 import Splash from './pages/register/Splash';
 import CommunityFreeBoard from './pages/community/CommunityFreeBoard';
 import CommunityHotBoard from './pages/community/CommunityHotBoard';
+import CommunityPostPage from './pages/community/CommunityPostPage';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -53,16 +54,21 @@ export const LoginStack = () => {
 // 홈
 export const MainStack = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="LoginStack" component={LoginStack} />
       <Stack.Screen name="BottomTab" component={BottomTab} />
+      {/* TRIP PLAN */}
       <Stack.Screen name="HotPlan" component={HotPlan} />
       <Stack.Screen name="PlanDetail" component={PlanDetail} />
       <Stack.Screen name="HotDiary" component={HotDiary} />
       <Stack.Screen name="DiaryDetail" component={DiaryDetail} />
+      {/* COMMUNITY */}
       <Stack.Screen name="CommunityFreeBoard" component={CommunityFreeBoard} />
       <Stack.Screen name="CommunityHotBoard" component={CommunityHotBoard} />
+      <Stack.Screen name="CommunityPostPage" component={CommunityPostPage} />
+      {/* CHATTING */}
+      {/* MY PAGE */}
     </Stack.Navigator>
   );
 };

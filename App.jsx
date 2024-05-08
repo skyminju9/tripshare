@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { MainStack } from './src/router';
+
 import { LocationProvider } from './src/contexts/LocationContext';
-import { LoginStack, MainStack } from './src/router';
+import { GeolocationProvider } from './src/contexts/GeolocationContext';
+import { AuthUserProvider } from './src/contexts/AuthUserContext';
 
 function App() {
-  const [loginUser, setLoginUser] = useState(false);
-
-  useEffect(() => {
-    // Simulate login check
-    const isLoggedIn = true; // Change this based on your actual login logic
-    setLoginUser(isLoggedIn);
-  }, []);
-
   return (
-    <LocationProvider>
-      <NavigationContainer>{loginUser ? <MainStack /> : <LoginStack />}</NavigationContainer>
-    </LocationProvider>
+    <AuthUserProvider>
+      <GeolocationProvider>
+        <LocationProvider>
+          <NavigationContainer>
+            <MainStack />
+          </NavigationContainer>
+        </LocationProvider>
+      </GeolocationProvider>
+    </AuthUserProvider>
   );
 }
 

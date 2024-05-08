@@ -6,6 +6,8 @@ import shadowStyles from '../../styles/shadowStyles.js';
 import color from '../../styles/colorPalette';
 import SeeMoreBtn from '../../components/SeeMoreBtn.jsx';
 import { getHotArticle } from '../../utils/sortArticle.js';
+import { Shadow } from 'react-native-shadow-2';
+import { APP_WIDTH } from '../../constants.js';
 
 import { FlashIcon, PlaceIcon, EventIcon, FreeTalkIcon } from '../../assets/index.js';
 
@@ -20,12 +22,12 @@ const CommunityHome = ({ navigation }) => {
 
   const renderHotPost = (item, index) => {
     return (
-      <TouchableOpacity
-        key={index}
-        style={[shadowStyles.smallShadow, styles.hotPostListItemWarpper]}>
-        <View style={styles.hotPostListItemDot} />
-        <Text style={fontStyles.basicFont}>{item.title}</Text>
-      </TouchableOpacity>
+      <Shadow {...shadowStyles.smallShadow} key={index} stretch>
+        <TouchableOpacity style={styles.hotPostListItemWarpper}>
+          <View style={styles.hotPostListItemDot} />
+          <Text style={fontStyles.basicFont}>{item.title}</Text>
+        </TouchableOpacity>
+      </Shadow>
     );
   };
 
@@ -36,7 +38,6 @@ const CommunityHome = ({ navigation }) => {
         <View style={styles.hotPostContainer}>
           <View style={styles.hotPostTopWrapper}>
             <Text style={fontStyles.title03}>HOT한 게시글 보기</Text>
-
             <SeeMoreBtn address="CommunityHotBoard" />
           </View>
           <View style={styles.hotPostListWrapper}>
@@ -49,29 +50,45 @@ const CommunityHome = ({ navigation }) => {
           <Text style={fontStyles.title03}>커뮤니티</Text>
           <View style={styles.communityListWrapper}>
             <View style={styles.communityList}>
-              <TouchableOpacity style={[shadowStyles.largeShadow, styles.communityListItem]}>
-                <Text style={fontStyles.basicFont}>번개/동행</Text>
-                <FlashIcon />
-              </TouchableOpacity>
-              <TouchableOpacity style={[shadowStyles.largeShadow, styles.communityListItem]}>
-                <Text style={fontStyles.basicFont}>맛집/명소</Text>
-                <PlaceIcon />
-              </TouchableOpacity>
-              <TouchableOpacity style={[shadowStyles.largeShadow, styles.communityListItem]}>
-                <Text style={fontStyles.basicFont}>이벤트</Text>
-                <EventIcon />
-              </TouchableOpacity>
+              <Shadow style={styles.communityListItemWrapper} {...shadowStyles.smallShadow} stretch>
+                <TouchableOpacity style={styles.communityListItem}>
+                  <Text style={fontStyles.basicFont}>번개/동행</Text>
+                  <FlashIcon />
+                </TouchableOpacity>
+              </Shadow>
+              <Shadow style={styles.communityListItemWrapper} {...shadowStyles.smallShadow} stretch>
+                <TouchableOpacity style={styles.communityListItem}>
+                  <Text style={fontStyles.basicFont}>맛집/명소</Text>
+                  <PlaceIcon />
+                </TouchableOpacity>
+              </Shadow>
+              <Shadow style={styles.communityListItemWrapper} {...shadowStyles.smallShadow} stretch>
+                <TouchableOpacity style={styles.communityListItem}>
+                  <Text style={fontStyles.basicFont}>이벤트</Text>
+                  <EventIcon />
+                </TouchableOpacity>
+              </Shadow>
             </View>
             <View style={styles.communityList}>
-              <TouchableOpacity style={[shadowStyles.largeShadow, styles.communityListBigItem]}>
-                <Text>지도</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[shadowStyles.largeShadow, styles.communityListFreeTalk]}
-                onPress={() => navigation.navigate('CommunityFreeBoard')}>
-                <Text style={fontStyles.title03}>자유 게시판</Text>
-                <FreeTalkIcon />
-              </TouchableOpacity>
+              <Shadow
+                style={styles.communityListBigItemWrapper}
+                {...shadowStyles.smallShadow}
+                stretch>
+                <TouchableOpacity style={styles.communityListBigItem}>
+                  <Text>지도</Text>
+                </TouchableOpacity>
+              </Shadow>
+              <Shadow
+                style={styles.communityListBigItemWrapper}
+                {...shadowStyles.smallShadow}
+                stretch>
+                <TouchableOpacity
+                  style={styles.communityListFreeTalk}
+                  onPress={() => navigation.navigate('CommunityFreeBoard')}>
+                  <Text style={fontStyles.title03}>자유 게시판</Text>
+                  <FreeTalkIcon />
+                </TouchableOpacity>
+              </Shadow>
             </View>
           </View>
         </View>
@@ -129,12 +146,12 @@ const styles = StyleSheet.create({
   },
   communityList: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     gap: 16,
   },
+  communityListItemWrapper: { width: (APP_WIDTH - 80) / 3, height: (APP_WIDTH - 80) / 3 },
   communityListItem: {
-    flex: 1,
     borderWidth: 1,
     borderColor: color.GRAY_50,
     borderRadius: 16,
@@ -143,8 +160,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 8,
   },
+  communityListBigItemWrapper: { width: (APP_WIDTH - 64) / 2, height: (APP_WIDTH - 74) / 2 },
   communityListBigItem: {
-    width: '47%',
+    width: '100%',
     height: '100%',
     borderWidth: 1,
     borderColor: color.GRAY_50,
@@ -154,7 +172,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   communityListFreeTalk: {
-    width: '47%',
+    width: '100%',
     height: '100%',
     borderWidth: 1,
     borderColor: color.GRAY_50,
