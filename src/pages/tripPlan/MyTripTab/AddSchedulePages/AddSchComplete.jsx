@@ -10,7 +10,7 @@ const AddSchComplete = () => {
       <SafeAreaView style={styles.wrapper} />
 
       <SafeAreaView>
-        <BasicHeader text="나의 여행 일정 추가" backToScreen="TripPlan" />
+        <BasicHeader text="나의 여행 일정 추가" />
 
         <View style={styles.container}>
           <View style={styles.titleContainer}>

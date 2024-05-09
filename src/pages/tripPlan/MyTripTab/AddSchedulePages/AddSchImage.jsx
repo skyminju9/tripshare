@@ -51,7 +51,7 @@ const AddSchImage = () => {
           newImages[index] = { uri: image.path };
           setImages(newImages);
           setFullImage({ uri: image.path });
-          setIsCompleted(false); // Reset completion state when a new image is picked
+          setIsCompleted(false);
         })
         .catch(error => {
           console.log('Image selection error:', error);
@@ -59,7 +59,7 @@ const AddSchImage = () => {
         });
     } else {
       setFullImage(imagesImports[index - 1]);
-      setIsCompleted(false); // Reset completion state when a new image is picked
+      setIsCompleted(false);
     }
   };
 
@@ -103,7 +103,7 @@ const AddSchImage = () => {
       <SafeAreaView style={styles.wrapper} />
 
       <SafeAreaView>
-        <BasicHeader text="나의 여행 일정 추가" backToScreen="TripPlan" />
+        <BasicHeader text="나의 여행 일정 추가" />
 
         <View style={styles.container}>
           <View style={styles.titleContainer}>

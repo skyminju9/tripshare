@@ -33,10 +33,9 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
   buttonText: {
-    fontFamily: 'Pretendard',
-    fontWeight: '700',
+    fontFamily: 'Pretendard-SemiBold',
     fontSize: 20,
-    color: '#FFFFFF',
+    color: color.WHITE,
   },
 });
 

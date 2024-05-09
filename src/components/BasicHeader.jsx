@@ -4,19 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 import fontStyles from '../styles/fontStyles';
 import BackIcon from '../assets/icons/header/back_arrow.svg';
 
-const BasicHeader = ({ text, RightIcon, pressRightIcon, backToScreen }) => {
+const BasicHeader = ({ text, RightIcon, pressRightIcon }) => {
   const navigation = useNavigation();
-
-  const handleBack = () => {
-    if (backToScreen) {
-      navigation.navigate(backToScreen); // 특정 화면으로 이동
-    } else {
-      navigation.goBack(); // 기본 동작: 바로 이전 페이지로 이동
-    }
-  };
   return (
     <View style={styles.headerWrapper}>
-      <TouchableOpacity onPress={handleBack}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
         <BackIcon width={36} height={36} />
       </TouchableOpacity>
       <Text style={fontStyles.title03}>{text}</Text>
@@ -38,7 +30,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     borderBottomWidth: 1,
     borderBottomColor: '#CBDCFF',
-    backgroundColor: 'white',
     paddingVertical: 12,
     paddingHorizontal: 8,
   },
