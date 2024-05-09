@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import fontStyles from '../../../../styles/fontStyles';
-import color from '../../../../styles/colorPalette';
+import fontStyles from '../../styles/fontStyles';
+import color from '../../styles/colorPalette';
 
 const ScheduleList = () => {
   return (

@@ -3,8 +3,8 @@ import { View, SafeAreaView, StyleSheet, Text, Image } from 'react-native';
 import fontStyles from '../../../styles/fontStyles';
 import color from '../../../styles/colorPalette';
 import BasicHeader from '../../../components/BasicHeader';
-import DiaryListBig from './ExploreComponents/DiaryListBig';
-import DiaryReply from './ExploreComponents/DiaryReply';
+import DiaryListBig from '../../../components/ExploreTabComponents/DiaryListBig';
+import DiaryReply from '../../../components/ExploreTabComponents/DiaryReply';
 import ReplyRegister from '../../../assets/icons/Explore/replyregister.png';
 
 const DiaryDetail = () => {

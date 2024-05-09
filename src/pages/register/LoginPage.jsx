@@ -58,7 +58,7 @@ const LoginPage = ({ navigation }) => {
                 autoCapitalize="none"
                 autoComplete="none"
                 autoCorrect={false}
-                style={fontStyles.basicFont}
+                style={fontStyles.basicFont01}
                 onChangeText={text => setEmail(text)}
               />
             </View>
@@ -75,7 +75,7 @@ const LoginPage = ({ navigation }) => {
                 autoCapitalize="none"
                 autoComplete="none"
                 autoCorrect={false}
-                style={fontStyles.basicFont}
+                style={fontStyles.basicFont01}
                 onChangeText={text => setPassword(text)}
               />
             </View>

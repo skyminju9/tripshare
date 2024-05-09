@@ -71,7 +71,9 @@ const HomePage = () => {
               <View style={styles.postBox}>
                 <View style={styles.postBoxInner}>
                   <Text style={fontStyles.title03}>도쿄여행</Text>
-                  <Text style={[fontStyles.boldFont02, styles.subText]}>24.05.01 ~ 24.05.14</Text>
+                  <Text style={[fontStyles.boldFont02, styles.subText, { alignSelf: 'flex-end' }]}>
+                    24.05.01 ~ 24.05.14
+                  </Text>
                 </View>
                 <View style={styles.postBoxInner}>
                   <Text style={[fontStyles.basicFont02, styles.subText]}>

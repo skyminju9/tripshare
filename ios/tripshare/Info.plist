@@ -63,5 +63,9 @@
 		<string>Pretendard-SemiBold.otf</string>
 		<string>Pretendard-Thin.otf</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+		<string>Allow access to your photo gallery</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow access to your camera</string>
 </dict>
 </plist>
