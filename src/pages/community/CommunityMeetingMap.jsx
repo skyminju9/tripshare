@@ -77,6 +77,7 @@ const CommunityMeetingMap = ({ navigation }) => {
   };
 
   const mapPressHandler = async (event, marker) => {
+    event.persist();
     if (!event.nativeEvent.action) {
       setMarkerData('');
     } else if (event.nativeEvent.action === 'marker-press') {

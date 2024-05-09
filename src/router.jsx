@@ -1,7 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import TripShareBottomTab from './components/TripShareBottomTab';
 import HomePage from './pages/home/HomePage';
 import TripPlanHome from './pages/tripPlan/TripPlanHome';
 import CommunityHome from './pages/community/CommunityHome';
@@ -20,10 +19,6 @@ import Splash from './pages/register/Splash';
 import CommunityFreeBoard from './pages/community/CommunityFreeBoard';
 import CommunityHotBoard from './pages/community/CommunityHotBoard';
 import CommunityPostPage from './pages/community/CommunityPostPage';
-import HotPlan from './pages/tripPlan/ExploreTab/HotPlan';
-import PlanDetail from './pages/tripPlan/ExploreTab/PlanDetail';
-import HotDiary from './pages/tripPlan/ExploreTab/HotDiary';
-import DiaryDetail from './pages/tripPlan/ExploreTab/DiaryDetail';
 import AddScheduleMain from './pages/tripPlan/MyTripTab/AddScheduleMain';
 
 const Stack = createNativeStackNavigator();
