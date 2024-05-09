@@ -77,7 +77,7 @@ const CommunityPostPage = ({
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <BasicHeader text={headerText} />
+      <BasicHeader title={headerText} />
       <View style={styles.mainWrapper}>
         <View style={styles.titleWrapper}>
           <Text style={fontStyles.title03}>제목</Text>
