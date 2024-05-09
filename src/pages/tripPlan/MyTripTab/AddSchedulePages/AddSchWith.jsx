@@ -81,7 +81,7 @@ const AddSchWith = () => {
           <View>
             <Text style={[fontStyles.basicFont02, { marginVertical: 10 }]}>친구 0</Text>
           </View>
-          <ScrollView style={styles.friendsContainer}>
+          <ScrollView showsVerticalScrollIndicator={false} style={styles.friendsContainer}>
             {dummyData.map(item => (
               <FriendsList
                 key={item.id}
