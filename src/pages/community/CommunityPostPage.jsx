@@ -83,7 +83,7 @@ const CommunityPostPage = ({
           <Text style={fontStyles.title03}>제목</Text>
           <View style={styles.titleInputBox}>
             <TextInput
-              style={[fontStyles.basicFont, styles.titleInput]}
+              style={[fontStyles.basicFont01, styles.titleInput]}
               placeholder="제목"
               value={titleText}
               onChangeText={setTitleText}
@@ -97,7 +97,7 @@ const CommunityPostPage = ({
           <Text style={fontStyles.title03}>내용</Text>
           <View>
             <TextInput
-              style={[fontStyles.basicFont, styles.contentInput]}
+              style={[fontStyles.basicFont01, styles.contentInput]}
               placeholder="내용"
               value={contentText}
               onChangeText={setContentText}

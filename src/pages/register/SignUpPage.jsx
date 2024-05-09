@@ -50,7 +50,7 @@ const SignUpPage = ({ navigation }) => {
               autoCapitalize="none"
               autoComplete="none"
               autoCorrect={false}
-              style={fontStyles.basicFont}
+              style={fontStyles.basicFont01}
               onChangeText={text => setName(text)}
             />
           </View>
@@ -67,7 +67,7 @@ const SignUpPage = ({ navigation }) => {
               autoCapitalize="none"
               autoComplete="none"
               autoCorrect={false}
-              style={fontStyles.basicFont}
+              style={fontStyles.basicFont01}
               onChangeText={text => setEmail(text)}
             />
           </View>
@@ -84,7 +84,7 @@ const SignUpPage = ({ navigation }) => {
               autoCapitalize="none"
               autoComplete="none"
               autoCorrect={false}
-              style={fontStyles.basicFont}
+              style={fontStyles.basicFont01}
               onChangeText={text => setPassword(text)}
             />
           </View>
@@ -101,7 +101,7 @@ const SignUpPage = ({ navigation }) => {
               autoCapitalize="none"
               autoComplete="none"
               autoCorrect={false}
-              style={fontStyles.basicFont}
+              style={fontStyles.basicFont01}
               onChangeText={text => setPasswordCheck(text)}
             />
           </View>

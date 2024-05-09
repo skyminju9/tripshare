@@ -5,7 +5,7 @@ import fontStyles from '../../../styles/fontStyles';
 import color from '../../../styles/colorPalette';
 import BasicHeader from '../../../components/BasicHeader';
 import SearchBarIcon from '../../../assets/icons/Explore/searchbaricon.png';
-import PlanList from './ExploreComponents/PlanList';
+import PlanList from '../../../components/ExploreTabComponents/PlanList';
 
 const HotPlan = () => {
   const [selectedOption, setSelectedOption] = useState(null);
