@@ -33,6 +33,7 @@ import Google from './icons/register/Google.svg';
 
 // myPage icon
 import EditIcon from './icons/myPage/editIcon.svg';
+import EditCheckIcon from './icons/myPage/editCheckIcon.svg';
 import MyBookmarkIcon from './icons/myPage/myBookmarkIcon.svg';
 import MyArticleIcon from './icons/myPage/myArticleIcon.svg';
 import MyCommentIcon from './icons/myPage/myCommentIcon.svg';
@@ -67,6 +68,7 @@ export {
   UploadIcon,
   DeleteIcon,
   EditIcon,
+  EditCheckIcon,
   MyBookmarkIcon,
   MyArticleIcon,
   MyCommentIcon,

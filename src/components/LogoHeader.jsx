@@ -6,6 +6,7 @@ import DropDownIcon from '../assets/icons/header/arrow_drop_down.svg';
 import fontStyles from '../styles/fontStyles';
 import { useLocation } from '../contexts/LocationContext';
 import Dropdown from './CitySelectDropdown';
+import color from '../styles/colorPalette';
 
 const LogoHeader = () => {
   const { selectedCountry, selectedCity, setSelectedCountry, setSelectedCity } = useLocation();
@@ -39,7 +40,7 @@ const LogoHeader = () => {
         <LogoIcon width={52} height={52} />
       </View>
       <TouchableOpacity>
-        <NotiIcon width={28} height={28} />
+        <NotiIcon width={28} height={28} color={color.TEXT_PRIMARY} />
       </TouchableOpacity>
 
       {showModal && (
