@@ -8,13 +8,6 @@ import HomeIconOn from './icons/bottomIcons/homeIconOn.svg';
 import PlanIconOn from './icons/bottomIcons/planIconOn.svg';
 import ChatIconOn from './icons/bottomIcons/chatIconOn.svg';
 import MyPageIconOn from './icons/bottomIcons/myPageIconOn.svg';
-import ImpromptuIcon from './icons/meeting/impromptu.png';
-import AccompanyIcon from './icons/meeting/accompany.png';
-import CloseIcon from './icons/meeting/closeIcon.svg';
-import WriteIcon from './icons/meeting/writeIcon.svg';
-import LocationIcon from './icons/meeting/locationIcon.svg';
-import TimeIcon from './icons/meeting/timeIcon.svg';
-import DoneIcon from './icons/meeting/doneIcon.svg';
 
 // article icon
 import BookmarkIcon from './icons/articleIcons/bookmarkIcon.svg';
@@ -30,6 +23,14 @@ import FreeTalkIcon from './icons/community/free.svg';
 import PostIcon from './icons/community/postIcon.svg';
 import UploadIcon from './icons/community/uploadIcon.svg';
 import DeleteIcon from './icons/community/deleteIcon.svg';
+import RoundChatIcon from './icons/community/meeting/chatIcon.png';
+import ImpromptuIcon from './icons/community/meeting/impromptu.png';
+import AccompanyIcon from './icons/community/meeting/accompany.png';
+import CloseIcon from './icons/community/meeting/closeIcon.svg';
+import WriteIcon from './icons/community/meeting/writeIcon.svg';
+import LocationIcon from './icons/community/meeting/locationIcon.svg';
+import TimeIcon from './icons/community/meeting/timeIcon.svg';
+import DoneIcon from './icons/community/meeting/doneIcon.svg';
 
 // register
 import PersonIcon from './icons/register/person.svg';
@@ -71,4 +72,5 @@ export {
   PostIcon,
   UploadIcon,
   DeleteIcon,
+  RoundChatIcon,
 };
