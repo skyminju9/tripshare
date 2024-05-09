@@ -11,7 +11,7 @@ const HotDiary = () => {
   };
   return (
     <SafeAreaView style={styles.wrapper}>
-      <BasicHeader text="실시간 인기 기록" />
+      <BasicHeader title="실시간 인기 기록" />
       <ScrollView>
         <View style={styles.container}>
           {[...Array(6)].map((_, index) => (

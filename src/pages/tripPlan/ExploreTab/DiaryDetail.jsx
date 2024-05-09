@@ -10,7 +10,7 @@ import ReplyRegister from '../../../assets/icons/Explore/replyregister.png';
 const DiaryDetail = () => {
   return (
     <SafeAreaView style={styles.wrapper}>
-      <BasicHeader text="기록 상세보기" />
+      <BasicHeader title="기록 상세보기" />
       <View style={styles.container}>
         <DiaryListBig />
         <View>
