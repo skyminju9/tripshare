@@ -1,8 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
-
+import TripShareBottomTab from './components/TripShareBottomTab';
 import HomePage from './pages/home/HomePage';
 import TripPlanHome from './pages/tripPlan/TripPlanHome';
 import CommunityHome from './pages/community/CommunityHome';
@@ -21,6 +20,11 @@ import Splash from './pages/register/Splash';
 import CommunityFreeBoard from './pages/community/CommunityFreeBoard';
 import CommunityHotBoard from './pages/community/CommunityHotBoard';
 import CommunityPostPage from './pages/community/CommunityPostPage';
+import HotPlan from './pages/tripPlan/ExploreTab/HotPlan';
+import PlanDetail from './pages/tripPlan/ExploreTab/PlanDetail';
+import HotDiary from './pages/tripPlan/ExploreTab/HotDiary';
+import DiaryDetail from './pages/tripPlan/ExploreTab/DiaryDetail';
+import AddScheduleMain from './pages/tripPlan/MyTripTab/AddScheduleMain';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -53,19 +57,17 @@ export const LoginStack = () => {
   );
 };
 
-// 홈
 export const MainStack = () => {
   return (
     <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="LoginStack" component={LoginStack} />
       <Stack.Screen name="BottomTab" component={BottomTab} />
-      {/* TRIP PLAN */}
       <Stack.Screen name="HotPlan" component={HotPlan} />
       <Stack.Screen name="PlanDetail" component={PlanDetail} />
       <Stack.Screen name="HotDiary" component={HotDiary} />
       <Stack.Screen name="DiaryDetail" component={DiaryDetail} />
-      {/* COMMUNITY */}
+      <Stack.Screen name="AddScheduleMain" component={AddScheduleMain} />
       <Stack.Screen name="CommunityFreeBoard" component={CommunityFreeBoard} />
       <Stack.Screen name="CommunityHotBoard" component={CommunityHotBoard} />
       <Stack.Screen name="CommunityPostPage" component={CommunityPostPage} />

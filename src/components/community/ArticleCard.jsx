@@ -24,7 +24,7 @@ const ArticleCard = ({ item: article }) => {
       </View>
       {/* Article */}
       <View style={styles.articleMain}>
-        <Text style={fontStyles.basicFont}>{article.title}</Text>
+        <Text style={fontStyles.basicFont01}>{article.title}</Text>
         <Text numberOfLines={1} style={[fontStyles.basicFont02, styles.articleContents]}>
           {article.content}
         </Text>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     color: color.GRAY_300,
   },
   articleContents: {
-    colro: color.TEXT_SECONDARY,
+    color: color.TEXT_SECONDARY,
   },
   articleMain: {
     gap: 8,

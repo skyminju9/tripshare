@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
-import fontStyles from '../../../../styles/fontStyles';
-import color from '../../../../styles/colorPalette';
-import ProfileExample2 from '../../../../assets/icons/Explore/profileexample2.png';
+import fontStyles from '../../styles/fontStyles';
+import color from '../../styles/colorPalette';
+import ProfileExample2 from '../../assets/icons/Explore/profileexample2.png';
 
 const DiaryReply = () => {
   return (
@@ -46,10 +46,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 4,
-    width: '100%', // 부모 뷰에 맞추기 위해 추가
+    width: '100%',
   },
   comment: {
-    flex: 1, // 코멘트 영역이 늘어날 수 있도록
+    flex: 1,
   },
   time: {
     color: color.TEXT_SECONDARY,

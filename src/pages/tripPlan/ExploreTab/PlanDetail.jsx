@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { View, SafeAreaView, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import fontStyles from '../../../styles/fontStyles';
 import color from '../../../styles/colorPalette';
 import BasicHeader from '../../../components/BasicHeader';
-import ScheduleList from './ExploreComponents/ScheduleList';
+import ScheduleList from '../../../components/ExploreTabComponents/ScheduleList';
 
 const PlanDetail = () => {
   const [selectedDay, setSelectedDay] = useState(1);

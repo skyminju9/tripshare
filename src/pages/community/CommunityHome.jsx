@@ -25,7 +25,7 @@ const CommunityHome = ({ navigation }) => {
       <Shadow {...shadowStyles.smallShadow} key={index} stretch>
         <TouchableOpacity style={styles.hotPostListItemWarpper}>
           <View style={styles.hotPostListItemDot} />
-          <Text style={fontStyles.basicFont}>{item.title}</Text>
+          <Text style={fontStyles.basicFont01}>{item.title}</Text>
         </TouchableOpacity>
       </Shadow>
     );
@@ -60,13 +60,13 @@ const CommunityHome = ({ navigation }) => {
               </Shadow>
               <Shadow style={styles.communityListItemWrapper} {...shadowStyles.smallShadow} stretch>
                 <TouchableOpacity style={styles.communityListItem}>
-                  <Text style={fontStyles.basicFont}>맛집/명소</Text>
+                  <Text style={fontStyles.basicFont01}>맛집/명소</Text>
                   <PlaceIcon />
                 </TouchableOpacity>
               </Shadow>
               <Shadow style={styles.communityListItemWrapper} {...shadowStyles.smallShadow} stretch>
                 <TouchableOpacity style={styles.communityListItem}>
-                  <Text style={fontStyles.basicFont}>이벤트</Text>
+                  <Text style={fontStyles.basicFont01}>이벤트</Text>
                   <EventIcon />
                 </TouchableOpacity>
               </Shadow>

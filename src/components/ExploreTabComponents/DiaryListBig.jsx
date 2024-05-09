@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
-import ProfileExample from '../../../../assets/icons/Explore/profileexample.png';
-import fontStyles from '../../../../styles/fontStyles';
-import color from '../../../../styles/colorPalette';
-import DiaryImageBig from '../../../../assets/icons/Explore/diaryimagebig.png';
-import HeartIcon from '../../../../assets/icons/Explore/heart.png';
-import HeartIconFilled from '../../../../assets/icons/Explore/heartfilled.png';
-import BookmarkIcon from '../../../../assets/icons/Explore/bookmark.png';
-import BookmarkIconFilled from '../../../../assets/icons/Explore/bookmarkfilled.png';
+import ProfileExample from '../../assets/icons/Explore/profileexample.png';
+import fontStyles from '../../styles/fontStyles';
+import color from '../../styles/colorPalette';
+import DiaryImageBig from '../../assets/icons/Explore/diaryimagebig.png';
+import HeartIcon from '../../assets/icons/Explore/heart.png';
+import HeartIconFilled from '../../assets/icons/Explore/heartfilled.png';
+import BookmarkIcon from '../../assets/icons/Explore/bookmark.png';
+import BookmarkIconFilled from '../../assets/icons/Explore/bookmarkfilled.png';
 
 const DiaryList = () => {
   const [heartSelected, setHeartSelected] = useState(false);
