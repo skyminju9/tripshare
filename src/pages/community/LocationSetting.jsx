@@ -15,6 +15,7 @@ const LocationSetting = ({ navigation, route }) => {
   });
   const safeArea = useSafeAreaInsets();
   const marker = dummy_meet[0];
+  marker.category = 'accompany';
 
   const doneLocationSettingHandler = async () => {
     const returnData = await convertLocationToAddress(locationData);
