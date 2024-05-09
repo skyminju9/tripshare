@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   Image,
@@ -14,14 +14,14 @@ import fontStyles from '../../../../styles/fontStyles';
 import color from '../../../../styles/colorPalette';
 import ImageCropPicker from 'react-native-image-crop-picker';
 import UploadImageIcon from '../../../../assets/icons/myTrip/uploadimage.png';
-import CloseIcon from '../../../../assets/icons/myTrip/closeicon.png';
+import CheckedIcon from '../../../../assets/icons/myTrip/checked.png';
 
 const imagesImports = [
   require('../../../../assets/images/myTrip/basicimage1.jpeg'),
   require('../../../../assets/images/myTrip/basicimage2.jpeg'),
   require('../../../../assets/images/myTrip/basicimage3.jpeg'),
   require('../../../../assets/images/myTrip/basicimage4.jpeg'),
-  require('../../../..//assets/images/myTrip/basicimage5.jpeg'),
+  require('../../../../assets/images/myTrip/basicimage5.jpeg'),
   require('../../../../assets/images/myTrip/basicimage6.jpeg'),
   require('../../../../assets/images/myTrip/basicimage7.jpeg'),
   require('../../../../assets/images/myTrip/basicimage8.jpeg'),
@@ -36,27 +36,14 @@ const AddSchImage = () => {
 
   const [images, setImages] = useState([null, ...imagesImports.map(() => null)]);
   const [fullImage, setFullImage] = useState(null);
-  const [containerStyle, setContainerStyle] = useState(styles.container);
-  const [textColor, setTextColor] = useState(fontStyles.title02.color);
-
-  useEffect(() => {
-    if (fullImage) {
-      setContainerStyle(styles.containerGray);
-      setTextColor(color.WHITE);
-    } else {
-      setContainerStyle(styles.container);
-      setTextColor(fontStyles.title02.color);
-    }
-  }, [fullImage]);
+  const [isCompleted, setIsCompleted] = useState(false);
 
   const pickImage = index => {
     if (index === 0) {
-      // 업로드 이미지를 선택할 때
       ImageCropPicker.openPicker({
         width: 300,
         height: 300,
         cropping: true,
-        cropperCircleOverlay: false,
         mediaType: 'photo',
       })
         .then(image => {
@@ -64,13 +51,15 @@ const AddSchImage = () => {
           newImages[index] = { uri: image.path };
           setImages(newImages);
           setFullImage({ uri: image.path });
+          setIsCompleted(false); // Reset completion state when a new image is picked
         })
         .catch(error => {
-          console.log('이미지 선택 오류:', error);
+          console.log('Image selection error:', error);
           setFullImage(null);
         });
     } else {
       setFullImage(imagesImports[index - 1]);
+      setIsCompleted(false); // Reset completion state when a new image is picked
     }
   };
 
@@ -88,12 +77,23 @@ const AddSchImage = () => {
   const renderFullImage = () => {
     return (
       <View style={styles.fullImageContainer}>
-        <TouchableOpacity onPress={() => setFullImage(null)}>
+        <View style={styles.fullImageWrapper}>
           <Image source={fullImage} style={styles.fullImage} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setFullImage(null)} style={styles.closeIconContainer}>
-          <Image source={CloseIcon} style={styles.closeIcon} />
-        </TouchableOpacity>
+        </View>
+        <View style={styles.resetButtonsContainer}>
+          <TouchableOpacity onPress={() => setFullImage(null)} style={styles.resetTextContainer}>
+            <Text style={styles.resetText}>재선택</Text>
+          </TouchableOpacity>
+          {isCompleted ? (
+            <Image source={CheckedIcon} style={styles.checkedIcon} />
+          ) : (
+            <TouchableOpacity
+              onPress={() => setIsCompleted(true)}
+              style={styles.resetTextContainer}>
+              <Text style={styles.resetText}>선택 완료</Text>
+            </TouchableOpacity>
+          )}
+        </View>
       </View>
     );
   };
@@ -105,11 +105,9 @@ const AddSchImage = () => {
       <SafeAreaView>
         <BasicHeader text="나의 여행 일정 추가" backToScreen="TripPlan" />
 
-        <View style={containerStyle}>
+        <View style={styles.container}>
           <View style={styles.titleContainer}>
-            <Text style={[fontStyles.title02, { color: textColor }]}>
-              여행을 대표하는 이미지를 골라보세요.
-            </Text>
+            <Text style={fontStyles.title02}>여행을 대표하는 이미지를 골라보세요.</Text>
           </View>
           {fullImage ? (
             renderFullImage()
@@ -133,20 +131,15 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: color.BLUE_30,
   },
-  containerGray: {
-    height: '100%',
-    padding: 20,
-    backgroundColor: color.GRAY_300,
-  },
-
   titleContainer: {
     marginVertical: 20,
   },
-
-  imageGrid: {
+  imageGridContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
+    marginTop: 10,
+    marginBottom: 80,
   },
   image: {
     width: imageWidth,
@@ -154,7 +147,6 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     marginBottom: 10,
     resizeMode: 'cover',
-
     borderColor: color.GRAY_50,
     borderWidth: 1,
     borderStyle: 'solid',
@@ -166,40 +158,47 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     resizeMode: 'contain',
   },
-  imageGridContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    marginTop: 10,
-    marginBottom: 80,
-  },
   fullImageContainer: {
-    ...StyleSheet.absoluteFillObject,
-    justifyContent: 'center',
+    position: 'absolute', // 절대 위치
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    maxHeight: '60%',
+    backgroundColor: color.TEXT_SECONDARY,
   },
+  fullImageWrapper: {
+    flexDirection: 'row',
+    position: 'absolute',
+    top: 90,
+    alignItems: 'center ',
+  },
+
   fullImage: {
-    width: windowWidth - 25,
-    height: windowHeight - 25,
+    aspectRatio: 1,
+    width: '100%',
+    maxWidth: windowWidth * 0.9,
+    maxHeight: windowHeight * 0.9,
     resizeMode: 'contain',
   },
-  closeIconContainer: {
+  resetButtonsContainer: {
+    flexDirection: 'row',
     position: 'absolute',
-    top: 86,
-    right: 3,
-    backgroundColor: color.BLUE_500,
-    borderRadius: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 4,
-    borderWidth: 4,
-    borderColor: 'white',
-    borderStyle: 'solid',
+    top: 20,
+    width: '100%',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
   },
-  closeIcon: {
-    width: 20,
-    height: 20,
+
+  resetText: {
+    ...fontStyles.title02,
+    color: 'white',
+  },
+  checkedIcon: {
+    width: 24,
+    height: 24,
+    resizeMode: 'contain',
   },
 });
 

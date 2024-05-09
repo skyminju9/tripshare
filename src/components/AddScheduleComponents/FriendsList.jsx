@@ -11,7 +11,7 @@ const FriendsList = ({ name, friend, onSelectFriend }) => {
         <Image source={ProfileImageExample} style={styles.image} />
       </View>
       <View style={styles.nameTextContainer}>
-        <Text style={fontStyles.basicFont}>{name}</Text>
+        <Text style={fontStyles.basicFont01}>{name}</Text>
       </View>
       <TouchableOpacity onPress={() => onSelectFriend(friend)} style={styles.plusIconContainer}>
         <Image source={PlusIcon} style={{ width: 26, height: 26 }} />

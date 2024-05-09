@@ -23,7 +23,7 @@ const DiaryList = () => {
         <View style={styles.diaryListBox}>
           <Image source={DiaryImage} style={styles.imageExample} />
           <View style={styles.infoContainer}>
-            <Text style={fontStyles.basicFont}>오사카 마지막 날!</Text>
+            <Text style={fontStyles.basicFont01}>오사카 마지막 날!</Text>
             <View style={styles.bottomArea}>
               <View style={styles.statsArea}>
                 <View style={styles.statsArea}>

@@ -14,7 +14,7 @@ const MainPostSlide = () => {
           <View style={styles.slideCircle}></View>
         </View>
         <Text style={[fontStyles.title03, { marginBottom: 12 }]}>실시간 HOT 게시글</Text>
-        <Text style={fontStyles.basicFont}>도쿄역 근처 맛집 추천 리스트</Text>
+        <Text style={fontStyles.basicFont01}>도쿄역 근처 맛집 추천 리스트</Text>
       </View>
       <View style={styles.slide}>
         <View style={styles.slideCircleContainer}>
@@ -23,7 +23,7 @@ const MainPostSlide = () => {
           <View style={styles.slideCircle}></View>
         </View>
         <Text style={[fontStyles.title03, { marginBottom: 12 }]}>자유게시판</Text>
-        <Text style={fontStyles.basicFont}>오늘 시부야에서 혐한 시위가있다네요</Text>
+        <Text style={fontStyles.basicFont01}>오늘 시부야에서 혐한 시위가있다네요</Text>
       </View>
       <View style={styles.slide}>
         <View style={styles.slideCircleContainer}>
@@ -32,7 +32,7 @@ const MainPostSlide = () => {
           <View style={styles.slideCircleFilled}></View>
         </View>
         <Text style={[fontStyles.title03, { marginBottom: 12 }]}>동행/번개</Text>
-        <Text style={fontStyles.basicFont}>요코하마 쪽으로 이동할 예정인데 같이 렌트</Text>
+        <Text style={fontStyles.basicFont01}>요코하마 쪽으로 이동할 예정인데 같이 렌트</Text>
       </View>
     </Swiper>
   );

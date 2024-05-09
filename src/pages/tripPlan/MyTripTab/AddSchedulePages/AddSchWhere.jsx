@@ -83,13 +83,13 @@ const AddSchWhere = () => {
       <SafeAreaView style={styles.wrapper} />
 
       <SafeAreaView>
-        <BasicHeader text="나의 여행 일정 추가" backToScreen="TripPlan" />
+        <BasicHeader text="나의 여행 일정 추가하기" backToScreen="TripPlan" />
 
         <View style={styles.container}>
           <View style={styles.titleContainer}>
             <Text style={fontStyles.title02}>어디로 떠나시나요?</Text>
           </View>
-          <View style={[styles.inputContainer, selectedRegion && styles.selectedInputContainer]}>
+          <View style={styles.inputContainer}>
             <TextInput
               placeholder="국가나 지역을 검색하세요"
               placeholderTextColor={color.GRAY_300}
@@ -98,7 +98,7 @@ const AddSchWhere = () => {
               onFocus={() =>
                 setShowSuggestions(searchText.length > 0 && filteredRegions.length > 0)
               }
-              style={[styles.input, selectedRegion ? { color: color.WHITE } : { color: 'black' }]}
+              style={[styles.input]}
             />
             {selectedRegion ? (
               <TouchableOpacity onPress={handleReset}>
@@ -141,9 +141,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     alignItems: 'center',
     justifyContent: 'space-between',
-  },
-  selectedInputContainer: {
-    backgroundColor: color.BLUE_200,
   },
   input: {
     flex: 1,

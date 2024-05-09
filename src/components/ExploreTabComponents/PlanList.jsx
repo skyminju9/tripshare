@@ -21,7 +21,7 @@ const PlanList = () => {
     <View style={{ width: '100%' }}>
       <TouchableOpacity onPress={handleDetailPress}>
         <View style={styles.planListbox}>
-          <Text style={fontStyles.basicFont}>뼈 J가 계획한 3박 4일 홍콩 여행</Text>
+          <Text style={fontStyles.basicFont01}>뼈 J가 계획한 3박 4일 홍콩 여행</Text>
           <View style={styles.bottomArea}>
             <View style={styles.hashTagArea}>
               <View style={styles.hashTag}>
