@@ -33,10 +33,12 @@ const CommunityFreeBoard = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.wrapper}>
       <BasicHeader
-        text="자유게시판"
-        RightIcon={SearchIcon}
-        // TODO: navigate search page
-        pressRightIcon={() => console.log('search icon')}
+        title="자유게시판"
+        rightComponent={
+          <TouchableOpacity onPress={() => console.log('search icon')}>
+            <SearchIcon />
+          </TouchableOpacity>
+        }
       />
       <ArticleTagList tags={tags} onPressTag={onPressTag} />
       <View style={styles.postIconWrapper}>

@@ -35,7 +35,7 @@ const AddSchHash = () => {
       <SafeAreaView style={styles.wrapper} />
 
       <SafeAreaView>
-        <BasicHeader text="나의 여행 일정 추가" />
+        <BasicHeader title="나의 여행 일정 추가" />
 
         <View style={styles.container}>
           <View style={styles.titleContainer}>
