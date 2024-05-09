@@ -23,16 +23,32 @@ import {
 import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 import { APP_WIDTH } from '../../constants';
+import ImagePicker from 'react-native-image-crop-picker';
 import { getLongText } from '../../utils/getLongText';
 
 const MyPageHome = () => {
   const [user, setUser] = useState(dummy_user[3]);
   const [username, setUsername] = useState('');
+  const [profileImg, setProfileImg] = useState('https://picsum.photos/200​');
   const [edit, setEdit] = useState(false);
 
   useEffect(() => {
     setUsername(user.name);
+    setProfileImg(profileImg);
   }, []);
+
+  const handleImagePicker = () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 300,
+      cropping: true,
+      cropperCircleOverlay: true,
+    }).then(image => {
+      setProfileImg(image.path);
+    });
+  };
+
+  // 코드 길이 줄여보기
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -42,7 +58,8 @@ const MyPageHome = () => {
           {edit ? (
             <>
               <View style={styles.profileImageWrapper}>
-                <Image source={user.profileImage} style={styles.profileImage} />
+                <TouchableOpacity style={styles.profileImageEdit} onPress={handleImagePicker} />
+                <Image source={{ uri: profileImg }} style={styles.profileImage} />
               </View>
               <View style={styles.profileEditWrapper}>
                 <TextInput
@@ -61,7 +78,7 @@ const MyPageHome = () => {
           ) : (
             <>
               <View style={styles.profileImageWrapper}>
-                <Image source={user.profileImage} style={styles.profileImage} />
+                <Image source={{ uri: profileImg }} style={styles.profileImage} />
               </View>
               <Text style={fontStyles.title01}>{getLongText(username)} 님</Text>
               <TouchableOpacity onPress={() => setEdit(true)}>
@@ -129,13 +146,27 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 16,
-    paddingBottom: 16,
+    paddingRight: 24,
+    paddingTop: 8,
+    paddingBottom: 24,
   },
   profileImageWrapper: {
-    padding: 10,
+    width: 100,
+    height: 100,
   },
   profileImage: {
     borderRadius: 50,
+    width: '100%',
+    height: '100%',
+  },
+  profileImageEdit: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    borderRadius: 50,
+    opacity: 0.5,
+    backgroundColor: color.TEXT_PRIMARY,
+    zIndex: 5,
   },
   profileEditWrapper: { flexDirection: 'row', alignItems: 'center' },
   profileEdit: {
