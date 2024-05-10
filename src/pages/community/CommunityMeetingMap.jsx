@@ -35,6 +35,7 @@ import { APP_WIDTH } from '../../constants';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { formatTime, setAgoDays } from '../../utils/date';
 import { convertLocationToAddress } from '../../utils/convertLocation';
+import { useGeolocation } from '../../contexts/GeolocationContext';
 
 const CommunityMeetingMap = ({ navigation }) => {
   // 마커 표시 state
@@ -59,6 +60,7 @@ const CommunityMeetingMap = ({ navigation }) => {
   const [accompanyContent, setAccompanyContent] = useState('');
 
   const screenIsFocused = useIsFocused();
+  const geolocation = useGeolocation();
 
   const safeArea = useSafeAreaInsets();
 
@@ -122,14 +124,14 @@ const CommunityMeetingMap = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.wrapper}>
       {/* 헤더 */}
-      <BasicHeader text="번개/동행" />
+      <BasicHeader title="번개/동행" />
       {/* 지도 & 마커 */}
       <MapView
         style={{ flex: 1 }}
         provider={PROVIDER_GOOGLE}
         initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
+          latitude: geolocation.latitude,
+          longitude: geolocation.longitude,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
@@ -196,10 +198,7 @@ const CommunityMeetingMap = ({ navigation }) => {
           <View style={styles.bottomCardWrapper}>
             <View style={styles.bottomCardHeaderWrapper}>
               <View style={styles.bottomCardNameWrapper}>
-                <Image
-                  source={{ uri: 'https://xsgames.co/randomusers/avatar.php?g=male' }}
-                  style={styles.bottomCardImage}
-                />
+                <Image source={markerData.profileImage} style={styles.bottomCardImage} />
                 <Text style={fontStyles.boldFont01}>{markerData.name}</Text>
               </View>
               <Text style={styles.bottomCardAgoTime}>{setAgoDays(markerData.createAt)}</Text>

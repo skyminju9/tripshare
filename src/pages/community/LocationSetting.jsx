@@ -7,6 +7,8 @@ import { AccompanyIcon, DoneIcon } from '../../assets';
 import CustomMarker from '../../components/CustomMarker';
 import { dummy_meet } from '../../dummyData';
 import { convertLocationToAddress } from '../../utils/convertLocation';
+import { useAuthUser } from '../../contexts/AuthUserContext';
+import { useGeolocation } from '../../contexts/GeolocationContext';
 
 const LocationSetting = ({ navigation, route }) => {
   const [locationData, setLocationData] = useState({
@@ -14,8 +16,11 @@ const LocationSetting = ({ navigation, route }) => {
     longitude: -122.4324,
   });
   const safeArea = useSafeAreaInsets();
+  const user = useAuthUser();
+  const geolocation = useGeolocation();
   const marker = dummy_meet[0];
   marker.category = 'accompany';
+  marker.profileImage = user.profileImage;
 
   const doneLocationSettingHandler = async () => {
     const returnData = await convertLocationToAddress(locationData);
@@ -26,7 +31,7 @@ const LocationSetting = ({ navigation, route }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <BasicHeader
-        text="번개/동행"
+        title="번개/동행"
         RightIcon={DoneIcon}
         pressRightIcon={() => doneLocationSettingHandler()}
       />
@@ -34,8 +39,8 @@ const LocationSetting = ({ navigation, route }) => {
       <MapView
         provider={PROVIDER_GOOGLE}
         initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
+          latitude: geolocation.latitude,
+          longitude: geolocation.longitude,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}

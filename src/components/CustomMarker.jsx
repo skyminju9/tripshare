@@ -7,10 +7,7 @@ const CustomMarker = ({ marker }) => {
   return (
     <View style={{ height: 80 }}>
       <View style={[styles.markerImageWrapper, { backgroundColor: markerColor }]}>
-        <Image
-          source={{ uri: 'https://xsgames.co/randomusers/avatar.php?g=male' }}
-          style={styles.markerImage}
-        />
+        <Image source={marker.profileImage} style={styles.markerImage} />
       </View>
       <Svg height="100%" width="100%" style={styles.markerPolygon}>
         <Polygon points="0,0 10,20 20,0" fill={markerColor} />
