@@ -1,10 +1,18 @@
 import React from 'react';
-import { Text, SafeAreaView, StyleSheet } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
 
-const MyPageHome = () => {
+const MyPageHome = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.wrapper}>
-      <Text>my Page</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('MyPageBookmark')}>
+        <Text>북마크한 게시글</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('MyPageArticle')}>
+        <Text>작성한 게시글</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('MyPageComment')}>
+        <Text>작성한 댓글</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };

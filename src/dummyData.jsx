@@ -102,6 +102,28 @@ export const dummy_article = [
     userId: 4,
     tag: '질문',
   },
+  {
+    id: 6,
+    title: '호주 3박 4일 계획표 평가 부탁드려요!',
+    content:
+      '안녕하세요! 제가 다음 달에 처음으로 호주에 가게 되었는데요.. 첫 해외여행이라 너무 떨립니다 ㅎㅎ 고수님들의 계획표 조언 부탁드려도 될까요?',
+    createdAt: new Date('2024-04-21 10:20'),
+    like: 5,
+    bookmark: 5,
+    userId: 5,
+    tag: '질문',
+  },
+  {
+    id: 7,
+    title: '호주 3박 4일 계획표 평가 부탁드려요!',
+    content:
+      '안녕하세요! 제가 다음 달에 처음으로 호주에 가게 되었는데요.. 첫 해외여행이라 너무 떨립니다 ㅎㅎ 고수님들의 계획표 조언 부탁드려도 될까요?',
+    createdAt: new Date('2024-04-20 10:20'),
+    like: 5,
+    bookmark: 6,
+    userId: 5,
+    tag: '질문',
+  },
 ];
 
 export const dummy_comment = [
@@ -142,6 +164,7 @@ export const dummy_meet = [
     title: '도쿄타워 같이 가실 분',
     content: '도쿄타워 야경 보고 같이 저녁 먹을 한국인 분들 구해요!',
     name: '도쿄최고',
+    userId: 4,
     profileImage: require('./assets/images/dummy/dummyProfile_1.png'),
     category: 'impromptu',
     createAt: new Date(),
@@ -165,6 +188,7 @@ export const dummy_meet = [
     address: '도쿄타워',
     title: '도쿄타워 같이 가실 분',
     content: '도쿄타워 야경 보고 같이 저녁 먹을 한국인 분들 구해요!',
+    userId: 4,
     profileImage: require('./assets/images/dummy/dummyProfile_3.png'),
     name: '도쿄최고',
     category: 'accompany',
@@ -178,6 +202,7 @@ export const dummy_meet = [
     title: '도쿄타워 같이 가실 분',
     content: '도쿄타워 야경 보고 같이 저녁 먹을 한국인 분들 구해요!',
     name: '도쿄최고',
+    userId: 4,
     profileImage: require('./assets/images/dummy/dummyProfile_4.png'),
     category: 'impromptu',
     createAt: new Date(),

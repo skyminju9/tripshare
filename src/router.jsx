@@ -20,6 +20,9 @@ import CommunityFreeBoard from './pages/community/CommunityFreeBoard';
 import CommunityHotBoard from './pages/community/CommunityHotBoard';
 import CommunityPostPage from './pages/community/CommunityPostPage';
 import AddScheduleMain from './pages/tripPlan/MyTripTab/AddScheduleMain';
+import MyPageArticle from './pages/myPage/MyPageArticle';
+import MyPageBookmark from './pages/myPage/MyPageBookmark';
+import MyPageComment from './pages/myPage/MyPageComment';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -70,6 +73,9 @@ export const MainStack = () => {
       <Stack.Screen name="LocationSetting" component={LocationSetting} />
       {/* CHATTING */}
       {/* MY PAGE */}
+      <Stack.Screen name="MyPageArticle" component={MyPageArticle} />
+      <Stack.Screen name="MyPageBookmark" component={MyPageBookmark} />
+      <Stack.Screen name="MyPageComment" component={MyPageComment} />
     </Stack.Navigator>
   );
 };

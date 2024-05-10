@@ -9,6 +9,7 @@ import {
   useWindowDimensions,
 } from 'react-native';
 import React, { useState } from 'react';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useIsFocused } from '@react-navigation/native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import Modal from 'react-native-modal';
@@ -32,7 +33,6 @@ import fontStyles from '../../styles/fontStyles';
 import { hourList, minuteList } from '../../dateData';
 import DatePicker from 'react-native-date-picker';
 import { APP_WIDTH } from '../../constants';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { formatTime, setAgoDays } from '../../utils/date';
 import { convertLocationToAddress } from '../../utils/convertLocation';
 import { useGeolocation } from '../../contexts/GeolocationContext';
