@@ -1,36 +1,40 @@
 import React from 'react';
-import { View, SafeAreaView, StyleSheet, Text, Image } from 'react-native';
+import { View, SafeAreaView, StyleSheet, Text, ScrollView } from 'react-native';
 import fontStyles from '../../../styles/fontStyles';
 import color from '../../../styles/colorPalette';
 import BasicHeader from '../../../components/BasicHeader';
 import DiaryListBig from '../../../components/ExploreTabComponents/DiaryListBig';
 import DiaryReply from '../../../components/ExploreTabComponents/DiaryReply';
 import ReplyRegister from '../../../assets/icons/Explore/replyregister.png';
+import CommentInput from '../../../components/CommentInput';
+
+import { dummy_comment, dummy_user } from '../../../dummyData';
+import FeedComment from '../../../components/FeedComment';
 
 const DiaryDetail = () => {
+  const comments = dummy_comment.map(comment => {
+    const user = dummy_user.find(du => du.id === comment.userId);
+
+    return {
+      ...comment,
+      user,
+    };
+  });
   return (
     <SafeAreaView style={styles.wrapper}>
       <BasicHeader title="기록 상세보기" />
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <DiaryListBig />
         <View>
           <Text style={[fontStyles.title03, styles.commentText]}>댓글</Text>
         </View>
-        <View>
-          <DiaryReply />
-          <DiaryReply />
-          <DiaryReply />
+        <View style={styles.commentList}>
+          {comments.map(comment => (
+            <FeedComment comment={comment} />
+          ))}
         </View>
-        <View style={styles.commentAddArea}>
-          <View style={styles.commentBox}>
-            <Text style={[fontStyles.basicFont02, { color: color.BLUE_500 }]}>
-              댓글을 작성해 주세요
-            </Text>
-          </View>
-
-          <Image source={ReplyRegister} style={styles.replyRegister} />
-        </View>
-      </View>
+      </ScrollView>
+      <CommentInput />
     </SafeAreaView>
   );
 };
@@ -65,6 +69,10 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 12,
     justifyContent: 'center',
+  },
+  commentList: {
+    paddingHorizontal: 20,
+    marginBottom: 80,
   },
   replyRegister: {
     width: 24,
