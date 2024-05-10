@@ -25,7 +25,7 @@ const CommunityHotBoard = () => {
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <BasicHeader text="HOT 게시글" />
+      <BasicHeader title="HOT 게시글" />
       <FlatList
         data={initialArticles}
         removeClippedSubviews
