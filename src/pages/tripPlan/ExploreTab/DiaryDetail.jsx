@@ -30,7 +30,7 @@ const DiaryDetail = () => {
         </View>
         <View style={styles.commentList}>
           {comments.map(comment => (
-            <FeedComment comment={comment} />
+            <FeedComment key={comment.id} comment={comment} />
           ))}
         </View>
       </ScrollView>
