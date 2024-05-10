@@ -29,7 +29,9 @@ import { getLongText } from '../../utils/getLongText';
 const MyPageHome = () => {
   const [user, setUser] = useState(dummy_user[3]);
   const [username, setUsername] = useState('');
-  const [profileImg, setProfileImg] = useState('https://picsum.photos/200​');
+  const [profileImg, setProfileImg] = useState(
+    'https://images.unsplash.com/photo-1714802066016-1b54e7cfbbca?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D​',
+  );
   const [edit, setEdit] = useState(false);
 
   useEffect(() => {
@@ -48,82 +50,76 @@ const MyPageHome = () => {
     });
   };
 
-  // 코드 길이 줄여보기
+  const randerProfileEdit = isEdit => {
+    return isEdit ? (
+      <>
+        {/* 편집 가능 */}
+        <View style={styles.profileImageWrapper}>
+          <TouchableOpacity style={styles.profileImageEdit} onPress={handleImagePicker} />
+          <Image source={{ uri: profileImg }} style={styles.profileImage} />
+        </View>
+        <View style={styles.profileEditWrapper}>
+          <TextInput
+            style={[fontStyles.title01, styles.profileEdit]}
+            value={username}
+            onChangeText={setUsername}
+            numberOfLines={1}
+            maxLength={20}
+          />
+          <Text style={fontStyles.title01}> 님</Text>
+        </View>
+        <TouchableOpacity onPress={() => setEdit(false)}>
+          <EditCheckIcon />
+        </TouchableOpacity>
+      </>
+    ) : (
+      <>
+        {/* 기본 프로필 */}
+        <View style={styles.profileImageWrapper}>
+          <Image source={{ uri: profileImg }} style={styles.profileImage} />
+        </View>
+        <Text style={fontStyles.title01}>{getLongText(username)} 님</Text>
+        <TouchableOpacity onPress={() => setEdit(true)}>
+          <EditIcon />
+        </TouchableOpacity>
+      </>
+    );
+  };
+
+  const renderMenu = (item, index) => {
+    return item.iconBackground ? (
+      <TouchableOpacity key={index} style={styles.menuWrapper}>
+        <View style={styles.menuBtnWrapper}>{item.icon}</View>
+        <Text style={fontStyles.basicFont01}>{item.title}</Text>
+      </TouchableOpacity>
+    ) : (
+      <TouchableOpacity key={index} style={styles.menuWrapper}>
+        {item.icon}
+        <Text style={fontStyles.basicFont01}>{item.title}</Text>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <SafeAreaView style={styles.wrapper}>
       <LogoHeader />
       <View style={styles.mainContainer}>
-        <View style={styles.topWrapper}>
-          {edit ? (
-            <>
-              <View style={styles.profileImageWrapper}>
-                <TouchableOpacity style={styles.profileImageEdit} onPress={handleImagePicker} />
-                <Image source={{ uri: profileImg }} style={styles.profileImage} />
-              </View>
-              <View style={styles.profileEditWrapper}>
-                <TextInput
-                  style={[fontStyles.title01, styles.profileEdit]}
-                  value={username}
-                  onChangeText={setUsername}
-                  numberOfLines={1}
-                  maxLength={20}
-                />
-                <Text style={fontStyles.title01}> 님</Text>
-              </View>
-              <TouchableOpacity onPress={() => setEdit(false)}>
-                <EditCheckIcon />
-              </TouchableOpacity>
-            </>
-          ) : (
-            <>
-              <View style={styles.profileImageWrapper}>
-                <Image source={{ uri: profileImg }} style={styles.profileImage} />
-              </View>
-              <Text style={fontStyles.title01}>{getLongText(username)} 님</Text>
-              <TouchableOpacity onPress={() => setEdit(true)}>
-                <EditIcon />
-              </TouchableOpacity>
-            </>
-          )}
-        </View>
+        <View style={styles.topWrapper}>{randerProfileEdit(edit)}</View>
         <View style={styles.menuBox}>
           <View style={styles.menuContainer}>
             <Text style={fontStyles.title03}>게시물 관리</Text>
             <View style={styles.menuList}>
-              <TouchableOpacity style={styles.menuWrapper}>
-                <View style={styles.menuBtnWrapper}>
-                  <MyBookmarkIcon width={20} />
-                </View>
-                <Text style={fontStyles.basicFont01}>북마크한 게시글 보기</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.menuWrapper}>
-                <View style={styles.menuBtnWrapper}>
-                  <MyArticleIcon width={12} />
-                </View>
-                <Text style={fontStyles.basicFont01}>내가 작성한 게시글 보기</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.menuWrapper}>
-                <MyCommentIcon width={24} />
-                <Text style={fontStyles.basicFont01}>내가 작성한 댓글 보기</Text>
-              </TouchableOpacity>
+              {menuList[0].map((item, index) => {
+                return renderMenu(item, index);
+              })}
             </View>
           </View>
           <View style={styles.menuContainer}>
             <Text style={fontStyles.title03}>설정</Text>
             <View style={styles.menuList}>
-              <TouchableOpacity style={styles.menuWrapper}>
-                <PositionIcon width={24} height={24} />
-                <Text style={fontStyles.basicFont01}>위치 설정</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.menuWrapper}>
-                <NotiIcon width={24} height={24} color={color.BLUE_500} />
-                <Text style={fontStyles.basicFont01}>알림 설정</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.menuWrapper}>
-                <ThemeIcon width={24} height={24} />
-                <Text style={fontStyles.basicFont01}>테마 설정</Text>
-              </TouchableOpacity>
+              {menuList[1].map((item, index) => {
+                return renderMenu(item, index);
+              })}
             </View>
           </View>
         </View>
@@ -131,6 +127,43 @@ const MyPageHome = () => {
     </SafeAreaView>
   );
 };
+
+const menuList = [
+  [
+    {
+      icon: <MyBookmarkIcon width={20} />,
+      iconBackground: true,
+      title: '북마크한 게시글 보기',
+    },
+    {
+      icon: <MyArticleIcon width={12} />,
+      iconBackground: true,
+      title: '내가 작성한 게시글 보기',
+    },
+    {
+      icon: <MyCommentIcon width={24} />,
+      iconBackground: false,
+      title: '내가 작성한 댓글 보기',
+    },
+  ],
+  [
+    {
+      icon: <PositionIcon width={24} height={24} />,
+      iconBackground: false,
+      title: '위치',
+    },
+    {
+      icon: <NotiIcon width={24} height={24} color={color.BLUE_500} />,
+      iconBackground: false,
+      title: '알림',
+    },
+    {
+      icon: <ThemeIcon width={24} height={24} />,
+      iconBackground: false,
+      title: '테마',
+    },
+  ],
+];
 
 const styles = StyleSheet.create({
   wrapper: {
