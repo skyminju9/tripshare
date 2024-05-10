@@ -4,24 +4,23 @@ import { APP_WIDTH } from '../../constants';
 import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 import shadowStyles from '../../styles/shadowStyles';
-import { setAgoDays } from '../../utils/date';
+
 import { BookmarkIcon, HeartIcon, CommentIcon } from '../../assets/index';
+import { useNavigation } from '@react-navigation/native';
+import ArticleCardHeader from './ArticleCardHeader';
 
 const ArticleCard = ({ item: article }) => {
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity style={[styles.articleContainer, shadowStyles.largeShadow]}>
-      <View style={styles.articleHeader}>
-        {/* Profile */}
-        <View style={styles.authorProfile}>
-          <Image source={article.authorImage} style={styles.authorImage} />
-          <Text style={fontStyles.boldFont01}>{article.authorName}</Text>
-        </View>
-        <View>
-          <Text style={[fontStyles.basicFont02, styles.createdAtText]}>
-            {setAgoDays(article.createdAt)}
-          </Text>
-        </View>
-      </View>
+    <TouchableOpacity
+      style={[styles.articleContainer, shadowStyles.largeShadow]}
+      onPress={() => navigation.navigate('CommunityArticleDetail', { ...article })}>
+      <ArticleCardHeader
+        authorImg={article.authorImage}
+        authorName={article.authorName}
+        createdAt={article.createdAt}
+      />
       {/* Article */}
       <View style={styles.articleMain}>
         <Text style={fontStyles.basicFont01}>{article.title}</Text>

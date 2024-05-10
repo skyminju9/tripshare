@@ -4,6 +4,7 @@ import { SafeAreaView, StyleSheet, FlatList } from 'react-native';
 import BasicHeader from '../../components/BasicHeader';
 import ArticleCard from '../../components/community/ArticleCard';
 import { getHotArticle } from '../../utils/sortArticle';
+import { setAgoDays } from '../../utils/date';
 import { dummy_article, dummy_user } from '../../dummyData';
 
 const CommunityHotBoard = () => {
@@ -20,6 +21,7 @@ const CommunityHotBoard = () => {
       ...article,
       authorName: articleUser.name,
       authorImage: articleUser.profileImage,
+      createdAt: setAgoDays(article.createdAt),
     };
   });
 
