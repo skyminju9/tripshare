@@ -45,9 +45,9 @@ const CommunityMeetingMap = ({ navigation }) => {
   const [accompanyModalIsVisible, setAccompanyModalIsVisible] = useState(false);
   const [impromptuModalIsVisible, setImpromptuModalIsVisible] = useState(false);
   // 번개 모달 state
-  const [impromptuHour, setImpromptuHour] = useState('시');
+  const [impromptuHour, setImpromptuHour] = useState(0);
   const [impromptuHourIsVisible, setImpromptuHourIsVisible] = useState(false);
-  const [impromptuMin, setImpromptuMin] = useState('분');
+  const [impromptuMin, setImpromptuMin] = useState(0);
   const [impromptuMinIsVisible, setImpromptuMinIsVisible] = useState(false);
   const [impromptuTitle, setImpromptuTitle] = useState('');
   const [impromptuContent, setImpromptuContent] = useState('');
