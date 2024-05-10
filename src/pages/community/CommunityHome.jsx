@@ -51,8 +51,10 @@ const CommunityHome = ({ navigation }) => {
           <View style={styles.communityListWrapper}>
             <View style={styles.communityList}>
               <Shadow style={styles.communityListItemWrapper} {...shadowStyles.smallShadow} stretch>
-                <TouchableOpacity style={styles.communityListItem}>
-                  <Text style={fontStyles.basicFont01}>번개/동행</Text>
+                <TouchableOpacity
+                  style={styles.communityListItem}
+                  onPress={() => navigation.navigate('CommunityMeetingMap')}>
+                  <Text style={fontStyles.basicFont}>번개/동행</Text>
                   <FlashIcon />
                 </TouchableOpacity>
               </Shadow>
