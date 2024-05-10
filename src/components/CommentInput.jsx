@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
 import { ReplyRegisterIcon } from '../assets';
+import color from '../styles/colorPalette';
 
 const CommentInput = ({
   onSubmit = () => {
@@ -33,6 +34,8 @@ const styles = StyleSheet.create({
     height: 62,
     alignItems: 'center',
     paddingHorizontal: 20,
+    borderTopWidth: 1,
+    borderColor: color.BLUE_30,
   },
   commentBox: {
     flex: 1,
