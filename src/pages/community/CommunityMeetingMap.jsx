@@ -419,6 +419,7 @@ const styles = StyleSheet.create({
   },
   topCheckButtonWrapper: {
     flexDirection: 'row',
+    alignItems: 'center',
     gap: 4,
     padding: 9,
     borderRadius: 20,
