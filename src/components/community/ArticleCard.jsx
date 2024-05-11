@@ -5,9 +5,22 @@ import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 import shadowStyles from '../../styles/shadowStyles';
 import { setAgoDays } from '../../utils/date';
-import { BookmarkIcon, HeartIcon, CommentIcon } from '../../assets/index';
+import {
+  BookmarkIcon,
+  HeartIcon,
+  CommentIcon,
+  BookmarkOnIcon,
+  BookmarkOffIcon,
+} from '../../assets/index';
+import { useAuthUser } from '../../contexts/AuthUserContext';
+import { dummy_user } from '../../dummyData';
 
 const ArticleCard = ({ item: article }) => {
+  const user = useAuthUser();
+  const userData = dummy_user.filter(data => data.id === user.id).pop();
+  const bookmarkList = userData.bookmarkList;
+  const isBookmarked = bookmarkList.includes(article.id);
+
   return (
     <TouchableOpacity style={[styles.articleContainer, shadowStyles.largeShadow]}>
       <View style={styles.articleHeader}>
@@ -41,7 +54,7 @@ const ArticleCard = ({ item: article }) => {
             <Text style={[fontStyles.basicFont02, styles.heartNum]}>{article.like}</Text>
           </View>
           <View style={styles.articleIcon}>
-            <BookmarkIcon />
+            {isBookmarked ? <BookmarkOnIcon /> : <BookmarkOffIcon />}
             <Text style={[fontStyles.basicFont02, styles.bookmarkNum]}>{article.bookmark}</Text>
           </View>
         </View>

@@ -10,7 +10,8 @@ import ChatIconOn from './icons/bottomIcons/chatIconOn.svg';
 import MyPageIconOn from './icons/bottomIcons/myPageIconOn.svg';
 
 // article icon
-import BookmarkIcon from './icons/articleIcons/bookmarkIcon.svg';
+import BookmarkOnIcon from './icons/articleIcons/bookmarkOnIcon.svg';
+import BookmarkOffIcon from './icons/articleIcons/bookmarkOffIcon.svg';
 import CommentIcon from './icons/articleIcons/commentIcon.svg';
 import HeartIcon from './icons/articleIcons/heartIcon.svg';
 import SearchIcon from './icons/articleIcons/searchIcon.svg';
@@ -56,7 +57,8 @@ export {
   LocationIcon,
   TimeIcon,
   DoneIcon,
-  BookmarkIcon,
+  BookmarkOnIcon,
+  BookmarkOffIcon,
   CommentIcon,
   HeartIcon,
   SearchIcon,
