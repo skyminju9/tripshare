@@ -74,7 +74,11 @@ export const MainStack = () => {
       <Stack.Screen name="LocationSetting" component={LocationSetting} />
       <Stack.Screen name="CommunityArticleDetail" component={CommunityArticleDetail} />
       <Stack.Screen name="CommunitySearchPage" component={CommunitySearchPage} />
-      <Stack.Screen name="CommunitySearchResultPage" component={CommmunitySearchResultPage} />
+      <Stack.Screen
+        name="CommunitySearchResultPage"
+        component={CommmunitySearchResultPage}
+        options={{ animation: 'none' }}
+      />
       {/* CHATTING */}
       {/* MY PAGE */}
     </Stack.Navigator>
