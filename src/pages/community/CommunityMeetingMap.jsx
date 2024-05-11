@@ -409,7 +409,7 @@ export default CommunityMeetingMap;
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: color.WHITE,
   },
   topCheckWrapper: {
     position: 'absolute',

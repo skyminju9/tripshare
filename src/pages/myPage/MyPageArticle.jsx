@@ -1,8 +1,12 @@
-import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, FlatList, TouchableOpacity, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { dummy_article } from '../../dummyData';
 import { useAuthUser } from '../../contexts/AuthUserContext';
 import BasicHeader from '../../components/BasicHeader';
+import color from '../../styles/colorPalette';
+import { formatDate } from '../../utils/date';
+import ArticleCard from '../../components/community/ArticleCard';
+import fontStyles from '../../styles/fontStyles';
 
 const MyPageArticle = ({ navigation, router }) => {
   const user = useAuthUser();
@@ -10,18 +14,43 @@ const MyPageArticle = ({ navigation, router }) => {
     dummy_article.filter(articleData => articleData.userId == user.id),
   );
 
-  useEffect(() => {
-    console.log(articleData);
-  }, [articleData]);
+  const renderItem = (item, index) => {
+    let isSameDate = false;
+    if (!!articleData[index - 1]) {
+      isSameDate = formatDate(item.createdAt) === formatDate(articleData[index - 1]?.createdAt);
+    }
+    item.authorImage = user.profileImage;
+    item.authorName = user.name;
+
+    return (
+      <View>
+        {!isSameDate && <Text style={styles.cardDate}>{formatDate(item.createdAt)}</Text>}
+        <ArticleCard item={item} />
+      </View>
+    );
+  };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.wrapper}>
       <BasicHeader title="작성한 게시글" />
-      <Text>MyPageArticle</Text>
+      <FlatList
+        data={articleData}
+        renderItem={({ item, index }) => renderItem(item, index)}
+        keyExtractor={item => item.id}
+        style={styles.flatListWrapper}
+      />
     </SafeAreaView>
   );
 };
 
 export default MyPageArticle;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  wrapper: { flex: 1, backgroundColor: color.WHITE },
+  flatListWrapper: { flex: 1 },
+  cardDate: {
+    ...fontStyles.title03,
+    marginLeft: 20,
+    marginTop: 20,
+  },
+});

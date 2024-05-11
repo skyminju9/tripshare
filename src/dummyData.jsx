@@ -5,7 +5,7 @@ export const dummy_user = [
     profileImage: require('./assets/images/dummy/dummyProfile_1.png'),
     email: 'test1@test.com',
     password: 'password',
-    bookmarkList: [],
+    bookmarkList: [2, 3, 5, 6, 7],
     interestArea: 'japan',
   },
   {
@@ -14,7 +14,7 @@ export const dummy_user = [
     profileImage: require('./assets/images/dummy/dummyProfile_2.png'),
     email: 'test2@test.com',
     password: 'password',
-    bookmarkList: [],
+    bookmarkList: [2, 3, 5, 6, 7],
     interestArea: 'japan',
   },
   {
@@ -23,7 +23,7 @@ export const dummy_user = [
     profileImage: require('./assets/images/dummy/dummyProfile_3.png'),
     email: 'test3@test.com',
     password: 'password',
-    bookmarkList: [],
+    bookmarkList: [2, 3, 5, 6, 7],
     interestArea: 'japan',
   },
   {
@@ -32,7 +32,7 @@ export const dummy_user = [
     profileImage: require('./assets/images/dummy/dummyProfile_4.png'),
     email: 'test4@test.com',
     password: 'password',
-    bookmarkList: [],
+    bookmarkList: [2, 3, 5, 6, 7],
     interestArea: 'japan',
   },
   {
@@ -41,7 +41,7 @@ export const dummy_user = [
     profileImage: require('./assets/images/dummy/dummyProfile_5.png'),
     email: 'test5@test.com',
     password: 'password',
-    bookmarkList: [],
+    bookmarkList: [2, 3, 5, 6, 7],
     interestArea: 'japan',
   },
 ];
@@ -115,6 +115,28 @@ export const dummy_article = [
   },
   {
     id: 7,
+    title: '호주 3박 4일 계획표 평가 부탁드려요!',
+    content:
+      '안녕하세요! 제가 다음 달에 처음으로 호주에 가게 되었는데요.. 첫 해외여행이라 너무 떨립니다 ㅎㅎ 고수님들의 계획표 조언 부탁드려도 될까요?',
+    createdAt: new Date('2024-04-20 10:20'),
+    like: 5,
+    bookmark: 6,
+    userId: 5,
+    tag: '질문',
+  },
+  {
+    id: 8,
+    title: '호주 3박 4일 계획표 평가 부탁드려요!',
+    content:
+      '안녕하세요! 제가 다음 달에 처음으로 호주에 가게 되었는데요.. 첫 해외여행이라 너무 떨립니다 ㅎㅎ 고수님들의 계획표 조언 부탁드려도 될까요?',
+    createdAt: new Date('2024-04-20 10:20'),
+    like: 5,
+    bookmark: 6,
+    userId: 5,
+    tag: '질문',
+  },
+  {
+    id: 9,
     title: '호주 3박 4일 계획표 평가 부탁드려요!',
     content:
       '안녕하세요! 제가 다음 달에 처음으로 호주에 가게 되었는데요.. 첫 해외여행이라 너무 떨립니다 ㅎㅎ 고수님들의 계획표 조언 부탁드려도 될까요?',
