@@ -34,6 +34,7 @@ const CommunityHotBoard = () => {
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => <ArticleCard item={item} />}
         scrollEventThrottle={20}
+        contentContainerStyle={styles.flatListBottomPadding}
       />
     </SafeAreaView>
   );
@@ -45,8 +46,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
   articleCardWrapper: {
-    marginHorizontal: 20,
     marginTop: 12,
+    paddingBottom: 120,
+    marginHorizontal: 20,
+  },
+  flatListBottomPadding: {
+    paddingBottom: 64,
   },
 });
 

@@ -63,6 +63,7 @@ const CommunityFreeBoard = ({ navigation }) => {
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => <ArticleCard item={item} />}
         scrollEventThrottle={20}
+        contentContainerStyle={styles.flatListBottomPadding}
       />
     </SafeAreaView>
   );
@@ -82,6 +83,9 @@ const styles = StyleSheet.create({
   articleCardWrapper: {
     marginHorizontal: 20,
     marginTop: 12,
+  },
+  flatListBottomPadding: {
+    paddingBottom: 64,
   },
 });
 
