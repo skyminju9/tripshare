@@ -8,10 +8,13 @@ import {
   Image,
   FlatList,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Shadow } from 'react-native-shadow-2';
+
+import shadowStyles from '../../../styles/shadowStyles';
 import PlusIcon from '../../../assets/icons/myTrip/add.svg';
 import RightArrow from '../../../assets/icons/myTrip/arrow_right.svg';
 import PeopleIcon from '../../../assets/icons/myTrip/people.svg';
-import { useNavigation } from '@react-navigation/native';
 
 const dummyCoverImage = require('../../../assets/images/myTrip/singapore.jpeg');
 
@@ -89,34 +92,36 @@ const MyTrip = () => {
 
   const renderPlan = ({ item }) => {
     return (
-      <TouchableOpacity style={styles.tripPlanCard}>
-        <View style={styles.planCoverImageWrapper}>
-          <Image source={dummyCoverImage} resizeMode="cover" style={styles.planCoverImage} />
-        </View>
-        <View style={styles.planDescriptWrapper}>
-          <Text style={styles.planTitle}>{item.title}</Text>
-          <View style={styles.planDatesWrapper}>
-            <Text style={styles.planDate}>
-              {item.dates[0]} ~ {item.dates[1]}
-            </Text>
-            <View style={styles.planFriendsWrapper}>
-              <PeopleIcon width={24} height={24} />
-              {/* {item.friendList.map((friend, friendId) => (
+      <Shadow {...shadowStyles.smallShadow} stretch>
+        <TouchableOpacity style={styles.tripPlanCard}>
+          <View style={styles.planCoverImageWrapper}>
+            <Image source={dummyCoverImage} resizeMode="cover" style={styles.planCoverImage} />
+          </View>
+          <View style={styles.planDescriptWrapper}>
+            <Text style={styles.planTitle}>{item.title}</Text>
+            <View style={styles.planDatesWrapper}>
+              <Text style={styles.planDate}>
+                {item.dates[0]} ~ {item.dates[1]}
+              </Text>
+              <View style={styles.planFriendsWrapper}>
+                <PeopleIcon width={24} height={24} />
+                {/* {item.friendList.map((friend, friendId) => (
                 <Text style={{ color: '#494949', letterSpacing: -0.2 }}>{friend.name}</Text>
               ))} */}
+              </View>
+            </View>
+            <View style={styles.planDdayWrapper}>
+              {item.dDay > 0 ? (
+                <Text style={styles.planDday}>D - {item.dDay}</Text>
+              ) : item.dDay == 0 ? (
+                <Text style={styles.planDday}>D - day</Text>
+              ) : (
+                <Text style={styles.planDday}>D + {item.dDay * -1}</Text>
+              )}
             </View>
           </View>
-          <View style={styles.planDdayWrapper}>
-            {item.dDay > 0 ? (
-              <Text style={styles.planDday}>D - {item.dDay}</Text>
-            ) : item.dDay == 0 ? (
-              <Text style={styles.planDday}>D - day</Text>
-            ) : (
-              <Text style={styles.planDday}>D + {item.dDay * -1}</Text>
-            )}
-          </View>
-        </View>
-      </TouchableOpacity>
+        </TouchableOpacity>
+      </Shadow>
     );
   };
 
@@ -137,13 +142,14 @@ const MyTrip = () => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={styles.tripPlanCardsContainer}>
+        <View>
           <FlatList
             data={dummyPlans}
             renderItem={renderPlan}
             keyExtractor={item => item.id}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
+            style={styles.tripPlanCardWrapper}
           />
         </View>
       </View>
@@ -161,7 +167,7 @@ const styles = StyleSheet.create({
   myTripTitles: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   myTripTitle: { fontSize: 18, fontWeight: '500', letterSpacing: -0.5 },
   myTripMore: { flexDirection: 'row', alignItems: 'center', marginRight: 12 },
-  tripPlanCardsContainer: { marginTop: 16 },
+  tripPlanCardWrapper: { padding: 16 },
   tripPlanCard: {
     width: 200,
     height: 300,
@@ -170,13 +176,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     borderColor: '#EEE',
-    shadowColor: '#333',
-    shadowOpacity: 0.05,
-    shadowRadius: 12,
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
   },
   planCoverImageWrapper: {
     flex: 0.5,
