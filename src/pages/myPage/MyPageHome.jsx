@@ -9,7 +9,6 @@ import {
   TextInput,
 } from 'react-native';
 import LogoHeader from '../../components/LogoHeader';
-import { dummy_user } from '../../dummyData';
 import {
   EditIcon,
   EditCheckIcon,
@@ -25,19 +24,14 @@ import fontStyles from '../../styles/fontStyles';
 import { APP_WIDTH } from '../../constants';
 import ImagePicker from 'react-native-image-crop-picker';
 import { getLongText } from '../../utils/getLongText';
+import { useAuthUser } from '../../contexts/AuthUserContext';
 
 const MyPageHome = () => {
-  const [user, setUser] = useState(dummy_user[3]);
-  const [username, setUsername] = useState('');
-  const [profileImg, setProfileImg] = useState(
-    'https://images.unsplash.com/photo-1714802066016-1b54e7cfbbca?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D​',
-  );
-  const [edit, setEdit] = useState(false);
+  const user = useAuthUser();
 
-  useEffect(() => {
-    setUsername(user.name);
-    setProfileImg(profileImg);
-  }, []);
+  const [username, setUsername] = useState(user.nickname);
+  const [profileImg, setProfileImg] = useState(user.profileImage);
+  const [edit, setEdit] = useState(false);
 
   const handleImagePicker = () => {
     ImagePicker.openPicker({
@@ -56,7 +50,10 @@ const MyPageHome = () => {
         {/* 편집 가능 */}
         <View style={styles.profileImageWrapper}>
           <TouchableOpacity style={styles.profileImageEdit} onPress={handleImagePicker} />
-          <Image source={{ uri: profileImg }} style={styles.profileImage} />
+          <Image
+            source={typeof profileImg === 'string' ? { uri: profileImg } : profileImg}
+            style={styles.profileImage}
+          />
         </View>
         <View style={styles.profileEditWrapper}>
           <TextInput
@@ -76,7 +73,10 @@ const MyPageHome = () => {
       <>
         {/* 기본 프로필 */}
         <View style={styles.profileImageWrapper}>
-          <Image source={{ uri: profileImg }} style={styles.profileImage} />
+          <Image
+            source={typeof profileImg === 'string' ? { uri: profileImg } : profileImg}
+            style={styles.profileImage}
+          />
         </View>
         <Text style={fontStyles.title01}>{getLongText(username)} 님</Text>
         <TouchableOpacity onPress={() => setEdit(true)}>
