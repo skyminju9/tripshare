@@ -24,9 +24,11 @@ const MyPageArticle = ({ route }) => {
     item.authorName = user.name;
 
     return (
-      <View>
+      <View style={styles.cardContainer}>
         {!isPrevSameDate && <Text style={styles.cardDate}>{formatDate(item.createdAt)}</Text>}
-        <ArticleCard item={item} />
+        <View style={styles.articleCardWrapper}>
+          <ArticleCard item={item} />
+        </View>
       </View>
     );
   };
@@ -49,9 +51,14 @@ export default MyPageArticle;
 const styles = StyleSheet.create({
   wrapper: { flex: 1, backgroundColor: color.WHITE },
   flatListWrapper: { flex: 1 },
+  cardContainer: {
+    paddingHorizontal: 20,
+  },
+  articleCardWrapper: {
+    marginTop: 12,
+  },
   cardDate: {
     ...fontStyles.title03,
-    marginLeft: 20,
     marginTop: 20,
   },
 });

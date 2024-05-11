@@ -14,7 +14,6 @@ import {
 import { useAuthUser } from '../../contexts/AuthUserContext';
 import { dummy_user } from '../../dummyData';
 import { Shadow } from 'react-native-shadow-2';
-import { BookmarkIcon, HeartIcon, CommentIcon } from '../../assets/index';
 import { useNavigation } from '@react-navigation/native';
 import ArticleCardHeader from './ArticleCardHeader';
 
@@ -50,21 +49,13 @@ const ArticleCard = ({ item: article }) => {
               <Text style={[fontStyles.basicFont02, styles.commentNum]}>3</Text>
             </View>
             <View style={styles.articleIcon}>
-              <HeartIcon />
+              <HeartOffIcon />
               <Text style={[fontStyles.basicFont02, styles.heartNum]}>{article.like}</Text>
             </View>
             <View style={styles.articleIcon}>
-              <BookmarkIcon />
+              {isBookmarked ? <BookmarkOnIcon /> : <BookmarkOffIcon />}
               <Text style={[fontStyles.basicFont02, styles.bookmarkNum]}>{article.bookmark}</Text>
             </View>
-          </View>
-          <View style={styles.articleIcon}>
-            <HeartOffIcon />
-            <Text style={[fontStyles.basicFont02, styles.heartNum]}>{article.like}</Text>
-          </View>
-          <View style={styles.articleIcon}>
-            {isBookmarked ? <BookmarkOnIcon /> : <BookmarkOffIcon />}
-            <Text style={[fontStyles.basicFont02, styles.bookmarkNum]}>{article.bookmark}</Text>
           </View>
           <View>
             <Text style={[styles.basicFont02, styles.tag]}>#{article.tag}</Text>

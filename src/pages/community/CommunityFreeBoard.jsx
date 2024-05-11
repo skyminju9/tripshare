@@ -22,7 +22,6 @@ const CommunityFreeBoard = ({ navigation }) => {
       ...article,
       authorName: articleUser.name,
       authorImage: articleUser.profileImage,
-      createdAt: setAgoDays(article.createdAt),
     };
   });
 
