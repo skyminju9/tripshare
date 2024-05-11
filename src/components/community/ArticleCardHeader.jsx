@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, StyleSheet, View, Image } from 'react-native';
 import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
+import { setAgoDays } from '../../utils/date';
 
 const ArticleCardHeader = ({ authorImg, authorName, createdAt }) => {
   return (
@@ -11,7 +12,7 @@ const ArticleCardHeader = ({ authorImg, authorName, createdAt }) => {
         <Text style={fontStyles.boldFont01}>{authorName}</Text>
       </View>
       <View>
-        <Text style={[fontStyles.basicFont02, styles.createdAtText]}>{createdAt}</Text>
+        <Text style={[fontStyles.basicFont02, styles.createdAtText]}>{setAgoDays(createdAt)}</Text>
       </View>
     </View>
   );
