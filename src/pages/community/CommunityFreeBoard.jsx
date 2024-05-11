@@ -35,7 +35,7 @@ const CommunityFreeBoard = ({ navigation }) => {
       <BasicHeader
         title="자유게시판"
         rightComponent={
-          <TouchableOpacity onPress={() => console.log('search icon')}>
+          <TouchableOpacity onPress={() => navigation.navigate('CommunitySearchPage')}>
             <SearchIcon />
           </TouchableOpacity>
         }
