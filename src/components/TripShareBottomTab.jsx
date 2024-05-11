@@ -11,6 +11,8 @@ import {
   ChatIconOn,
   MyPageIconOn,
 } from '../assets/index';
+import { Shadow } from 'react-native-shadow-2';
+import shadowStyles from '../styles/shadowStyles';
 
 const TripShareBottomTab = ({ state, navigation, insets }) => {
   const { routes, index: focusedIndex } = state;
@@ -30,28 +32,38 @@ const TripShareBottomTab = ({ state, navigation, insets }) => {
 
   return (
     <View style={[styles.bottomTabWrapper, { paddingBottom: insets.bottom + 10 }]}>
-      <View style={styles.bottomTabBar}>
-        {routes.map((route, index) => {
-          const isFocused = routes[focusedIndex].name === route.name;
-
-          return (
-            <TouchableOpacity
-              key={route.key}
-              onPress={() => handleIconPress(route, index)}
-              style={styles.bottomTabIcon}>
-              {route.name === 'Community' ? (
-                <View style={styles.communityIcon}>
-                  <CommunityIcon />
-                </View>
-              ) : isFocused ? (
-                <View>{tabs[`${route.name}On`]}</View>
-              ) : (
-                <View>{tabs[route.name]}</View>
-              )}
-            </TouchableOpacity>
-          );
-        })}
-      </View>
+      <Shadow {...shadowStyles.largeShadow} stretch>
+        <View style={styles.bottomTabBar}>
+          {routes.map((route, index) => {
+            const isFocused = routes[focusedIndex].name === route.name;
+            return (
+              <TouchableOpacity
+                key={route.key}
+                onPress={() => handleIconPress(route, index)}
+                style={styles.bottomTabIcon}>
+                {route.name === 'Community' ? (
+                  <View style={styles.communityIconWrapper}>
+                    <Shadow
+                      distance={5}
+                      startColor={'#4F85F64D'}
+                      endColor={'#4F85F600'}
+                      offset={[0, 2]}
+                      stretch>
+                      <View style={styles.communityIconShadow}>
+                        <CommunityIcon style={styles.communityIcon} />
+                      </View>
+                    </Shadow>
+                  </View>
+                ) : isFocused ? (
+                  <View>{tabs[`${route.name}On`]}</View>
+                ) : (
+                  <View>{tabs[route.name]}</View>
+                )}
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+      </Shadow>
     </View>
   );
 };
@@ -89,27 +101,33 @@ const styles = StyleSheet.create({
     borderColor: '#EEE',
     backgroundColor: '#FFF',
     borderRadius: 36,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
-    elevation: 4,
   },
   bottomTabIcon: {
     flex: 1,
     alignItems: 'center',
   },
-  communityIcon: {
+  communityIconWrapper: {
     backgroundColor: '#4F85F6',
+    width: 70,
+    height: 70,
     borderRadius: 50,
     padding: 12,
     position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
     bottom: -18,
-    shadowColor: '#A5C2FF',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 1,
-    shadowRadius: 5,
-    elevation: 10,
+  },
+  communityIcon: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 50,
+  },
+  communityIconShadow: {
+    width: 70,
+    height: 70,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 50,
   },
 });
 
