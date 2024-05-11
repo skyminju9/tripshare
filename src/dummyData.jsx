@@ -2,6 +2,7 @@ export const dummy_user = [
   {
     id: 1,
     name: '이가연',
+    nickname: '테디베어1',
     profileImage: require('./assets/images/dummy/dummyProfile_1.png'),
     email: 'test1@test.com',
     password: 'password',
@@ -11,6 +12,7 @@ export const dummy_user = [
   {
     id: 2,
     name: '오정혁',
+    nickname: '테디베어2',
     profileImage: require('./assets/images/dummy/dummyProfile_2.png'),
     email: 'test2@test.com',
     password: 'password',
@@ -20,6 +22,7 @@ export const dummy_user = [
   {
     id: 3,
     name: '우예인',
+    nickname: '테디베어3',
     profileImage: require('./assets/images/dummy/dummyProfile_3.png'),
     email: 'test3@test.com',
     password: 'password',
@@ -29,6 +32,7 @@ export const dummy_user = [
   {
     id: 4,
     name: '한서흔',
+    nickname: '테디베어4',
     profileImage: require('./assets/images/dummy/dummyProfile_4.png'),
     email: 'test4@test.com',
     password: 'password',
@@ -38,6 +42,7 @@ export const dummy_user = [
   {
     id: 5,
     name: '김동영',
+    nickname: '테디베어8',
     profileImage: require('./assets/images/dummy/dummyProfile_5.png'),
     email: 'test5@test.com',
     password: 'password',
@@ -51,11 +56,11 @@ export const dummy_article = [
     id: 1,
     title: '도쿄 3박 4일 계획표 평가 부탁드려요!',
     content:
-      '안녕하세요! 제가 다음 달에 처음으로 도쿄에 가게 되었는데요.. 첫 해외여행이라 너무 떨립니다 ㅎㅎ 고수님들의 계획표 조언 부탁드려도 될까요?',
+      '안녕하세요! 제가 다음 달에 처음으로 도쿄에 가게 되었는데요.. 첫 해외여행이라 너무 떨립니다 ㅎㅎ 고수님들의 계획표 조언 부탁드려도 될까요? 안녕하세요! 제가 다음 달에 처음으로 도쿄에 가게 되었는데요.. 첫 해외여행이라 너무 떨립니다 ㅎㅎ 고수님들의 계획표 조언 부탁드려도 될까요?안녕하세요! 제가 다음 달에 처음으로 도쿄에 가게 되었는데요.. 첫 해외여행이라 너무 떨립니다 ㅎㅎ 고수님들의 계획표 조언 부탁드려도 될까요?안녕하세요! 제가 다음 달에 처음으로 도쿄에 가게 되었는데요.. 첫 해외여행이라 너무 떨립니다 ㅎㅎ 고수님들안녕하세요! 제가 다음 달에 처음으로 도쿄에 가게 되었는데요.. 첫 해외여행이라 너무 떨립니다 ㅎㅎ 고수님들의 계획표 조언 부탁드려도 될까요? 안녕하세요! 제가 다음 달에 처음으로 도쿄에 가게 되었는데요.. 첫 해외여행이라 너무 떨립니다 ㅎㅎ 고수님들의 계획표 조언 부탁드려도 될까요?안녕하세요! 제가 다음 달에 처음으로 도쿄에 가게 되었는데요.. 첫 해외여행이라 너무 떨립니다 ㅎㅎ 고수님들의 계획표 조언 부탁드려도 될까요?안녕하세요! 제가 다음 달에 처음으로 도쿄에 가게 되었는데요.. 첫 해외여행이라 너무 떨립니다 ㅎㅎ 고수님들',
     createdAt: new Date(),
     like: 1,
     bookmark: 1,
-    userId: 4,
+    userId: 1,
     tag: '질문',
   },
   {
@@ -66,8 +71,8 @@ export const dummy_article = [
     createdAt: new Date('2024-05-03 10:20'),
     like: 2,
     bookmark: 2,
-    userId: 4,
-    tag: '질문',
+    userId: 2,
+    tag: '잡담',
   },
   {
     id: 3,
@@ -88,7 +93,7 @@ export const dummy_article = [
     createdAt: new Date('2024-05-01 10:20'),
     like: 4,
     bookmark: 4,
-    userId: 4,
+    userId: 3,
     tag: '질문',
   },
   {

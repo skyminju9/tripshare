@@ -36,6 +36,8 @@ import { APP_WIDTH } from '../../constants';
 import { formatTime, setAgoDays } from '../../utils/date';
 import { convertLocationToAddress } from '../../utils/convertLocation';
 import { useGeolocation } from '../../contexts/GeolocationContext';
+import { Shadow } from 'react-native-shadow-2';
+import shadowStyles from '../../styles/shadowStyles';
 
 const CommunityMeetingMap = ({ navigation }) => {
   // 마커 표시 state
@@ -158,41 +160,59 @@ const CommunityMeetingMap = ({ navigation }) => {
       </MapView>
       {/* 상단 버튼 */}
       <View style={[styles.topCheckWrapper, { top: safeArea.top + 60 + 20 }]}>
-        <TouchableOpacity
-          style={[
-            styles.topCheckButtonWrapper,
-            { backgroundColor: impromptuIsVisible ? color.BLUE_200 : '#FFF' },
-          ]}
-          onPress={impromptuVisibleHandler}
-          activeOpacity={0.9}>
-          <Image source={ImpromptuIcon} style={styles.topCheckButtonIcon} />
-          <Text style={fontStyles.basicFont}>실시간 번개</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.topCheckButtonWrapper,
-            { backgroundColor: accompanyIsVisible ? color.BLUE_200 : '#FFF' },
-          ]}
-          onPress={accompanyVisibleHandler}
-          activeOpacity={0.9}>
-          <Image source={AccompanyIcon} style={styles.topCheckButtonIcon} />
-          <Text style={fontStyles.basicFont}>동행 구하기</Text>
-        </TouchableOpacity>
+        <Shadow {...shadowStyles.smallShadow} stretch>
+          <TouchableOpacity
+            style={[
+              styles.topCheckButtonWrapper,
+              { backgroundColor: impromptuIsVisible ? color.BLUE_200 : '#FFF' },
+            ]}
+            onPress={impromptuVisibleHandler}
+            activeOpacity={0.9}>
+            <Image source={ImpromptuIcon} style={styles.topCheckButtonIcon} />
+            <Text style={fontStyles.basicFont02}>실시간 번개</Text>
+          </TouchableOpacity>
+        </Shadow>
+        <Shadow {...shadowStyles.smallShadow} stretch>
+          <TouchableOpacity
+            style={[
+              styles.topCheckButtonWrapper,
+              { backgroundColor: accompanyIsVisible ? color.BLUE_200 : '#FFF' },
+            ]}
+            onPress={accompanyVisibleHandler}
+            activeOpacity={0.9}>
+            <Image source={AccompanyIcon} style={styles.topCheckButtonIcon} />
+            <Text style={fontStyles.basicFont02}>동행 구하기</Text>
+          </TouchableOpacity>
+        </Shadow>
       </View>
       {/* 우측 하단 버튼 */}
       <View style={[styles.bottomWrapper, { bottom: safeArea.bottom + 18 }]}>
-        <TouchableOpacity
-          activeOpacity={0.9}
-          style={styles.writeButtonWrapper}
-          onPress={() => setAccompanyModalIsVisible(true)}>
-          <Image source={AccompanyIcon} style={styles.writeButtonImage} />
-        </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.9}
-          style={styles.writeButtonWrapper}
-          onPress={() => setImpromptuModalIsVisible(true)}>
-          <Image source={ImpromptuIcon} style={styles.writeButtonImage} />
-        </TouchableOpacity>
+        <Shadow
+          distance={10}
+          startColor={'#4F85F64D'}
+          endColor={'#4F85F600'}
+          offset={[-2, -2]}
+          stretch>
+          <TouchableOpacity
+            activeOpacity={0.9}
+            style={styles.writeButtonWrapper}
+            onPress={() => setAccompanyModalIsVisible(true)}>
+            <Image source={AccompanyIcon} style={styles.writeButtonImage} />
+          </TouchableOpacity>
+        </Shadow>
+        <Shadow
+          distance={10}
+          startColor={'#4F85F64D'}
+          endColor={'#4F85F600'}
+          offset={[-2, -2]}
+          stretch>
+          <TouchableOpacity
+            activeOpacity={0.9}
+            style={styles.writeButtonWrapper}
+            onPress={() => setImpromptuModalIsVisible(true)}>
+            <Image source={ImpromptuIcon} style={styles.writeButtonImage} />
+          </TouchableOpacity>
+        </Shadow>
         {/* 바텀 카드 */}
         {markerData && (
           <View style={styles.bottomCardWrapper}>
@@ -423,11 +443,6 @@ const styles = StyleSheet.create({
     gap: 4,
     padding: 9,
     borderRadius: 20,
-    shadowColor: '#333',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
-    elevation: 4,
   },
   topCheckButtonIcon: {
     width: 20,
@@ -447,11 +462,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: color.BLUE_30,
     borderRadius: 200,
-    shadowColor: color.BLUE_500,
-    shadowOffset: { width: -3, height: -3 },
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
-    elevation: 5,
   },
   bottomCardWrapper: {
     backgroundColor: '#FFF',

@@ -41,6 +41,17 @@ import LockIcon from './icons/register/lock.svg';
 import CheckIcon from './icons/register/check_circle_outline.svg';
 import Google from './icons/register/Google.svg';
 
+import ReplyRegisterIcon from './icons/Explore/replyregister.png';
+
+// myPage icon
+import EditIcon from './icons/myPage/editIcon.svg';
+import EditCheckIcon from './icons/myPage/editCheckIcon.svg';
+import MyBookmarkIcon from './icons/myPage/myBookmarkIcon.svg';
+import MyCommentIcon from './icons/myPage/myCommentIcon.svg';
+import PositionIcon from './icons/myPage/positionIcon.svg';
+import NotiIcon from '../assets/icons/header/notification.svg';
+import ThemeIcon from './icons/myPage/themeIcon.svg';
+
 export {
   HomeIcon,
   PlanIcon,
@@ -77,4 +88,12 @@ export {
   UploadIcon,
   DeleteIcon,
   RoundChatIcon,
+  ReplyRegisterIcon,
+  EditIcon,
+  EditCheckIcon,
+  MyBookmarkIcon,
+  MyCommentIcon,
+  PositionIcon,
+  NotiIcon,
+  ThemeIcon,
 };

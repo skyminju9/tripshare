@@ -18,6 +18,7 @@ export function toISODate(date) {
 }
 
 export function formatDate(date) {
+  const thisYear = new Date().getFullYear();
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDate();
@@ -25,7 +26,9 @@ export function formatDate(date) {
   const formattedMonth = month < 10 ? `0${month}` : month;
   const formattedDay = day < 10 ? `0${day}` : day;
 
-  return `${year}년 ${formattedMonth}월 ${formattedDay}일`;
+  return thisYear === year
+    ? `${formattedMonth}월 ${formattedDay}일`
+    : `${year}년 ${formattedMonth}월 ${formattedDay}일`;
 }
 
 export function formatTime(date) {
