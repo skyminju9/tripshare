@@ -2,6 +2,7 @@ export const dummy_user = [
   {
     id: 1,
     name: '이가연',
+    nickname: '테디베어1',
     profileImage: require('./assets/images/dummy/dummyProfile_1.png'),
     email: 'test1@test.com',
     password: 'password',
@@ -11,6 +12,7 @@ export const dummy_user = [
   {
     id: 2,
     name: '오정혁',
+    nickname: '테디베어2',
     profileImage: require('./assets/images/dummy/dummyProfile_2.png'),
     email: 'test2@test.com',
     password: 'password',
@@ -20,6 +22,7 @@ export const dummy_user = [
   {
     id: 3,
     name: '우예인',
+    nickname: '테디베어3',
     profileImage: require('./assets/images/dummy/dummyProfile_3.png'),
     email: 'test3@test.com',
     password: 'password',
@@ -29,6 +32,7 @@ export const dummy_user = [
   {
     id: 4,
     name: '한서흔',
+    nickname: '테디베어4',
     profileImage: require('./assets/images/dummy/dummyProfile_4.png'),
     email: 'test4@test.com',
     password: 'password',
@@ -38,6 +42,7 @@ export const dummy_user = [
   {
     id: 5,
     name: '김동영',
+    nickname: '테디베어8',
     profileImage: require('./assets/images/dummy/dummyProfile_5.png'),
     email: 'test5@test.com',
     password: 'password',
