@@ -14,7 +14,7 @@ const PlanDetail = () => {
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <BasicHeader text="계획 상세보기" />
+      <BasicHeader title="계획 상세보기" />
 
       <View style={styles.container}>
         <View>

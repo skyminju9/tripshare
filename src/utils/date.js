@@ -27,3 +27,11 @@ export function formatDate(date) {
 
   return `${year}년 ${formattedMonth}월 ${formattedDay}일`;
 }
+
+export function formatTime(date) {
+  const day = date.getDate();
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+
+  return `${day}일 ${hour}시 ${minute}분`;
+}

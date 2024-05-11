@@ -23,6 +23,14 @@ import FreeTalkIcon from './icons/community/free.svg';
 import PostIcon from './icons/community/postIcon.svg';
 import UploadIcon from './icons/community/uploadIcon.svg';
 import DeleteIcon from './icons/community/deleteIcon.svg';
+import RoundChatIcon from './icons/community/meeting/chatIcon.png';
+import ImpromptuIcon from './icons/community/meeting/impromptu.png';
+import AccompanyIcon from './icons/community/meeting/accompany.png';
+import CloseIcon from './icons/community/meeting/closeIcon.svg';
+import WriteIcon from './icons/community/meeting/writeIcon.svg';
+import LocationIcon from './icons/community/meeting/locationIcon.svg';
+import TimeIcon from './icons/community/meeting/timeIcon.svg';
+import DoneIcon from './icons/community/meeting/doneIcon.svg';
 
 // register
 import PersonIcon from './icons/register/person.svg';
@@ -50,6 +58,13 @@ export {
   PlanIconOn,
   ChatIconOn,
   MyPageIconOn,
+  ImpromptuIcon,
+  AccompanyIcon,
+  CloseIcon,
+  WriteIcon,
+  LocationIcon,
+  TimeIcon,
+  DoneIcon,
   BookmarkIcon,
   CommentIcon,
   HeartIcon,
@@ -66,6 +81,7 @@ export {
   PostIcon,
   UploadIcon,
   DeleteIcon,
+  RoundChatIcon,
   EditIcon,
   EditCheckIcon,
   MyBookmarkIcon,

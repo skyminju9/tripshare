@@ -28,7 +28,7 @@ const HotPlan = () => {
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <BasicHeader text="실시간 인기 계획" />
+      <BasicHeader title="실시간 인기 계획" />
       <View style={styles.container}>
         <View style={[styles.searchBar, isSearchFocused && styles.searchBarFocused]}>
           <Image source={SearchBarIcon} style={styles.icon} />
