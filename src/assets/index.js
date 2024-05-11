@@ -39,6 +39,8 @@ import LockIcon from './icons/register/lock.svg';
 import CheckIcon from './icons/register/check_circle_outline.svg';
 import Google from './icons/register/Google.svg';
 
+import ReplyRegisterIcon from './icons/Explore/replyregister.png';
+
 // myPage icon
 import EditIcon from './icons/myPage/editIcon.svg';
 import EditCheckIcon from './icons/myPage/editCheckIcon.svg';
@@ -82,6 +84,7 @@ export {
   UploadIcon,
   DeleteIcon,
   RoundChatIcon,
+  ReplyRegisterIcon,
   EditIcon,
   EditCheckIcon,
   MyBookmarkIcon,
