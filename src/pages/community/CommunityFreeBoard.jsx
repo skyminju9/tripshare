@@ -58,6 +58,7 @@ const CommunityFreeBoard = ({ navigation }) => {
         </Shadow>
       </View>
       <FlatList
+        style={styles.articleCardWrapper}
         data={articles}
         removeClippedSubviews
         showsVerticalScrollIndicator={false}
@@ -79,6 +80,10 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: color.BLUE_30,
     borderRadius: 50,
+  },
+  articleCardWrapper: {
+    marginHorizontal: 20,
+    marginTop: 12,
   },
 });
 

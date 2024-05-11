@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  Text,
-  SafeAreaView,
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  Image,
-  FlatList,
-  ScrollView,
-} from 'react-native';
+import { Text, SafeAreaView, StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { Shadow } from 'react-native-shadow-2';
 import BasicHeader from '../../components/BasicHeader';

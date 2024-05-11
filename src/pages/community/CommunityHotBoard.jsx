@@ -29,6 +29,7 @@ const CommunityHotBoard = () => {
     <SafeAreaView style={styles.wrapper}>
       <BasicHeader title="HOT 게시글" />
       <FlatList
+        style={styles.articleCardWrapper}
         data={initialArticles}
         removeClippedSubviews
         showsVerticalScrollIndicator={false}
@@ -44,6 +45,10 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     backgroundColor: '#FFF',
+  },
+  articleCardWrapper: {
+    marginHorizontal: 20,
+    marginTop: 12,
   },
 });
 

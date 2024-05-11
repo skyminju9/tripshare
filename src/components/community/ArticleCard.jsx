@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, StyleSheet, TouchableOpacity, View, Image } from 'react-native';
+import { Text, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { APP_WIDTH } from '../../constants';
 import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 import shadowStyles from '../../styles/shadowStyles';
-
+import { Shadow } from 'react-native-shadow-2';
 import { BookmarkIcon, HeartIcon, CommentIcon } from '../../assets/index';
 import { useNavigation } from '@react-navigation/native';
 import ArticleCardHeader from './ArticleCardHeader';
@@ -13,50 +13,51 @@ const ArticleCard = ({ item: article }) => {
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity
-      style={[styles.articleContainer, shadowStyles.largeShadow]}
-      onPress={() => navigation.navigate('CommunityArticleDetail', { ...article })}>
-      <ArticleCardHeader
-        authorImg={article.authorImage}
-        authorName={article.authorName}
-        createdAt={article.createdAt}
-      />
-      {/* Article */}
-      <View style={styles.articleMain}>
-        <Text style={fontStyles.basicFont01}>{article.title}</Text>
-        <Text numberOfLines={1} style={[fontStyles.basicFont02, styles.articleContents]}>
-          {article.content}
-        </Text>
-      </View>
-      {/* Icon & Tag */}
-      <View style={styles.articleBottom}>
-        <View style={styles.articleIconContainer}>
-          <View style={styles.articleIcon}>
-            <CommentIcon />
-            <Text style={[fontStyles.basicFont02, styles.commentNum]}>3</Text>
+    <Shadow {...shadowStyles.smallShadow} stretch>
+      <TouchableOpacity
+        style={styles.articleContainer}
+        onPress={() => navigation.navigate('CommunityArticleDetail', { ...article })}>
+        <ArticleCardHeader
+          authorImg={article.authorImage}
+          authorName={article.authorName}
+          createdAt={article.createdAt}
+        />
+        {/* Article */}
+        <View style={styles.articleMain}>
+          <Text style={fontStyles.basicFont01}>{article.title}</Text>
+          <Text numberOfLines={1} style={[fontStyles.basicFont02, styles.articleContents]}>
+            {article.content}
+          </Text>
+        </View>
+        {/* Icon & Tag */}
+        <View style={styles.articleBottom}>
+          <View style={styles.articleIconContainer}>
+            <View style={styles.articleIcon}>
+              <CommentIcon />
+              <Text style={[fontStyles.basicFont02, styles.commentNum]}>3</Text>
+            </View>
+            <View style={styles.articleIcon}>
+              <HeartIcon />
+              <Text style={[fontStyles.basicFont02, styles.heartNum]}>{article.like}</Text>
+            </View>
+            <View style={styles.articleIcon}>
+              <BookmarkIcon />
+              <Text style={[fontStyles.basicFont02, styles.bookmarkNum]}>{article.bookmark}</Text>
+            </View>
           </View>
-          <View style={styles.articleIcon}>
-            <HeartIcon />
-            <Text style={[fontStyles.basicFont02, styles.heartNum]}>{article.like}</Text>
-          </View>
-          <View style={styles.articleIcon}>
-            <BookmarkIcon />
-            <Text style={[fontStyles.basicFont02, styles.bookmarkNum]}>{article.bookmark}</Text>
+          <View>
+            <Text style={[styles.basicFont02, styles.tag]}>#{article.tag}</Text>
           </View>
         </View>
-        <View>
-          <Text style={[styles.basicFont02, styles.tag]}>#{article.tag}</Text>
-        </View>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </Shadow>
   );
 };
 
 const styles = StyleSheet.create({
   articleContainer: {
     justifyContent: 'center',
-    marginHorizontal: 20,
-    marginVertical: 12,
+    marginBottom: 12,
     paddingHorizontal: 20,
     paddingVertical: 16,
     height: APP_WIDTH / 2.6,
