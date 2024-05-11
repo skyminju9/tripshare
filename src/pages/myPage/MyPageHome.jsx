@@ -14,7 +14,7 @@ import {
   EditIcon,
   EditCheckIcon,
   MyBookmarkIcon,
-  MyArticleIcon,
+  PostIcon,
   MyCommentIcon,
   PositionIcon,
   NotiIcon,
@@ -87,14 +87,9 @@ const MyPageHome = () => {
   };
 
   const renderMenu = (item, index) => {
-    return item.iconBackground ? (
+    return (
       <TouchableOpacity key={index} style={styles.menuWrapper}>
         <View style={styles.menuBtnWrapper}>{item.icon}</View>
-        <Text style={fontStyles.basicFont01}>{item.title}</Text>
-      </TouchableOpacity>
-    ) : (
-      <TouchableOpacity key={index} style={styles.menuWrapper}>
-        {item.icon}
         <Text style={fontStyles.basicFont01}>{item.title}</Text>
       </TouchableOpacity>
     );
@@ -131,35 +126,29 @@ const MyPageHome = () => {
 const menuList = [
   [
     {
-      icon: <MyBookmarkIcon width={20} />,
-      iconBackground: true,
+      icon: <MyBookmarkIcon />,
       title: '북마크한 게시글 보기',
     },
     {
-      icon: <MyArticleIcon width={12} />,
-      iconBackground: true,
+      icon: <PostIcon width={19} />,
       title: '내가 작성한 게시글 보기',
     },
     {
-      icon: <MyCommentIcon width={24} />,
-      iconBackground: false,
+      icon: <MyCommentIcon />,
       title: '내가 작성한 댓글 보기',
     },
   ],
   [
     {
-      icon: <PositionIcon width={24} height={24} />,
-      iconBackground: false,
+      icon: <PositionIcon />,
       title: '위치',
     },
     {
       icon: <NotiIcon width={24} height={24} color={color.BLUE_500} />,
-      iconBackground: false,
       title: '알림',
     },
     {
-      icon: <ThemeIcon width={24} height={24} />,
-      iconBackground: false,
+      icon: <ThemeIcon />,
       title: '테마',
     },
   ],
@@ -216,6 +205,7 @@ const styles = StyleSheet.create({
   menuList: { gap: 12 },
   menuWrapper: {
     flexDirection: 'row',
+    alignItems: 'center',
     borderRadius: 20,
     borderColor: color.BLUE_500,
     borderWidth: 1,
@@ -224,8 +214,6 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   menuBtnWrapper: {
-    backgroundColor: color.BLUE_500,
-    borderRadius: 50,
     width: 24,
     height: 24,
     justifyContent: 'center',
