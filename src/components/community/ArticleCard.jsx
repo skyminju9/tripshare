@@ -6,11 +6,11 @@ import fontStyles from '../../styles/fontStyles';
 import shadowStyles from '../../styles/shadowStyles';
 import { setAgoDays } from '../../utils/date';
 import {
-  BookmarkIcon,
-  HeartIcon,
   CommentIcon,
   BookmarkOnIcon,
   BookmarkOffIcon,
+  HeartOnIcon,
+  HeartOffIcon,
 } from '../../assets/index';
 import { useAuthUser } from '../../contexts/AuthUserContext';
 import { dummy_user } from '../../dummyData';
@@ -50,7 +50,7 @@ const ArticleCard = ({ item: article }) => {
             <Text style={[fontStyles.basicFont02, styles.commentNum]}>3</Text>
           </View>
           <View style={styles.articleIcon}>
-            <HeartIcon />
+            <HeartOffIcon />
             <Text style={[fontStyles.basicFont02, styles.heartNum]}>{article.like}</Text>
           </View>
           <View style={styles.articleIcon}>

@@ -176,6 +176,33 @@ export const dummy_comment = [
     userId: 1,
     createdAt: new Date('2024-05-20 16:20'),
   },
+  {
+    id: 4,
+    name: '도쿄타워',
+    articleId: 1,
+    content: '마지막날 일정이 좀 빡빡한 것 같아요???',
+    like: 3,
+    userId: 1,
+    createdAt: new Date('2024-05-20 16:20'),
+  },
+  {
+    id: 5,
+    name: '김동영',
+    articleId: 1,
+    content: '마지막날 일정이 좀 빡빡한 것 같아요???',
+    like: 3,
+    userId: 5,
+    createdAt: new Date('2024-05-20 16:20'),
+  },
+  {
+    id: 6,
+    name: '김동영',
+    articleId: 1,
+    content: '마지막날 일정이 좀 빡빡한 것 같아요???',
+    like: 3,
+    userId: 5,
+    createdAt: new Date('2024-05-20 16:20'),
+  },
 ];
 
 export const dummy_meet = [

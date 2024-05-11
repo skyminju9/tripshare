@@ -1,17 +1,17 @@
-import { StyleSheet, Text, SafeAreaView, FlatList, TouchableOpacity, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, SafeAreaView, FlatList, View } from 'react-native';
+import React, { useState } from 'react';
+
 import { dummy_article } from '../../dummyData';
-import { useAuthUser } from '../../contexts/AuthUserContext';
 import BasicHeader from '../../components/BasicHeader';
 import color from '../../styles/colorPalette';
 import { formatDate } from '../../utils/date';
 import ArticleCard from '../../components/community/ArticleCard';
 import fontStyles from '../../styles/fontStyles';
 
-const MyPageArticle = ({ navigation, router }) => {
-  const user = useAuthUser();
+const MyPageArticle = ({ route }) => {
+  const user = route.params.user;
   const [articleData, setArticleData] = useState(
-    dummy_article.filter(articleData => articleData.userId == user.id),
+    dummy_article.filtecr(articleData => articleData.userId == user.id),
   );
 
   const renderItem = (item, index) => {

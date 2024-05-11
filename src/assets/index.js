@@ -13,7 +13,8 @@ import MyPageIconOn from './icons/bottomIcons/myPageIconOn.svg';
 import BookmarkOnIcon from './icons/articleIcons/bookmarkOnIcon.svg';
 import BookmarkOffIcon from './icons/articleIcons/bookmarkOffIcon.svg';
 import CommentIcon from './icons/articleIcons/commentIcon.svg';
-import HeartIcon from './icons/articleIcons/heartIcon.svg';
+import HeartOnIcon from './icons/articleIcons/heartOnIcon.svg';
+import HeartOffIcon from './icons/articleIcons/heartOffIcon.svg';
 import SearchIcon from './icons/articleIcons/searchIcon.svg';
 
 // community icon
@@ -60,7 +61,8 @@ export {
   BookmarkOnIcon,
   BookmarkOffIcon,
   CommentIcon,
-  HeartIcon,
+  HeartOnIcon,
+  HeartOffIcon,
   SearchIcon,
   PersonIcon,
   FaceIcon,
