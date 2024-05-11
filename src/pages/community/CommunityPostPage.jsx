@@ -75,6 +75,11 @@ const CommunityPostPage = ({
     );
   };
 
+  const onPressBtn = () => {
+    navigation.navigate('CommunityFreeBoard');
+    console.log('테스트');
+  };
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <BasicHeader title={headerText} />
@@ -123,7 +128,7 @@ const CommunityPostPage = ({
           </View>
         </View>
         <View style={styles.btnWrapper}>
-          <TripShareBtn text={buttonText} address="CommunityFreeBoard" />
+          <TripShareBtn text={buttonText} onPress={onPressBtn} />
         </View>
       </View>
     </SafeAreaView>
