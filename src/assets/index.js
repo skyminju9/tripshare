@@ -39,6 +39,8 @@ import LockIcon from './icons/register/lock.svg';
 import CheckIcon from './icons/register/check_circle_outline.svg';
 import Google from './icons/register/Google.svg';
 
+import ReplyRegisterIcon from './icons/Explore/replyregister.png';
+
 export {
   HomeIcon,
   PlanIcon,
@@ -73,4 +75,5 @@ export {
   UploadIcon,
   DeleteIcon,
   RoundChatIcon,
+  ReplyRegisterIcon,
 };
