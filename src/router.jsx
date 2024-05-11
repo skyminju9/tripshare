@@ -1,23 +1,26 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import TripShareBottomTab from './components/TripShareBottomTab';
 import HomePage from './pages/home/HomePage';
 import TripPlanHome from './pages/tripPlan/TripPlanHome';
 import CommunityHome from './pages/community/CommunityHome';
 import ChattingHome from './pages/chat/ChattingPage';
 import MyPageHome from './pages/myPage/MyPageHome';
+import CommunityMeetingMap from './pages/community/CommunityMeetingMap';
+import TripShareBottomTab from './components/TripShareBottomTab';
+import LocationSetting from './pages/community/LocationSetting';
+import HotPlan from './pages/tripPlan/ExploreTab/HotPlan';
+import PlanDetail from './pages/tripPlan/ExploreTab/PlanDetail';
+import HotDiary from './pages/tripPlan/ExploreTab/HotDiary';
+import DiaryDetail from './pages/tripPlan/ExploreTab/DiaryDetail';
 import LoginPage from './pages/register/LoginPage';
 import SignUpPage from './pages/register/SignUpPage';
 import Splash from './pages/register/Splash';
 import CommunityFreeBoard from './pages/community/CommunityFreeBoard';
 import CommunityHotBoard from './pages/community/CommunityHotBoard';
 import CommunityPostPage from './pages/community/CommunityPostPage';
-import HotPlan from './pages/tripPlan/ExploreTab/HotPlan';
-import PlanDetail from './pages/tripPlan/ExploreTab/PlanDetail';
-import HotDiary from './pages/tripPlan/ExploreTab/HotDiary';
-import DiaryDetail from './pages/tripPlan/ExploreTab/DiaryDetail';
 import AddScheduleMain from './pages/tripPlan/MyTripTab/AddScheduleMain';
+import CommunityArticleDetail from './pages/community/CommunityArticleDetail';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -61,9 +64,15 @@ export const MainStack = () => {
       <Stack.Screen name="HotDiary" component={HotDiary} />
       <Stack.Screen name="DiaryDetail" component={DiaryDetail} />
       <Stack.Screen name="AddScheduleMain" component={AddScheduleMain} />
+      {/* COMMUNITY */}
       <Stack.Screen name="CommunityFreeBoard" component={CommunityFreeBoard} />
       <Stack.Screen name="CommunityHotBoard" component={CommunityHotBoard} />
       <Stack.Screen name="CommunityPostPage" component={CommunityPostPage} />
+      <Stack.Screen name="CommunityMeetingMap" component={CommunityMeetingMap} />
+      <Stack.Screen name="LocationSetting" component={LocationSetting} />
+      <Stack.Screen name="CommunityArticleDetail" component={CommunityArticleDetail} />
+      {/* CHATTING */}
+      {/* MY PAGE */}
     </Stack.Navigator>
   );
 };
