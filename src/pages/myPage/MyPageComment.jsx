@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, Text, FlatList, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, FlatList, View, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 
 import { dummy_comment } from '../../dummyData';
@@ -16,20 +16,27 @@ const MyPageComment = () => {
   );
 
   const renderItem = (item, index) => {
-    let isSameDate = false;
+    let isPrevSameDate = false;
     if (!!commentData[index - 1]) {
-      isSameDate = formatDate(item.createdAt) === formatDate(commentData[index - 1]?.createdAt);
+      isPrevSameDate = formatDate(item.createdAt) === formatDate(commentData[index - 1]?.createdAt);
     }
-    item.authorImage = user.profileImage;
-    item.authorName = user.name;
+
+    let isNextSameDate = false;
+    if (!!commentData[index + 1]) {
+      isNextSameDate = formatDate(item.createdAt) === formatDate(commentData[index + 1]?.createdAt);
+    }
 
     return (
-      <View>
-        {!isSameDate && <Text style={styles.cardDate}>{formatDate(item.createdAt)}</Text>}
-        <View style={styles.commentWrapper}>
+      <View style={styles.commentContainer}>
+        {!isPrevSameDate && <Text style={styles.cardDate}>{formatDate(item.createdAt)}</Text>}
+        <TouchableOpacity style={styles.commentWrapper}>
           <Text>{item.content}</Text>
-          <HeartOffIcon />
-        </View>
+          <View style={styles.commentLikeWrapper}>
+            <HeartOffIcon />
+            <Text style={styles.commentLike}>{item.like}</Text>
+          </View>
+        </TouchableOpacity>
+        {!isPrevSameDate && <View style={styles.separateBarWrapper} />}
       </View>
     );
   };
@@ -52,15 +59,32 @@ export default MyPageComment;
 const styles = StyleSheet.create({
   wrapper: { flex: 1, backgroundColor: color.WHITE },
   flatListWrapper: { flex: 1 },
+  commentContainer: {
+    paddingHorizontal: 20,
+  },
   cardDate: {
     ...fontStyles.title03,
-    marginLeft: 20,
     marginTop: 20,
   },
   commentWrapper: {
     flexDirection: 'row',
+    alignItems: 'center',
     gap: 8,
     marginTop: 10,
-    marginLeft: 32,
+    marginHorizontal: 16,
+  },
+  commentLikeWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
+  commentLike: {
+    ...fontStyles.redFont02,
+  },
+  separateBarWrapper: {
+    backgroundColor: color.GRAY_50,
+    width: '100%',
+    height: 1,
+    marginTop: 10,
   },
 });

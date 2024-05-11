@@ -11,20 +11,21 @@ import fontStyles from '../../styles/fontStyles';
 const MyPageArticle = ({ route }) => {
   const user = route.params.user;
   const [articleData, setArticleData] = useState(
-    dummy_article.filtecr(articleData => articleData.userId == user.id),
+    dummy_article.filter(articleData => articleData.userId == user.id),
   );
 
   const renderItem = (item, index) => {
-    let isSameDate = false;
+    let isPrevSameDate = false;
     if (!!articleData[index - 1]) {
-      isSameDate = formatDate(item.createdAt) === formatDate(articleData[index - 1]?.createdAt);
+      isPrevSameDate = formatDate(item.createdAt) === formatDate(articleData[index - 1]?.createdAt);
     }
+
     item.authorImage = user.profileImage;
     item.authorName = user.name;
 
     return (
       <View>
-        {!isSameDate && <Text style={styles.cardDate}>{formatDate(item.createdAt)}</Text>}
+        {!isPrevSameDate && <Text style={styles.cardDate}>{formatDate(item.createdAt)}</Text>}
         <ArticleCard item={item} />
       </View>
     );
