@@ -35,7 +35,6 @@ import Google from './icons/register/Google.svg';
 import EditIcon from './icons/myPage/editIcon.svg';
 import EditCheckIcon from './icons/myPage/editCheckIcon.svg';
 import MyBookmarkIcon from './icons/myPage/myBookmarkIcon.svg';
-import MyArticleIcon from './icons/myPage/myArticleIcon.svg';
 import MyCommentIcon from './icons/myPage/myCommentIcon.svg';
 import PositionIcon from './icons/myPage/positionIcon.svg';
 import NotiIcon from '../assets/icons/header/notification.svg';
@@ -70,7 +69,6 @@ export {
   EditIcon,
   EditCheckIcon,
   MyBookmarkIcon,
-  MyArticleIcon,
   MyCommentIcon,
   PositionIcon,
   NotiIcon,
