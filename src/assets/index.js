@@ -32,6 +32,10 @@ import LocationIcon from './icons/community/meeting/locationIcon.svg';
 import TimeIcon from './icons/community/meeting/timeIcon.svg';
 import DoneIcon from './icons/community/meeting/doneIcon.svg';
 
+// chat icon
+import WhiteLogoIcon from './icons/chat/whiteLogo.svg';
+import WhiteAlertIcon from './icons/chat/whiteAlertIcon.svg';
+
 // register
 import PersonIcon from './icons/register/person.svg';
 import FaceIcon from './icons/register/face.svg';
@@ -92,4 +96,6 @@ export {
   PositionIcon,
   NotiIcon,
   ThemeIcon,
+  WhiteLogoIcon,
+  WhiteAlertIcon,
 };
