@@ -35,21 +35,12 @@ const CommmunitySearchResultPage = () => {
   return (
     <SafeAreaView style={styles.wrapper}>
       <BasicHeader title="검색 결과" />
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.searchInput}
-          returnKeyType="search"
-          spellCheck={false}
-          autoCorrect={false}
-          autoCapitalize="none"
-          value={keyword}
-          editable={false}
-          selectTextOnFocus={false}
-        />
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <SearchIcon />
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity style={styles.inputContainer} onPress={() => navigation.goBack()}>
+        <View style={styles.searchKeyword}>
+          <Text style={fontStyles.grayFont02}>{keyword}</Text>
+        </View>
+        <SearchIcon />
+      </TouchableOpacity>
       {resultData.length ? (
         <FlatList
           style={styles.articleCardWrapper}
@@ -83,7 +74,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 6,
   },
-  searchInput: {
+  searchKeyword: {
     flex: 1,
     paddingVertical: 14,
     paddingHorizontal: 24,
