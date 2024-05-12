@@ -4,7 +4,6 @@ import { SafeAreaView, StyleSheet, FlatList } from 'react-native';
 import BasicHeader from '../../components/BasicHeader';
 import ArticleCard from '../../components/community/ArticleCard';
 import { getHotArticle } from '../../utils/sortArticle';
-import { setAgoDays } from '../../utils/date';
 import { dummy_article, dummy_user } from '../../dummyData';
 
 const CommunityHotBoard = () => {
@@ -35,6 +34,7 @@ const CommunityHotBoard = () => {
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => <ArticleCard item={item} />}
         scrollEventThrottle={20}
+        contentContainerStyle={styles.flatListBottomPadding}
       />
     </SafeAreaView>
   );
@@ -46,8 +46,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
   articleCardWrapper: {
-    marginHorizontal: 20,
     marginTop: 12,
+    paddingBottom: 120,
+    marginHorizontal: 20,
+  },
+  flatListBottomPadding: {
+    paddingBottom: 64,
   },
 });
 

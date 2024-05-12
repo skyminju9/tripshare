@@ -24,6 +24,8 @@ import MyPageArticle from './pages/myPage/MyPageArticle';
 import MyPageBookmark from './pages/myPage/MyPageBookmark';
 import MyPageComment from './pages/myPage/MyPageComment';
 import CommunityArticleDetail from './pages/community/CommunityArticleDetail';
+import CommmunitySearchResultPage from './pages/community/CommunitySearchResultPage';
+import CommunitySearchPage from './pages/community/CommunitySearchPage';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -74,6 +76,12 @@ export const MainStack = () => {
       <Stack.Screen name="CommunityMeetingMap" component={CommunityMeetingMap} />
       <Stack.Screen name="LocationSetting" component={LocationSetting} />
       <Stack.Screen name="CommunityArticleDetail" component={CommunityArticleDetail} />
+      <Stack.Screen name="CommunitySearchPage" component={CommunitySearchPage} />
+      <Stack.Screen
+        name="CommunitySearchResultPage"
+        component={CommmunitySearchResultPage}
+        options={{ animation: 'none' }}
+      />
       {/* CHATTING */}
       {/* MY PAGE */}
       <Stack.Screen name="MyPageArticle" component={MyPageArticle} />
