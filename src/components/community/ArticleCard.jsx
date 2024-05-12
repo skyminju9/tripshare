@@ -34,7 +34,9 @@ const ArticleCard = ({ item: article }) => {
           <View style={styles.articleIconContainer}>
             <View style={styles.articleIcon}>
               <CommentIcon />
-              <Text style={[fontStyles.basicFont02, styles.commentNum]}>3</Text>
+              <Text style={[fontStyles.basicFont02, styles.commentNum]}>
+                {article.comment.length}
+              </Text>
             </View>
             <View style={styles.articleIcon}>
               <HeartIcon />
@@ -46,7 +48,11 @@ const ArticleCard = ({ item: article }) => {
             </View>
           </View>
           <View>
-            <Text style={[styles.basicFont02, styles.tag]}>#{article.tag}</Text>
+            {article.tag ? (
+              <Text style={[styles.basicFont02, styles.tag]}>#{article.tag}</Text>
+            ) : (
+              <></>
+            )}
           </View>
         </View>
       </TouchableOpacity>

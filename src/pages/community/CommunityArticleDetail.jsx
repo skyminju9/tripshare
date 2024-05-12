@@ -9,21 +9,20 @@ import fontStyles from '../../styles/fontStyles';
 import shadowStyles from '../../styles/shadowStyles';
 import ArticleCardHeader from '../../components/community/ArticleCardHeader';
 
-import { dummy_comment, dummy_user } from '../../dummyData';
+import { dummy_user } from '../../dummyData';
 import FeedComment from '../../components/FeedComment';
 import CommentInput from '../../components/CommentInput';
 
 const CommunityArticleDetail = () => {
   const article = useRoute().params;
-  const comments = dummy_comment
-    .filter(comment => comment.articleId === article.id)
-    .map(comment => {
-      const user = dummy_user.find(du => du.id === comment.userId);
-      return {
-        ...comment,
-        user,
-      };
-    });
+
+  const comments = article.comment.map(comment => {
+    const user = dummy_user.find(du => du.id === comment.userId);
+    return {
+      ...comment,
+      user,
+    };
+  });
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -46,12 +45,18 @@ const CommunityArticleDetail = () => {
             {/* Icon & Tag */}
             <View style={styles.articleBottom}>
               <View>
-                <Text style={[styles.basicFont02, styles.tag]}>#{article.tag}</Text>
+                {article.tag ? (
+                  <Text style={[styles.basicFont02, styles.tag]}>#{article.tag}</Text>
+                ) : (
+                  <></>
+                )}
               </View>
               <View style={styles.articleIconContainer}>
                 <TouchableOpacity style={styles.articleIcon}>
                   <CommentIcon />
-                  <Text style={[fontStyles.basicFont02, styles.commentNum]}>3</Text>
+                  <Text style={[fontStyles.basicFont02, styles.commentNum]}>
+                    {comments.length || 0}
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.articleIcon}>
                   <HeartIcon />

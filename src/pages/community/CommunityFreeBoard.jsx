@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { act, useCallback, useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet, FlatList, TouchableOpacity, View } from 'react-native';
 
 import BasicHeader from '../../components/BasicHeader';
@@ -6,31 +6,58 @@ import ArticleCard from '../../components/community/ArticleCard';
 import ArticleTagList from './ArticleTagList';
 import { setAgoDays } from '../../utils/date';
 import { SearchIcon, PostIcon } from '../../assets/index';
-import { dummy_article, dummy_user } from '../../dummyData';
+import { dummy_user } from '../../dummyData';
 import color from '../../styles/colorPalette';
 import { Shadow } from 'react-native-shadow-2';
 import { APP_WIDTH } from '../../constants';
 
+import { useIsFocused } from '@react-navigation/native';
+import { getArticleList, getArticleTagList } from '../../firebase/store/CommunityDB';
+
 const tags = ['잡담', '질문', '정보'];
 
 const CommunityFreeBoard = ({ navigation }) => {
-  const [articles, setArticles] = useState(initialArticles);
-  const initialArticles = dummy_article.map(article => {
-    const articleUser = dummy_user.find(user => user.id === article.userId);
+  const [articles, setArticles] = useState([]);
+  const isFocused = useIsFocused();
 
-    return {
-      ...article,
-      authorName: articleUser.name,
-      authorImage: articleUser.profileImage,
-      createdAt: setAgoDays(article.createdAt),
-    };
-  });
+  const handleContent = data => {
+    const initialArticles = data.map(article => {
+      const content = article.data();
+      const articleUser = dummy_user.find(user => user.id === content.userId);
 
-  const onPressTag = useCallback(activeTag => {
-    if (activeTag) {
-      setArticles(initialArticles.filter(article => article.tag === activeTag));
-    } else setArticles(initialArticles);
-  }, []);
+      return {
+        id: article.id,
+        ...content,
+        authorName: articleUser.nickname,
+        authorImage: articleUser.profileImage,
+        createdAt: setAgoDays(content.createdAt),
+      };
+    });
+
+    return initialArticles;
+  };
+
+  const getFreeBoard = async () => {
+    const lists = await getArticleList();
+    setArticles(handleContent(lists));
+  };
+
+  const onPressTag = useCallback(
+    async activeTag => {
+      if (activeTag) {
+        const lists = await getArticleTagList(activeTag);
+        setArticles(handleContent(lists));
+      } else {
+        const lists = await getArticleList();
+        setArticles(handleContent(lists));
+      }
+    },
+    [isFocused],
+  );
+
+  useEffect(() => {
+    getFreeBoard();
+  }, [isFocused]);
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -62,7 +89,7 @@ const CommunityFreeBoard = ({ navigation }) => {
         data={articles}
         removeClippedSubviews
         showsVerticalScrollIndicator={false}
-        keyExtractor={item => item.id.toString()}
+        keyExtractor={item => item.id}
         renderItem={({ item }) => <ArticleCard item={item} />}
         scrollEventThrottle={20}
       />

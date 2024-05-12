@@ -15,8 +15,10 @@ import { UploadIcon, DeleteIcon } from '../../assets/index';
 import TripShareBtn from '../../components/TripShareBtn';
 import ArticleTagList from './ArticleTagList';
 import { APP_WIDTH } from '../../constants';
-
 import ImagePicker from 'react-native-image-crop-picker';
+
+import { useAuthUser } from '../../contexts/AuthUserContext';
+import { addArticle } from '../../firebase/store/CommunityDB';
 
 const tags = ['잡담', '질문', '정보'];
 
@@ -25,6 +27,8 @@ const CommunityPostPage = ({
   headerText = '게시글 등록하기',
   buttonText = '등록하기',
 }) => {
+  const user = useAuthUser();
+
   const [titleText, setTitleText] = useState('');
   const [contentText, setContentText] = useState('');
   const [tag, setTag] = useState('');
@@ -75,6 +79,26 @@ const CommunityPostPage = ({
     );
   };
 
+  const onPressBtn = () => {
+    const data = {
+      title: titleText,
+      content: contentText,
+      category: 'FreeBoard',
+      createdAt: new Date().getTime(),
+      like: 0,
+      bookmark: 0,
+      comment: [],
+      userId: user.id,
+      tag: tag,
+      image: imagePath,
+    };
+    const result = addArticle(data);
+    if (result) {
+      console.log('Article added!');
+      navigation.navigate('CommunityFreeBoard');
+    }
+  };
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <BasicHeader title={headerText} />
@@ -123,7 +147,9 @@ const CommunityPostPage = ({
           </View>
         </View>
         <View style={styles.btnWrapper}>
-          <TripShareBtn text={buttonText} address="CommunityFreeBoard" />
+          <TouchableOpacity style={styles.button} onPress={onPressBtn}>
+            <Text style={[fontStyles.title03, styles.btnText]}>등록하기</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
@@ -191,6 +217,15 @@ const styles = StyleSheet.create({
   btnWrapper: {
     paddingHorizontal: 24,
   },
+  button: {
+    backgroundColor: color.BLUE_500,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    paddingVertical: 24,
+  },
+  btnText: { color: color.WHITE },
 
   lengthFont: {
     color: color.GRAY_300,
