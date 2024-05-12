@@ -50,7 +50,7 @@ const CommunityFreeBoard = ({ navigation }) => {
           stretch>
           <TouchableOpacity
             style={styles.postIconBtn}
-            onPress={() => navigation.navigate('CommunityPostPage')}>
+            onPress={() => navigation.navigate('CommunityPostPage', { edit: false })}>
             <PostIcon />
           </TouchableOpacity>
         </Shadow>
