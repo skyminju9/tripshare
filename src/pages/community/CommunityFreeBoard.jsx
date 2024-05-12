@@ -4,7 +4,6 @@ import { SafeAreaView, StyleSheet, FlatList, TouchableOpacity, View } from 'reac
 import BasicHeader from '../../components/BasicHeader';
 import ArticleCard from '../../components/community/ArticleCard';
 import ArticleTagList from './ArticleTagList';
-import { setAgoDays } from '../../utils/date';
 import { SearchIcon, PostIcon } from '../../assets/index';
 import { dummy_article, dummy_user } from '../../dummyData';
 import color from '../../styles/colorPalette';
@@ -22,7 +21,6 @@ const CommunityFreeBoard = ({ navigation }) => {
       ...article,
       authorName: articleUser.name,
       authorImage: articleUser.profileImage,
-      createdAt: setAgoDays(article.createdAt),
     };
   });
 
@@ -37,7 +35,7 @@ const CommunityFreeBoard = ({ navigation }) => {
       <BasicHeader
         title="자유게시판"
         rightComponent={
-          <TouchableOpacity onPress={() => console.log('search icon')}>
+          <TouchableOpacity onPress={() => navigation.navigate('CommunitySearchPage')}>
             <SearchIcon />
           </TouchableOpacity>
         }
@@ -65,6 +63,7 @@ const CommunityFreeBoard = ({ navigation }) => {
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => <ArticleCard item={item} />}
         scrollEventThrottle={20}
+        contentContainerStyle={styles.flatListBottomPadding}
       />
     </SafeAreaView>
   );
@@ -84,6 +83,9 @@ const styles = StyleSheet.create({
   articleCardWrapper: {
     marginHorizontal: 20,
     marginTop: 12,
+  },
+  flatListBottomPadding: {
+    paddingBottom: 64,
   },
 });
 
