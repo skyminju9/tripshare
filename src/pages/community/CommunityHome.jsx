@@ -5,20 +5,39 @@ import fontStyles from '../../styles/fontStyles';
 import shadowStyles from '../../styles/shadowStyles.js';
 import color from '../../styles/colorPalette';
 import SeeMoreBtn from '../../components/SeeMoreBtn.jsx';
-import { getHotArticle } from '../../utils/sortArticle.js';
 import { Shadow } from 'react-native-shadow-2';
 import { APP_WIDTH } from '../../constants.js';
 
 import { FlashIcon, PlaceIcon, EventIcon, FreeTalkIcon } from '../../assets/index.js';
 
-import { dummy_article } from '../../dummyData';
+import { useIsFocused } from '@react-navigation/native';
+import { getHotArticleTitle } from '../../firebase/store/ArticleDB.js';
 
 const CommunityHome = ({ navigation }) => {
   const [hotTitle, setHotTitle] = useState([]);
+  const isFocused = useIsFocused();
+
+  const handleContent = data => {
+    const initialTitles = data.map(article => {
+      const content = article.data();
+
+      return {
+        id: article.id,
+        title: content.title,
+      };
+    });
+
+    return initialTitles;
+  };
+
+  const getHotTopList = async () => {
+    const lists = await getHotArticleTitle();
+    setHotTitle(handleContent(lists));
+  };
 
   useEffect(() => {
-    setHotTitle(getHotArticle(dummy_article, 3));
-  }, []);
+    getHotTopList();
+  }, [isFocused]);
 
   const renderHotPost = (item, index) => {
     return (
@@ -54,7 +73,7 @@ const CommunityHome = ({ navigation }) => {
                 <TouchableOpacity
                   style={styles.communityListItem}
                   onPress={() => navigation.navigate('CommunityMeetingMap')}>
-                  <Text style={fontStyles.basicFont}>번개/동행</Text>
+                  <Text style={fontStyles.basicFont01}>번개/동행</Text>
                   <FlashIcon />
                 </TouchableOpacity>
               </Shadow>

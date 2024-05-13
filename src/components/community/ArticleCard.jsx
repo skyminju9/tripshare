@@ -26,7 +26,7 @@ const ArticleCard = ({ item: article }) => {
         <View style={styles.articleMain}>
           <Text style={fontStyles.basicFont01}>{article.title}</Text>
           <Text numberOfLines={1} style={[fontStyles.basicFont02, styles.articleContents]}>
-            {article.content}
+            {article.contents}
           </Text>
         </View>
         {/* Icon & Tag */}
@@ -35,16 +35,16 @@ const ArticleCard = ({ item: article }) => {
             <View style={styles.articleIcon}>
               <CommentIcon />
               <Text style={[fontStyles.basicFont02, styles.commentNum]}>
-                {article.comment.length}
+                {article.comments.length}
               </Text>
             </View>
             <View style={styles.articleIcon}>
               <HeartIcon />
-              <Text style={[fontStyles.basicFont02, styles.heartNum]}>{article.like}</Text>
+              <Text style={[fontStyles.basicFont02, styles.heartNum]}>{article.liked}</Text>
             </View>
             <View style={styles.articleIcon}>
               <BookmarkIcon />
-              <Text style={[fontStyles.basicFont02, styles.bookmarkNum]}>{article.bookmark}</Text>
+              <Text style={[fontStyles.basicFont02, styles.bookmarkNum]}>{article.bookmarked}</Text>
             </View>
           </View>
           <View>

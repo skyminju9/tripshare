@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   commentInputArea: {
     flexDirection: 'row',
     width: '100%',
-    height: 62,
+    height: 80,
     alignItems: 'center',
     paddingHorizontal: 20,
     borderTopWidth: 1,
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   },
   commentBox: {
     flex: 1,
-    height: 30,
+    height: 40,
     backgroundColor: '#ECF2FF',
     borderRadius: 12,
     paddingHorizontal: 12,

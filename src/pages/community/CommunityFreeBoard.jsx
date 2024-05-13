@@ -1,4 +1,4 @@
-import React, { act, useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet, FlatList, TouchableOpacity, View } from 'react-native';
 
 import BasicHeader from '../../components/BasicHeader';
@@ -11,7 +11,7 @@ import { Shadow } from 'react-native-shadow-2';
 import { APP_WIDTH } from '../../constants';
 
 import { useIsFocused } from '@react-navigation/native';
-import { getArticleList, getArticleTagList } from '../../firebase/store/CommunityDB';
+import { getArticleList, getArticleTagList } from '../../firebase/store/ArticleDB';
 
 const tags = ['잡담', '질문', '정보'];
 
@@ -22,10 +22,11 @@ const CommunityFreeBoard = ({ navigation }) => {
   const handleContent = data => {
     const initialArticles = data.map(article => {
       const content = article.data();
-      const articleUser = dummy_user.find(user => user.id === content.userId);
+      const articleUser = dummy_user.find(user => user.id === content.creator);
 
       return {
-        ...article,
+        id: article.id,
+        ...content,
         authorName: articleUser.name,
         authorImage: articleUser.profileImage,
       };
@@ -76,7 +77,7 @@ const CommunityFreeBoard = ({ navigation }) => {
           stretch>
           <TouchableOpacity
             style={styles.postIconBtn}
-            onPress={() => navigation.navigate('CommunityPostPage')}>
+            onPress={() => navigation.navigate('CommunityPostPage', { edit: false })}>
             <PostIcon />
           </TouchableOpacity>
         </Shadow>

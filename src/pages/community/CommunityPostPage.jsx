@@ -12,22 +12,18 @@ import BasicHeader from '../../components/BasicHeader';
 import fontStyles from '../../styles/fontStyles';
 import color from '../../styles/colorPalette';
 import { UploadIcon, DeleteIcon } from '../../assets/index';
-import TripShareBtn from '../../components/TripShareBtn';
 import ArticleTagList from './ArticleTagList';
 import { APP_WIDTH } from '../../constants';
 import ImagePicker from 'react-native-image-crop-picker';
 
 import { useAuthUser } from '../../contexts/AuthUserContext';
-import { addArticle } from '../../firebase/store/CommunityDB';
+import { addArticle } from '../../firebase/store/ArticleDB';
 
 const tags = ['잡담', '질문', '정보'];
 
-const CommunityPostPage = ({
-  navigation,
-  headerText = '게시글 등록하기',
-  buttonText = '등록하기',
-}) => {
+const CommunityPostPage = ({ navigation, route }) => {
   const user = useAuthUser();
+  const isEdit = route.params.edit;
 
   const [titleText, setTitleText] = useState('');
   const [contentText, setContentText] = useState('');
@@ -82,15 +78,14 @@ const CommunityPostPage = ({
   const onPressBtn = () => {
     const data = {
       title: titleText,
-      content: contentText,
-      category: 'FreeBoard',
+      contents: contentText,
       createdAt: new Date().getTime(),
-      like: 0,
-      bookmark: 0,
-      comment: [],
-      userId: user.id,
+      creator: user.id,
+      bookmarked: 0,
+      liked: 0,
       tag: tag,
-      image: imagePath,
+      images: imagePath,
+      comments: [],
     };
     const result = addArticle(data);
     if (result) {
@@ -101,7 +96,7 @@ const CommunityPostPage = ({
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <BasicHeader title={headerText} />
+      <BasicHeader title={isEdit ? '게시글 수정하기' : '게시글 등록하기'} />
       <View style={styles.mainWrapper}>
         <View style={styles.titleWrapper}>
           <Text style={fontStyles.title03}>제목</Text>
@@ -148,7 +143,9 @@ const CommunityPostPage = ({
         </View>
         <View style={styles.btnWrapper}>
           <TouchableOpacity style={styles.button} onPress={onPressBtn}>
-            <Text style={[fontStyles.title03, styles.btnText]}>등록하기</Text>
+            <Text style={[fontStyles.title03, styles.btnText]}>
+              {isEdit ? '수정하기' : '등록하기'}
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

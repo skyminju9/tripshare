@@ -12,7 +12,7 @@ const FeedComment = ({ comment }) => {
         <Text style={fontStyles.boldFont01}>{comment.user.name}</Text>
       </View>
       <View style={styles.commentContents}>
-        <Text style={fontStyles.basicFont}>{comment.content}</Text>
+        <Text style={fontStyles.basicFont01}>{comment.contents}</Text>
         <Text style={styles.createdAtText}>{setAgoDays(comment.createdAt)}</Text>
       </View>
     </View>

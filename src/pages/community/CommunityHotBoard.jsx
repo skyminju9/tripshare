@@ -6,29 +6,44 @@ import ArticleCard from '../../components/community/ArticleCard';
 import { getHotArticle } from '../../utils/sortArticle';
 import { dummy_article, dummy_user } from '../../dummyData';
 
+import { useIsFocused } from '@react-navigation/native';
+import { getHotArticleList } from '../../firebase/store/ArticleDB';
+
 const CommunityHotBoard = () => {
   const [hotArticle, setHotArticle] = useState([]);
+  const isFocused = useIsFocused();
+
+  const handleContent = data => {
+    const initialArticles = data.map(article => {
+      const content = article.data();
+      const articleUser = dummy_user.find(user => user.id === content.creator);
+
+      return {
+        id: article.id,
+        ...content,
+        authorName: articleUser.name,
+        authorImage: articleUser.profileImage,
+      };
+    });
+
+    return initialArticles;
+  };
+
+  const getHotList = async () => {
+    const lists = await getHotArticleList();
+    setHotArticle(handleContent(lists));
+  };
 
   useEffect(() => {
-    setHotArticle(getHotArticle(dummy_article, 10));
-  }, []);
-
-  const initialArticles = hotArticle.map(article => {
-    const articleUser = dummy_user.find(user => user.id === article.userId);
-
-    return {
-      ...article,
-      authorName: articleUser.name,
-      authorImage: articleUser.profileImage,
-    };
-  });
+    getHotList();
+  }, [isFocused]);
 
   return (
     <SafeAreaView style={styles.wrapper}>
       <BasicHeader title="HOT 게시글" />
       <FlatList
         style={styles.articleCardWrapper}
-        data={initialArticles}
+        data={hotArticle}
         removeClippedSubviews
         showsVerticalScrollIndicator={false}
         keyExtractor={item => item.id.toString()}
