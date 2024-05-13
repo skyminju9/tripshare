@@ -10,18 +10,18 @@ export function setAgoDays(createdAt) {
   if (hours < 24) return `${Math.floor(hours)}시간 전`;
   if (days < 4) return `${Math.floor(days)}일 전`;
 
-  return formatDate(new Date(createdAt));
+  return formatDate(createdAt);
 }
 
 export function toISODate(date) {
   return date.toISOString().split('T')[0];
 }
 
-export function formatDate(date) {
+export function formatDate(timestamp) {
   const thisYear = new Date().getFullYear();
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
+  const year = new Date(timestamp).getFullYear();
+  const month = new Date(timestamp).getMonth() + 1;
+  const day = new Date(timestamp).getDate();
 
   const formattedMonth = month < 10 ? `0${month}` : month;
   const formattedDay = day < 10 ? `0${day}` : day;

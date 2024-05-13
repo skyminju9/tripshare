@@ -4,12 +4,24 @@ import { APP_WIDTH } from '../../constants';
 import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 import shadowStyles from '../../styles/shadowStyles';
+import {
+  CommentIcon,
+  BookmarkOnIcon,
+  BookmarkOffIcon,
+  HeartOnIcon,
+  HeartOffIcon,
+} from '../../assets/index';
+import { useAuthUser } from '../../contexts/AuthUserContext';
+import { dummy_user } from '../../dummyData';
 import { Shadow } from 'react-native-shadow-2';
-import { BookmarkIcon, HeartIcon, CommentIcon } from '../../assets/index';
 import { useNavigation } from '@react-navigation/native';
 import ArticleCardHeader from './ArticleCardHeader';
 
 const ArticleCard = ({ item: article }) => {
+  const user = useAuthUser();
+  const userData = dummy_user.filter(data => data.id === user.id).pop();
+  const bookmarkList = userData.bookmarkList;
+  const isBookmarked = bookmarkList.includes(article.id);
   const navigation = useNavigation();
 
   return (
@@ -37,11 +49,11 @@ const ArticleCard = ({ item: article }) => {
               <Text style={[fontStyles.basicFont02, styles.commentNum]}>3</Text>
             </View>
             <View style={styles.articleIcon}>
-              <HeartIcon />
+              <HeartOffIcon />
               <Text style={[fontStyles.basicFont02, styles.heartNum]}>{article.like}</Text>
             </View>
             <View style={styles.articleIcon}>
-              <BookmarkIcon />
+              {isBookmarked ? <BookmarkOnIcon /> : <BookmarkOffIcon />}
               <Text style={[fontStyles.basicFont02, styles.bookmarkNum]}>{article.bookmark}</Text>
             </View>
           </View>

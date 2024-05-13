@@ -20,6 +20,9 @@ import CommunityFreeBoard from './pages/community/CommunityFreeBoard';
 import CommunityHotBoard from './pages/community/CommunityHotBoard';
 import CommunityPostPage from './pages/community/CommunityPostPage';
 import AddScheduleMain from './pages/tripPlan/MyTripTab/AddScheduleMain';
+import MyPageArticle from './pages/myPage/MyPageArticle';
+import MyPageBookmark from './pages/myPage/MyPageBookmark';
+import MyPageComment from './pages/myPage/MyPageComment';
 import CommunityArticleDetail from './pages/community/CommunityArticleDetail';
 import MyTrip from './pages/tripPlan/MyTripTab/MyTrip';
 import MyTripDetail from './pages/tripPlan/MyTripTab/MyTripDetail';
@@ -30,6 +33,8 @@ import AddMyRecord from './pages/tripPlan/MyTripTab/AddMyRecord';
 import MyTripMore from './pages/tripPlan/MyTripTab/MyTripMore';
 import FavoriteLocationList from './pages/tripPlan/MyTripTab/FavoriteLocationList';
 import SearchLocationList from './pages/tripPlan/MyTripTab/SearchLocationList';
+import CommmunitySearchResultPage from './pages/community/CommunitySearchResultPage';
+import CommunitySearchPage from './pages/community/CommunitySearchPage';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -80,8 +85,13 @@ export const MainStack = () => {
       <Stack.Screen name="CommunityMeetingMap" component={CommunityMeetingMap} />
       <Stack.Screen name="LocationSetting" component={LocationSetting} />
       <Stack.Screen name="CommunityArticleDetail" component={CommunityArticleDetail} />
+      <Stack.Screen name="CommunitySearchPage" component={CommunitySearchPage} />
+      <Stack.Screen
+        name="CommunitySearchResultPage"
+        component={CommmunitySearchResultPage}
+        options={{ animation: 'none' }}
+      />
       {/* CHATTING */}
-      {/* MY PAGE */}
       {/* MY TRIP */}
       <Stack.Screen name="MyTrip" component={MyTrip} />
       <Stack.Screen name="MyTripDetail" component={MyTripDetail} />
@@ -92,6 +102,10 @@ export const MainStack = () => {
       <Stack.Screen name="MyTripMore" component={MyTripMore} />
       <Stack.Screen name="FavoriteLocationList" component={FavoriteLocationList} />
       <Stack.Screen name="SearchLocationList" component={SearchLocationList} />
+      {/* MY PAGE */}
+      <Stack.Screen name="MyPageArticle" component={MyPageArticle} />
+      <Stack.Screen name="MyPageBookmark" component={MyPageBookmark} />
+      <Stack.Screen name="MyPageComment" component={MyPageComment} />
     </Stack.Navigator>
   );
 };
