@@ -17,7 +17,6 @@ import { APP_WIDTH } from '../../constants';
 import ImagePicker from 'react-native-image-crop-picker';
 import { useAuthUser } from '../../contexts/AuthUserContext';
 
-import { useAuthUser } from '../../contexts/AuthUserContext';
 import { addArticle } from '../../firebase/store/ArticleDB';
 
 const tags = ['잡담', '질문', '정보'];
