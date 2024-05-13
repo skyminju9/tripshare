@@ -1,5 +1,13 @@
 import React from 'react';
-import { Text, SafeAreaView, StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
+import {
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  KeyboardAvoidingView,
+} from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { Shadow } from 'react-native-shadow-2';
 import BasicHeader from '../../components/BasicHeader';
@@ -77,9 +85,9 @@ const CommunityArticleDetail = () => {
           ))}
         </View>
       </ScrollView>
-      <View>
-        <CommentInput />
-      </View>
+      <KeyboardAvoidingView behavior="padding">
+        <CommentInput chatPlaceHolder="댓글을 입력해주세요" />
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
