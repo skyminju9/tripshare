@@ -342,6 +342,48 @@ export const dummy_plans = [
     coverImage: require('./assets/images/myTrip/basicimage3.jpeg'),
     dDay: -1,
   },
+  {
+    id: 4,
+    title: '홍콩 여행',
+    dates: ['24.05.10', '24.05.16'],
+    friendList: [
+      {
+        friendId: 1,
+        name: '오정혁',
+      },
+      {
+        friendId: 2,
+        name: '우예인',
+      },
+      {
+        friendId: 3,
+        name: '한서흔',
+      },
+    ],
+    coverImage: require('./assets/images/myTrip/basicimage3.jpeg'),
+    dDay: -3,
+  },
+  {
+    id: 5,
+    title: '홍콩 여행',
+    dates: ['24.05.10', '24.05.16'],
+    friendList: [
+      {
+        friendId: 1,
+        name: '오정혁',
+      },
+      {
+        friendId: 2,
+        name: '우예인',
+      },
+      {
+        friendId: 3,
+        name: '한서흔',
+      },
+    ],
+    coverImage: require('./assets/images/myTrip/basicimage3.jpeg'),
+    dDay: -10,
+  },
 ];
 
 export const dummy_locations = [
