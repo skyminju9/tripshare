@@ -88,7 +88,7 @@ const MyTrip = () => {
               </TouchableOpacity>
             </View>
             <View>
-              <SeeMoreBtn />
+              <SeeMoreBtn address={'MyRecordMore'} />
             </View>
           </View>
           <View style={styles.cardsContainer}>

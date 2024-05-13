@@ -35,6 +35,7 @@ import FavoriteLocationList from './pages/tripPlan/MyTripTab/FavoriteLocationLis
 import SearchLocationList from './pages/tripPlan/MyTripTab/SearchLocationList';
 import CommmunitySearchResultPage from './pages/community/CommunitySearchResultPage';
 import CommunitySearchPage from './pages/community/CommunitySearchPage';
+import MyRecordMore from './pages/tripPlan/MyTripTab/MyRecordMore';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -102,6 +103,8 @@ export const MainStack = () => {
       <Stack.Screen name="MyTripMore" component={MyTripMore} />
       <Stack.Screen name="FavoriteLocationList" component={FavoriteLocationList} />
       <Stack.Screen name="SearchLocationList" component={SearchLocationList} />
+      <Stack.Screen name="MyRecordMore" component={MyRecordMore} />
+
       {/* MY PAGE */}
       <Stack.Screen name="MyPageArticle" component={MyPageArticle} />
       <Stack.Screen name="MyPageBookmark" component={MyPageBookmark} />
