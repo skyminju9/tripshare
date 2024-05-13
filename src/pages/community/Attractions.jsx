@@ -13,14 +13,14 @@ import fontStyles from '../../styles/fontStyles';
 import BasicHeader from '../../components/BasicHeader';
 import { AttractionMapIcon, RightArrowIcon } from '../../assets';
 import ArticleTagList from './ArticleTagList';
-import { dummyAttractions } from '../../dummyData';
+import { dummy_attractions } from '../../dummyData';
 
 const tags = ['맛집', '명소'];
 
 const Attractions = () => {
   const [attractionList, setAttractionList] = useState();
 
-  const initialAttraction = dummyAttractions;
+  const initialAttraction = dummy_attractions;
 
   useEffect(() => {
     setAttractionList(initialAttraction);

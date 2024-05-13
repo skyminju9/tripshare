@@ -282,7 +282,7 @@ export const dummy_meet = [
   },
 ];
 
-export const dummyAttractions = [
+export const dummy_attractions = [
   {
     id: 1,
     placeName: '메이지신궁',
@@ -290,6 +290,36 @@ export const dummyAttractions = [
     detail: '도쿄에 위치한 문화 유산으로, 일본의 역사와 전통을 경험할 수 있는 아름다운 장소입니다.',
     coverImage: require('./assets/images/attraction/palace.png'),
     star: 3,
+    reviews: [
+      {
+        id: 1,
+        placeId: 1,
+        comment: '좋았습니다.',
+        createdAt: new Date(),
+        star: 4,
+      },
+      {
+        id: 2,
+        placeId: 1,
+        comment: '좋았습니다.',
+        createdAt: new Date(),
+        star: 4,
+      },
+      {
+        id: 3,
+        placeId: 1,
+        comment: '좋았습니다.',
+        createdAt: new Date(),
+        star: 4,
+      },
+      {
+        id: 4,
+        placeId: 1,
+        comment: '좋았습니다.',
+        createdAt: new Date(),
+        star: 4,
+      },
+    ],
     tel: '00-000-000',
     createAt: new Date(),
   },
@@ -300,6 +330,22 @@ export const dummyAttractions = [
     tag: '맛집',
     coverImage: require('./assets/images/attraction/food.jpeg'),
     star: 3,
+    reviews: [
+      {
+        id: 1,
+        placeId: 2,
+        comment: '맛있었어요. 주인분도 친절해요.',
+        createdAt: new Date(),
+        star: 4,
+      },
+      {
+        id: 2,
+        placeId: 2,
+        comment: '맛있었어요. 주인분도 친절해요.',
+        createdAt: new Date(),
+        star: 4,
+      },
+    ],
     tel: '00-000-000',
     createAt: new Date(),
   },
@@ -310,6 +356,29 @@ export const dummyAttractions = [
     tag: '명소',
     coverImage: require('./assets/images/attraction/scrumble.jpeg'),
     star: 3,
+    reviews: [
+      {
+        id: 1,
+        placeId: 3,
+        comment: '사람이 많고 혼잡함.',
+        createdAt: new Date(),
+        star: 4,
+      },
+      {
+        id: 2,
+        placeId: 3,
+        comment: '사람이 많고 혼잡함.',
+        createdAt: new Date(),
+        star: 4,
+      },
+      {
+        id: 3,
+        placeId: 3,
+        comment: '사람이 많고 혼잡함.',
+        createdAt: new Date(),
+        star: 4,
+      },
+    ],
     tel: '00-000-000',
     createAt: new Date(),
   },
@@ -320,6 +389,29 @@ export const dummyAttractions = [
     tag: '맛집',
     coverImage: require('./assets/images/attraction/food2.jpeg'),
     star: 3,
+    reviews: [
+      {
+        id: 1,
+        placeId: 4,
+        comment: '웨이팅은 20분정도 해야 합니다.',
+        createdAt: new Date(),
+        star: 4,
+      },
+      {
+        id: 2,
+        placeId: 4,
+        comment: '웨이팅은 20분정도 해야 합니다.',
+        createdAt: new Date(),
+        star: 4,
+      },
+      {
+        id: 3,
+        placeId: 4,
+        comment: '웨이팅은 20분정도 해야 합니다.',
+        createdAt: new Date(),
+        star: 4,
+      },
+    ],
     tel: '00-000-000',
     createAt: new Date(),
   },
@@ -330,6 +422,15 @@ export const dummyAttractions = [
     tag: '명소',
     coverImage: require('./assets/images/attraction/park.jpeg'),
     star: 3,
+    reviews: [
+      {
+        id: 1,
+        placeId: 5,
+        comment: '좋았습니다.',
+        createdAt: new Date(),
+        star: 4,
+      },
+    ],
     tel: '00-000-000',
     createAt: new Date(),
   },
