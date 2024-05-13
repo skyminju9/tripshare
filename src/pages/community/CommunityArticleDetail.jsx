@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 import { Shadow } from 'react-native-shadow-2';
 import BasicHeader from '../../components/BasicHeader';
-import { BookmarkOffIcon, HeartOffIcon, CommentIcon } from '../../assets/index';
+import { BookmarkOffIcon, HeartOffIcon, CommentIcon, MenuIcon } from '../../assets/index';
 import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 import shadowStyles from '../../styles/shadowStyles';
@@ -11,6 +11,9 @@ import ArticleCardHeader from '../../components/community/ArticleCardHeader';
 import FeedComment from '../../components/FeedComment';
 import CommentInput from '../../components/CommentInput';
 import { dummy_comment, dummy_user } from '../../dummyData';
+import { useAuthUser } from '../../contexts/AuthUserContext';
+import Modal from 'react-native-modal';
+import { APP_WIDTH } from '../../constants';
 
 const CommunityArticleDetail = () => {
   const article = useRoute().params;
@@ -24,9 +27,22 @@ const CommunityArticleDetail = () => {
       };
     });
 
+  const loginUser = useAuthUser();
+  const isPostOwner = article.authorName === loginUser.name;
+  const navigation = useNavigation();
+  const [isMenuVisible, setMenuVisible] = useState(false);
+  const [isNotiVisible, setNotiVisible] = useState(false);
+
   return (
     <SafeAreaView style={styles.wrapper}>
-      <BasicHeader title="게시글 상세" />
+      <BasicHeader
+        title="게시글 상세"
+        rightComponent={
+          <TouchableOpacity style={styles.menuIcon} onPress={() => setMenuVisible(true)}>
+            <MenuIcon />
+          </TouchableOpacity>
+        }
+      />
       <ScrollView style={styles.articleDetailWrapper} showsVerticalScrollIndicator={false}>
         <Shadow {...shadowStyles.smallShadow} stretch>
           <View style={styles.articleContainer}>
@@ -79,6 +95,60 @@ const CommunityArticleDetail = () => {
       <View>
         <CommentInput />
       </View>
+
+      {/* 게시글 메뉴 모달 */}
+      <Modal
+        isVisible={isMenuVisible}
+        backdropOpacity={0}
+        onBackdropPress={() => setMenuVisible(false)}
+        animationIn="fadeInDown"
+        animationOut="fadeOut"
+        animationOutTiming={200}>
+        <View style={styles.modalContainer}>
+          {isPostOwner ? (
+            <>
+              <TouchableOpacity
+                style={styles.modalBtnWrapper}
+                onPress={() => navigation.navigate('CommunityPostPage', { edit: true })}>
+                <Text style={fontStyles.boldFont01}>수정하기</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.modalBtnWrapper}
+                onPress={() => {
+                  setMenuVisible(false);
+                  setNotiVisible(true);
+                }}>
+                <Text style={fontStyles.boldFont01}>삭제하기</Text>
+              </TouchableOpacity>
+            </>
+          ) : (
+            <TouchableOpacity style={styles.modalBtnWrapper}>
+              <Text style={fontStyles.boldFont01}>신고하기</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      </Modal>
+      {/* 삭제 확인 모달 */}
+      <Modal
+        isVisible={isNotiVisible}
+        backdropOpacity={0.3}
+        onBackdropPress={() => setNotiVisible(false)}
+        animationIn="fadeIn"
+        animationOut="fadeOut"
+        style={styles.notiModalStyle}>
+        <View style={styles.notiContainer}>
+          <Text style={fontStyles.boldFont01}>정말 삭제하시겠습니까?</Text>
+          <View style={styles.notiBtnWrapper}>
+            <TouchableOpacity style={styles.notiBtn}>
+              <Text style={fontStyles.boldFont01}>예</Text>
+            </TouchableOpacity>
+            <View style={styles.notiBtnLine} />
+            <TouchableOpacity style={styles.notiBtn} onPress={() => setNotiVisible(false)}>
+              <Text style={fontStyles.boldFont01}>아니오</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
@@ -180,6 +250,50 @@ const styles = StyleSheet.create({
   commentContents: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+
+  modalContainer: {
+    position: 'absolute',
+    top: 32,
+    right: -12,
+    backgroundColor: color.WHITE,
+    width: APP_WIDTH / 4,
+  },
+  modalBtnWrapper: {
+    borderWidth: 1,
+    borderColor: color.GRAY_50,
+    paddingLeft: 20,
+    paddingVertical: 10,
+  },
+  notiModalStyle: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  notiContainer: {
+    width: APP_WIDTH / 2,
+    backgroundColor: color.WHITE,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 16,
+    paddingTop: 16,
+    gap: 16,
+  },
+  notiBtnWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  notiBtn: {
+    flex: 1,
+    paddingVertical: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderTopWidth: 1,
+    borderColor: color.GRAY_50,
+  },
+  notiBtnLine: {
+    height: '100%',
+    borderWidth: 0.5,
+    borderColor: color.GRAY_50,
+  },
+  menuIcon: {
+    paddingRight: 8,
   },
 });
 
