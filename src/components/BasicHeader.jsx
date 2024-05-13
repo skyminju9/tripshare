@@ -16,9 +16,9 @@ const BasicHeader = ({ title, leftComponent, rightComponent, headerColor }) => {
           : styles.headerWrapper
       }>
       {leftComponent ? (
-        <View style={styles.leftArea}>{leftComponent}</View>
+        <View>{leftComponent}</View>
       ) : (
-        <TouchableOpacity style={styles.leftArea} onPress={() => navigation.goBack()}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <BackIcon width={36} height={36} />
         </TouchableOpacity>
       )}
@@ -47,13 +47,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     backgroundColor: color.WHITE,
   },
-  titleArea: { alignItems: 'center' },
+  titleArea: { flex: 1, alignItems: 'center' },
   blankArea: {
     width: 36,
     height: 36,
   },
-  leftArea: { flex: 1 },
-  rightArea: { flex: 1, alignItems: 'flex-end' },
+  rightArea: { alignItems: 'flex-end' },
 });
 
 export default BasicHeader;
