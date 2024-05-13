@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   Text,
   SafeAreaView,
@@ -15,6 +15,7 @@ import { UploadIcon, DeleteIcon } from '../../assets/index';
 import ArticleTagList from './ArticleTagList';
 import { APP_WIDTH } from '../../constants';
 import ImagePicker from 'react-native-image-crop-picker';
+import { useAuthUser } from '../../contexts/AuthUserContext';
 
 import { useAuthUser } from '../../contexts/AuthUserContext';
 import { addArticle } from '../../firebase/store/ArticleDB';

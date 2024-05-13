@@ -12,10 +12,10 @@ import ArticleCardHeader from '../../components/community/ArticleCardHeader';
 import { dummy_user } from '../../dummyData';
 import FeedComment from '../../components/FeedComment';
 import CommentInput from '../../components/CommentInput';
-import { useAuthUser } from '../../contexts/AuthUserContext';
-
 import Modal from 'react-native-modal';
 import { APP_WIDTH } from '../../constants';
+
+import { useAuthUser } from '../../contexts/AuthUserContext';
 
 const CommunityArticleDetail = () => {
   const article = useRoute().params;
@@ -34,12 +34,18 @@ const CommunityArticleDetail = () => {
     };
   });
 
+  const loginUser = useAuthUser();
+  const isPostOwner = article.authorName === loginUser.name;
+  const navigation = useNavigation();
+  const [isMenuVisible, setMenuVisible] = useState(false);
+  const [isNotiVisible, setNotiVisible] = useState(false);
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <BasicHeader
         title="게시글 상세"
         rightComponent={
-          <TouchableOpacity onPress={() => setMenuVisible(true)}>
+          <TouchableOpacity style={styles.menuIcon} onPress={() => setMenuVisible(true)}>
             <MenuIcon />
           </TouchableOpacity>
         }
@@ -103,6 +109,7 @@ const CommunityArticleDetail = () => {
         <CommentInput />
       </View>
 
+      {/* 게시글 메뉴 모달 */}
       <Modal
         isVisible={isMenuVisible}
         backdropOpacity={0}
@@ -134,6 +141,8 @@ const CommunityArticleDetail = () => {
           )}
         </View>
       </Modal>
+
+      {/* 삭제 확인 모달 */}
       <Modal
         isVisible={isNotiVisible}
         backdropOpacity={0.3}
@@ -256,6 +265,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+
   modalContainer: {
     position: 'absolute',
     top: 32,
@@ -295,6 +305,9 @@ const styles = StyleSheet.create({
     height: '100%',
     borderWidth: 0.5,
     borderColor: color.GRAY_50,
+  },
+  menuIcon: {
+    paddingRight: 8,
   },
 });
 
