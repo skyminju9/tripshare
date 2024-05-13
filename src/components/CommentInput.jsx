@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   },
   commentBox: {
     flex: 1,
-    height: 30,
+    height: 40,
     backgroundColor: '#ECF2FF',
     borderRadius: 12,
     paddingHorizontal: 12,
