@@ -3,15 +3,14 @@ import { Text, SafeAreaView, StyleSheet, View, TouchableOpacity, ScrollView } fr
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { Shadow } from 'react-native-shadow-2';
 import BasicHeader from '../../components/BasicHeader';
-import { BookmarkIcon, HeartIcon, CommentIcon, MenuIcon } from '../../assets/index';
+import { BookmarkOffIcon, HeartOffIcon, CommentIcon, MenuIcon } from '../../assets/index';
 import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 import shadowStyles from '../../styles/shadowStyles';
 import ArticleCardHeader from '../../components/community/ArticleCardHeader';
-
-import { dummy_comment, dummy_user } from '../../dummyData';
 import FeedComment from '../../components/FeedComment';
 import CommentInput from '../../components/CommentInput';
+import { dummy_comment, dummy_user } from '../../dummyData';
 import { useAuthUser } from '../../contexts/AuthUserContext';
 import Modal from 'react-native-modal';
 import { APP_WIDTH } from '../../constants';
@@ -67,14 +66,14 @@ const CommunityArticleDetail = () => {
               <View style={styles.articleIconContainer}>
                 <TouchableOpacity style={styles.articleIcon}>
                   <CommentIcon />
-                  <Text style={[fontStyles.basicFont02, styles.commentNum]}>3</Text>
+                  <Text style={[fontStyles.basicFont02, styles.commentNum]}>{comments.length}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.articleIcon}>
-                  <HeartIcon />
+                  <HeartOffIcon />
                   <Text style={[fontStyles.basicFont02, styles.heartNum]}>{article.like}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.articleIcon}>
-                  <BookmarkIcon />
+                  <BookmarkOffIcon />
                   <Text style={[fontStyles.basicFont02, styles.bookmarkNum]}>
                     {article.bookmark}
                   </Text>

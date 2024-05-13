@@ -26,7 +26,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import { getLongText } from '../../utils/getLongText';
 import { useAuthUser } from '../../contexts/AuthUserContext';
 
-const MyPageHome = () => {
+const MyPageHome = ({ navigation }) => {
   const user = useAuthUser();
 
   const [username, setUsername] = useState(user.nickname);
@@ -88,7 +88,10 @@ const MyPageHome = () => {
 
   const renderMenu = (item, index) => {
     return (
-      <TouchableOpacity key={index} style={styles.menuWrapper}>
+      <TouchableOpacity
+        key={index}
+        style={styles.menuWrapper}
+        onPress={() => navigation.navigate(item.navigateTo, { user: user })}>
         <View style={styles.menuBtnWrapper}>{item.icon}</View>
         <Text style={fontStyles.basicFont01}>{item.title}</Text>
       </TouchableOpacity>
@@ -128,14 +131,17 @@ const menuList = [
     {
       icon: <MyBookmarkIcon />,
       title: '북마크한 게시글 보기',
+      navigateTo: 'MyPageBookmark',
     },
     {
       icon: <PostIcon width={19} />,
       title: '내가 작성한 게시글 보기',
+      navigateTo: 'MyPageArticle',
     },
     {
       icon: <MyCommentIcon />,
       title: '내가 작성한 댓글 보기',
+      navigateTo: 'MyPageComment',
     },
   ],
   [
