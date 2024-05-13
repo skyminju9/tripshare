@@ -21,6 +21,15 @@ import CommunityHotBoard from './pages/community/CommunityHotBoard';
 import CommunityPostPage from './pages/community/CommunityPostPage';
 import AddScheduleMain from './pages/tripPlan/MyTripTab/AddScheduleMain';
 import CommunityArticleDetail from './pages/community/CommunityArticleDetail';
+import MyTrip from './pages/tripPlan/MyTripTab/MyTrip';
+import MyTripDetail from './pages/tripPlan/MyTripTab/MyTripDetail';
+import AddSchedule from './pages/tripPlan/MyTripTab/AddSchedule';
+import FavoriteLocation from './pages/tripPlan/MyTripTab/FavoriteLocation';
+import SearchLocations from './pages/tripPlan/MyTripTab/SearchLocations';
+import AddMyRecord from './pages/tripPlan/MyTripTab/AddMyRecord';
+import MyTripMore from './pages/tripPlan/MyTripTab/MyTripMore';
+import FavoriteLocationList from './pages/tripPlan/MyTripTab/FavoriteLocationList';
+import SearchLocationList from './pages/tripPlan/MyTripTab/SearchLocationList';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -73,6 +82,16 @@ export const MainStack = () => {
       <Stack.Screen name="CommunityArticleDetail" component={CommunityArticleDetail} />
       {/* CHATTING */}
       {/* MY PAGE */}
+      {/* MY TRIP */}
+      <Stack.Screen name="MyTrip" component={MyTrip} />
+      <Stack.Screen name="MyTripDetail" component={MyTripDetail} />
+      <Stack.Screen name="AddSchedule" component={AddSchedule} />
+      <Stack.Screen name="FavoriteLocation" component={FavoriteLocation} />
+      <Stack.Screen name="SearchLocations" component={SearchLocations} />
+      <Stack.Screen name="AddMyRecord" component={AddMyRecord} />
+      <Stack.Screen name="MyTripMore" component={MyTripMore} />
+      <Stack.Screen name="FavoriteLocationList" component={FavoriteLocationList} />
+      <Stack.Screen name="SearchLocationList" component={SearchLocationList} />
     </Stack.Navigator>
   );
 };
