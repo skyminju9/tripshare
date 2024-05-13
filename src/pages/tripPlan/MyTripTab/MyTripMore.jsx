@@ -52,9 +52,9 @@ const MyTripMore = () => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: color.WHITE }}>
+    <SafeAreaView style={styles.wrapper}>
       <BasicHeader title={'지난 여행'} />
-      <View style={{ alignItems: 'center', justifyContent: 'center', paddingVertical: 24 }}>
+      <View style={styles.myPastTripsContainer}>
         <FlatList
           data={plans}
           keyExtractor={item => item.id}
@@ -67,6 +67,13 @@ const MyTripMore = () => {
 };
 
 const styles = StyleSheet.create({
+  wrapper: { flex: 1, backgroundColor: color.WHITE },
+  myPastTripsContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 24,
+    marginBottom: 48,
+  },
   tripPlanCard: {
     width: APP_WIDTH - 100,
     height: 300,
