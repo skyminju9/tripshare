@@ -51,7 +51,11 @@ import MyCommentIcon from './icons/myPage/myCommentIcon.svg';
 import PositionIcon from './icons/myPage/positionIcon.svg';
 import NotiIcon from '../assets/icons/header/notification.svg';
 import ThemeIcon from './icons/myPage/themeIcon.svg';
-
+import BlueChatIcon from './icons/myPage/blueChatIcon.svg';
+import BlueCloseIcon from './icons/myPage/blueCloseIcon.svg';
+import BlueFlightIcon from './icons/myPage/blueFlightIcon.svg';
+import BlueSummarizeIcon from './icons/myPage/blueSummarizeIcon.svg';
+import ReportIcon from './icons/myPage/reportIcon.svg';
 export {
   HomeIcon,
   PlanIcon,
@@ -96,4 +100,9 @@ export {
   PositionIcon,
   NotiIcon,
   ThemeIcon,
+  BlueChatIcon,
+  BlueFlightIcon,
+  BlueCloseIcon,
+  BlueSummarizeIcon,
+  ReportIcon,
 };

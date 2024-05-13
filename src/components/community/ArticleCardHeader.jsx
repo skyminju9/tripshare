@@ -1,16 +1,16 @@
 import React from 'react';
-import { Text, StyleSheet, View, Image } from 'react-native';
+import { Text, StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 import { setAgoDays } from '../../utils/date';
 
-const ArticleCardHeader = ({ authorImg, authorName, createdAt }) => {
+const ArticleCardHeader = ({ authorImg, authorName, createdAt, setIsProfileModalVisible }) => {
   return (
     <View style={styles.articleHeader}>
-      <View style={styles.authorProfile}>
+      <TouchableOpacity style={styles.authorProfile} onPress={() => setIsProfileModalVisible(true)}>
         <Image source={authorImg} style={styles.authorImage} />
         <Text style={fontStyles.boldFont01}>{authorName}</Text>
-      </View>
+      </TouchableOpacity>
       <View>
         <Text style={[fontStyles.basicFont02, styles.createdAtText]}>{setAgoDays(createdAt)}</Text>
       </View>

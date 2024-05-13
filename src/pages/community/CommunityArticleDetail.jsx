@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { Shadow } from 'react-native-shadow-2';
+import Modal from 'react-native-modal';
+
 import BasicHeader from '../../components/BasicHeader';
 import { BookmarkOffIcon, HeartOffIcon, CommentIcon } from '../../assets/index';
 import color from '../../styles/colorPalette';
@@ -11,8 +13,10 @@ import ArticleCardHeader from '../../components/community/ArticleCardHeader';
 import FeedComment from '../../components/FeedComment';
 import CommentInput from '../../components/CommentInput';
 import { dummy_comment, dummy_user } from '../../dummyData';
+import ProfileModal from '../../components/ProfileModal';
 
-const CommunityArticleDetail = () => {
+const CommunityArticleDetail = ({ navigation }) => {
+  const [isProfileModalVisible, setIsProfileModalVisible] = useState(false);
   const article = useRoute().params;
   const comments = dummy_comment
     .filter(comment => comment.articleId === article.id)
@@ -34,6 +38,7 @@ const CommunityArticleDetail = () => {
               authorImg={article.authorImage}
               authorName={article.authorName}
               createdAt={article.createdAt}
+              setIsProfileModalVisible={setIsProfileModalVisible}
             />
             {/* Title & Contents */}
             <View style={styles.articleMain}>
@@ -79,6 +84,15 @@ const CommunityArticleDetail = () => {
       <View>
         <CommentInput />
       </View>
+      <Modal
+        isVisible={isProfileModalVisible}
+        onBackdropPress={() => setIsProfileModalVisible(false)}>
+        <ProfileModal
+          setIsProfileModalVisible={setIsProfileModalVisible}
+          article={article}
+          navigation={navigation}
+        />
+      </Modal>
     </SafeAreaView>
   );
 };
