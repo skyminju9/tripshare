@@ -34,12 +34,6 @@ const CommunityArticleDetail = () => {
     };
   });
 
-  const loginUser = useAuthUser();
-  const isPostOwner = article.authorName === loginUser.name;
-  const navigation = useNavigation();
-  const [isMenuVisible, setMenuVisible] = useState(false);
-  const [isNotiVisible, setNotiVisible] = useState(false);
-
   return (
     <SafeAreaView style={styles.wrapper}>
       <BasicHeader
