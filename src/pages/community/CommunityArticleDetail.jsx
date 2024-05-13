@@ -97,6 +97,7 @@ const CommunityArticleDetail = () => {
         <CommentInput />
       </View>
 
+      {/* 게시글 메뉴 모달 */}
       <Modal
         isVisible={isMenuVisible}
         backdropOpacity={0}
@@ -128,6 +129,7 @@ const CommunityArticleDetail = () => {
           )}
         </View>
       </Modal>
+      {/* 삭제 확인 모달 */}
       <Modal
         isVisible={isNotiVisible}
         backdropOpacity={0.3}
