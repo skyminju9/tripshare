@@ -7,6 +7,7 @@ const CommentInput = ({
   onSubmit = () => {
     console.log('댓글 작성');
   },
+  chatPlaceHolder,
 }) => {
   const [contents, setContents] = useState('');
 
@@ -14,7 +15,7 @@ const CommentInput = ({
     <View style={styles.commentInputArea}>
       <View style={styles.commentBox}>
         <TextInput
-          placeholder="댓글을 작성해 주세요"
+          placeholder={chatPlaceHolder}
           value={contents}
           onChangeText={setContents}
           maxLength={100}
