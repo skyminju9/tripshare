@@ -57,7 +57,7 @@ export const ScheduleTab = () => {
         />
       </View>
       <View style={styles.flex}>
-        {pressedItem && (
+        {(pressedItem ? pressedItem : setPressedItem(schedules[0])) && (
           <View style={styles.pressedItem}>
             <Text style={fontStyles.basicFont01}>{pressedItem.date}</Text>
             <View style={styles.scheduleContainer}>
