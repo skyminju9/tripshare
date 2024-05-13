@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, FlatList, SafeAreaView, Image, TouchableOpacity } from 'react-native';
 import color from '../../../styles/colorPalette';
 import fontStyles from '../../../styles/fontStyles';
-import { dummyPlans } from '../../../dummyData';
+import { dummy_plans } from '../../../dummyData';
 import BasicHeader from '../../../components/BasicHeader';
 import { APP_WIDTH } from '../../../constants';
 
@@ -31,7 +31,7 @@ const MyTripMore = () => {
       <BasicHeader title={'지난 여행'} />
       <View style={{ alignItems: 'center', justifyContent: 'center' }}>
         <FlatList
-          data={dummyPlans}
+          data={dummy_plans}
           keyExtractor={item => item.id}
           renderItem={renderItem}
           showsVerticalScrollIndicator={false}

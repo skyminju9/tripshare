@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
-import { dummyLocations } from '../../../dummyData';
+import { dummy_locations } from '../../../dummyData';
 import BasicHeader from '../../../components/BasicHeader';
 import color from '../../../styles/colorPalette';
 import fontStyles from '../../../styles/fontStyles';
 
-const favoriteLocations = dummyLocations.filter(item => item.isFavorite == true);
+const favoriteLocations = dummy_locations.filter(item => item.isFavorite == true);
 
 const FavoriteLocationList = ({ navigation }) => {
   const renderItem = ({ item }) => {

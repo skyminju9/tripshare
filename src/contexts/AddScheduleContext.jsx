@@ -1,10 +1,10 @@
 import React, { createContext, useContext, useState } from 'react';
-import { dummySchedules } from '../dummyData';
+import { dummy_schedules } from '../dummyData';
 
 const ScheduleContext = createContext();
 
 export const ScheduleProvider = ({ children }) => {
-  const [schedules, setSchedules] = useState(dummySchedules);
+  const [schedules, setSchedules] = useState(dummy_schedules);
 
   const addSchedule = (date, newSchedule) => {
     const updateSchedules = schedules.map(schedule => {

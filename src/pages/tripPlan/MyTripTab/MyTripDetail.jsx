@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import BasicHeader from '../../../components/BasicHeader';
-import { dummyPlans } from '../../../dummyData';
+import { dummy_plans } from '../../../dummyData';
 import color from '../../../styles/colorPalette';
 import fontStyles from '../../../styles/fontStyles';
 import { MoreIcon, PeopleIcon } from '../../../assets/index';
@@ -13,7 +13,7 @@ const Tab = createMaterialTopTabNavigator();
 
 const MyTripDetail = ({ route }) => {
   const planId = route.params.params;
-  const item = dummyPlans[planId - 1];
+  const item = dummy_plans[planId - 1];
   console.log(item);
 
   return (

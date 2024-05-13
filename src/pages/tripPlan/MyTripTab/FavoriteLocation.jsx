@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
-import { dummyLocations } from '../../../dummyData';
+import { dummy_locations } from '../../../dummyData';
 import BasicHeader from '../../../components/BasicHeader';
 import color from '../../../styles/colorPalette';
 import fontStyles from '../../../styles/fontStyles';
@@ -8,7 +8,7 @@ import Toast from 'react-native-toast-message';
 import { CheckIcon } from '../../../assets';
 import { useNavigation } from '@react-navigation/native';
 
-const favoriteLocations = dummyLocations.filter(item => item.isFavorite == true);
+const favoriteLocations = dummy_locations.filter(item => item.isFavorite == true);
 
 const FavoriteLocation = ({ route }) => {
   const navigation = useNavigation();

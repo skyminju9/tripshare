@@ -10,7 +10,7 @@ import {
 import PlusIcon from '../../../assets/icons/myTrip/add.svg';
 import shadowStyles from '../../../styles/shadowStyles';
 import MyTripCard from './MyTripCard';
-import { dummyPlans } from '../../../dummyData';
+import { dummy_plans } from '../../../dummyData';
 import { useNavigation } from '@react-navigation/native';
 import MyRecordCard from './MyRecordCard';
 import color from '../../../styles/colorPalette';
@@ -71,7 +71,7 @@ const MyTrip = () => {
           </View>
           <View style={styles.cardsContainer}>
             <FlatList
-              data={dummyPlans}
+              data={dummy_plans}
               renderItem={renderPlan}
               keyExtractor={item => item.id}
               horizontal={true}

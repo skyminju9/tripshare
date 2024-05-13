@@ -282,7 +282,7 @@ export const dummy_meet = [
   },
 ];
 
-export const dummyPlans = [
+export const dummy_plans = [
   {
     id: 1,
     title: '싱가포르 여행',
@@ -344,7 +344,7 @@ export const dummyPlans = [
   },
 ];
 
-export const dummyLocations = [
+export const dummy_locations = [
   {
     locationId: 1,
     locationName: '도쿄 타워',
@@ -383,7 +383,7 @@ export const dummyLocations = [
   },
 ];
 
-export const dummySchedules = [
+export const dummy_schedules = [
   {
     id: 1,
     date: '2024-05-20',

@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import color from '../../../styles/colorPalette';
 import fontStyles from '../../../styles/fontStyles';
-import { dummyLocations } from '../../../dummyData';
+import { dummy_locations } from '../../../dummyData';
 import { BlackSearchIcon } from '../../../assets/index';
 import { BackIcon } from '../../../assets/index';
 
@@ -48,7 +48,7 @@ const SearchLocationList = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <FlatList
-        data={dummyLocations}
+        data={dummy_locations}
         renderItem={renderItem}
         keyExtractor={item => item.locationId}
       />
