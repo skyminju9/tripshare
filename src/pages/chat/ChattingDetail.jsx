@@ -20,6 +20,7 @@ import CommentInput from '../../components/CommentInput';
 const ChattingDetail = ({ route, navigation }) => {
   const [chatData, setChatList] = useState(route.params.chatList);
   const user = useAuthUser();
+
   const opponentId = function () {
     if (user.id === chatData.sendUserId) return chatData.receiveUserId;
     return chatData.sendUserId;
@@ -37,7 +38,7 @@ const ChattingDetail = ({ route, navigation }) => {
     const beforeUser = chatData.chatList[index - 1]?.userId;
     const currUser = item.userId;
     const isSameUser = beforeUser === currUser;
-    console.log(isSameUser);
+
     return (
       <View>
         {!isSameDay && <Text style={styles.chatDate}>{formatDate(item.createdAt)}</Text>}

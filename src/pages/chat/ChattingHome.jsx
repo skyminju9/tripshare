@@ -75,7 +75,6 @@ const ChattingHome = ({ navigation }) => {
     );
   };
 
-  dummy_chat;
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.chatHeader}>
