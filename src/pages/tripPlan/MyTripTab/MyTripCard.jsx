@@ -47,21 +47,21 @@ const MyTripCard = ({ item }) => {
 const styles = StyleSheet.create({
   tripPlanCard: {
     width: 200,
-    height: 300,
+    height: 280,
     marginRight: 8,
     borderRadius: 12,
     borderWidth: 1,
     borderColor: color.GRAY_50,
   },
   planCoverImageWrapper: {
-    flex: 0.5,
+    flex: 1,
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
     overflow: 'hidden',
   },
   planCoverImage: { width: 200, height: 150 },
   planDescriptWrapper: {
-    flex: 0.5,
+    flex: 1,
     borderBottomLeftRadius: 12,
     borderBottomRightRadius: 12,
     overflow: 'hidden',
