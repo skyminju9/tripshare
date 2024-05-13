@@ -3,7 +3,7 @@ import { Text, SafeAreaView, StyleSheet, View, TouchableOpacity, ScrollView } fr
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { Shadow } from 'react-native-shadow-2';
 import BasicHeader from '../../components/BasicHeader';
-import { BookmarkIcon, HeartIcon, CommentIcon, MenuIcon } from '../../assets/index';
+import { BookmarkOffIcon, HeartOffIcon, CommentIcon, MenuIcon } from '../../assets/index';
 import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 import shadowStyles from '../../styles/shadowStyles';
@@ -76,11 +76,11 @@ const CommunityArticleDetail = () => {
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.articleIcon}>
-                  <HeartIcon />
+                  <HeartOffIcon />
                   <Text style={[fontStyles.basicFont02, styles.heartNum]}>{article.liked}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.articleIcon}>
-                  <BookmarkIcon />
+                  <BookmarkOffIcon />
                   <Text style={[fontStyles.basicFont02, styles.bookmarkNum]}>
                     {article.bookmarked}
                   </Text>
