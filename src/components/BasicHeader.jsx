@@ -5,11 +5,16 @@ import color from '../styles/colorPalette';
 import fontStyles from '../styles/fontStyles';
 import BackIcon from '../assets/icons/header/back_arrow.svg';
 
-const BasicHeader = ({ title, leftComponent, rightComponent }) => {
+const BasicHeader = ({ title, leftComponent, rightComponent, headerColor }) => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.headerWrapper}>
+    <View
+      style={
+        headerColor
+          ? [styles.headerWrapper, { backgroundColor: headerColor }]
+          : styles.headerWrapper
+      }>
       {leftComponent ? (
         <View style={styles.leftArea}>{leftComponent}</View>
       ) : (
@@ -40,9 +45,9 @@ const styles = StyleSheet.create({
     borderBottomColor: color.BLUE_30,
     paddingVertical: 12,
     paddingHorizontal: 8,
-    backgroundColor: '#FFF',
+    backgroundColor: color.WHITE,
   },
-  titleArea: { flex: 1, alignItems: 'center' },
+  titleArea: { alignItems: 'center' },
   blankArea: {
     width: 36,
     height: 36,
