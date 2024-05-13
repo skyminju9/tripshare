@@ -52,14 +52,18 @@ const ChattingHome = ({ navigation }) => {
           <View style={styles.chatBottomWrapper}>
             {isRead ? (
               <>
-                <Text style={fontStyles.grayFont02}>{chatData.chatList.at(-1).text}</Text>
+                <Text style={styles.readChatText} numberOfLines={1} ellipsizeMode="tail">
+                  {chatData.chatList.at(-1).text}
+                </Text>
                 <Text style={fontStyles.grayFont02}>
                   {setAgoDays(chatData.chatList.at(-1).createdAt)}
                 </Text>
               </>
             ) : (
               <>
-                <Text style={fontStyles.boldFont02}>{chatData.chatList.at(-1).text}</Text>
+                <Text style={styles.notReadChatText} numberOfLines={1} ellipsizeMode="tail">
+                  {chatData.chatList.at(-1).text}
+                </Text>
                 <Text style={fontStyles.boldFont02}>
                   {setAgoDays(chatData.chatList.at(-1).createdAt)}
                 </Text>
@@ -132,6 +136,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  readChatText: {
+    ...fontStyles.grayFont02,
+    flex: 1,
+    paddingRight: 12,
+  },
+  notReadChatText: {
+    ...fontStyles.boldFont02,
+    flex: 1,
+    paddingRight: 12,
   },
 });
 
