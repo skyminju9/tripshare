@@ -15,7 +15,7 @@ import { dummy_chat, dummy_user } from '../../dummyData';
 import { setAgoDays } from '../../utils/date';
 import fontStyles from '../../styles/fontStyles';
 
-const ChattingHome = () => {
+const ChattingHome = ({ navigation }) => {
   const [chatList, setChatList] = useState();
   const user = useAuthUser();
 
@@ -31,23 +31,26 @@ const ChattingHome = () => {
     setChatList(chatData);
   };
 
-  const renderItem = item => {
-    const chatData = item.item;
+  const renderItem = ({ item: chatData }) => {
     const opponentId = function () {
       if (user.id === chatData.sendUserId) return chatData.receiveUserId;
       return chatData.sendUserId;
     };
     const userData = dummy_user.filter(userData => userData.id === opponentId())[0];
+    const lastChat = chatData.chatList.at(-1);
+    const isRead = lastChat.isRead || lastChat.userId === user.id;
     return (
-      <TouchableOpacity style={styles.chatWrapper}>
+      <TouchableOpacity
+        style={styles.chatWrapper}
+        onPress={() => navigation.navigate('ChattingDetail', { chatList: chatData })}>
         <Image source={userData.profileImage} style={styles.profileImage} alt="프로필 이미지" />
         <View style={styles.chatContainer}>
           <View style={styles.chatTopWrapper}>
             <Text style={fontStyles.boldFont01}>{userData.name}</Text>
-            {!chatData.chatList.at(-1).isRead && <View style={styles.readDot} />}
+            {!isRead && <View style={styles.readDot} />}
           </View>
           <View style={styles.chatBottomWrapper}>
-            {chatData.chatList.at(-1).isRead ? (
+            {isRead ? (
               <>
                 <Text style={fontStyles.grayFont02}>{chatData.chatList.at(-1).text}</Text>
                 <Text style={fontStyles.grayFont02}>

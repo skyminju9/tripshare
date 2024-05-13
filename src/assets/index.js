@@ -35,6 +35,7 @@ import DoneIcon from './icons/community/meeting/doneIcon.svg';
 // chat icon
 import WhiteLogoIcon from './icons/chat/whiteLogo.svg';
 import WhiteAlertIcon from './icons/chat/whiteAlertIcon.svg';
+import WhiteBackArrowIcon from './icons/chat/WhiteBackArrow.svg';
 
 // register
 import PersonIcon from './icons/register/person.svg';
@@ -98,4 +99,5 @@ export {
   ThemeIcon,
   WhiteLogoIcon,
   WhiteAlertIcon,
+  WhiteBackArrowIcon,
 };

@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomePage from './pages/home/HomePage';
 import TripPlanHome from './pages/tripPlan/TripPlanHome';
 import CommunityHome from './pages/community/CommunityHome';
-import ChattingHome from './pages/chat/ChattingPage';
+import ChattingHome from './pages/chat/ChattingHome';
 import MyPageHome from './pages/myPage/MyPageHome';
 import CommunityMeetingMap from './pages/community/CommunityMeetingMap';
 import TripShareBottomTab from './components/TripShareBottomTab';
@@ -23,6 +23,7 @@ import AddScheduleMain from './pages/tripPlan/MyTripTab/AddScheduleMain';
 import CommunityArticleDetail from './pages/community/CommunityArticleDetail';
 import CommmunitySearchResultPage from './pages/community/CommunitySearchResultPage';
 import CommunitySearchPage from './pages/community/CommunitySearchPage';
+import ChattingDetail from './pages/chat/ChattingDetail';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -80,6 +81,7 @@ export const MainStack = () => {
         options={{ animation: 'none' }}
       />
       {/* CHATTING */}
+      <Stack.Screen name="ChattingDetail" component={ChattingDetail} />
       {/* MY PAGE */}
     </Stack.Navigator>
   );
