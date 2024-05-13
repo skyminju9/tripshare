@@ -39,7 +39,7 @@ const CommunityArticleDetail = () => {
       <BasicHeader
         title="게시글 상세"
         rightComponent={
-          <TouchableOpacity onPress={() => setMenuVisible(true)}>
+          <TouchableOpacity style={styles.menuIcon} onPress={() => setMenuVisible(true)}>
             <MenuIcon />
           </TouchableOpacity>
         }
@@ -292,6 +292,9 @@ const styles = StyleSheet.create({
     height: '100%',
     borderWidth: 0.5,
     borderColor: color.GRAY_50,
+  },
+  menuIcon: {
+    paddingRight: 8,
   },
 });
 
