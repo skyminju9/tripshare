@@ -41,6 +41,7 @@ const SearchLocationList = ({ navigation }) => {
             autoComplete="none"
             autoCorrect={false}
             onChangeText={text => setSearchWord(text)}
+            editable="disable"
           />
         </TouchableOpacity>
         <TouchableOpacity>
