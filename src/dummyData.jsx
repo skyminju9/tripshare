@@ -60,7 +60,7 @@ export const dummy_article = [
     createdAt: new Date().getTime(),
     like: 1,
     bookmark: 1,
-    userId: 1,
+    userId: 5,
     tag: '질문',
   },
   {
