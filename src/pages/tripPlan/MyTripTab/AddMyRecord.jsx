@@ -1,12 +1,55 @@
 import React, { useState } from 'react';
-import { View, Text, SafeAreaView, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+} from 'react-native';
 import fontStyles from '../../../styles/fontStyles';
 import color from '../../../styles/colorPalette';
 import BasicHeader from '../../../components/BasicHeader';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
-import CameraIcon from '../../../assets/icons/myTrip/camera.svg';
+import { CameraIcon } from '../../../assets/index';
+import Toast from 'react-native-toast-message';
+import ImagePicker from 'react-native-image-crop-picker';
 
-const AddMyRecord = () => {
+const AddMyRecord = ({ navigation }) => {
+  const [showOk, setShowOk] = useState(false);
+  const [show, setShow] = useState(false);
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [image, setImage] = useState();
+
+  const ShowToast = () => {
+    Toast.show({
+      type: 'error',
+      text1: '제목이나 내용을 입력해주세요.',
+    });
+  };
+
+  const handlePressCameraIcon = () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 300,
+      cropping: true,
+    }).then(image => {
+      setImage(image);
+    });
+  };
+
+  const handlePressDone = () => {
+    if (title && content) {
+      navigation.goBack();
+    } else {
+      setShow(!show);
+    }
+  };
+
+  show && ShowToast();
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <BasicHeader title={'새 여행 기록 작성하기'} headerColor={color.BLUE_30} />
@@ -22,9 +65,10 @@ const AddMyRecord = () => {
                 autoCorrect={false}
                 numberOfLines={1}
                 maxLength={20}
+                onChangeText={text => setTitle(text)}
               />
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handlePressCameraIcon}>
               <CameraIcon />
             </TouchableOpacity>
           </View>
@@ -66,13 +110,18 @@ const AddMyRecord = () => {
               numberOfLines={20}
               multiline
               maxLength={200}
+              onChangeText={text => setContent(text)}
             />
+            <View style={styles.imageArea}>
+              {image && <Image source={{ uri: image.path }} style={styles.imageStyle} />}
+            </View>
           </View>
         </View>
-        <TouchableOpacity style={styles.doneButton}>
+        <TouchableOpacity onPress={handlePressDone} style={styles.doneButton}>
           <Text style={[fontStyles.title03, { color: color.WHITE }]}>작성 완료</Text>
         </TouchableOpacity>
       </View>
+      <Toast />
     </SafeAreaView>
   );
 };
@@ -118,6 +167,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  imageArea: { bottom: 0, position: 'absolute', margin: 16 },
+  imageStyle: { width: 100, height: 100 },
 });
 
 export default AddMyRecord;
