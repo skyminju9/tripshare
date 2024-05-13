@@ -31,6 +31,7 @@ import WriteIcon from './icons/community/meeting/writeIcon.svg';
 import LocationIcon from './icons/community/meeting/locationIcon.svg';
 import TimeIcon from './icons/community/meeting/timeIcon.svg';
 import DoneIcon from './icons/community/meeting/doneIcon.svg';
+import MenuIcon from './icons/community/menuIcon.svg';
 
 // register
 import PersonIcon from './icons/register/person.svg';
@@ -92,4 +93,5 @@ export {
   PositionIcon,
   NotiIcon,
   ThemeIcon,
+  MenuIcon,
 };

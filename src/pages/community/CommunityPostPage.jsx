@@ -14,11 +14,14 @@ import color from '../../styles/colorPalette';
 import { UploadIcon, DeleteIcon } from '../../assets/index';
 import ArticleTagList from './ArticleTagList';
 import { APP_WIDTH } from '../../constants';
+
 import ImagePicker from 'react-native-image-crop-picker';
+import { useAuthUser } from '../../contexts/AuthUserContext';
 
 const tags = ['잡담', '질문', '정보'];
 
 const CommunityPostPage = ({ navigation, route }) => {
+  const user = useAuthUser();
   const isEdit = route.params.edit;
 
   const [titleText, setTitleText] = useState('');

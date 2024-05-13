@@ -9,30 +9,30 @@ import fontStyles from '../../styles/fontStyles';
 import shadowStyles from '../../styles/shadowStyles';
 import ArticleCardHeader from '../../components/community/ArticleCardHeader';
 
-import { dummy_user } from '../../dummyData';
+import { dummy_comment, dummy_user } from '../../dummyData';
 import FeedComment from '../../components/FeedComment';
 import CommentInput from '../../components/CommentInput';
 import { useAuthUser } from '../../contexts/AuthUserContext';
-
 import Modal from 'react-native-modal';
 import { APP_WIDTH } from '../../constants';
 
 const CommunityArticleDetail = () => {
   const article = useRoute().params;
-  const loginUser = useAuthUser();
-  const isPostOwner = article.authorName === loginUser.nickname;
+  const comments = dummy_comment
+    .filter(comment => comment.articleId === article.id)
+    .map(comment => {
+      const user = dummy_user.find(du => du.id === comment.userId);
+      return {
+        ...comment,
+        user,
+      };
+    });
 
+  const loginUser = useAuthUser();
+  const isPostOwner = article.authorName === loginUser.name;
   const navigation = useNavigation();
   const [isMenuVisible, setMenuVisible] = useState(false);
   const [isNotiVisible, setNotiVisible] = useState(false);
-
-  const comments = article.comment.map(comment => {
-    const user = dummy_user.find(du => du.id === comment.userId);
-    return {
-      ...comment,
-      user,
-    };
-  });
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -62,18 +62,12 @@ const CommunityArticleDetail = () => {
             {/* Icon & Tag */}
             <View style={styles.articleBottom}>
               <View>
-                {article.tag ? (
-                  <Text style={[styles.basicFont02, styles.tag]}>#{article.tag}</Text>
-                ) : (
-                  <></>
-                )}
+                <Text style={[styles.basicFont02, styles.tag]}>#{article.tag}</Text>
               </View>
               <View style={styles.articleIconContainer}>
                 <TouchableOpacity style={styles.articleIcon}>
                   <CommentIcon />
-                  <Text style={[fontStyles.basicFont02, styles.commentNum]}>
-                    {comments.length || 0}
-                  </Text>
+                  <Text style={[fontStyles.basicFont02, styles.commentNum]}>3</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.articleIcon}>
                   <HeartIcon />
@@ -256,6 +250,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+
   modalContainer: {
     position: 'absolute',
     top: 32,
