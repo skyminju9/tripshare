@@ -1,85 +1,287 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, Image, ScrollView } from 'react-native';
 import fontStyles from '../../styles/fontStyles';
 import color from '../../styles/colorPalette';
 import shadowStyles from '../../styles/shadowStyles';
+import { Shadow } from 'react-native-shadow-2';
 import LogoHeader from '../../components/LogoHeader';
 import { useLocation } from '../../contexts/LocationContext';
-import Cloudy from '../../assets/cloudy.png';
-import MainPostSlide from '../../components/home/MainPostSlide';
-import { Shadow } from 'react-native-shadow-2';
 import { useAuthUser } from '../../contexts/AuthUserContext';
-import { useGeolocation } from '../../contexts/GeolocationContext';
+import MainPostSlide from '../../components/home/MainPostSlide';
+import { fetchFlags } from '../../apis/countryFlags';
+import { fetchForecastData } from '../../apis/weather';
+import { fetchExchangeData } from '../../apis/exchangeRate';
+import { fetchTimeDifference } from '../../apis/timeDifference';
+import { getEnglishName } from '../../utils/getEnglishName';
+import { getLastWeekday } from '../../utils/getLastWeekday';
+import iconMapping from '../../constans/weatherIcons';
+import data from '../../PrimaryRegions.json';
 
 const HomePage = () => {
-  const { selectedCountry, selectedCity } = useLocation();
+  const locationContext = useLocation();
   const user = useAuthUser();
-  const geolocation = useGeolocation();
 
-  // TEST get geolocation
-  console.log('user =======> ', user);
-  console.log('position ========> ', geolocation);
+  const [selectedCountry, setSelectedCountry] = useState(
+    locationContext.selectedCountry || '대한민국',
+  );
+  const [selectedCity, setSelectedCity] = useState(locationContext.selectedCity || '서울');
+  const [flagData, setFlagData] = useState([]);
+  const [filteredFlag, setFilteredFlag] = useState(null);
+  const [exchangeData, setExchangeData] = useState([]);
+  const [minTemp, setMinTemp] = useState(null);
+  const [maxTemp, setMaxTemp] = useState(null);
+  const [summaryIcon, setSummaryIcon] = useState(null);
+  const [timeDifference, setTimeDifference] = useState('차이 없음');
+  const [voltage, setVoltage] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const defaultFlagUrl = 'https://example.com/south-korea-flag.png';
+
+  useEffect(() => {
+    const loadData = async () => {
+      setLoading(true);
+      try {
+        await Promise.all([
+          loadFlagData(),
+          loadForecastData(),
+          loadExchangeData(),
+          loadTimeDifference(),
+          updateVoltage(),
+        ]);
+        setLoading(false);
+      } catch (error) {
+        setError(`Error: ${error.message}`);
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, [selectedCountry, selectedCity]);
+
+  useEffect(() => {
+    updateFlag();
+  }, [flagData, selectedCountry]);
+
+  useEffect(() => {
+    if (locationContext.selectedCountry && locationContext.selectedCity) {
+      setSelectedCountry(locationContext.selectedCountry);
+      setSelectedCity(locationContext.selectedCity);
+    }
+  }, [locationContext.selectedCountry, locationContext.selectedCity]);
+
+  const loadFlagData = async () => {
+    try {
+      const data = await fetchFlags();
+      setFlagData(data);
+    } catch (error) {
+      setError(`Error: ${error.message}`);
+    }
+  };
+
+  const updateFlag = () => {
+    let countryName = selectedCountry;
+    if (countryName === '미국') {
+      countryName = '미합중국';
+    }
+
+    const result = flagData.find(flag => flag.country_nm === countryName);
+    if (result) {
+      setFilteredFlag(result);
+    } else {
+      setFilteredFlag({ download_url: defaultFlagUrl });
+    }
+  };
+
+  const loadExchangeData = async () => {
+    try {
+      const dateToFetch = getLastWeekday();
+      const data = await fetchExchangeData(dateToFetch);
+      if (!data || data.length === 0) {
+        throw new Error('No exchange rate data available for the requested date');
+      }
+      setExchangeData(data);
+    } catch (error) {
+      setError(`Error: ${error.message}`);
+      console.error('Error fetching exchange data:', error);
+    }
+  };
+
+  const loadForecastData = async () => {
+    try {
+      const { country: englishCountry, city: englishCity } =
+        getEnglishName(selectedCountry, selectedCity) || {};
+
+      if (!englishCity) {
+        throw new Error('Invalid city selection');
+      }
+
+      const data = await fetchForecastData(englishCity, englishCountry);
+
+      const today = new Date().getDate();
+      const todayData = data.list.filter(item => new Date(item.dt_txt).getDate() === today);
+
+      const temps = todayData.map(item => item.main.temp);
+      setMinTemp(Math.round(Math.min(...temps)));
+      setMaxTemp(Math.round(Math.max(...temps)));
+
+      let rainDetected = false;
+      let thunderstormDetected = false;
+      let iconFrequency = {};
+
+      todayData.forEach(item => {
+        const weatherMain = item.weather[0].main.toLowerCase();
+        const icon = item.weather[0].icon;
+
+        if (weatherMain.includes('rain')) {
+          rainDetected = true;
+        }
+        if (weatherMain.includes('thunderstorm')) {
+          thunderstormDetected = true;
+        }
+
+        iconFrequency[icon] = (iconFrequency[icon] || 0) + 1;
+      });
+
+      if (rainDetected && thunderstormDetected) {
+        setSummaryIcon(iconMapping['rainyThunderstorm']);
+      } else if (thunderstormDetected) {
+        setSummaryIcon(iconMapping['11d']);
+      } else if (rainDetected) {
+        setSummaryIcon(iconMapping['10d']);
+      } else {
+        let mostFrequentIcon = Object.keys(iconFrequency).reduce((a, b) =>
+          iconFrequency[a] > iconFrequency[b] ? a : b,
+        );
+        setSummaryIcon(iconMapping[mostFrequentIcon]);
+      }
+    } catch (err) {
+      setError(err);
+    }
+  };
+
+  const loadTimeDifference = async () => {
+    try {
+      const { lat, lon } = getEnglishName(selectedCountry, selectedCity) || {};
+      if (lat === undefined || lon === undefined) {
+        throw new Error('Invalid location data');
+      }
+      const difference = await fetchTimeDifference(lat, lon);
+      setTimeDifference(difference);
+    } catch (err) {
+      setError(err);
+    }
+  };
+
+  const updateVoltage = () => {
+    const countryData = data[selectedCountry];
+    if (countryData && countryData['전압']) {
+      setVoltage(countryData['전압']);
+    } else {
+      setVoltage('정보없음');
+    }
+  };
+
+  const getExchangeRateInfo = () => {
+    const countryCurrency = data[selectedCountry]?.통화;
+    const match = exchangeData.find(item => item.cur_unit === countryCurrency);
+
+    if (match) {
+      return `${match.deal_bas_r} / ${match.cur_unit}`;
+    } else {
+      return '정보없음';
+    }
+  };
+
   const location = selectedCountry && selectedCity ? `${selectedCity}` : '위치미정';
+
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>데이터 로딩 중...</Text>
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>오류: {error.message}</Text>
+      </View>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.wrapper}>
       <LogoHeader />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
-          <Text style={fontStyles.title01}>{user.name}님,</Text>
+          {user && user.name ? (
+            <Text style={fontStyles.title01}>{user.name}님,</Text>
+          ) : (
+            <Text style={fontStyles.title01}>사용자님,</Text>
+          )}
           <Text style={fontStyles.title01}>
-            지금 <Text style={styles.blueText}>{location}</Text>에 계시는군요!
+            지금 <Text style={fontStyles.blueTitle01}>{location}</Text>에 계시는군요!
           </Text>
-
           <View style={styles.infoArea}>
             <View style={styles.infoTop}>
               <View style={styles.box1}>
-                <View style={styles.flagContainer} />
+                <View style={styles.flagContainer}>
+                  <View style={styles.flagCircle}>
+                    <Image
+                      style={styles.flagImage}
+                      source={{ uri: filteredFlag ? filteredFlag.download_url : defaultFlagUrl }}
+                    />
+                  </View>
+                </View>
                 <View style={styles.subInfo}>
-                  <Text style={fontStyles.title02}>도쿄,</Text>
-                  <Text style={fontStyles.title02}>일본</Text>
+                  <Text style={fontStyles.title02}>{selectedCity},</Text>
+                  <Text style={fontStyles.title02}>{selectedCountry}</Text>
                 </View>
               </View>
               <View style={styles.box1}>
-                <Image source={Cloudy} style={styles.weatherImg} />
+                {summaryIcon && <Image style={styles.weatherImg} source={summaryIcon} />}
                 <View style={styles.subInfo}>
-                  <Text style={[fontStyles.title02, styles.blueText]}>10°C</Text>
-                  <Text style={[fontStyles.title02, styles.redText]}>18°C</Text>
+                  <Text style={fontStyles.blueTitle02}>{Math.round(minTemp)}°C</Text>
+                  <Text style={[fontStyles.title02, { color: color.RED_400 }]}>
+                    {Math.round(maxTemp)}°C
+                  </Text>
                 </View>
               </View>
             </View>
             <View style={styles.infoBottom}>
               <View style={styles.box2}>
                 <Text style={[fontStyles.title03, styles.infoTitle]}>환율</Text>
-                <Text style={fontStyles.basicFont02}>892.67원</Text>
-                <Text style={[fontStyles.basicFont02, styles.subText]}>/ 100JPY</Text>
+                <Text style={fontStyles.basicFont02}>{getExchangeRateInfo()}</Text>
               </View>
               <View style={styles.box2}>
                 <Text style={[fontStyles.title03, styles.infoTitle]}>시차</Text>
-                <Text style={fontStyles.basicFont02}>차이 없음</Text>
+                <Text style={fontStyles.basicFont02}>{timeDifference}</Text>
               </View>
               <View style={styles.box2}>
                 <Text style={[fontStyles.title03, styles.infoTitle]}>전압</Text>
-                <Text style={fontStyles.basicFont02}>100V</Text>
+                <Text style={fontStyles.basicFont02}>{voltage}</Text>
               </View>
             </View>
           </View>
           <View style={styles.postArea}>
             <Text style={[fontStyles.title03, styles.postAreaText]}>✈️ 다가오는 여행 일정</Text>
-
             <Shadow {...shadowStyles.smallShadow} stretch>
               <View style={styles.postBox}>
                 <View style={styles.postBoxInner}>
                   <Text style={fontStyles.title03}>도쿄여행</Text>
-                  <Text style={[fontStyles.boldFont02, styles.subText, { alignSelf: 'flex-end' }]}>
+                  <Text
+                    style={[
+                      fontStyles.boldFont02,
+                      { color: color.TEXT_SECONDARY, alignSelf: 'flex-end' },
+                    ]}>
                     24.05.01 ~ 24.05.14
                   </Text>
                 </View>
                 <View style={styles.postBoxInner}>
-                  <Text style={[fontStyles.basicFont02, styles.subText]}>
-                    예인, 정혁, 서흔, 가연
-                  </Text>
-                  <Text style={[fontStyles.title03, styles.blueText]}>D-day</Text>
+                  <Text style={fontStyles.grayFont02}>예인, 정혁, 서흔, 가연</Text>
+                  <Text style={fontStyles.blueTitle03}>D-day</Text>
                 </View>
               </View>
             </Shadow>
@@ -126,7 +328,8 @@ const styles = StyleSheet.create({
     borderColor: '#EEEEEE',
     borderRadius: 16,
     flexDirection: 'row',
-    padding: 20,
+    paddingLeft: 20,
+    paddingRight: 15,
     alignItems: 'center',
   },
   box2: {
@@ -137,17 +340,34 @@ const styles = StyleSheet.create({
     borderColor: '#EEEEEE',
     borderRadius: 16,
     paddingHorizontal: 18,
-    paddingTop: 10,
+    paddingTop: 14,
   },
   infoTitle: {
-    marginBottom: 3,
+    marginBottom: 4,
   },
   weatherImg: { width: 40, height: 40 },
   flagContainer: {
+    alignItems: 'center',
+    marginVertical: 10,
+  },
+  flagCircle: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: 'red',
+    overflow: 'hidden',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: color.GRAY_50,
+  },
+  flagImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
+  postArea: {
+    marginBottom: 100,
   },
   postAreaText: {
     marginVertical: 12,
@@ -170,17 +390,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   subInfo: {
-    marginLeft: 20,
+    marginLeft: 15,
+    width: 'auto',
+    maxWidth: '65%',
   },
-  subText: { color: color.TEXT_SECONDARY },
   shadowBox: {
     borderRadius: 16,
     height: 110,
   },
-  blueText: {
-    color: color.BLUE_500,
-  },
-  redText: { color: color.RED_400 },
 });
 
 export default HomePage;

@@ -27,9 +27,47 @@
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
-		<false/>
+		<false/> <!-- 기본적으로 안전하지 않은 네트워크 요청을 허용하지 않음 -->
 		<key>NSAllowsLocalNetworking</key>
-		<true/>
+		<true/> <!-- 로컬 네트워크 요청을 허용 -->
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>localhost</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/> <!-- 로컬 서버에 대한 안전하지 않은 요청 허용 -->
+			</dict>
+			<key>openweathermap.org</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/> <!-- 하위 도메인 포함 -->
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/> <!-- 안전하지 않은 HTTP 요청 허용 -->
+				<key>NSExceptionMinimumTLSVersion</key>
+				<string>TLSv1.1</string> <!-- 최소 TLS 버전 설정 -->
+			</dict>
+			<key>apis.data.go.kr</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+			<key>www.koreaexim.go.kr</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+			<key>api.timezonedb.com</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Allow access to your camera</string>
