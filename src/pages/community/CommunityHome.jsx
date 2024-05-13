@@ -31,6 +31,21 @@ const CommunityHome = ({ navigation }) => {
     );
   };
 
+  const renderCommunityItems = (item, index) => {
+    return (
+      <View style={styles.communityListItemWrapper} key={index}>
+        <Shadow {...shadowStyles.smallShadow} stretch>
+          <TouchableOpacity
+            style={styles.communityListItem}
+            onPress={() => navigation.navigate(item.address)}>
+            {item.icon}
+            <Text style={fontStyles.title03}>{item.category}</Text>
+          </TouchableOpacity>
+        </Shadow>
+      </View>
+    );
+  };
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <LogoHeader location="도쿄" />
@@ -50,47 +65,14 @@ const CommunityHome = ({ navigation }) => {
           <Text style={fontStyles.title03}>커뮤니티</Text>
           <View style={styles.communityListWrapper}>
             <View style={styles.communityList}>
-              <Shadow style={styles.communityListItemWrapper} {...shadowStyles.smallShadow} stretch>
-                <TouchableOpacity
-                  style={styles.communityListItem}
-                  onPress={() => navigation.navigate('CommunityMeetingMap')}>
-                  <Text style={fontStyles.basicFont}>번개/동행</Text>
-                  <FlashIcon />
-                </TouchableOpacity>
-              </Shadow>
-              <Shadow style={styles.communityListItemWrapper} {...shadowStyles.smallShadow} stretch>
-                <TouchableOpacity style={styles.communityListItem}>
-                  <Text style={fontStyles.basicFont01}>맛집/명소</Text>
-                  <PlaceIcon />
-                </TouchableOpacity>
-              </Shadow>
-              <Shadow style={styles.communityListItemWrapper} {...shadowStyles.smallShadow} stretch>
-                <TouchableOpacity style={styles.communityListItem}>
-                  <Text style={fontStyles.basicFont01}>이벤트</Text>
-                  <EventIcon />
-                </TouchableOpacity>
-              </Shadow>
+              {communityList[0].map((item, index) => {
+                return renderCommunityItems(item, index);
+              })}
             </View>
             <View style={styles.communityList}>
-              <Shadow
-                style={styles.communityListBigItemWrapper}
-                {...shadowStyles.smallShadow}
-                stretch>
-                <TouchableOpacity style={styles.communityListBigItem}>
-                  <Text>지도</Text>
-                </TouchableOpacity>
-              </Shadow>
-              <Shadow
-                style={styles.communityListBigItemWrapper}
-                {...shadowStyles.smallShadow}
-                stretch>
-                <TouchableOpacity
-                  style={styles.communityListFreeTalk}
-                  onPress={() => navigation.navigate('CommunityFreeBoard')}>
-                  <Text style={fontStyles.title03}>자유 게시판</Text>
-                  <FreeTalkIcon />
-                </TouchableOpacity>
-              </Shadow>
+              {communityList[1].map((item, index) => {
+                return renderCommunityItems(item, index);
+              })}
             </View>
           </View>
         </View>
@@ -98,6 +80,33 @@ const CommunityHome = ({ navigation }) => {
     </SafeAreaView>
   );
 };
+
+const communityList = [
+  [
+    {
+      icon: <FlashIcon />,
+      address: 'CommunityMeetingMap',
+      category: '번개/동행',
+    },
+    {
+      icon: <PlaceIcon />,
+      address: '',
+      category: '맛집/명소',
+    },
+  ],
+  [
+    {
+      icon: <EventIcon />,
+      address: '',
+      category: '이벤트',
+    },
+    {
+      icon: <FreeTalkIcon />,
+      address: 'CommunityFreeBoard',
+      category: '자유게시판',
+    },
+  ],
+];
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -143,47 +152,30 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   communityListWrapper: {
-    height: '44%',
-    gap: 16,
+    gap: 12,
   },
   communityList: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 16,
+    gap: 8,
   },
-  communityListItemWrapper: { width: (APP_WIDTH - 80) / 3, height: (APP_WIDTH - 80) / 3 },
+  communityListItemWrapper: {
+    width: (APP_WIDTH - 60) / 2,
+  },
   communityListItem: {
-    borderWidth: 1,
-    borderColor: color.GRAY_50,
-    borderRadius: 16,
-    padding: 16,
-    backgroundColor: color.WHITE,
-    alignItems: 'center',
-    gap: 8,
-  },
-  communityListBigItemWrapper: { width: (APP_WIDTH - 64) / 2, height: (APP_WIDTH - 74) / 2 },
-  communityListBigItem: {
     width: '100%',
-    height: '100%',
+    height: 110,
     borderWidth: 1,
     borderColor: color.GRAY_50,
     borderRadius: 16,
+    paddingHorizontal: 8,
+    paddingVertical: 36,
     backgroundColor: color.WHITE,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  communityListFreeTalk: {
-    width: '100%',
-    height: '100%',
-    borderWidth: 1,
-    borderColor: color.GRAY_50,
-    borderRadius: 16,
-    padding: 32,
-    backgroundColor: color.WHITE,
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 8,
+    gap: 12,
   },
 });
 
