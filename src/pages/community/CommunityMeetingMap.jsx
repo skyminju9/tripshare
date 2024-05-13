@@ -32,7 +32,6 @@ import fontStyles from '../../styles/fontStyles';
 import { hourList, minuteList } from '../../dateData';
 import DatePicker from 'react-native-date-picker';
 import { APP_WIDTH } from '../../constants';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { formatDayTime, setAgoDays } from '../../utils/date';
 import { convertLocationToAddress } from '../../utils/convertLocation';
 import { useGeolocation } from '../../contexts/GeolocationContext';
