@@ -6,9 +6,9 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
-  useWindowDimensions,
 } from 'react-native';
 import React, { useState } from 'react';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useIsFocused } from '@react-navigation/native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import Modal from 'react-native-modal';
@@ -32,8 +32,12 @@ import fontStyles from '../../styles/fontStyles';
 import { hourList, minuteList } from '../../dateData';
 import DatePicker from 'react-native-date-picker';
 import { APP_WIDTH } from '../../constants';
+<<<<<<< HEAD
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { formatDayTime, setAgoDays } from '../../utils/date';
+=======
+import { formatTime, setAgoDays } from '../../utils/date';
+>>>>>>> b97f2c80d0616442b35a2d89b5d59d8015bd3826
 import { convertLocationToAddress } from '../../utils/convertLocation';
 import { useGeolocation } from '../../contexts/GeolocationContext';
 import { Shadow } from 'react-native-shadow-2';
@@ -429,7 +433,7 @@ export default CommunityMeetingMap;
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: color.WHITE,
   },
   topCheckWrapper: {
     position: 'absolute',
