@@ -31,6 +31,10 @@ const ChattingHome = ({ navigation }) => {
     setChatList(chatData);
   };
 
+  const handleChatClick = chatData => {
+    navigation.navigate('ChattingDetail', { chatList: chatData });
+  };
+
   const renderItem = ({ item: chatData }) => {
     const opponentId = function () {
       if (user.id === chatData.sendUserId) return chatData.receiveUserId;
@@ -40,9 +44,7 @@ const ChattingHome = ({ navigation }) => {
     const lastChat = chatData.chatList.at(-1);
     const isRead = lastChat.isRead || lastChat.userId === user.id;
     return (
-      <TouchableOpacity
-        style={styles.chatWrapper}
-        onPress={() => navigation.navigate('ChattingDetail', { chatList: chatData })}>
+      <TouchableOpacity style={styles.chatWrapper} onPress={() => handleChatClick(chatData)}>
         <Image source={userData.profileImage} style={styles.profileImage} alt="프로필 이미지" />
         <View style={styles.chatContainer}>
           <View style={styles.chatTopWrapper}>

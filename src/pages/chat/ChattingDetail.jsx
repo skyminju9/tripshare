@@ -31,7 +31,6 @@ const ChattingDetail = ({ route, navigation }) => {
   const opponentUser = dummy_user.filter(userData => userData.id === opponentId())[0];
 
   const handleSubmitChat = text => {
-    console.log(text);
     setChatList([
       ...chatList,
       {
