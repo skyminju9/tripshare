@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, SafeAreaView, StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { Shadow } from 'react-native-shadow-2';
@@ -16,23 +16,47 @@ import Modal from 'react-native-modal';
 import { APP_WIDTH } from '../../constants';
 
 import { useAuthUser } from '../../contexts/AuthUserContext';
+import { articleCollection } from '../../firebase/firebase';
+import { useIsFocused } from '@react-navigation/native';
 
 const CommunityArticleDetail = () => {
+  const isFocused = useIsFocused();
+  const [singleArticle, setSingleArticle] = useState([]);
+
   const article = useRoute().params;
   const loginUser = useAuthUser();
-  const isPostOwner = article.authorName === loginUser.name;
+  const isPostOwner = singleArticle.authorName === loginUser.name;
 
   const navigation = useNavigation();
   const [isMenuVisible, setMenuVisible] = useState(false);
   const [isNotiVisible, setNotiVisible] = useState(false);
 
-  const comments = article.comments.map(comment => {
-    const user = dummy_user.find(du => du.id === comment.creator);
-    return {
-      ...comment,
-      user,
+  const handleContent = data => {
+    const content = data.data();
+    const articleUser = dummy_user.find(user => user.id === content.creator);
+    content.comments = content.comments.map(comment => {
+      const user = dummy_user.find(du => du.id === comment.creator);
+      return {
+        ...comment,
+        user,
+      };
+    });
+
+    const initialArticle = {
+      id: data.id,
+      ...content,
+      authorName: articleUser.name,
+      authorImage: articleUser.profileImage,
     };
-  });
+
+    return initialArticle;
+  };
+
+  useEffect(() => {
+    articleCollection.doc(article.id).onSnapshot(snapshot => {
+      setSingleArticle(handleContent(snapshot));
+    });
+  }, [isFocused]);
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -48,22 +72,23 @@ const CommunityArticleDetail = () => {
         <Shadow {...shadowStyles.smallShadow} stretch>
           <View style={styles.articleContainer}>
             <ArticleCardHeader
-              authorImg={article.authorImage}
-              authorName={article.authorName}
-              createdAt={article.createdAt}
+              // 이미지 오류
+              authorImg={singleArticle.authorImage || article.authorImage}
+              authorName={singleArticle.authorName}
+              createdAt={singleArticle.createdAt}
             />
             {/* Title & Contents */}
             <View style={styles.articleMain}>
-              <Text style={fontStyles.boldFont01}>{article.title}</Text>
+              <Text style={fontStyles.boldFont01}>{singleArticle.title}</Text>
               <Text style={[fontStyles.basicFont02, styles.articleContents]}>
-                {article.contents}
+                {singleArticle.contents}
               </Text>
             </View>
             {/* Icon & Tag */}
             <View style={styles.articleBottom}>
               <View>
-                {article.tag ? (
-                  <Text style={[styles.basicFont02, styles.tag]}>#{article.tag}</Text>
+                {singleArticle.tag ? (
+                  <Text style={[styles.basicFont02, styles.tag]}>#{singleArticle.tag}</Text>
                 ) : (
                   <></>
                 )}
@@ -72,17 +97,19 @@ const CommunityArticleDetail = () => {
                 <TouchableOpacity style={styles.articleIcon}>
                   <CommentIcon />
                   <Text style={[fontStyles.basicFont02, styles.commentNum]}>
-                    {comments.length || 0}
+                    {singleArticle.comments && singleArticle.comments.length}
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.articleIcon}>
                   <HeartOffIcon />
-                  <Text style={[fontStyles.basicFont02, styles.heartNum]}>{article.liked}</Text>
+                  <Text style={[fontStyles.basicFont02, styles.heartNum]}>
+                    {singleArticle.liked}
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.articleIcon}>
                   <BookmarkOffIcon />
                   <Text style={[fontStyles.basicFont02, styles.bookmarkNum]}>
-                    {article.bookmarked}
+                    {singleArticle.bookmarked}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -92,15 +119,16 @@ const CommunityArticleDetail = () => {
         {/* Comment */}
         <View style={styles.commentsContainer}>
           <Text style={[fontStyles.boldFont01, styles.commentText]}>
-            댓글 {comments.length || 0}
+            댓글 {singleArticle.comments && singleArticle.comments.length}
           </Text>
-          {comments.map((comment, index) => (
-            <FeedComment key={index} comment={comment} />
-          ))}
+          {singleArticle.comments &&
+            singleArticle.comments.map((comment, index) => (
+              <FeedComment key={index} comment={comment} />
+            ))}
         </View>
       </ScrollView>
       <View>
-        <CommentInput />
+        <CommentInput id={article.id} creator={loginUser.id} />
       </View>
 
       {/* 게시글 메뉴 모달 */}

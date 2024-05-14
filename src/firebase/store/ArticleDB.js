@@ -2,7 +2,8 @@ import { articleCollection } from '../firebase';
 
 export const addArticle = async data => {
   try {
-    return await articleCollection.add(data);
+    await articleCollection.add(data);
+    return true;
   } catch (err) {
     console.error(err);
   }
@@ -29,7 +30,7 @@ export const getArticleTagList = async tag => {
   }
 };
 
-export const getHotArticleTitle = async () => {
+export const getHotArticleTop3 = async () => {
   try {
     const res = await articleCollection.orderBy('liked', 'desc').limit(3).get();
     return res.docs;
@@ -47,10 +48,14 @@ export const getHotArticleList = async () => {
   }
 };
 
-export const getSingleArticle = id => {
+export const addComment = async (id, data) => {
   try {
-    const res = articleCollection.doc(id).onSnapshot();
-    return res.docs;
+    const res = await articleCollection.doc(id).get();
+    const comments = res.data().comments;
+    await articleCollection.doc(id).update({
+      comments: [...comments, data],
+    });
+    return true;
   } catch (err) {
     console.error(err);
   }

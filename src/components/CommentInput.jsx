@@ -3,12 +3,23 @@ import { View, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-nati
 import { ReplyRegisterIcon } from '../assets';
 import color from '../styles/colorPalette';
 
-const CommentInput = ({
-  onSubmit = () => {
-    console.log('댓글 작성');
-  },
-}) => {
+import { addComment } from '../firebase/store/ArticleDB';
+
+const CommentInput = ({ id, creator }) => {
   const [contents, setContents] = useState('');
+
+  const onSubmit = async () => {
+    const data = {
+      contents: contents,
+      createdAt: new Date().getTime(),
+      creator: creator,
+      liked: 0,
+    };
+    const result = await addComment(id, data);
+    if (result) {
+      console.log('댓글 작성');
+    }
+  };
 
   return (
     <View style={styles.commentInputArea}>
