@@ -113,7 +113,7 @@ const HomePage = () => {
             { justifyContent: 'center', alignItems: 'center', marginBottom: 50 },
           ]}>
           <Image source={Loading} style={{ width: 130, height: 130, marginBottom: 20 }} />
-          <Text style={fontStyles.title01}>데이터를 불러오는 중입니다</Text>
+          <Text style={fontStyles.title01}>로딩 중</Text>
         </View>
       </SafeAreaView>
     );
