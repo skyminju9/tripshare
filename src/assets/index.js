@@ -37,6 +37,11 @@ import AttractionMapIcon from './icons/community/AttractionMap.svg';
 import RightArrowIcon from './icons/community/right_arrow.svg';
 import MenuIcon from './icons/community/menuIcon.svg';
 
+// chat icon
+import WhiteLogoIcon from './icons/chat/whiteLogo.svg';
+import WhiteAlertIcon from './icons/chat/whiteAlertIcon.svg';
+import WhiteBackArrowIcon from './icons/chat/WhiteBackArrow.svg';
+
 // register
 import PersonIcon from './icons/register/person.svg';
 import FaceIcon from './icons/register/face.svg';
@@ -114,6 +119,9 @@ export {
   PositionIcon,
   NotiIcon,
   ThemeIcon,
+  WhiteLogoIcon,
+  WhiteAlertIcon,
+  WhiteBackArrowIcon,
   SearchLocationIcon,
   SearchTimeIcon,
   BlueHeartIcon,
@@ -129,5 +137,5 @@ export {
   AttractionMapIcon,
   RightArrowIcon,
   MenuIcon,
-  MapIcon
+  MapIcon,
 };

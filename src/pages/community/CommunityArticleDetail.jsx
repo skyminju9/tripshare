@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Text, SafeAreaView, StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
+import {
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  KeyboardAvoidingView,
+} from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { Shadow } from 'react-native-shadow-2';
 import BasicHeader from '../../components/BasicHeader';
@@ -127,9 +135,14 @@ const CommunityArticleDetail = () => {
             ))}
         </View>
       </ScrollView>
-      <View>
-        <CommentInput id={article.id} creator={loginUser.id} />
-      </View>
+      <KeyboardAvoidingView behavior="padding">
+        <CommentInput
+          chatPlaceHolder="댓글을 입력해주세요"
+          id={article.id}
+          creator={loginUser.id}
+          comment={true}
+        />
+      </KeyboardAvoidingView>
 
       {/* 게시글 메뉴 모달 */}
       <Modal
