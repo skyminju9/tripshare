@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, SafeAreaView, StyleSheet, Text, ScrollView } from 'react-native';
+import {
+  View,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  ScrollView,
+  KeyboardAvoidingView,
+} from 'react-native';
 import fontStyles from '../../../styles/fontStyles';
 import color from '../../../styles/colorPalette';
 import BasicHeader from '../../../components/BasicHeader';
@@ -34,7 +41,9 @@ const DiaryDetail = () => {
           ))}
         </View>
       </ScrollView>
-      <CommentInput />
+      <KeyboardAvoidingView behavior="padding">
+        <CommentInput chatPlaceHolder="댓글을 입력해주세요" />
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
