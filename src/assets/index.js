@@ -21,7 +21,7 @@ import SearchIcon from './icons/articleIcons/searchIcon.svg';
 import FlashIcon from './icons/community/flash.svg';
 import PlaceIcon from './icons/community/place.svg';
 import EventIcon from './icons/community/event.svg';
-import FreeTalkIcon from './icons/community/free.svg';
+import FreeTalkIcon from './icons/community/freeTalk.svg';
 import PostIcon from './icons/community/postIcon.svg';
 import UploadIcon from './icons/community/uploadIcon.svg';
 import DeleteIcon from './icons/community/deleteIcon.svg';
