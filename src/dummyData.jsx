@@ -282,6 +282,334 @@ export const dummy_meet = [
   },
 ];
 
+export const dummy_plans = [
+  {
+    id: 1,
+    title: '싱가포르 여행',
+    dates: ['24.05.20', '24.05.28'],
+    location: '싱가포르',
+    tags: ['싱가포르', '자유여행'],
+    friendList: [
+      {
+        friendId: 1,
+        name: '오정혁',
+      },
+      {
+        friendId: 2,
+        name: '우예인',
+      },
+      {
+        friendId: 3,
+        name: '한서흔',
+      },
+    ],
+    coverImage: require('./assets/images/myTrip/basicimage1.jpeg'),
+    dDay: 3,
+  },
+  {
+    id: 2,
+    title: '도쿄 여행',
+    dates: ['24.05.17', '24.05.20'],
+    location: '도쿄, 일본',
+    tags: ['도쿄', '디즈니랜드', '맛집탐방'],
+    friendList: [
+      {
+        friendId: 1,
+        name: '오정혁',
+      },
+      {
+        friendId: 2,
+        name: '우예인',
+      },
+    ],
+    coverImage: require('./assets/images/myTrip/basicimage2.jpeg'),
+    dDay: 0,
+  },
+  {
+    id: 3,
+    title: '홍콩 여행',
+    dates: ['24.05.10', '24.05.16'],
+    location: '마카오, 홍콩',
+    tags: ['카지노', '찐맛집'],
+    friendList: [
+      {
+        friendId: 1,
+        name: '오정혁',
+      },
+      {
+        friendId: 2,
+        name: '우예인',
+      },
+      {
+        friendId: 3,
+        name: '한서흔',
+      },
+    ],
+    coverImage: require('./assets/images/myTrip/basicimage3.jpeg'),
+    dDay: -1,
+  },
+  {
+    id: 4,
+    title: '홍콩 여행',
+    dates: ['24.05.10', '24.05.16'],
+    location: '마카오, 홍콩',
+    tags: ['카지노', '찐맛집'],
+    friendList: [
+      {
+        friendId: 1,
+        name: '오정혁',
+      },
+      {
+        friendId: 2,
+        name: '우예인',
+      },
+      {
+        friendId: 3,
+        name: '한서흔',
+      },
+    ],
+    coverImage: require('./assets/images/myTrip/basicimage4.jpeg'),
+    dDay: -3,
+  },
+  {
+    id: 5,
+    title: '홍콩 여행',
+    dates: ['24.05.10', '24.05.16'],
+    location: '마카오, 홍콩',
+    tags: ['카지노', '찐맛집'],
+    friendList: [
+      {
+        friendId: 1,
+        name: '오정혁',
+      },
+      {
+        friendId: 2,
+        name: '우예인',
+      },
+      {
+        friendId: 3,
+        name: '한서흔',
+      },
+    ],
+    coverImage: require('./assets/images/myTrip/basicimage5.jpeg'),
+    dDay: -10,
+  },
+];
+
+export const dummy_locations = [
+  {
+    locationId: 1,
+    locationName: '도쿄 타워',
+    locationAddress: '4-chome 2-8, Shibakoen, Minato 105-0011 Tokyo Prefecture',
+    isFavorite: true,
+  },
+  {
+    locationId: 2,
+    locationName: '도쿄 디즈니랜드',
+    locationAddress: '4-chome 2-8, Shibakoen, Minato 105-0011 Tokyo Prefecture',
+    isFavorite: true,
+  },
+  {
+    locationId: 3,
+    locationName: '이치란 라멘',
+    locationAddress: '4-chome 2-8, Shibakoen, Minato 105-0011 Tokyo Prefecture',
+    isFavorite: false,
+  },
+  {
+    locationId: 4,
+    locationName: '타코야키',
+    locationAddress: '4-chome 2-8, Shibakoen, Minato 105-0011 Tokyo Prefecture',
+    isFavorite: true,
+  },
+  {
+    locationId: 5,
+    locationName: '디즈니스토어',
+    locationAddress: '4-chome 2-8, Shibakoen, Minato 105-0011 Tokyo Prefecture',
+    isFavorite: false,
+  },
+  {
+    locationId: 6,
+    locationName: '닌텐도 스토어',
+    locationAddress: '4-chome 2-8, Shibakoen, Minato 105-0011 Tokyo Prefecture',
+    isFavorite: false,
+  },
+];
+
+export const dummy_schedules = [
+  {
+    id: 1,
+    date: '2024-05-20',
+    schedule: [
+      {
+        scheduleId: 1,
+        time: '오전 09:00',
+        location: '도쿄 디즈니랜드',
+      },
+      {
+        scheduleId: 2,
+        time: '오전 11:00',
+        location: '이치란 라멘',
+      },
+      {
+        scheduleId: 3,
+        time: '오후 1:00',
+        location: '쇼핑',
+      },
+      {
+        scheduleId: 4,
+        time: '오후 2:00',
+        location: '도쿄 디즈니랜드',
+      },
+      {
+        scheduleId: 5,
+        time: '오후 3:00',
+        location: '이치란 라멘',
+      },
+      {
+        scheduleId: 6,
+        time: '오후 6:00',
+        location: '쇼핑',
+      },
+      {
+        scheduleId: 7,
+        time: '오후 9:00',
+        location: '도쿄 디즈니랜드',
+      },
+      {
+        scheduleId: 8,
+        time: '오후 11:00',
+        location: '이치란 라멘',
+      },
+    ],
+  },
+  {
+    id: 2,
+    date: '2024-05-21',
+    schedule: [
+      {
+        scheduleId: 1,
+        time: '오전 09:00',
+        location: '도쿄타워',
+      },
+      {
+        scheduleId: 2,
+        time: '오전 11:00',
+        location: '푸딩 먹으러 가기',
+      },
+      {
+        scheduleId: 3,
+        time: '오후 1:00',
+        location: '다음 장소로 이동',
+      },
+    ],
+  },
+  {
+    id: 3,
+    date: '2024-05-22',
+    schedule: [
+      {
+        scheduleId: 1,
+        time: '오전 09:00',
+        location: '신주쿠역에서 출발',
+      },
+      {
+        scheduleId: 2,
+        time: '오전 11:00',
+        location: '타코야키 맛집',
+      },
+      {
+        scheduleId: 3,
+        time: '오후 1:00',
+        location: '치이카와 팝업스토어',
+      },
+    ],
+  },
+  {
+    id: 4,
+    date: '2024-05-23',
+    schedule: [
+      {
+        scheduleId: 1,
+        time: '오전 09:00',
+        location: '도쿄 디즈니랜드',
+      },
+      {
+        scheduleId: 2,
+        time: '오전 11:00',
+        location: '이치란 라멘',
+      },
+      {
+        scheduleId: 3,
+        time: '오후 1:00',
+        location: '쇼핑',
+      },
+    ],
+  },
+  {
+    id: 5,
+    date: '2024-05-24',
+    schedule: [
+      {
+        scheduleId: 1,
+        time: '오전 09:00',
+        location: '도쿄 디즈니랜드',
+      },
+      {
+        scheduleId: 2,
+        time: '오전 11:00',
+        location: '이치란 라멘',
+      },
+      {
+        scheduleId: 3,
+        time: '오후 1:00',
+        location: '쇼핑',
+      },
+    ],
+  },
+  {
+    id: 6,
+    date: '2024-05-25',
+    schedule: [
+      {
+        scheduleId: 1,
+        time: '오전 09:00',
+        location: '도쿄 디즈니랜드',
+      },
+      {
+        scheduleId: 2,
+        time: '오전 11:00',
+        location: '이치란 라멘',
+      },
+      {
+        scheduleId: 3,
+        time: '오후 1:00',
+        location: '쇼핑',
+      },
+    ],
+  },
+  {
+    id: 7,
+    date: '2024-05-26',
+    schedule: [
+      {
+        scheduleId: 1,
+        time: '오전 09:00',
+        location: '도쿄 디즈니랜드',
+      },
+      {
+        scheduleId: 2,
+        time: '오전 11:00',
+        location: '이치란 라멘',
+      },
+      {
+        scheduleId: 3,
+        time: '오후 1:00',
+        location: '쇼핑',
+      },
+    ],
+  },
+];
+
 export const dummy_attractions = [
   {
     id: 1,
