@@ -102,12 +102,12 @@ const CommunityArticleDetail = () => {
                 )}
               </View>
               <View style={styles.articleIconContainer}>
-                <TouchableOpacity style={styles.articleIcon}>
+                <View style={styles.articleIcon}>
                   <CommentIcon />
                   <Text style={[fontStyles.basicFont02, styles.commentNum]}>
                     {singleArticle.comments && singleArticle.comments.length}
                   </Text>
-                </TouchableOpacity>
+                </View>
                 <TouchableOpacity style={styles.articleIcon}>
                   <HeartOffIcon />
                   <Text style={[fontStyles.basicFont02, styles.heartNum]}>
