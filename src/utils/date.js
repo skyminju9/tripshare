@@ -40,8 +40,8 @@ export function formatDayTime(timestamp) {
 }
 
 export function formatTime(timestamp) {
-  const hour = new Date(timestamp).getHours();
-  const minute = new Date(timestamp).getMinutes();
+  const hour = ('0' + new Date(timestamp).getHours()).slice(-2);
+  const minute = ('0' + new Date(timestamp).getMinutes()).slice(-2);
 
   return `${hour}:${minute}`;
 }

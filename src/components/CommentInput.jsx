@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
 import { ReplyRegisterIcon } from '../assets';
 import color from '../styles/colorPalette';
 
-const CommentInput = ({
-  onSubmit = () => {
-    console.log('댓글 작성');
-  },
-  chatPlaceHolder,
-}) => {
+const CommentInput = ({ onSubmit, chatPlaceHolder }) => {
   const [contents, setContents] = useState('');
+
+  const handleContentSubmit = () => {
+    onSubmit(contents);
+    setContents('');
+  };
 
   return (
     <View style={styles.commentInputArea}>
@@ -17,11 +17,11 @@ const CommentInput = ({
         <TextInput
           placeholder={chatPlaceHolder}
           value={contents}
-          onChangeText={setContents}
+          onChangeText={text => setContents(text)}
           maxLength={100}
         />
       </View>
-      <TouchableOpacity onPress={onSubmit}>
+      <TouchableOpacity onPress={() => handleContentSubmit()}>
         <Image source={ReplyRegisterIcon} style={styles.replyRegister} />
       </TouchableOpacity>
     </View>

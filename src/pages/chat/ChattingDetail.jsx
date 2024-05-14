@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import color from '../../styles/colorPalette';
 import { WhiteBackArrowIcon } from '../../assets';
@@ -18,24 +18,39 @@ import { formatDate, formatTime } from '../../utils/date';
 import CommentInput from '../../components/CommentInput';
 
 const ChattingDetail = ({ route, navigation }) => {
-  const [chatData, setChatList] = useState(route.params.chatList);
+  const [chatList, setChatList] = useState(route.params.chatList.chatList);
+  const flatList = React.useRef(null);
+
+  const chatInfo = route.params.chatList;
   const user = useAuthUser();
 
   const opponentId = function () {
-    if (user.id === chatData.sendUserId) return chatData.receiveUserId;
-    return chatData.sendUserId;
+    if (user.id === chatInfo.sendUserId) return chatInfo.receiveUserId;
+    return chatInfo.sendUserId;
   };
   const opponentUser = dummy_user.filter(userData => userData.id === opponentId())[0];
 
+  const handleSubmitChat = text => {
+    console.log(text);
+    setChatList([
+      ...chatList,
+      {
+        id: chatList.at(-1).id + 1,
+        userId: user.id,
+        text: text,
+        createdAt: new Date().getTime(),
+        isRead: false,
+      },
+    ]);
+  };
+
   const renderItem = ({ item, index }) => {
-    const beforeDate = chatData.chatList[index - 1]
-      ? formatDate(chatData.chatList[index - 1]?.createdAt)
-      : null;
+    const beforeDate = chatList[index - 1] ? formatDate(chatList[index - 1]?.createdAt) : null;
     const currDate = formatDate(item.createdAt);
     const isSameDay = beforeDate === currDate;
     const isMyChat = item.userId === user.id;
 
-    const beforeUser = chatData.chatList[index - 1]?.userId;
+    const beforeUser = chatList[index - 1]?.userId;
     const currUser = item.userId;
     const isSameUser = beforeUser === currUser;
 
@@ -94,13 +109,15 @@ const ChattingDetail = ({ route, navigation }) => {
         <View style={{ flex: 1 }} />
       </View>
       <FlatList
-        data={chatData.chatList}
+        data={chatList}
+        ref={flatList}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         style={styles.chatListWrapper}
+        onContentSizeChange={() => flatList.current.scrollToEnd()}
       />
       <KeyboardAvoidingView style={styles.chatInputWrapper} behavior="padding">
-        <CommentInput chatPlaceHolder="채팅을 입력해주세요" />
+        <CommentInput chatPlaceHolder="채팅을 입력해주세요" onSubmit={handleSubmitChat} />
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -124,6 +141,7 @@ const styles = StyleSheet.create({
   },
   chatListWrapper: {
     flex: 1,
+    marginBottom: 20,
   },
   chatDate: {
     ...fontStyles.grayFont01,
