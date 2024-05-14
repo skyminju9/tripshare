@@ -126,7 +126,7 @@ const ChattingDetail = ({ route, navigation }) => {
 export default ChattingDetail;
 
 const styles = StyleSheet.create({
-  wrapper: { flex: 1, backgroundColor: color.BLUE_30 },
+  wrapper: { flex: 1, backgroundColor: color.WHITE },
   headerWrapper: {
     flexDirection: 'row',
     backgroundColor: color.BLUE_500,
@@ -141,7 +141,8 @@ const styles = StyleSheet.create({
   },
   chatListWrapper: {
     flex: 1,
-    marginBottom: 20,
+    backgroundColor: color.BLUE_30,
+    paddingBottom: 20,
   },
   chatDate: {
     ...fontStyles.grayFont01,

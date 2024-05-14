@@ -79,12 +79,19 @@ const ChattingHome = ({ navigation }) => {
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.chatHeader}>
         <View style={{ flex: 1 }} />
-        <WhiteLogoIcon />
+        <Text style={fontStyles.whiteTitle02}>채팅목록</Text>
+        {/* <WhiteLogoIcon /> */}
         <TouchableOpacity style={styles.chatHeaderRightWrapper}>
           <WhiteAlertIcon />
         </TouchableOpacity>
       </View>
-      <FlatList data={chatList} renderItem={renderItem} keyExtractor={(item, index) => index} />
+      <FlatList
+        data={chatList}
+        renderItem={renderItem}
+        keyExtractor={(item, index) => index}
+        ItemSeparatorComponent={<View style={styles.chatSeperator} />}
+        style={styles.chatListWrapper}
+      />
     </SafeAreaView>
   );
 };
@@ -99,21 +106,31 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 8,
+    paddingVertical: 16,
     paddingHorizontal: 16,
   },
   chatHeaderRightWrapper: {
     flex: 1,
     alignItems: 'flex-end',
   },
+  chatListWrapper: {
+    flex: 1,
+    width: '100%',
+    paddingHorizontal: 20,
+  },
+  chatSeperator: {
+    width: '100%',
+    height: 1,
+    backgroundColor: color.GRAY_200,
+  },
   chatWrapper: {
     flexDirection: 'row',
-    paddingHorizontal: 20,
+    paddingHorizontal: 4,
     paddingVertical: 16,
   },
   chatContainer: {
     flex: 1,
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
   },
   profileImage: {
     width: 50,
