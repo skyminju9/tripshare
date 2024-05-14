@@ -31,17 +31,17 @@ export function formatDate(timestamp) {
     : `${year}년 ${formattedMonth}월 ${formattedDay}일`;
 }
 
-export function formatDayTime(date) {
-  const day = date.getDate();
-  const hour = date.getHours();
-  const minute = date.getMinutes();
+export function formatDayTime(timestamp) {
+  const day = new Date(timestamp).getDate();
+  const hour = new Date(timestamp).getHours();
+  const minute = new Date(timestamp).getMinutes();
 
   return `${day}일 ${hour}시 ${minute}분`;
 }
 
-export function formatTime(date) {
-  const hour = date.getHours();
-  const minute = date.getMinutes();
+export function formatTime(timestamp) {
+  const hour = new Date(timestamp).getHours();
+  const minute = new Date(timestamp).getMinutes();
 
   return `${hour}:${minute}`;
 }
