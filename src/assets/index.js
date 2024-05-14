@@ -33,6 +33,8 @@ import WriteIcon from './icons/community/meeting/writeIcon.svg';
 import LocationIcon from './icons/community/meeting/locationIcon.svg';
 import TimeIcon from './icons/community/meeting/timeIcon.svg';
 import DoneIcon from './icons/community/meeting/doneIcon.svg';
+import AttractionMapIcon from './icons/community/AttractionMap.svg';
+import RightArrowIcon from './icons/community/right_arrow.svg';
 import MenuIcon from './icons/community/menuIcon.svg';
 
 // register
@@ -97,5 +99,7 @@ export {
   PositionIcon,
   NotiIcon,
   ThemeIcon,
+  AttractionMapIcon,
+  RightArrowIcon,
   MenuIcon,
 };
