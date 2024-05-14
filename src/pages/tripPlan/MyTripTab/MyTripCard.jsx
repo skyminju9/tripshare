@@ -3,7 +3,6 @@ import { useNavigation } from '@react-navigation/native';
 import { PeopleIcon } from '../../../assets/index';
 import color from '../../../styles/colorPalette';
 import fontStyles from '../../../styles/fontStyles';
-const dummyCoverImage = require('../../../assets/images/myTrip/basicimage1.jpeg');
 
 const MyTripCard = ({ item }) => {
   const navigation = useNavigation();
@@ -13,7 +12,7 @@ const MyTripCard = ({ item }) => {
       onPress={() => navigation.navigate('MyTripDetail', { params: item.id })}
       style={styles.tripPlanCard}>
       <View style={styles.planCoverImageWrapper}>
-        <Image source={dummyCoverImage} resizeMode="cover" style={styles.planCoverImage} />
+        <Image source={item.coverImage} resizeMode="cover" style={styles.planCoverImage} />
       </View>
       <View style={styles.planDescriptWrapper}>
         <Text style={fontStyles.title03}>{item.title}</Text>
