@@ -91,24 +91,24 @@ const CommunityHome = ({ navigation }) => {
 const communityList = [
   [
     {
-      icon: <FlashIcon />,
+      icon: <FlashIcon width={36} height={36} />,
       address: 'CommunityMeetingMap',
       category: '번개/동행',
     },
     {
-      icon: <PlaceIcon />,
+      icon: <PlaceIcon width={36} height={36} />,
       address: 'Attractions',
       category: '맛집/명소',
     },
   ],
   [
     {
-      icon: <EventIcon />,
+      icon: <EventIcon width={36} height={36} />,
       address: '',
       category: '이벤트',
     },
     {
-      icon: <FreeTalkIcon />,
+      icon: <FreeTalkIcon width={36} height={36} />,
       address: 'CommunityFreeBoard',
       category: '자유게시판',
     },
