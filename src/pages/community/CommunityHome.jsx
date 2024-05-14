@@ -10,29 +10,32 @@ import { APP_WIDTH } from '../../constants.js';
 
 import { FlashIcon, PlaceIcon, EventIcon, FreeTalkIcon } from '../../assets/index.js';
 
+import { dummy_user } from '../../dummyData.jsx';
 import { useIsFocused } from '@react-navigation/native';
-import { getHotArticleTitle } from '../../firebase/store/ArticleDB.js';
+import { getHotArticleTop3 } from '../../firebase/store/ArticleDB.js';
 
 const CommunityHome = ({ navigation }) => {
-  const [hotTitle, setHotTitle] = useState([]);
+  const [hotArticle, setHotArticle] = useState([]);
   const isFocused = useIsFocused();
 
   const handleContent = data => {
-    const initialTitles = data.map(article => {
+    const initialArticles = data.map(article => {
       const content = article.data();
+      const articleUser = dummy_user.find(user => user.id === content.creator);
 
       return {
         id: article.id,
         title: content.title,
+        authorImage: articleUser.profileImage,
       };
     });
 
-    return initialTitles;
+    return initialArticles;
   };
 
   const getHotTopList = async () => {
-    const lists = await getHotArticleTitle();
-    setHotTitle(handleContent(lists));
+    const lists = await getHotArticleTop3();
+    setHotArticle(handleContent(lists));
   };
 
   useEffect(() => {
@@ -42,7 +45,9 @@ const CommunityHome = ({ navigation }) => {
   const renderHotPost = (item, index) => {
     return (
       <Shadow {...shadowStyles.smallShadow} key={index} stretch>
-        <TouchableOpacity style={styles.hotPostListItemWarpper}>
+        <TouchableOpacity
+          style={styles.hotPostListItemWarpper}
+          onPress={() => navigation.navigate('CommunityArticleDetail', { ...item })}>
           <View style={styles.hotPostListItemDot} />
           <Text style={fontStyles.basicFont01}>{item.title}</Text>
         </TouchableOpacity>
@@ -60,7 +65,7 @@ const CommunityHome = ({ navigation }) => {
             <SeeMoreBtn address="CommunityHotBoard" />
           </View>
           <View style={styles.hotPostListWrapper}>
-            {hotTitle.map((item, index) => {
+            {hotArticle.map((item, index) => {
               return renderHotPost(item, index);
             })}
           </View>
