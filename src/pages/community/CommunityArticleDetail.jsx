@@ -23,7 +23,6 @@ import CommentInput from '../../components/CommentInput';
 import { dummy_comment, dummy_user } from '../../dummyData';
 import ProfileModal from '../../components/ProfileModal';
 import { useAuthUser } from '../../contexts/AuthUserContext';
-import Modal from 'react-native-modal';
 import { APP_WIDTH } from '../../constants';
 
 const CommunityArticleDetail = ({ navigation }) => {
@@ -41,7 +40,6 @@ const CommunityArticleDetail = ({ navigation }) => {
 
   const loginUser = useAuthUser();
   const isPostOwner = article.authorName === loginUser.name;
-  const navigation = useNavigation();
   const [isMenuVisible, setMenuVisible] = useState(false);
   const [isNotiVisible, setNotiVisible] = useState(false);
 
@@ -105,6 +103,7 @@ const CommunityArticleDetail = ({ navigation }) => {
           ))}
         </View>
       </ScrollView>
+
       <KeyboardAvoidingView behavior="padding">
         <CommentInput chatPlaceHolder="댓글을 입력해주세요" />
       </KeyboardAvoidingView>
@@ -114,7 +113,7 @@ const CommunityArticleDetail = ({ navigation }) => {
         onBackdropPress={() => setIsProfileModalVisible(false)}>
         <ProfileModal
           setIsProfileModalVisible={setIsProfileModalVisible}
-          article={article}
+          user={article}
           navigation={navigation}
         />
       </Modal>
