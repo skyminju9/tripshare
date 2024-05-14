@@ -4,13 +4,13 @@ import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 import { setAgoDays } from '../../utils/date';
 
-const ArticleCardHeader = ({ authorImg, authorName, createdAt, setIsProfileModalVisible }) => {
+const ArticleCardHeader = ({ authorImg, authorName, createdAt }) => {
   return (
     <View style={styles.articleHeader}>
-      <TouchableOpacity style={styles.authorProfile} onPress={() => setIsProfileModalVisible(true)}>
+      <View style={styles.authorProfile}>
         <Image source={authorImg} style={styles.authorImage} />
         <Text style={fontStyles.boldFont01}>{authorName}</Text>
-      </TouchableOpacity>
+      </View>
       <View>
         <Text style={[fontStyles.basicFont02, styles.createdAtText]}>{setAgoDays(createdAt)}</Text>
       </View>

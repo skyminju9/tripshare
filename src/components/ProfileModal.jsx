@@ -10,10 +10,10 @@ import {
 } from '../assets';
 import fontStyles from '../styles/fontStyles';
 
-const ProfileModal = ({ setIsProfileModalVisible, article, navigation }) => {
+const ProfileModal = ({ setIsProfileModalVisible, user, navigation }) => {
   const articleButtonHandler = () => {
     setIsProfileModalVisible(false);
-    navigation.navigate('MyPageArticle', { user: { id: article.userId } });
+    navigation.navigate('MyPageArticle', { user: { id: user.userId } });
   };
 
   return (
@@ -27,8 +27,8 @@ const ProfileModal = ({ setIsProfileModalVisible, article, navigation }) => {
         </TouchableOpacity>
       </View>
       <View style={styles.modalBodyWrapper}>
-        <Image source={article.authorImage} style={styles.profileImage} />
-        <Text style={styles.profileName}>{article.authorName}</Text>
+        <Image source={user.profileImage} style={styles.profileImage} />
+        <Text style={styles.profileName}>{user.name}</Text>
       </View>
       <View style={styles.modalBottomWrapper}>
         <TouchableOpacity style={styles.bottomButtonWrapper}>

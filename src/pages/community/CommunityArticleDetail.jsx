@@ -21,12 +21,10 @@ import ArticleCardHeader from '../../components/community/ArticleCardHeader';
 import FeedComment from '../../components/FeedComment';
 import CommentInput from '../../components/CommentInput';
 import { dummy_comment, dummy_user } from '../../dummyData';
-import ProfileModal from '../../components/ProfileModal';
 import { useAuthUser } from '../../contexts/AuthUserContext';
 import { APP_WIDTH } from '../../constants';
 
 const CommunityArticleDetail = ({ navigation }) => {
-  const [isProfileModalVisible, setIsProfileModalVisible] = useState(false);
   const article = useRoute().params;
   const comments = dummy_comment
     .filter(comment => comment.articleId === article.id)
@@ -60,7 +58,6 @@ const CommunityArticleDetail = ({ navigation }) => {
               authorImg={article.authorImage}
               authorName={article.authorName}
               createdAt={article.createdAt}
-              setIsProfileModalVisible={setIsProfileModalVisible}
             />
             {/* Title & Contents */}
             <View style={styles.articleMain}>
@@ -107,16 +104,6 @@ const CommunityArticleDetail = ({ navigation }) => {
       <KeyboardAvoidingView behavior="padding">
         <CommentInput chatPlaceHolder="댓글을 입력해주세요" />
       </KeyboardAvoidingView>
-
-      <Modal
-        isVisible={isProfileModalVisible}
-        onBackdropPress={() => setIsProfileModalVisible(false)}>
-        <ProfileModal
-          setIsProfileModalVisible={setIsProfileModalVisible}
-          user={article}
-          navigation={navigation}
-        />
-      </Modal>
 
       {/* 게시글 메뉴 모달 */}
       <Modal
