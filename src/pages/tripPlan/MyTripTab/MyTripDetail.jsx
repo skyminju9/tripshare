@@ -9,6 +9,9 @@ import { MoreIcon, PeopleIcon } from '../../../assets/index';
 import { LocationTab } from './LocationTab';
 import { ScheduleTab } from './ScheduleTab';
 import { ChecklistTab } from './ChecklistTab';
+import TripTag from '../../../components/myTrip/TripTag';
+import { MapIcon } from '../../../assets/index';
+
 const Tab = createMaterialTopTabNavigator();
 
 const MyTripDetail = ({ route }) => {
@@ -27,19 +30,36 @@ const MyTripDetail = ({ route }) => {
         }
       />
       <View style={styles.tripInfoWrapper}>
-        <Text style={fontStyles.title03}>
-          여행까지 <Text style={styles.dDayText}>{item.dDay}</Text>일 남았어요!
-        </Text>
+        {item.dDay >= 0 ? (
+          <Text style={fontStyles.title03}>
+            여행까지 <Text style={styles.dDayText}>{item.dDay}</Text>일 남았어요!
+          </Text>
+        ) : (
+          <Text style={fontStyles.title03}>
+            여행이 끝난 지 <Text style={styles.dDayText}>{item.dDay * -1}</Text>일 되었어요!
+          </Text>
+        )}
         <Text style={fontStyles.basicFont02}>
           {item.dates[0]} ~ {item.dates[1]}
         </Text>
-        <View style={styles.friendsListWrapper}>
+        <View style={styles.listWrapper}>
           <PeopleIcon />
           <View style={styles.friendsList}>
             {item.friendList.map((friend, frinedId) => (
-              <Text key={frinedId}>{friend.name}</Text>
+              <Text style={fontStyles.basicFont02} key={frinedId}>
+                {friend.name}
+              </Text>
             ))}
           </View>
+        </View>
+        <View style={styles.listWrapper}>
+          <MapIcon />
+          <Text style={fontStyles.basicFont02}>{item.location}</Text>
+        </View>
+        <View style={{ flexDirection: 'row', marginTop: 4 }}>
+          {item.tags.map((item, index) => (
+            <TripTag key={index} text={item} />
+          ))}
         </View>
       </View>
       <Tab.Navigator
@@ -69,7 +89,7 @@ const styles = StyleSheet.create({
   },
   tripInfoWrapper: { marginTop: 24, marginHorizontal: 20, gap: 8 },
   dDayText: { color: color.BLUE_500 },
-  friendsListWrapper: { flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 4 },
+  listWrapper: { flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 2 },
   friendsList: { flexDirection: 'row', gap: 2 },
 });
 
