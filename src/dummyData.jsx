@@ -49,6 +49,16 @@ export const dummy_user = [
     bookmarkList: [2, 3, 5, 6, 7],
     interestArea: 'japan',
   },
+  {
+    id: 6,
+    name: '김민주',
+    nickname: '마루마루6',
+    profileImage: require('./assets/images/dummy/dummyProfile_6.png'),
+    email: 'test6@test.com',
+    password: 'password',
+    bookmarkList: [2, 3, 5, 6, 7],
+    interestArea: 'japan',
+  },
 ];
 
 export const dummy_article = [
