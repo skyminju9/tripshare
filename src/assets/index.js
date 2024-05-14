@@ -68,6 +68,7 @@ import AddIcon from './icons/myTrip/add.svg';
 import PlusIcon from './icons/myTrip/plusButton.svg';
 import BackIcon from './icons/header/back_arrow.svg';
 import CameraIcon from './icons/myTrip/camera.svg';
+import MapIcon from './icons/myTrip/map.svg';
 
 export {
   HomeIcon,
@@ -128,4 +129,5 @@ export {
   AttractionMapIcon,
   RightArrowIcon,
   MenuIcon,
+  MapIcon
 };
