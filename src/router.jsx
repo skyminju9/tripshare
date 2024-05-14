@@ -24,9 +24,20 @@ import MyPageArticle from './pages/myPage/MyPageArticle';
 import MyPageBookmark from './pages/myPage/MyPageBookmark';
 import MyPageComment from './pages/myPage/MyPageComment';
 import CommunityArticleDetail from './pages/community/CommunityArticleDetail';
+import MyTrip from './pages/tripPlan/MyTripTab/MyTrip';
+import MyTripDetail from './pages/tripPlan/MyTripTab/MyTripDetail';
+import AddSchedule from './pages/tripPlan/MyTripTab/AddSchedule';
+import FavoriteLocation from './pages/tripPlan/MyTripTab/FavoriteLocation';
+import SearchLocations from './pages/tripPlan/MyTripTab/SearchLocations';
+import AddMyRecord from './pages/tripPlan/MyTripTab/AddMyRecord';
+import MyTripMore from './pages/tripPlan/MyTripTab/MyTripMore';
+import FavoriteLocationList from './pages/tripPlan/MyTripTab/FavoriteLocationList';
+import SearchLocationList from './pages/tripPlan/MyTripTab/SearchLocationList';
 import CommmunitySearchResultPage from './pages/community/CommunitySearchResultPage';
 import CommunitySearchPage from './pages/community/CommunitySearchPage';
 import ChattingDetail from './pages/chat/ChattingDetail';
+import MyRecordMore from './pages/tripPlan/MyTripTab/MyRecordMore';
+import Attractions from './pages/community/Attractions';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -78,6 +89,8 @@ export const MainStack = () => {
       <Stack.Screen name="LocationSetting" component={LocationSetting} />
       <Stack.Screen name="CommunityArticleDetail" component={CommunityArticleDetail} />
       <Stack.Screen name="CommunitySearchPage" component={CommunitySearchPage} />
+      <Stack.Screen name="Attractions" component={Attractions} />
+
       <Stack.Screen
         name="CommunitySearchResultPage"
         component={CommmunitySearchResultPage}
@@ -85,6 +98,18 @@ export const MainStack = () => {
       />
       {/* CHATTING */}
       <Stack.Screen name="ChattingDetail" component={ChattingDetail} />
+      {/* MY TRIP */}
+      <Stack.Screen name="MyTrip" component={MyTrip} />
+      <Stack.Screen name="MyTripDetail" component={MyTripDetail} />
+      <Stack.Screen name="AddSchedule" component={AddSchedule} />
+      <Stack.Screen name="FavoriteLocation" component={FavoriteLocation} />
+      <Stack.Screen name="SearchLocations" component={SearchLocations} />
+      <Stack.Screen name="AddMyRecord" component={AddMyRecord} />
+      <Stack.Screen name="MyTripMore" component={MyTripMore} />
+      <Stack.Screen name="FavoriteLocationList" component={FavoriteLocationList} />
+      <Stack.Screen name="SearchLocationList" component={SearchLocationList} />
+      <Stack.Screen name="MyRecordMore" component={MyRecordMore} />
+
       {/* MY PAGE */}
       <Stack.Screen name="MyPageArticle" component={MyPageArticle} />
       <Stack.Screen name="MyPageBookmark" component={MyPageBookmark} />

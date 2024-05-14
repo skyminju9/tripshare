@@ -33,6 +33,9 @@ import WriteIcon from './icons/community/meeting/writeIcon.svg';
 import LocationIcon from './icons/community/meeting/locationIcon.svg';
 import TimeIcon from './icons/community/meeting/timeIcon.svg';
 import DoneIcon from './icons/community/meeting/doneIcon.svg';
+import AttractionMapIcon from './icons/community/AttractionMap.svg';
+import RightArrowIcon from './icons/community/right_arrow.svg';
+import MenuIcon from './icons/community/menuIcon.svg';
 
 // chat icon
 import WhiteLogoIcon from './icons/chat/whiteLogo.svg';
@@ -56,6 +59,21 @@ import MyCommentIcon from './icons/myPage/myCommentIcon.svg';
 import PositionIcon from './icons/myPage/positionIcon.svg';
 import NotiIcon from '../assets/icons/header/notification.svg';
 import ThemeIcon from './icons/myPage/themeIcon.svg';
+
+//mytrip
+import SearchLocationIcon from './icons/myTrip/location.svg';
+import SearchTimeIcon from './icons/myTrip/time.svg';
+import BlueHeartIcon from './icons/myTrip/favorite_blue.svg';
+import BlueSearchIcon from './icons/myTrip/search_blue.svg';
+import ModalCloseIcon from './icons/myTrip/close.svg';
+import BlackSearchIcon from './icons/myTrip/search.svg';
+import MoreIcon from './icons/myTrip/more.svg';
+import PeopleIcon from './icons/myTrip/people.svg';
+import AddIcon from './icons/myTrip/add.svg';
+import PlusIcon from './icons/myTrip/plusButton.svg';
+import BackIcon from './icons/header/back_arrow.svg';
+import CameraIcon from './icons/myTrip/camera.svg';
+import MapIcon from './icons/myTrip/map.svg';
 
 export {
   HomeIcon,
@@ -104,4 +122,20 @@ export {
   WhiteLogoIcon,
   WhiteAlertIcon,
   WhiteBackArrowIcon,
+  SearchLocationIcon,
+  SearchTimeIcon,
+  BlueHeartIcon,
+  BlueSearchIcon,
+  ModalCloseIcon,
+  BlackSearchIcon,
+  MoreIcon,
+  PeopleIcon,
+  AddIcon,
+  PlusIcon,
+  BackIcon,
+  CameraIcon,
+  AttractionMapIcon,
+  RightArrowIcon,
+  MenuIcon,
+  MapIcon,
 };

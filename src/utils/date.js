@@ -45,3 +45,22 @@ export function formatTime(timestamp) {
 
   return `${hour}:${minute}`;
 }
+export function clock(date) {
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+
+  if (hours > 12) {
+    const shortHours = hours - 12;
+    if (minutes < 10) {
+      return `오후 ${shortHours}:0${minutes}`;
+    } else {
+      return `오후 ${shortHours}:${minutes}`;
+    }
+  } else {
+    if (minutes < 10) {
+      return `오전 ${hours}:0${minutes}`;
+    } else {
+      return `오전 ${hours}:${minutes}`;
+    }
+  }
+}
