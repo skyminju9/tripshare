@@ -4,13 +4,7 @@ import { APP_WIDTH } from '../../constants';
 import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 import shadowStyles from '../../styles/shadowStyles';
-import {
-  CommentIcon,
-  BookmarkOnIcon,
-  BookmarkOffIcon,
-  HeartOnIcon,
-  HeartOffIcon,
-} from '../../assets/index';
+import { CommentIcon, BookmarkOnIcon, BookmarkOffIcon, HeartOffIcon } from '../../assets/index';
 import { useAuthUser } from '../../contexts/AuthUserContext';
 import { dummy_user } from '../../dummyData';
 import { Shadow } from 'react-native-shadow-2';
@@ -28,7 +22,11 @@ const ArticleCard = ({ item: article }) => {
     <Shadow {...shadowStyles.smallShadow} stretch>
       <TouchableOpacity
         style={styles.articleContainer}
-        onPress={() => navigation.navigate('CommunityArticleDetail', { ...article })}>
+        onPress={() =>
+          navigation.navigate('CommunityArticleDetail', {
+            ...article,
+          })
+        }>
         <ArticleCardHeader
           authorImg={article.authorImage}
           authorName={article.authorName}
@@ -77,7 +75,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 12,
     paddingHorizontal: 20,
-    paddingVertical: 16,
+    paddingVertical: 20,
     height: APP_WIDTH / 2.6,
     backgroundColor: '#FFF',
     borderWidth: 1,

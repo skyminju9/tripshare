@@ -29,7 +29,7 @@ import { useAuthUser } from '../../contexts/AuthUserContext';
 const MyPageHome = ({ navigation }) => {
   const user = useAuthUser();
 
-  const [username, setUsername] = useState(user.nickname);
+  const [username, setUsername] = useState(user.name);
   const [profileImg, setProfileImg] = useState(user.profileImage);
   const [edit, setEdit] = useState(false);
 
@@ -91,7 +91,7 @@ const MyPageHome = ({ navigation }) => {
       <TouchableOpacity
         key={index}
         style={styles.menuWrapper}
-        onPress={() => navigation.navigate(item.navigateTo, { user: user })}>
+        onPress={() => navigation.navigate(item.navigateTo)}>
         <View style={styles.menuBtnWrapper}>{item.icon}</View>
         <Text style={fontStyles.basicFont01}>{item.title}</Text>
       </TouchableOpacity>

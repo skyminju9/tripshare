@@ -17,24 +17,28 @@ import { APP_WIDTH } from '../../constants';
 import ImagePicker from 'react-native-image-crop-picker';
 import { useAuthUser } from '../../contexts/AuthUserContext';
 
-import { addArticle } from '../../firebase/store/ArticleDB';
+import { addArticle, editArticle } from '../../firebase/store/ArticleDB';
 
 const tags = ['잡담', '질문', '정보'];
 
 const CommunityPostPage = ({ navigation, route }) => {
   const user = useAuthUser();
   const isEdit = route.params.edit;
+  const [contentData, setContentData] = useState(route.params.data || []);
 
-  const [titleText, setTitleText] = useState('');
-  const [contentText, setContentText] = useState('');
-  const [tag, setTag] = useState('');
-  const [imagePath, setImagePath] = useState('');
+  const [titleText, setTitleText] = useState(contentData.title || '');
+  const [contentText, setContentText] = useState(contentData.contents || '');
+  const [tag, setTag] = useState(contentData.tag || '');
+  const [imagePath, setImagePath] = useState(contentData.images || []);
 
-  const onPressTag = useCallback(activeTag => {
-    if (activeTag) {
-      setTag(activeTag);
-    }
-  }, []);
+  const onPressTag = useCallback(
+    activeTag => {
+      if (activeTag) {
+        setTag(activeTag);
+      }
+    },
+    [tag],
+  );
 
   const handleImagePicker = () => {
     ImagePicker.openPicker({
@@ -81,16 +85,24 @@ const CommunityPostPage = ({ navigation, route }) => {
       contents: contentText,
       createdAt: new Date().getTime(),
       creator: user.id,
-      bookmarked: 0,
-      liked: 0,
+      bookmarked: !isEdit ? 0 : contentData.bookmarked,
+      liked: !isEdit ? 0 : contentData.liked,
       tag: tag,
       images: imagePath,
-      comments: [],
+      comments: !isEdit ? [] : contentData.comments,
     };
-    const result = addArticle(data);
-    if (result) {
-      console.log('Article added!');
-      navigation.navigate('CommunityFreeBoard');
+    if (!isEdit) {
+      const result = addArticle(data);
+      if (result) {
+        console.log('Article added!');
+        navigation.navigate('CommunityFreeBoard');
+      }
+    } else {
+      const result = editArticle(contentData.id, data);
+      if (result) {
+        console.log('Article edited!');
+        navigation.navigate('CommunityFreeBoard');
+      }
     }
   };
 
@@ -127,7 +139,7 @@ const CommunityPostPage = ({ navigation, route }) => {
           </View>
         </View>
         <View style={styles.tagWrapper}>
-          <ArticleTagList tags={tags} onPressTag={onPressTag} />
+          <ArticleTagList currentTag={tag} tags={tags} onPressTag={onPressTag} />
         </View>
         <View style={styles.titleWrapper}>
           <Text style={fontStyles.title03}>사진 등록하기</Text>

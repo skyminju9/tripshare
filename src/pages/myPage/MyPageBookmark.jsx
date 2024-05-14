@@ -8,28 +8,44 @@ import { formatDate } from '../../utils/date';
 import ArticleCard from '../../components/community/ArticleCard';
 import fontStyles from '../../styles/fontStyles';
 
+import { useIsFocused } from '@react-navigation/native';
+import { getMyBookmarkedList } from '../../firebase/store/ArticleDB';
+
 const MyPageBookmark = () => {
   const user = useAuthUser();
   const [articleData, setArticleData] = useState([]);
+  const isFocused = useIsFocused();
+
+  const handleContent = data => {
+    const initialArticles = data.map(article => {
+      const content = article._data;
+      const articleUser = dummy_user.find(user => user.id === content.creator);
+
+      return {
+        id: article.id,
+        ...content,
+        authorName: articleUser.name,
+        authorImage: articleUser.profileImage,
+      };
+    });
+
+    return initialArticles;
+  };
+
+  const getMyBookmarked = async () => {
+    const lists = await getMyBookmarkedList(user.bookmarkList);
+    setArticleData(handleContent(lists));
+  };
 
   useEffect(() => {
-    createArticleData();
-  }, []);
-
-  const createArticleData = () => {
-    const userData = dummy_user.filter(data => data.id === user.id).pop();
-    const bookmarkList = userData.bookmarkList;
-    const bookmarkedArticle = dummy_article.filter(item => bookmarkList.includes(item.id));
-    setArticleData(bookmarkedArticle);
-  };
+    getMyBookmarked();
+  }, [isFocused]);
 
   const renderItem = (item, index) => {
     let isSameDate = false;
-    if (!!articleData[index - 1]) {
+    if (articleData[index - 1]) {
       isSameDate = formatDate(item.createdAt) === formatDate(articleData[index - 1]?.createdAt);
     }
-    item.authorImage = user.profileImage;
-    item.authorName = user.name;
 
     return (
       <View style={styles.cardContainer}>

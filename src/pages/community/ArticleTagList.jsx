@@ -3,10 +3,10 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 
-const ArticleTagList = ({ tags, onPressTag }) => {
+const ArticleTagList = ({ currentTag, tags, onPressTag }) => {
   const [activeTag, setActiveTag] = useState(null);
 
-  useEffect(() => setActiveTag(null), []);
+  useEffect(() => setActiveTag(currentTag), []);
   useEffect(() => {
     onPressTag(activeTag);
   }, [activeTag, onPressTag]);

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, Image, TextInput, TouchableOpacity, Keyboard } from 'react-native';
 import { ReplyRegisterIcon } from '../assets';
 import color from '../styles/colorPalette';
 
 import { addComment } from '../firebase/store/ArticleDB';
 
-const CommentInput = ({ onSubmit, chatPlaceHolder, id, creator, comment = false }) => {
+const CommentInput = ({ onSubmit, chatPlaceHolder, creator, article, comment = false }) => {
   const [contents, setContents] = useState('');
 
   const setComment = async () => {
@@ -15,15 +15,18 @@ const CommentInput = ({ onSubmit, chatPlaceHolder, id, creator, comment = false 
       creator: creator,
       liked: 0,
     };
-    const result = await addComment(id, data);
+    const result = await addComment(article.id, article.comments, data);
     if (result) {
       console.log('댓글 작성');
+      setContents('');
+      Keyboard.dismiss();
     }
   };
 
   const handleContentSubmit = () => {
     onSubmit(contents);
     setContents('');
+    Keyboard.dismiss();
   };
 
   return (
