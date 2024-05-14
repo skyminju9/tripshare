@@ -17,7 +17,6 @@ import Toast from 'react-native-toast-message';
 import ImagePicker from 'react-native-image-crop-picker';
 
 const AddMyRecord = ({ navigation }) => {
-  const [showOk, setShowOk] = useState(false);
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -111,6 +110,8 @@ const AddMyRecord = ({ navigation }) => {
               multiline
               maxLength={200}
               onChangeText={text => setContent(text)}
+              editable
+              textAlignVertical="top"
             />
             <View style={styles.imageArea}>
               {image && <Image source={{ uri: image.path }} style={styles.imageStyle} />}
