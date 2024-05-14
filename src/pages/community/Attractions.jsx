@@ -17,7 +17,7 @@ import { dummy_attractions } from '../../dummyData';
 
 const tags = ['맛집', '명소'];
 
-const Attractions = () => {
+const Attractions = ({ navigation }) => {
   const [attractionList, setAttractionList] = useState();
 
   const initialAttraction = dummy_attractions;
@@ -25,8 +25,6 @@ const Attractions = () => {
   useEffect(() => {
     setAttractionList(initialAttraction);
   }, []);
-
-  console.log(attractionList);
 
   const onPressTag = useCallback(activeTag => {
     if (activeTag) {
@@ -36,7 +34,9 @@ const Attractions = () => {
 
   const renderItem = ({ item }) => {
     return (
-      <TouchableOpacity style={styles.placeCard}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('AttractionDetail', { params: item })}
+        style={styles.placeCard}>
         <Image source={item.coverImage} style={styles.coverImageStyle} />
         <View style={styles.infoWrapper}>
           <View style={styles.placNameWrapper}>
