@@ -14,6 +14,7 @@ import { loadExchangeData } from '../../services/exchangeRateService';
 import { loadTimeDifference } from '../../services/timeService';
 import { getExchangeRateInfo } from '../../utils/getExchangeRateInfo';
 import data from '../../PrimaryRegions.json';
+import Loading from '../../assets/images/Home/loading.gif';
 
 const HomePage = () => {
   const locationContext = useLocation();
@@ -105,9 +106,16 @@ const HomePage = () => {
 
   if (loading) {
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>데이터 로딩 중...</Text>
-      </View>
+      <SafeAreaView style={[styles.wrapper, { justifyContent: 'center', alignItems: 'center' }]}>
+        <View
+          style={[
+            styles.container,
+            { justifyContent: 'center', alignItems: 'center', marginBottom: 50 },
+          ]}>
+          <Image source={Loading} style={{ width: 130, height: 130, marginBottom: 20 }} />
+          <Text style={fontStyles.title01}>데이터를 불러오는 중입니다</Text>
+        </View>
+      </SafeAreaView>
     );
   }
 
