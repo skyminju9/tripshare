@@ -34,7 +34,14 @@ const CommunityHome = ({ navigation }) => {
   const renderCommunityItems = (item, index) => {
     return (
       <View style={styles.communityListItemWrapper} key={index}>
-        <Shadow {...shadowStyles.smallShadow} stretch>
+        <Shadow
+          {...{
+            distance: 5,
+            startColor: '#7777770D',
+            endColor: '#77777700',
+            offset: [0, 5],
+          }}
+          stretch>
           <TouchableOpacity
             style={styles.communityListItem}
             onPress={() => navigation.navigate(item.address)}>
@@ -116,7 +123,7 @@ const styles = StyleSheet.create({
 
   mainWrapper: {
     flex: 1,
-    paddingTop: 16,
+    paddingTop: 24,
     paddingHorizontal: 24,
     gap: 32,
   },
