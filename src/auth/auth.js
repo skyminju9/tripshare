@@ -26,6 +26,7 @@ export const checkUniqueEmail = async email => {
 export const signUp = async ({ email, password }) => {
   try {
     await auth().createUserWithEmailAndPassword(email, password);
+    await registerUser({ email });
     console.log('created successfully');
   } catch (e) {
     if (e.code === 'auth/email-already-in-use') {
@@ -49,7 +50,6 @@ export const signOut = async () => {
 export const userLogin = async ({ email, password }) => {
   try {
     await auth().signInWithEmailAndPassword(email, password);
-    await registerUser({ email });
     console.log('User account created & signed in!');
   } catch (e) {
     if (e.code === 'auth/invalid-credential') {
@@ -102,11 +102,10 @@ export const registerUser = async ({ email }) => {
   }
 };
 
-export const registerUserName = async ({ name, email }) => {
+export const changeUserName = async ({ name, email }) => {
   try {
     const querySnapshot = await firestore().collection('users').where('email', '==', email).get();
     const userDocId = querySnapshot.docs[0]?.id;
-
     if (userDocId)
       await firestore().collection('users').doc(userDocId).update({
         name,

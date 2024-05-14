@@ -39,6 +39,7 @@ import ChattingDetail from './pages/chat/ChattingDetail';
 import MyRecordMore from './pages/tripPlan/MyTripTab/MyRecordMore';
 import Attractions from './pages/community/Attractions';
 import AttractionsMap from './components/community/AttractionsMap';
+import PublicSplash from './pages/register/PublicSplash';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -63,7 +64,8 @@ const BottomTab = () => {
 
 export const LoginStack = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="PublickSplash" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="PublickSplash" component={PublicSplash} />
       <Stack.Screen name="LoginPage" component={LoginPage} />
       <Stack.Screen name="SignUpPage" component={SignUpPage} />
       <Stack.Screen name="MainStack" component={MainStack} />
