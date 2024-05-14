@@ -31,9 +31,13 @@ const MyTripDetail = ({ route }) => {
       />
       <View style={styles.tripInfoWrapper}>
         {item.dDay >= 0 ? (
-          <Text style={fontStyles.title03}>
-            여행까지 <Text style={styles.dDayText}>{item.dDay}</Text>일 남았어요!
-          </Text>
+          item.dDay !== 0 ? (
+            <Text style={fontStyles.title03}>
+              여행까지 <Text style={styles.dDayText}>{item.dDay}</Text>일 남았어요!
+            </Text>
+          ) : (
+            <Text style={fontStyles.title03}>여행 당일이에요!</Text>
+          )
         ) : (
           <Text style={fontStyles.title03}>
             여행이 끝난 지 <Text style={styles.dDayText}>{item.dDay * -1}</Text>일 되었어요!
