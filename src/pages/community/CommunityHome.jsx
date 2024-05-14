@@ -67,7 +67,9 @@ const CommunityHome = ({ navigation }) => {
                 </TouchableOpacity>
               </Shadow>
               <Shadow style={styles.communityListItemWrapper} {...shadowStyles.smallShadow} stretch>
-                <TouchableOpacity style={styles.communityListItem}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('EventPage')}
+                  style={styles.communityListItem}>
                   <Text style={fontStyles.basicFont01}>이벤트</Text>
                   <EventIcon />
                 </TouchableOpacity>
