@@ -1,20 +1,30 @@
-/**
- * Get the last valid weekday (business day) within business hours (11AM - 4PM)
- * @returns {string} - The last valid weekday date in 'YYYYMMDD' format
- */
 export const getLastWeekday = () => {
   const today = new Date();
-  let hours = today.getHours();
-  let day = today.getDay(); // 0: Sunday, ..., 6: Saturday
+  let lastWeekday = new Date(today);
 
-  // If it's not a weekday or outside of business hours, adjust to the last business day
-  while (day === 0 || day === 6 || hours < 11 || hours >= 16) {
-    today.setDate(today.getDate() - 1);
-    today.setHours(16, 0, 0, 0); // Set time to end of business day
-    day = today.getDay();
-    hours = today.getHours();
+  const hours = today.getHours();
+  const day = today.getDay(); // 0: Sunday, ..., 6: Saturday
+
+  // 일요일인 경우
+  if (day === 0) {
+    lastWeekday.setDate(today.getDate() - 2); // Set to last Friday
+  }
+  // 토요일인 경우
+  else if (day === 6) {
+    lastWeekday.setDate(today.getDate() - 1); // Set to last Friday
+  }
+  // 월요일 오전 11시 이전인 경우
+  else if (day === 1 && hours < 11) {
+    lastWeekday.setDate(today.getDate() - 3); // Set to last Friday
+  }
+  // 화요일에서 금요일 오전 11시 이전인 경우
+  else if (hours < 11) {
+    lastWeekday.setDate(today.getDate() - 1); // Set to previous day
+  }
+  // 그 외의 경우 (영업일)
+  else {
+    lastWeekday = today; // Use today
   }
 
-  // Format the date to 'YYYYMMDD'
-  return today.toISOString().split('T')[0].replace(/-/g, '');
+  return lastWeekday.toISOString().split('T')[0].replace(/-/g, '');
 };

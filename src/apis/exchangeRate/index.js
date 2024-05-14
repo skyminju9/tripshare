@@ -23,7 +23,21 @@ export const fetchExchangeData = async searchDate => {
 
     return response.data;
   } catch (error) {
-    console.error('API 요청 실패:', error);
-    throw error;
+    if (error.response && error.response.status === 404) {
+      // Try one more day before if no data is available
+      const newDate = new Date(
+        searchDate.substring(0, 4) +
+          '-' +
+          searchDate.substring(4, 6) +
+          '-' +
+          searchDate.substring(6, 8),
+      );
+      newDate.setDate(newDate.getDate() - 1);
+      const previousDate = newDate.toISOString().split('T')[0].replace(/-/g, '');
+      return await fetchExchangeData(previousDate);
+    } else {
+      console.error('API 요청 실패:', error);
+      throw error;
+    }
   }
 };
