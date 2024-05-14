@@ -8,13 +8,11 @@ import LogoHeader from '../../components/LogoHeader';
 import { useLocation } from '../../contexts/LocationContext';
 import { useAuthUser } from '../../contexts/AuthUserContext';
 import MainPostSlide from '../../components/home/MainPostSlide';
-import { fetchFlags } from '../../apis/countryFlags';
-import { fetchForecastData } from '../../apis/weather';
-import { fetchExchangeData } from '../../apis/exchangeRate';
-import { fetchTimeDifference } from '../../apis/timeDifference';
-import { getEnglishName } from '../../utils/getEnglishName';
-import { getLastWeekday } from '../../utils/getLastWeekday';
-import iconMapping from '../../constans/weatherIcons';
+import { loadFlagData } from '../../services/flagService';
+import { loadForecastData } from '../../services/weatherService';
+import { loadExchangeData } from '../../services/exchangeRateService';
+import { loadTimeDifference } from '../../services/timeService';
+import { getExchangeRateInfo } from '../../utils/getExchangeRateInfo';
 import data from '../../PrimaryRegions.json';
 
 const HomePage = () => {
@@ -42,13 +40,21 @@ const HomePage = () => {
     const loadData = async () => {
       setLoading(true);
       try {
-        await Promise.all([
-          loadFlagData(),
-          loadForecastData(),
-          loadExchangeData(),
-          loadTimeDifference(),
-          updateVoltage(),
-        ]);
+        const flagData = await loadFlagData();
+        setFlagData(flagData);
+
+        const forecastData = await loadForecastData(selectedCountry, selectedCity);
+        setMinTemp(forecastData.minTemp);
+        setMaxTemp(forecastData.maxTemp);
+        setSummaryIcon(forecastData.summaryIcon);
+
+        const exchangeData = await loadExchangeData();
+        setExchangeData(exchangeData);
+
+        const timeDifference = await loadTimeDifference(selectedCountry, selectedCity);
+        setTimeDifference(timeDifference);
+
+        updateVoltage();
         setLoading(false);
       } catch (error) {
         setError(`Error: ${error.message}`);
@@ -70,19 +76,12 @@ const HomePage = () => {
     }
   }, [locationContext.selectedCountry, locationContext.selectedCity]);
 
-  const loadFlagData = async () => {
-    try {
-      const data = await fetchFlags();
-      setFlagData(data);
-    } catch (error) {
-      setError(`Error: ${error.message}`);
-    }
-  };
-
   const updateFlag = () => {
     let countryName = selectedCountry;
     if (countryName === '미국') {
       countryName = '미합중국';
+    } else if (countryName === '터키') {
+      countryName = '튀르키예공화국';
     }
 
     const result = flagData.find(flag => flag.country_nm === countryName);
@@ -93,103 +92,12 @@ const HomePage = () => {
     }
   };
 
-  const loadExchangeData = async () => {
-    try {
-      const dateToFetch = getLastWeekday();
-      const data = await fetchExchangeData(dateToFetch);
-      if (!data || data.length === 0) {
-        throw new Error('No exchange rate data available for the requested date');
-      }
-      setExchangeData(data);
-    } catch (error) {
-      setError(`Error: ${error.message}`);
-      console.error('Error fetching exchange data:', error);
-    }
-  };
-
-  const loadForecastData = async () => {
-    try {
-      const { country: englishCountry, city: englishCity } =
-        getEnglishName(selectedCountry, selectedCity) || {};
-
-      if (!englishCity) {
-        throw new Error('Invalid city selection');
-      }
-
-      const data = await fetchForecastData(englishCity, englishCountry);
-
-      const today = new Date().getDate();
-      const todayData = data.list.filter(item => new Date(item.dt_txt).getDate() === today);
-
-      const temps = todayData.map(item => item.main.temp);
-      setMinTemp(Math.round(Math.min(...temps)));
-      setMaxTemp(Math.round(Math.max(...temps)));
-
-      let rainDetected = false;
-      let thunderstormDetected = false;
-      let iconFrequency = {};
-
-      todayData.forEach(item => {
-        const weatherMain = item.weather[0].main.toLowerCase();
-        const icon = item.weather[0].icon;
-
-        if (weatherMain.includes('rain')) {
-          rainDetected = true;
-        }
-        if (weatherMain.includes('thunderstorm')) {
-          thunderstormDetected = true;
-        }
-
-        iconFrequency[icon] = (iconFrequency[icon] || 0) + 1;
-      });
-
-      if (rainDetected && thunderstormDetected) {
-        setSummaryIcon(iconMapping['rainyThunderstorm']);
-      } else if (thunderstormDetected) {
-        setSummaryIcon(iconMapping['11d']);
-      } else if (rainDetected) {
-        setSummaryIcon(iconMapping['10d']);
-      } else {
-        let mostFrequentIcon = Object.keys(iconFrequency).reduce((a, b) =>
-          iconFrequency[a] > iconFrequency[b] ? a : b,
-        );
-        setSummaryIcon(iconMapping[mostFrequentIcon]);
-      }
-    } catch (err) {
-      setError(err);
-    }
-  };
-
-  const loadTimeDifference = async () => {
-    try {
-      const { lat, lon } = getEnglishName(selectedCountry, selectedCity) || {};
-      if (lat === undefined || lon === undefined) {
-        throw new Error('Invalid location data');
-      }
-      const difference = await fetchTimeDifference(lat, lon);
-      setTimeDifference(difference);
-    } catch (err) {
-      setError(err);
-    }
-  };
-
   const updateVoltage = () => {
     const countryData = data[selectedCountry];
     if (countryData && countryData['전압']) {
       setVoltage(countryData['전압']);
     } else {
       setVoltage('정보없음');
-    }
-  };
-
-  const getExchangeRateInfo = () => {
-    const countryCurrency = data[selectedCountry]?.통화;
-    const match = exchangeData.find(item => item.cur_unit === countryCurrency);
-
-    if (match) {
-      return `${match.deal_bas_r} / ${match.cur_unit}`;
-    } else {
-      return '정보없음';
     }
   };
 
@@ -253,7 +161,9 @@ const HomePage = () => {
             <View style={styles.infoBottom}>
               <View style={styles.box2}>
                 <Text style={[fontStyles.title03, styles.infoTitle]}>환율</Text>
-                <Text style={fontStyles.basicFont02}>{getExchangeRateInfo()}</Text>
+                <Text style={fontStyles.basicFont02}>
+                  {getExchangeRateInfo(selectedCountry, exchangeData)}
+                </Text>
               </View>
               <View style={styles.box2}>
                 <Text style={[fontStyles.title03, styles.infoTitle]}>시차</Text>
@@ -329,7 +239,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     flexDirection: 'row',
     paddingLeft: 20,
-    paddingRight: 15,
+    paddingRight: 10,
     alignItems: 'center',
   },
   box2: {
