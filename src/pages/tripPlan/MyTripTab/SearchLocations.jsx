@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   View,
@@ -26,25 +26,23 @@ const SearchLocations = ({ route }) => {
   const date = route.params.params;
 
   const showToast = () => {
-    Toast.show({
-      type: 'success',
-      text1: `${selectedLocation.locationName}`,
-      text2: '장소가 선택되었습니다.',
-    });
+    if (selectedLocation) {
+      Toast.show({
+        type: 'success',
+        text1: `${selectedLocation.locationName}`,
+        text2: '장소가 선택되었습니다.',
+      });
+    }
+  };
+
+  const handlePressLocation = item => {
+    setSelectedLocation(item);
+    setShow(true);
   };
 
   const renderItem = ({ item }) => {
-    const handlePressLocation = () => {
-      setSelectedLocation(item);
-      setShow(true);
-    };
-
-    show && showToast();
-
-    console.log(selectedLocation);
-
     return (
-      <TouchableOpacity onPress={handlePressLocation} style={styles.location}>
+      <TouchableOpacity onPress={() => handlePressLocation(item)} style={styles.location}>
         <Text style={fontStyles.title03}>{item.locationName}</Text>
         <Text style={[fontStyles.basicFont01, { color: color.TEXT_SECONDARY }]}>
           {item.locationAddress}
@@ -52,6 +50,12 @@ const SearchLocations = ({ route }) => {
       </TouchableOpacity>
     );
   };
+
+  useEffect(() => {
+    if (show) {
+      showToast();
+    }
+  }, [show]);
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -63,7 +67,7 @@ const SearchLocations = ({ route }) => {
           <TextInput
             placeholder="장소를 검색하세요."
             placeholderTextColor={color.GRAY_200}
-            style={fontStyles.basicFont}
+            style={fontStyles.basicFont01}
             autoCapitalize="none"
             autoComplete="none"
             autoCorrect={false}

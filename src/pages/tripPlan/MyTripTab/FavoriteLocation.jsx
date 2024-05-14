@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SafeAreaView, View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { dummy_locations } from '../../../dummyData';
 import BasicHeader from '../../../components/BasicHeader';
@@ -17,27 +17,25 @@ const FavoriteLocation = ({ route }) => {
   const [show, setShow] = useState(false);
 
   const date = route.params.params;
-  console.log(date);
 
   const showToast = () => {
-    Toast.show({
-      type: 'success',
-      text1: `${selectedLocation.locationName}`,
-      text2: '장소가 선택되었습니다.',
-    });
+    if (selectedLocation) {
+      Toast.show({
+        type: 'success',
+        text1: `${selectedLocation.locationName}`,
+        text2: '장소가 선택되었습니다.',
+      });
+    }
   };
-  console.log(selectedLocation);
+
+  const handlePressLocation = item => {
+    setSelectedLocation(item);
+    setShow(true);
+  };
 
   const renderItem = ({ item }) => {
-    const handlePressLocation = () => {
-      setSelectedLocation(item);
-      setShow(true);
-    };
-
-    show && showToast();
-
     return (
-      <TouchableOpacity onPress={handlePressLocation} style={styles.location}>
+      <TouchableOpacity onPress={() => handlePressLocation(item)} style={styles.location}>
         <Text style={fontStyles.title03}>{item.locationName}</Text>
         <Text style={[fontStyles.basicFont01, { color: color.TEXT_SECONDARY }]}>
           {item.locationAddress}
@@ -45,6 +43,13 @@ const FavoriteLocation = ({ route }) => {
       </TouchableOpacity>
     );
   };
+
+  useEffect(() => {
+    if (show) {
+      showToast();
+    }
+  }, [show]);
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <BasicHeader
