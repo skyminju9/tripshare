@@ -54,12 +54,14 @@ const CommunityHome = ({ navigation }) => {
                 <TouchableOpacity
                   style={styles.communityListItem}
                   onPress={() => navigation.navigate('CommunityMeetingMap')}>
-                  <Text style={fontStyles.basicFont}>번개/동행</Text>
+                  <Text style={fontStyles.basicFont01}>번개/동행</Text>
                   <FlashIcon />
                 </TouchableOpacity>
               </Shadow>
               <Shadow style={styles.communityListItemWrapper} {...shadowStyles.smallShadow} stretch>
-                <TouchableOpacity style={styles.communityListItem}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('Attractions')}
+                  style={styles.communityListItem}>
                   <Text style={fontStyles.basicFont01}>맛집/명소</Text>
                   <PlaceIcon />
                 </TouchableOpacity>

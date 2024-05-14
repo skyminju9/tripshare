@@ -32,7 +32,7 @@ import fontStyles from '../../styles/fontStyles';
 import { hourList, minuteList } from '../../dateData';
 import DatePicker from 'react-native-date-picker';
 import { APP_WIDTH } from '../../constants';
-import { formatTime, setAgoDays } from '../../utils/date';
+import { formatDayTime, setAgoDays } from '../../utils/date';
 import { convertLocationToAddress } from '../../utils/convertLocation';
 import { useGeolocation } from '../../contexts/GeolocationContext';
 import { Shadow } from 'react-native-shadow-2';
@@ -233,7 +233,7 @@ const CommunityMeetingMap = ({ navigation }) => {
               </View>
               <View style={styles.bottomCardTimeWrapper}>
                 <TimeIcon width={18} height={18} />
-                <Text style={fontStyles.boldFont01}>{formatTime(markerData.meetingAt)}</Text>
+                <Text style={fontStyles.boldFont01}>{formatDayTime(markerData.meetingAt)}</Text>
               </View>
               <TouchableOpacity>
                 <Image source={RoundChatIcon} style={styles.bottomCardChatIcon} />

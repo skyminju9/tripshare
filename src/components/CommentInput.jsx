@@ -1,26 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
 import { ReplyRegisterIcon } from '../assets';
 import color from '../styles/colorPalette';
 
-const CommentInput = ({
-  onSubmit = () => {
-    console.log('댓글 작성');
-  },
-}) => {
+const CommentInput = ({ onSubmit, chatPlaceHolder }) => {
   const [contents, setContents] = useState('');
+
+  const handleContentSubmit = () => {
+    onSubmit(contents);
+    setContents('');
+  };
 
   return (
     <View style={styles.commentInputArea}>
       <View style={styles.commentBox}>
         <TextInput
-          placeholder="댓글을 작성해 주세요"
+          placeholder={chatPlaceHolder}
           value={contents}
-          onChangeText={setContents}
+          onChangeText={text => setContents(text)}
           maxLength={100}
         />
       </View>
-      <TouchableOpacity onPress={onSubmit}>
+      <TouchableOpacity onPress={() => handleContentSubmit()}>
         <Image source={ReplyRegisterIcon} style={styles.replyRegister} />
       </TouchableOpacity>
     </View>
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
   },
   commentBox: {
     flex: 1,
-    height: 30,
+    height: 40,
     backgroundColor: '#ECF2FF',
     borderRadius: 12,
     paddingHorizontal: 12,

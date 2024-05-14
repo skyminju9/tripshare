@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   Text,
   SafeAreaView,
@@ -12,19 +12,18 @@ import BasicHeader from '../../components/BasicHeader';
 import fontStyles from '../../styles/fontStyles';
 import color from '../../styles/colorPalette';
 import { UploadIcon, DeleteIcon } from '../../assets/index';
-import TripShareBtn from '../../components/TripShareBtn';
 import ArticleTagList from './ArticleTagList';
 import { APP_WIDTH } from '../../constants';
 
 import ImagePicker from 'react-native-image-crop-picker';
+import { useAuthUser } from '../../contexts/AuthUserContext';
 
 const tags = ['잡담', '질문', '정보'];
 
-const CommunityPostPage = ({
-  navigation,
-  headerText = '게시글 등록하기',
-  buttonText = '등록하기',
-}) => {
+const CommunityPostPage = ({ navigation, route }) => {
+  const user = useAuthUser();
+  const isEdit = route.params.edit;
+
   const [titleText, setTitleText] = useState('');
   const [contentText, setContentText] = useState('');
   const [tag, setTag] = useState('');
@@ -75,9 +74,13 @@ const CommunityPostPage = ({
     );
   };
 
+  const onPressBtn = () => {
+    navigation.navigate('CommunityFreeBoard');
+  };
+
   return (
     <SafeAreaView style={styles.wrapper}>
-      <BasicHeader title={headerText} />
+      <BasicHeader title={isEdit ? '게시글 수정하기' : '게시글 등록하기'} />
       <View style={styles.mainWrapper}>
         <View style={styles.titleWrapper}>
           <Text style={fontStyles.title03}>제목</Text>
@@ -123,7 +126,11 @@ const CommunityPostPage = ({
           </View>
         </View>
         <View style={styles.btnWrapper}>
-          <TripShareBtn text={buttonText} address="CommunityFreeBoard" />
+          <TouchableOpacity style={styles.button} onPress={onPressBtn}>
+            <Text style={[fontStyles.title03, styles.btnText]}>
+              {isEdit ? '수정하기' : '등록하기'}
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
@@ -191,6 +198,15 @@ const styles = StyleSheet.create({
   btnWrapper: {
     paddingHorizontal: 24,
   },
+  button: {
+    backgroundColor: color.BLUE_500,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    paddingVertical: 24,
+  },
+  btnText: { color: color.WHITE },
 
   lengthFont: {
     color: color.GRAY_300,
