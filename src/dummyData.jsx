@@ -161,7 +161,7 @@ export const dummy_comment = [
     content: '마지막날 일정이 좀 빡빡한 것 같아요?',
     like: 1,
     userId: 1,
-    createdAt: new Date(),
+    createdAt: new Date('2024-05-12 10:10'),
   },
   {
     id: 2,
@@ -179,7 +179,7 @@ export const dummy_comment = [
     content: '마지막날 일정이 좀 빡빡한 것 같아요???',
     like: 3,
     userId: 1,
-    createdAt: new Date('2024-05-20 16:20'),
+    createdAt: new Date('2024-05-14 16:20'),
   },
   {
     id: 4,
@@ -188,7 +188,7 @@ export const dummy_comment = [
     content: '마지막날 일정이 좀 빡빡한 것 같아요???',
     like: 3,
     userId: 1,
-    createdAt: new Date('2024-05-20 16:20'),
+    createdAt: new Date('2024-05-14 16:20'),
   },
   {
     id: 5,
@@ -197,7 +197,7 @@ export const dummy_comment = [
     content: '마지막날 일정이 좀 빡빡한 것 같아요???',
     like: 3,
     userId: 5,
-    createdAt: new Date('2024-05-20 16:20'),
+    createdAt: new Date('2024-05-14 16:20'),
   },
   {
     id: 6,
@@ -206,7 +206,7 @@ export const dummy_comment = [
     content: '마지막날 일정이 좀 빡빡한 것 같아요???',
     like: 3,
     userId: 5,
-    createdAt: new Date('2024-05-20 16:20'),
+    createdAt: new Date('2024-05-15 16:20'),
   },
   {
     id: 7,
@@ -215,7 +215,7 @@ export const dummy_comment = [
     content: '마지막날 일정이 좀 빡빡한 것 같아요???',
     like: 3,
     userId: 5,
-    createdAt: new Date('2024-05-10 16:20'),
+    createdAt: new Date('2024-05-16 16:20'),
   },
   {
     id: 8,
@@ -224,7 +224,7 @@ export const dummy_comment = [
     content: '마지막날 일정이 좀 빡빡한 것 같아요???',
     like: 3,
     userId: 5,
-    createdAt: new Date('2024-05-10 16:20'),
+    createdAt: new Date('2024-05-17 16:20'),
   },
 ];
 
