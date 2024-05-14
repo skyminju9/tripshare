@@ -90,7 +90,7 @@ const communityList = [
     },
     {
       icon: <PlaceIcon />,
-      address: '',
+      address: 'Attractions',
       category: '맛집/명소',
     },
   ],
