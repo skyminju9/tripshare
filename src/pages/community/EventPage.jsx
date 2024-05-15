@@ -95,6 +95,7 @@ const EventPage = () => {
               setSelectedDate(day.dateString);
               daySchedule(day.dateString);
             }}
+            onMonthChange={() => setShowEvent(null)}
           />
         </View>
         <View style={styles.eventInfoArea}>
