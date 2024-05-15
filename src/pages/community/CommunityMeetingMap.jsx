@@ -37,6 +37,7 @@ import { convertLocationToAddress } from '../../utils/convertLocation';
 import { useGeolocation } from '../../contexts/GeolocationContext';
 import { Shadow } from 'react-native-shadow-2';
 import shadowStyles from '../../styles/shadowStyles';
+import { DummyProfileImg } from '../../assets';
 
 const CommunityMeetingMap = ({ navigation }) => {
   // 마커 표시 state
@@ -217,7 +218,10 @@ const CommunityMeetingMap = ({ navigation }) => {
           <View style={styles.bottomCardWrapper}>
             <View style={styles.bottomCardHeaderWrapper}>
               <View style={styles.bottomCardNameWrapper}>
-                <Image source={markerData.profileImage} style={styles.bottomCardImage} />
+                <Image
+                  source={markerData.profileImage || DummyProfileImg}
+                  style={styles.bottomCardImage}
+                />
                 <Text style={fontStyles.boldFont01}>{markerData.name}</Text>
               </View>
               <Text style={styles.bottomCardAgoTime}>{setAgoDays(markerData.createAt)}</Text>

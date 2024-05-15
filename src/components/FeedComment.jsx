@@ -3,12 +3,16 @@ import { Text, StyleSheet, View, Image } from 'react-native';
 import fontStyles from '../styles/fontStyles';
 import color from '../styles/colorPalette';
 import { setAgoDays } from '../utils/date';
+import { DummyProfileImg } from '../assets';
 
 const FeedComment = ({ comment }) => {
   return (
     <View style={styles.commentContainer}>
       <View style={styles.commentProfile}>
-        <Image source={comment.user.profileImage} style={styles.commentProfileImage} />
+        <Image
+          source={comment.user.profileImage || DummyProfileImg}
+          style={styles.commentProfileImage}
+        />
         <Text style={fontStyles.boldFont01}>{comment.user.name}</Text>
       </View>
       <View style={styles.commentContents}>

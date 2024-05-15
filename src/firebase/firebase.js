@@ -6,3 +6,5 @@ export const articleCollection = firestore()
   .collection('community')
   .doc('articles')
   .collection(city);
+
+export const userCollection = firestore().collection('users');

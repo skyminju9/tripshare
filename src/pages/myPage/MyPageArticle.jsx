@@ -10,6 +10,7 @@ import fontStyles from '../../styles/fontStyles';
 import { useAuthUser } from '../../contexts/AuthUserContext';
 import { getMyArticleList } from '../../firebase/store/ArticleDB';
 import { useIsFocused } from '@react-navigation/native';
+import { DummyProfileImg } from '../../assets';
 
 const MyPageArticle = () => {
   const user = useAuthUser();
@@ -24,7 +25,7 @@ const MyPageArticle = () => {
         id: article.id,
         ...content,
         authorName: user.name,
-        authorImage: user.profileImage,
+        authorImage: user.profileImage || DummyProfileImg,
       };
     });
 
@@ -46,7 +47,7 @@ const MyPageArticle = () => {
       isPrevSameDate = formatDate(item.createdAt) === formatDate(articleData[index - 1]?.createdAt);
     }
 
-    item.authorImage = user.profileImage;
+    item.authorImage = user.profileImage || DummyProfileImg;
     item.authorName = user.name;
 
     return (

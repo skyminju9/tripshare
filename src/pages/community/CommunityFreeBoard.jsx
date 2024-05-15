@@ -12,24 +12,39 @@ import { APP_WIDTH } from '../../constants';
 
 import { useIsFocused } from '@react-navigation/native';
 import { getArticleList, getArticleTagList } from '../../firebase/store/ArticleDB';
+import { DummyProfileImg } from '../../assets/index';
+import { setUserList } from '../../firebase/store/UserDB';
 
 const tags = ['잡담', '질문', '정보'];
 
 const CommunityFreeBoard = ({ navigation }) => {
   const [articles, setArticles] = useState([]);
   const isFocused = useIsFocused();
+  const [users, setUsers] = useState([]);
 
-  const handleContent = data => {
+  const handleContent = (data, userList) => {
     const initialArticles = data.map(article => {
-      const content = article.data();
-      const articleUser = dummy_user.find(user => user.id === content.creator);
+      if (userList !== undefined) {
+        const content = article.data();
+        const articleUser = userList.find(user => user.id === content.creator);
 
-      return {
-        id: article.id,
-        ...content,
-        authorName: articleUser.name,
-        authorImage: articleUser.profileImage,
-      };
+        return {
+          id: article.id,
+          ...content,
+          authorName: articleUser.name,
+          authorImage: articleUser.profileImage || DummyProfileImg,
+        };
+      } else {
+        const content = article.data();
+        const articleUser = dummy_user.find(user => user.id === content.creator);
+
+        return {
+          id: article.id,
+          ...content,
+          authorName: articleUser.name,
+          authorImage: articleUser.profileImage || DummyProfileImg,
+        };
+      }
     });
 
     return initialArticles;
@@ -37,7 +52,11 @@ const CommunityFreeBoard = ({ navigation }) => {
 
   const getFreeBoard = async () => {
     const lists = await getArticleList();
-    setArticles(handleContent(lists));
+    const userList = await setUserList();
+    if (userList !== undefined) {
+      setArticles(handleContent(lists, userList));
+      setUsers(userList);
+    }
   };
 
   const onPressTag = useCallback(
@@ -88,7 +107,7 @@ const CommunityFreeBoard = ({ navigation }) => {
         removeClippedSubviews
         showsVerticalScrollIndicator={false}
         keyExtractor={item => item.id}
-        renderItem={({ item }) => <ArticleCard item={item} />}
+        renderItem={({ item }) => <ArticleCard item={item} users={users} />}
         scrollEventThrottle={20}
         contentContainerStyle={styles.flatListBottomPadding}
       />

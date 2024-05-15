@@ -16,6 +16,7 @@ import { dummy_user } from '../../dummyData';
 import { useAuthUser } from '../../contexts/AuthUserContext';
 import { formatDate, formatTime } from '../../utils/date';
 import CommentInput from '../../components/CommentInput';
+import { DummyProfileImg } from '../../assets';
 
 const ChattingDetail = ({ route, navigation }) => {
   const [chatList, setChatList] = useState(route.params.chatList.chatList);
@@ -79,7 +80,7 @@ const ChattingDetail = ({ route, navigation }) => {
           ) : (
             <View style={styles.opponentChatWrapper}>
               <Image
-                source={opponentUser.profileImage}
+                source={opponentUser.profileImage || DummyProfileImg}
                 style={styles.opponentProfileImage}
                 alt="상대 프로필 사진"
               />

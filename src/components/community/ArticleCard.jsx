@@ -12,15 +12,13 @@ import {
   HeartOffIcon,
 } from '../../assets/index';
 import { useAuthUser } from '../../contexts/AuthUserContext';
-import { dummy_user } from '../../dummyData';
 import { Shadow } from 'react-native-shadow-2';
 import { useNavigation } from '@react-navigation/native';
 import ArticleCardHeader from './ArticleCardHeader';
 
-const ArticleCard = ({ item: article }) => {
+const ArticleCard = ({ item: article, users }) => {
   const user = useAuthUser();
-  const userData = dummy_user.filter(data => data.id === user.id).pop();
-  const bookmarkList = userData.bookmarkList;
+  const bookmarkList = user.bookmarkList;
   const isBookmarked = bookmarkList.includes(article.id);
   const navigation = useNavigation();
 
@@ -28,7 +26,9 @@ const ArticleCard = ({ item: article }) => {
     <Shadow {...shadowStyles.smallShadow} stretch>
       <TouchableOpacity
         style={styles.articleContainer}
-        onPress={() => navigation.navigate('CommunityArticleDetail', { ...article })}>
+        onPress={() =>
+          navigation.navigate('CommunityArticleDetail', { article: article, users: users })
+        }>
         <ArticleCardHeader
           authorImg={article.authorImage}
           authorName={article.authorName}

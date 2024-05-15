@@ -32,11 +32,13 @@ import { APP_WIDTH } from '../../constants';
 
 import { articleCollection } from '../../firebase/firebase';
 import { setLiked, setBookmarked, deleteArticle } from '../../firebase/store/ArticleDB';
+import { DummyProfileImg } from '../../assets/index';
 
-const CommunityArticleDetail = () => {
+const CommunityArticleDetail = ({ route }) => {
   const [singleArticle, setSingleArticle] = useState([]);
 
-  const article = useRoute().params;
+  const article = route.params.article;
+  const users = route.params.users;
   const loginUser = useAuthUser();
   const isPostOwner = singleArticle.authorName === loginUser.name;
   const isMyBookmark = loginUser.bookmarkList.includes(article.id);
@@ -51,12 +53,15 @@ const CommunityArticleDetail = () => {
   const handleContent = data => {
     const content = data.data();
     if (content !== undefined) {
-      const articleUser = dummy_user.find(user => user.id === content.creator);
+      const articleUser = users.find(user => user.id === content.creator);
       content.comments = content.comments.map(comment => {
-        const user = dummy_user.find(du => du.id === comment.creator);
+        const user = users.find(du => du.id === comment.creator);
         return {
           ...comment,
-          user,
+          user: {
+            name: user.name,
+            profileImage: user.profileImage,
+          },
         };
       });
 
@@ -64,7 +69,7 @@ const CommunityArticleDetail = () => {
         id: data.id,
         ...content,
         authorName: articleUser.name,
-        authorImage: articleUser.profileImage,
+        authorImage: articleUser.profileImage || DummyProfileImg,
       };
 
       return initialArticle;

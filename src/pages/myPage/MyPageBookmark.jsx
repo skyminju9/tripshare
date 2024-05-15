@@ -10,6 +10,7 @@ import fontStyles from '../../styles/fontStyles';
 
 import { useIsFocused } from '@react-navigation/native';
 import { getMyBookmarkedList } from '../../firebase/store/ArticleDB';
+import { DummyProfileImg } from '../../assets';
 
 const MyPageBookmark = () => {
   const user = useAuthUser();
@@ -25,7 +26,7 @@ const MyPageBookmark = () => {
         id: article.id,
         ...content,
         authorName: articleUser.name,
-        authorImage: articleUser.profileImage,
+        authorImage: articleUser.profileImage || DummyProfileImg,
       };
     });
 

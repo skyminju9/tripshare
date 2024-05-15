@@ -16,6 +16,7 @@ import fontStyles from '../../styles/fontStyles';
 import BasicHeader from '../../components/BasicHeader';
 import { dummy_article, dummy_user } from '../../dummyData';
 import ArticleCard from '../../components/community/ArticleCard';
+import { DummyProfileImg } from '../../assets';
 
 const CommmunitySearchResultPage = () => {
   const navigation = useNavigation();
@@ -28,7 +29,7 @@ const CommmunitySearchResultPage = () => {
       return {
         ...article,
         authorName: articleUser.name,
-        authorImage: articleUser.profileImage,
+        authorImage: articleUser.profileImage || DummyProfileImg,
       };
     });
 

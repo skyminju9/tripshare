@@ -8,26 +8,36 @@ import SeeMoreBtn from '../../components/SeeMoreBtn.jsx';
 import { Shadow } from 'react-native-shadow-2';
 import { APP_WIDTH } from '../../constants.js';
 
-import { FlashIcon, PlaceIcon, EventIcon, FreeTalkIcon } from '../../assets/index.js';
+import {
+  FlashIcon,
+  PlaceIcon,
+  EventIcon,
+  FreeTalkIcon,
+  DummyProfileImg,
+} from '../../assets/index.js';
 
 import { dummy_user } from '../../dummyData.jsx';
 import { useIsFocused } from '@react-navigation/native';
 import { getHotArticleTop3 } from '../../firebase/store/ArticleDB.js';
+import { setUserList } from '../../firebase/store/UserDB.js';
 
 const CommunityHome = ({ navigation }) => {
   const [hotArticle, setHotArticle] = useState([]);
   const isFocused = useIsFocused();
+  const [users, setUsers] = useState([]);
 
-  const handleContent = data => {
+  const handleContent = (data, userList) => {
     const initialArticles = data.map(article => {
-      const content = article.data();
-      const articleUser = dummy_user.find(user => user.id === content.creator);
+      if (userList !== undefined) {
+        const content = article.data();
+        const articleUser = userList.find(user => user.id === content.creator);
 
-      return {
-        id: article.id,
-        title: content.title,
-        authorImage: articleUser.profileImage,
-      };
+        return {
+          id: article.id,
+          title: content.title,
+          authorImage: articleUser.profileImage || DummyProfileImg,
+        };
+      }
     });
 
     return initialArticles;
@@ -35,7 +45,11 @@ const CommunityHome = ({ navigation }) => {
 
   const getHotTopList = async () => {
     const lists = await getHotArticleTop3();
-    setHotArticle(handleContent(lists));
+    const userList = await setUserList();
+    if (userList !== undefined) {
+      setHotArticle(handleContent(lists, userList));
+      setUsers(userList);
+    }
   };
 
   useEffect(() => {
@@ -47,7 +61,9 @@ const CommunityHome = ({ navigation }) => {
       <Shadow {...shadowStyles.smallShadow} key={index} stretch>
         <TouchableOpacity
           style={styles.hotPostListItemWarpper}
-          onPress={() => navigation.navigate('CommunityArticleDetail', { ...item })}>
+          onPress={() =>
+            navigation.navigate('CommunityArticleDetail', { article: item, users: users })
+          }>
           <View style={styles.hotPostListItemDot} />
           <Text style={fontStyles.basicFont01}>{item.title}</Text>
         </TouchableOpacity>
