@@ -1,16 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import {
-  SafeAreaView,
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  FlatList,
-  StyleSheet,
-} from 'react-native';
+import { SafeAreaView, View, TouchableOpacity, StyleSheet } from 'react-native';
 import color from '../../styles/colorPalette';
 import BasicHeader from '../../components/BasicHeader';
-import { AttractionMapIcon, ListIcon, RightArrowIcon } from '../../assets';
+import { AttractionMapIcon, ListIcon } from '../../assets';
 import ArticleTagList from '../../components/community/ArticleTagList';
 import { dummy_attractions } from '../../dummyData';
 import AttractionsList from '../../components/community/AttractionsList';
@@ -18,7 +10,7 @@ import AttractionsMap from '../../components/community/AttractionsMap';
 
 const tags = ['맛집', '명소'];
 
-const Attractions = ({ navigation }) => {
+const Attractions = () => {
   const [attractionList, setAttractionList] = useState();
   const [isMapVisible, setIsMapVisible] = useState(false);
 
@@ -33,27 +25,6 @@ const Attractions = ({ navigation }) => {
       setAttractionList(initialAttraction.filter(attraction => attraction.tag === activeTag));
     } else setAttractionList(initialAttraction);
   }, []);
-
-  const renderItem = ({ item }) => {
-    return (
-      <TouchableOpacity
-        onPress={() => navigation.navigate('AttractionDetail', { params: item })}
-        style={styles.placeCard}>
-        <Image source={item.coverImage} style={styles.coverImageStyle} />
-        <View style={styles.infoWrapper}>
-          <View style={styles.placNameWrapper}>
-            <Text style={fontStyles.title03}>{item.placeName}</Text>
-            <TouchableOpacity>
-              <RightArrowIcon />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.detailWrapper}>
-            <Text style={styles.detailText}>{item.detail}</Text>
-          </View>
-        </View>
-      </TouchableOpacity>
-    );
-  };
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -71,15 +42,15 @@ const Attractions = ({ navigation }) => {
       />
       {isMapVisible ? (
         <View style={{ flex: 1 }}>
-          <ArticleTagList tags={tags} onPressTag={onPressTag} />
-          <AttractionsList attractionList={attractionList} />
-        </View>
-      ) : (
-        <View style={{ flex: 1 }}>
           <AttractionsMap attractionList={attractionList} />
           <View style={styles.attractionMapTagWrapper}>
             <ArticleTagList tags={tags} onPressTag={onPressTag} />
           </View>
+        </View>
+      ) : (
+        <View style={{ flex: 1 }}>
+          <ArticleTagList tags={tags} onPressTag={onPressTag} />
+          <AttractionsList attractionList={attractionList} />
         </View>
       )}
     </SafeAreaView>

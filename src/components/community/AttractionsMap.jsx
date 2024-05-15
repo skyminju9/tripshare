@@ -1,21 +1,20 @@
-import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import React, { useState } from 'react';
-import BasicHeader from '../BasicHeader';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { useGeolocation } from '../../contexts/GeolocationContext';
 import { APP_WIDTH } from '../../constants';
-import { BlueWriteIcon, LocationIcon, PhoneIcon, PlaceIcon } from '../../assets';
+import { BlueWriteIcon, LocationIcon, PhoneIcon } from '../../assets';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import color from '../../styles/colorPalette';
 import { Shadow } from 'react-native-shadow-2';
 import fontStyles from '../../styles/fontStyles';
-import shadowStyles from '../../styles/shadowStyles';
 import { convertLocationToAddress } from '../../utils/convertLocation';
+import { useNavigation } from '@react-navigation/native';
 
 const AttractionsMap = ({ attractionList }) => {
   const geolocation = useGeolocation();
   const [markerData, setMarkerData] = useState('');
-  console.log(attractionList);
+  const navigation = useNavigation();
 
   const safeAreaInset = useSafeAreaInsets();
 
@@ -65,7 +64,9 @@ const AttractionsMap = ({ attractionList }) => {
           </TouchableOpacity>
         </Shadow>
         {markerData && (
-          <TouchableOpacity style={styles.cardWrapper}>
+          <TouchableOpacity
+            style={styles.cardWrapper}
+            onPress={() => navigation.navigate('AttractionDetail', { params: markerData })}>
             <View style={styles.cardHeaderWrapper}>
               <Image source={markerData.coverImage} style={styles.cardImage} />
               <View style={styles.cardHeaderRightWrapper}>
