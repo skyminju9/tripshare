@@ -36,6 +36,8 @@ import DoneIcon from './icons/community/meeting/doneIcon.svg';
 import AttractionMapIcon from './icons/community/AttractionMap.svg';
 import RightArrowIcon from './icons/community/right_arrow.svg';
 import MenuIcon from './icons/community/menuIcon.svg';
+import MoreInfoIcon from './icons/community/more_down.svg';
+import CalendarIcon from './icons/community/calendar.svg';
 
 // chat icon
 import WhiteLogoIcon from './icons/chat/whiteLogo.svg';
@@ -138,4 +140,6 @@ export {
   RightArrowIcon,
   MenuIcon,
   MapIcon,
+  MoreInfoIcon,
+  CalendarIcon
 };
