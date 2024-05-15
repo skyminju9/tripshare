@@ -23,14 +23,13 @@ import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 import shadowStyles from '../../styles/shadowStyles';
 import ArticleCardHeader from '../../components/community/ArticleCardHeader';
-
-import { dummy_user } from '../../dummyData';
 import FeedComment from '../../components/FeedComment';
 import CommentInput from '../../components/CommentInput';
+import { dummy_user } from '../../dummyData';
+import { useAuthUser } from '../../contexts/AuthUserContext';
 import Modal from 'react-native-modal';
 import { APP_WIDTH } from '../../constants';
 
-import { useAuthUser } from '../../contexts/AuthUserContext';
 import { articleCollection } from '../../firebase/firebase';
 import { setLiked, setBookmarked, deleteArticle } from '../../firebase/store/ArticleDB';
 

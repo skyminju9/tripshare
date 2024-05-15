@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   commentInputArea: {
     flexDirection: 'row',
     width: '100%',
-    height: 80,
+    height: 62,
     alignItems: 'center',
     paddingHorizontal: 20,
     borderTopWidth: 1,
