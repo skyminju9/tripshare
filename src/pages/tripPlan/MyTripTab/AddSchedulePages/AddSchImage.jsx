@@ -8,17 +8,6 @@ import UploadImageIcon from '../../../../assets/icons/myTrip/uploadimage.png';
 import { BlueButton, GrayButton } from '../../../../components/BasicButtons';
 import { useTravelSchedule } from '../../../../contexts/TravelScheduleContext'; // 변경된 import 경로
 
-const imagesImports = [
-  require('../../../../assets/images/myTrip/basicimage1.jpeg'),
-  require('../../../../assets/images/myTrip/basicimage2.jpeg'),
-  require('../../../../assets/images/myTrip/basicimage3.jpeg'),
-  require('../../../../assets/images/myTrip/basicimage4.jpeg'),
-  require('../../../../assets/images/myTrip/basicimage5.jpeg'),
-  require('../../../../assets/images/myTrip/basicimage6.jpeg'),
-  require('../../../../assets/images/myTrip/basicimage7.jpeg'),
-  require('../../../../assets/images/myTrip/basicimage8.jpeg'),
-];
-
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const imageWidth = (windowWidth - 40) / 3 - 5;
@@ -133,6 +122,17 @@ const AddSchImage = () => {
     </View>
   );
 };
+
+const imagesImports = [
+  require('../../../../assets/images/myTrip/basicimage1.jpeg'),
+  require('../../../../assets/images/myTrip/basicimage2.jpeg'),
+  require('../../../../assets/images/myTrip/basicimage3.jpeg'),
+  require('../../../../assets/images/myTrip/basicimage4.jpeg'),
+  require('../../../../assets/images/myTrip/basicimage5.jpeg'),
+  require('../../../../assets/images/myTrip/basicimage6.jpeg'),
+  require('../../../../assets/images/myTrip/basicimage7.jpeg'),
+  require('../../../../assets/images/myTrip/basicimage8.jpeg'),
+];
 
 const styles = StyleSheet.create({
   container: {

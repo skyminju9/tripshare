@@ -1,52 +1,26 @@
 import React from 'react';
-import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, SafeAreaView, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import BasicHeader from '../../../components/BasicHeader';
+import DiaryListBig from '../../../components/ExploreTabComponents/DiaryListBig';
 import { useNavigation } from '@react-navigation/native';
-import PlanList from '../../../components/ExploreTabComponents/PlanList';
-import DiaryList from '../../../components/ExploreTabComponents/DiaryList';
-import RightArrow from '../../../assets/icons/myTrip/arrow_right.svg';
-import fontStyles from '../../../styles/fontStyles';
-import color from '../../../styles/colorPalette';
-import { DummyDiaryData } from '../../../dummyData';
-import { DummyPlanData } from '../../../dummyData';
 
-const Explore = () => {
+const HotDiary = () => {
   const navigation = useNavigation();
-
-  const handleMorePress1 = () => {
-    navigation.navigate('HotPlan');
+  const handleDetailPress = () => {
+    navigation.navigate('DiaryDetail');
   };
-
-  const handleMorePress2 = () => {
-    navigation.navigate('HotDiary');
-  };
-
-  const top3Plans = DummyPlanData.slice(0, 3);
-
   return (
     <SafeAreaView style={styles.wrapper}>
-      <View style={styles.container}>
-        <View style={styles.categoryArea}>
-          <View style={styles.categoryTextArea}>
-            <Text style={fontStyles.title02}>실시간 인기 계획</Text>
-            <TouchableOpacity style={styles.myTripMore} onPress={handleMorePress1}>
-              <Text style={[fontStyles.basicFont02, { color: color.TEXT_SECONDARY }]}>더보기</Text>
-              <RightArrow width={24} height={24} />
+      <BasicHeader title="실시간 인기 기록" />
+      <ScrollView>
+        <View style={styles.container}>
+          {[...Array(6)].map((_, index) => (
+            <TouchableOpacity key={index} onPress={handleDetailPress}>
+              <DiaryListBig />
             </TouchableOpacity>
-          </View>
-          <PlanList data={top3Plans} />
+          ))}
         </View>
-
-        <View style={styles.categoryArea}>
-          <View style={styles.categoryTextArea}>
-            <Text style={fontStyles.title02}>실시간 인기 기록</Text>
-            <TouchableOpacity style={styles.myTripMore} onPress={handleMorePress2}>
-              <Text style={[fontStyles.basicFont02, { color: color.TEXT_SECONDARY }]}>더보기</Text>
-              <RightArrow width={24} height={24} />
-            </TouchableOpacity>
-          </View>
-          <DiaryList data={DummyDiaryData} />
-        </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -58,27 +32,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    padding: 20,
-  },
-  categoryArea: {
-    flex: 1,
-    marginBottom: 10,
-  },
-  categoryTextArea: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignContent: 'center',
-    marginVertical: 16,
-    alignItems: 'center',
-  },
-  myTripMore: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  moreIcon: {
-    width: 8,
-    height: 8,
   },
 });
 
-export default Explore;
+export default HotDiary;
