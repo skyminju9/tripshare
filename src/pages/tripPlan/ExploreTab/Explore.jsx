@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import PlanList from '../../../components/ExploreTabComponents/PlanList';
 import DiaryList from '../../../components/ExploreTabComponents/DiaryList';
@@ -48,9 +48,7 @@ const Explore = () => {
               </TouchableOpacity>
             </View>
           </View>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <DiaryList data={DummyDiaryData} />
-          </ScrollView>
+          <DiaryList data={DummyDiaryData} />
         </View>
       </View>
     </SafeAreaView>
