@@ -31,10 +31,36 @@ export function formatDate(timestamp) {
     : `${year}년 ${formattedMonth}월 ${formattedDay}일`;
 }
 
-export function formatTime(date) {
-  const day = date.getDate();
-  const hour = date.getHours();
-  const minute = date.getMinutes();
+export function formatDayTime(timestamp) {
+  const day = new Date(timestamp).getDate();
+  const hour = new Date(timestamp).getHours();
+  const minute = new Date(timestamp).getMinutes();
 
   return `${day}일 ${hour}시 ${minute}분`;
+}
+
+export function formatTime(timestamp) {
+  const hour = ('0' + new Date(timestamp).getHours()).slice(-2);
+  const minute = ('0' + new Date(timestamp).getMinutes()).slice(-2);
+
+  return `${hour}:${minute}`;
+}
+export function clock(date) {
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+
+  if (hours > 12) {
+    const shortHours = hours - 12;
+    if (minutes < 10) {
+      return `오후 ${shortHours}:0${minutes}`;
+    } else {
+      return `오후 ${shortHours}:${minutes}`;
+    }
+  } else {
+    if (minutes < 10) {
+      return `오전 ${hours}:0${minutes}`;
+    } else {
+      return `오전 ${hours}:${minutes}`;
+    }
+  }
 }
