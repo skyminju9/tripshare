@@ -104,7 +104,7 @@ const communityList = [
   [
     {
       icon: <EventIcon width={36} height={36} />,
-      address: '',
+      address: 'EventPage',
       category: '이벤트',
     },
     {
