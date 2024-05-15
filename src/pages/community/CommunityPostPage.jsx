@@ -12,7 +12,7 @@ import BasicHeader from '../../components/BasicHeader';
 import fontStyles from '../../styles/fontStyles';
 import color from '../../styles/colorPalette';
 import { UploadIcon, DeleteIcon } from '../../assets/index';
-import ArticleTagList from './ArticleTagList';
+import ArticleTagList from '../../components/community/ArticleTagList';
 import { APP_WIDTH } from '../../constants';
 import ImagePicker from 'react-native-image-crop-picker';
 import { useAuthUser } from '../../contexts/AuthUserContext';

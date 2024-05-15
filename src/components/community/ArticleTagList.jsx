@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     borderRadius: 10,
     borderColor: color.BLUE_500,
+    backgroundColor: color.WHITE,
   },
   activeTag: {
     backgroundColor: color.BLUE_500,

@@ -271,17 +271,19 @@ const CommunityMeetingMap = ({ navigation }) => {
                 setOpen={setImpromptuHourIsVisible}
                 setValue={setImpromptuHour}
                 style={styles.modalDropDownPicker}
-                textStyle={fontStyles.boldFont01}
+                textStyle={fontStyles.basicFont01}
                 containerStyle={styles.modalDropDownContainer}
+                dropDownContainerStyle={{ borderColor: color.GRAY_200 }}
+                selectedItemContainerStyle={{ backgroundColor: color.BLUE_30 }}
                 placeholder="0"
                 ArrowDownIconComponent={() => (
                   <Svg style={styles.arrowWrapper}>
-                    <Polygon points="0,0 7.5,15 15,0" fill={color.BLUE_500} />
+                    <Polygon points="0,0 6,12 12,0" fill={color.BLUE_500} />
                   </Svg>
                 )}
                 ArrowUpIconComponent={() => (
                   <Svg style={styles.arrowWrapper}>
-                    <Polygon points="0,15 7.5,0 15,15" fill={color.BLUE_500} />
+                    <Polygon points="0,12 6,0 12,12" fill={color.BLUE_500} />
                   </Svg>
                 )}
               />
@@ -295,17 +297,19 @@ const CommunityMeetingMap = ({ navigation }) => {
                 setOpen={setImpromptuMinIsVisible}
                 setValue={setImpromptuMin}
                 style={styles.modalDropDownPicker}
-                textStyle={fontStyles.boldFont01}
+                textStyle={fontStyles.basicFont01}
                 containerStyle={styles.modalDropDownContainer}
+                dropDownContainerStyle={{ borderColor: color.GRAY_200 }}
+                selectedItemContainerStyle={{ backgroundColor: color.BLUE_30 }}
                 placeholder="0"
                 ArrowDownIconComponent={() => (
                   <Svg style={styles.arrowWrapper}>
-                    <Polygon points="0,0 7.5,15 15,0" fill={color.BLUE_500} />
+                    <Polygon points="0,0 6,12 12,0" fill={color.BLUE_500} />
                   </Svg>
                 )}
                 ArrowUpIconComponent={() => (
                   <Svg style={styles.arrowWrapper}>
-                    <Polygon points="0,15 7.5,0 15,15" fill={color.BLUE_500} />
+                    <Polygon points="0,12 6,0 12,12" fill={color.BLUE_500} />
                   </Svg>
                 )}
               />
@@ -533,20 +537,31 @@ const styles = StyleSheet.create({
     zIndex: 1,
     alignItems: 'center',
   },
-  modalDropDownWrapper: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-  modalDropDownPicker: { borderWidth: 1, borderColor: color.GRAY_200, width: 80 },
-  modalDropDownContainer: { width: 80 },
-  arrowWrapper: { width: 15, height: 15 },
-  modalSelectBoxWrapper: {
+  modalDropDownWrapper: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 60,
+    gap: 8,
+  },
+  modalDropDownPicker: {
     borderWidth: 1,
     borderColor: color.GRAY_200,
-    width: 120,
-    paddingVertical: 12,
-    paddingHorizontal: 12,
+    width: 80,
+    paddingHorizontal: 16,
+    borderRadius: 16,
+  },
+  modalDropDownContainer: { width: 80 },
+  arrowWrapper: { width: 12, height: 12 },
+  modalSelectBoxWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: color.GRAY_200,
+    width: 110,
+    height: 50,
+    padding: 12,
     marginTop: 12,
     gap: 8,
   },

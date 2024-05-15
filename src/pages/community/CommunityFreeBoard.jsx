@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet, FlatList, TouchableOpacity, View } from 'reac
 
 import BasicHeader from '../../components/BasicHeader';
 import ArticleCard from '../../components/community/ArticleCard';
-import ArticleTagList from './ArticleTagList';
+import ArticleTagList from '../../components/community/ArticleTagList';
 import { SearchIcon, PostIcon } from '../../assets/index';
 import { dummy_user } from '../../dummyData';
 import color from '../../styles/colorPalette';
