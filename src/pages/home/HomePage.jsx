@@ -58,7 +58,8 @@ const HomePage = () => {
         updateVoltage();
         setLoading(false);
       } catch (error) {
-        setError(`Error: ${error.message}`);
+        console.error(error); // Log the error for debugging
+        setError(error);
         setLoading(false);
       }
     };
@@ -112,7 +113,7 @@ const HomePage = () => {
             styles.container,
             { justifyContent: 'center', alignItems: 'center', marginBottom: 50 },
           ]}>
-          <Image source={Loading} style={{ width: 130, height: 130, marginBottom: 20 }} />
+          <Image source={Loading} style={{ width: 100, height: 100, marginBottom: 20 }} />
           <Text style={fontStyles.title01}>로딩 중...</Text>
         </View>
       </SafeAreaView>
@@ -122,7 +123,7 @@ const HomePage = () => {
   if (error) {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>오류: {error.message}</Text>
+        <Text style={styles.text}>오류: {error.message || error}</Text>
       </View>
     );
   }
