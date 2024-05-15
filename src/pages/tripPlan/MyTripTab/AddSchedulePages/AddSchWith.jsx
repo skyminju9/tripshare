@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import BasicHeader from '../../../../components/BasicHeader.jsx';
+import React, { useState, useEffect } from 'react';
+import { Text, View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import fontStyles from '../../../../styles/fontStyles.js';
+import { useNavigation } from '@react-navigation/native';
 import color from '../../../../styles/colorPalette.js';
 import FriendsList from '../../../../components/AddScheduleComponents/FriendsList.jsx';
 import PeopleIcon from '../../../../assets/icons/myTrip/people.svg';
+import { BlueButton, GrayButton } from '../../../../components/BasicButtons';
+import { useTravelSchedule } from '../../../../contexts/TravelScheduleContext'; // 변경된 import 경로
 
 const dummyData = [
   { id: 1, name: '한서흔' },
@@ -24,10 +26,16 @@ const dummyData = [
 ];
 
 const AddSchWith = () => {
-  const [selectedFriends, setSelectedFriends] = useState([]);
+  const { currentSchedule, setCurrentSchedule } = useTravelSchedule(); // 변경된 훅 사용
+  const [selectedFriends, setSelectedFriends] = useState(currentSchedule.companions || []);
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    setSelectedFriends(currentSchedule.companions || []);
+  }, [currentSchedule.companions]);
 
   const handleSelectFriend = friend => {
-    if (!selectedFriends.includes(friend)) {
+    if (!selectedFriends.some(item => item.id === friend.id)) {
       setSelectedFriends([...selectedFriends, friend]);
     }
   };
@@ -36,75 +44,89 @@ const AddSchWith = () => {
     setSelectedFriends(selectedFriends.filter(item => item.id !== friend.id));
   };
 
+  const handleNextPress = () => {
+    setCurrentSchedule(prev => ({ ...prev, companions: selectedFriends }));
+    navigation.navigate('AddSchImage');
+  };
+
+  const handlePreviousPress = () => {
+    navigation.goBack();
+  };
+
   return (
-    <View>
-      <SafeAreaView style={styles.wrapper} />
-
-      <SafeAreaView>
-        <BasicHeader title="나의 여행 일정 추가" />
-
-        <View style={styles.container}>
-          <View style={styles.titleContainer}>
-            <Text style={fontStyles.title02}>함께하는 친구들이 있나요?</Text>
+    <View style={styles.container}>
+      <View style={styles.main}>
+        <View style={styles.titleContainer}>
+          <Text style={fontStyles.title02}>함께하는 친구들이 있나요?</Text>
+        </View>
+        <View style={styles.selectedFriendsContainer}>
+          <View style={{ marginRight: 12 }}>
+            <PeopleIcon />
           </View>
-
-          <View style={styles.selectedFriendsContainer}>
-            <View style={{ marginRight: 12 }}>
-              <PeopleIcon />
-            </View>
-            <ScrollView
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={{ alignItems: 'center' }}>
-              {selectedFriends.length > 0 ? (
-                selectedFriends.map(friend => (
-                  <View key={friend.id} style={styles.tag}>
-                    <Text style={[fontStyles.basicFont02, { color: color.BLUE_500 }]}>
-                      {friend.name}
+          <ScrollView
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ alignItems: 'center' }}>
+            {selectedFriends.length > 0 ? (
+              selectedFriends.map(friend => (
+                <View key={friend.id} style={styles.tag}>
+                  <Text style={[fontStyles.basicFont02, { color: color.BLUE_500 }]}>
+                    {friend.name}
+                  </Text>
+                  <TouchableOpacity onPress={() => handleRemoveFriend(friend)}>
+                    <Text
+                      style={[fontStyles.basicFont02, { color: color.GRAY_300, marginLeft: 4 }]}>
+                      ×
                     </Text>
-
-                    <TouchableOpacity onPress={() => handleRemoveFriend(friend)}>
-                      <Text
-                        style={[fontStyles.basicFont02, { color: color.GRAY_300, marginLeft: 4 }]}>
-                        ×
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                ))
-              ) : (
-                <Text style={[fontStyles.basicFont02, { color: color.GRAY_300 }]}>
-                  여행 멤버를 선택해보세요
-                </Text>
-              )}
-            </ScrollView>
-          </View>
-          <View>
-            <Text style={[fontStyles.basicFont02, { marginVertical: 10 }]}>친구 0</Text>
-          </View>
-          <ScrollView showsVerticalScrollIndicator={false} style={styles.friendsContainer}>
-            {dummyData.map(item => (
-              <FriendsList
-                key={item.id}
-                name={item.name}
-                friend={item}
-                onSelectFriend={handleSelectFriend}
-              />
-            ))}
+                  </TouchableOpacity>
+                </View>
+              ))
+            ) : (
+              <Text style={[fontStyles.basicFont02, { color: color.GRAY_300 }]}>
+                여행 멤버를 선택해보세요
+              </Text>
+            )}
           </ScrollView>
         </View>
-      </SafeAreaView>
+        <View>
+          <Text style={[fontStyles.basicFont02, { marginVertical: 10 }]}>
+            친구 {selectedFriends.length}
+          </Text>
+        </View>
+        <ScrollView showsVerticalScrollIndicator={false} style={styles.friendsContainer}>
+          {dummyData.map(item => (
+            <FriendsList
+              key={item.id}
+              name={item.name}
+              friend={item}
+              onSelectFriend={handleSelectFriend}
+            />
+          ))}
+        </ScrollView>
+      </View>
+      <View style={styles.footer}>
+        <View style={styles.buttonContainer}>
+          <GrayButton title="이전" onPress={handlePreviousPress} />
+          <BlueButton
+            title="다음"
+            onPress={handleNextPress}
+            disabled={selectedFriends.length === 0}
+          />
+        </View>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  wrapper: {
-    backgroundColor: '#FFF',
-  },
   container: {
-    height: '100%',
-    padding: 20,
     backgroundColor: color.BLUE_30,
+    padding: 20,
+    justifyContent: 'space-between',
+    height: '100%',
+  },
+  main: {
+    flex: 1,
   },
   titleContainer: {
     marginVertical: 20,
@@ -122,18 +144,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   friendsContainer: {
-    maxHeight: '45%',
-    paddingVertical: 10,
-    marginBottom: 40,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    width: '50%',
-    position: 'absolute', // 절대적 배치
-    bottom: 20, // 바닥에 고정
-    left: 20,
-    gap: 20,
-    paddingRight: 10,
+    marginBottom: 20,
   },
   addInfo: {
     flex: 1,
@@ -150,6 +161,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
     marginRight: 6,
     alignItems: 'center',
+  },
+  footer: {},
+  buttonContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    marginLeft: 15,
+    marginRight: 5,
+    gap: 0,
   },
 });
 

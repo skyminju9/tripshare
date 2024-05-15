@@ -1,20 +1,12 @@
-import React, { useState } from 'react';
-import {
-  Text,
-  Image,
-  View,
-  SafeAreaView,
-  StyleSheet,
-  TouchableOpacity,
-  Dimensions,
-} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import BasicHeader from '../../../../components/BasicHeader';
+import React, { useState, useEffect } from 'react';
+import { Text, Image, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import fontStyles from '../../../../styles/fontStyles';
+import { useNavigation } from '@react-navigation/native';
 import color from '../../../../styles/colorPalette';
 import ImageCropPicker from 'react-native-image-crop-picker';
 import UploadImageIcon from '../../../../assets/icons/myTrip/uploadimage.png';
-import CheckedIcon from '../../../../assets/icons/myTrip/checked.png';
+import { BlueButton, GrayButton } from '../../../../components/BasicButtons';
+import { useTravelSchedule } from '../../../../contexts/TravelScheduleContext'; // 변경된 import 경로
 
 const imagesImports = [
   require('../../../../assets/images/myTrip/basicimage1.jpeg'),
@@ -32,11 +24,32 @@ const windowHeight = Dimensions.get('window').height;
 const imageWidth = (windowWidth - 40) / 3 - 5;
 
 const AddSchImage = () => {
+  const { currentSchedule, setCurrentSchedule } = useTravelSchedule(); // 변경된 훅 사용
+  const [images, setImages] = useState([null, ...imagesImports.map(() => null)]);
+  const [fullImage, setFullImage] = useState(
+    currentSchedule.image ? { uri: currentSchedule.image } : null,
+  );
+  const [isCompleted, setIsCompleted] = useState(false);
+
   const navigation = useNavigation();
 
-  const [images, setImages] = useState([null, ...imagesImports.map(() => null)]);
-  const [fullImage, setFullImage] = useState(null);
-  const [isCompleted, setIsCompleted] = useState(false);
+  useEffect(() => {
+    if (currentSchedule.image) {
+      setFullImage({ uri: currentSchedule.image });
+    }
+  }, [currentSchedule.image]);
+
+  const handleNextPress = () => {
+    if (isCompleted && fullImage) {
+      setCurrentSchedule(prev => ({ ...prev, image: fullImage.uri }));
+      navigation.navigate('AddSchHash');
+    }
+  };
+
+  const handlePreviousPress = () => {
+    setFullImage(null);
+    setIsCompleted(false);
+  };
 
   const pickImage = index => {
     if (index === 0) {
@@ -51,15 +64,17 @@ const AddSchImage = () => {
           newImages[index] = { uri: image.path };
           setImages(newImages);
           setFullImage({ uri: image.path });
-          setIsCompleted(false);
+          setIsCompleted(true);
         })
         .catch(error => {
           console.log('Image selection error:', error);
           setFullImage(null);
         });
     } else {
-      setFullImage(imagesImports[index - 1]);
-      setIsCompleted(false);
+      const selectedImage = imagesImports[index - 1];
+      const imageUri = Image.resolveAssetSource(selectedImage).uri;
+      setFullImage({ uri: imageUri });
+      setIsCompleted(true);
     }
   };
 
@@ -80,56 +95,54 @@ const AddSchImage = () => {
         <View style={styles.fullImageWrapper}>
           <Image source={fullImage} style={styles.fullImage} />
         </View>
-        <View style={styles.resetButtonsContainer}>
-          <TouchableOpacity onPress={() => setFullImage(null)} style={styles.resetTextContainer}>
-            <Text style={styles.resetText}>재선택</Text>
-          </TouchableOpacity>
-          {isCompleted ? (
-            <Image source={CheckedIcon} style={styles.checkedIcon} />
-          ) : (
-            <TouchableOpacity
-              onPress={() => setIsCompleted(true)}
-              style={styles.resetTextContainer}>
-              <Text style={styles.resetText}>선택 완료</Text>
-            </TouchableOpacity>
-          )}
-        </View>
       </View>
     );
   };
 
   return (
-    <View>
-      <SafeAreaView style={styles.wrapper} />
-
-      <SafeAreaView>
-        <BasicHeader title="나의 여행 일정 추가" />
-
-        <View style={styles.container}>
+    <View style={styles.container}>
+      <View style={styles.main}>
+        {!fullImage && (
           <View style={styles.titleContainer}>
             <Text style={fontStyles.title02}>여행을 대표하는 이미지를 골라보세요.</Text>
           </View>
+        )}
+        {fullImage ? (
+          renderFullImage()
+        ) : (
+          <View style={styles.imageGridContainer}>
+            {images.map((image, index) => renderImage(image, index))}
+          </View>
+        )}
+      </View>
+      <View style={styles.footer}>
+        <View style={styles.buttonContainer}>
           {fullImage ? (
-            renderFullImage()
+            <>
+              <GrayButton title="재선택" onPress={handlePreviousPress} />
+              <BlueButton title="선택 완료" onPress={handleNextPress} />
+            </>
           ) : (
-            <View style={styles.imageGridContainer}>
-              {images.map((image, index) => renderImage(image, index))}
-            </View>
+            <>
+              <GrayButton title="이전" onPress={navigation.goBack} />
+              <BlueButton title="다음" onPress={handleNextPress} disabled={!isCompleted} />
+            </>
           )}
         </View>
-      </SafeAreaView>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  wrapper: {
-    backgroundColor: '#FFF',
-  },
   container: {
-    height: '100%',
-    padding: 20,
     backgroundColor: color.BLUE_30,
+    padding: 20,
+    justifyContent: 'space-between',
+    height: '100%',
+  },
+  main: {
+    flex: 1,
   },
   titleContainer: {
     marginVertical: 20,
@@ -138,7 +151,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    marginTop: 10,
+    marginTop: 30,
     marginBottom: 80,
   },
   image: {
@@ -159,14 +172,13 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   fullImageContainer: {
-    position: 'absolute', // 절대 위치
+    position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: color.TEXT_SECONDARY,
   },
   fullImageWrapper: {
     flexDirection: 'row',
@@ -174,7 +186,6 @@ const styles = StyleSheet.create({
     top: 90,
     alignItems: 'center ',
   },
-
   fullImage: {
     aspectRatio: 1,
     width: '100%',
@@ -185,20 +196,28 @@ const styles = StyleSheet.create({
   resetButtonsContainer: {
     flexDirection: 'row',
     position: 'absolute',
-    top: 20,
+    top: 40,
     width: '100%',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
   },
-
   resetText: {
     ...fontStyles.title02,
-    color: 'white',
+    color: color.TEXT_PRIMARY,
   },
   checkedIcon: {
     width: 24,
     height: 24,
     resizeMode: 'contain',
+  },
+  footer: {},
+  buttonContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    marginLeft: 15,
+    marginRight: 5,
+    gap: 0,
   },
 });
 

@@ -236,7 +236,6 @@ const styles = StyleSheet.create({
   commentsContainer: {
     marginTop: 20,
     marginBottom: 80,
-    paddingHorizontal: 10,
   },
   commentText: {
     marginBottom: 14,
