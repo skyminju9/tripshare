@@ -3,11 +3,15 @@ import React from 'react';
 import fontStyles from '../../styles/fontStyles';
 import color from '../../styles/colorPalette';
 import { RightArrowIcon } from '../../assets';
+import { useNavigation } from '@react-navigation/native';
 
 const AttractionsList = ({ attractionList }) => {
+  const navigation = useNavigation();
   const renderItem = ({ item }) => {
     return (
-      <TouchableOpacity style={styles.placeCard}>
+      <TouchableOpacity
+        style={styles.placeCard}
+        onPress={() => navigation.navigate('AttractionDetail', { params: item })}>
         <Image source={item.coverImage} style={styles.coverImageStyle} />
         <View style={styles.infoWrapper}>
           <View style={styles.placeNameWrapper}>

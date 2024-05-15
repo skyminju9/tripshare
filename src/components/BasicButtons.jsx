@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 20,
+    marginRight: 10,
   },
   buttonText: {
     fontFamily: 'Pretendard-SemiBold',

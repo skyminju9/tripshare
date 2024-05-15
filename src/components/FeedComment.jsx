@@ -7,13 +7,15 @@ import { setAgoDays } from '../utils/date';
 const FeedComment = ({ comment }) => {
   return (
     <View style={styles.commentContainer}>
-      <View style={styles.commentProfile}>
+      <View style={styles.leftArea}>
         <Image source={comment.user.profileImage} style={styles.commentProfileImage} />
-        <Text style={fontStyles.boldFont01}>{comment.user.name}</Text>
       </View>
-      <View style={styles.commentContents}>
-        <Text style={fontStyles.basicFont}>{comment.content}</Text>
-        <Text style={styles.createdAtText}>{setAgoDays(comment.createdAt)}</Text>
+      <View style={styles.rightArea}>
+        <Text style={fontStyles.boldFont01}>{comment.user.name}</Text>
+        <View style={styles.contentsArea}>
+          <Text style={styles.commentContent}>{comment.content}</Text>
+          <Text style={styles.createdAtText}>{setAgoDays(comment.createdAt)}</Text>
+        </View>
       </View>
     </View>
   );
@@ -21,32 +23,38 @@ const FeedComment = ({ comment }) => {
 
 const styles = StyleSheet.create({
   commentContainer: {
-    paddingVertical: 12,
-    gap: 8,
-  },
-  commentText: {
-    marginBottom: 14,
-  },
-  comment: {
-    gap: 6,
-    marginVertical: 10,
-  },
-  commentProfile: {
+    marginVertical: 12,
     flexDirection: 'row',
-    alignItems: 'center',
+  },
+  leftArea: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: color.GRAY_50,
+    marginRight: 12,
+  },
+  rightArea: {
+    flex: 1,
     gap: 4,
   },
   commentProfileImage: {
-    width: 20,
-    height: 20,
-    borderRadius: 50,
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+    borderRadius: 20,
   },
-  commentContents: {
+  contentsArea: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   createdAtText: {
     color: color.GRAY_300,
+    alignSelf: 'flex-end',
+  },
+  commentContent: {
+    ...fontStyles.basicFont02,
   },
 });
 
