@@ -186,7 +186,7 @@ export const dummy_comment = [
     id: 1,
     name: '도쿄타워',
     articleId: 1,
-    content: '마지막날 일정이 좀 빡빡한 것 같아요?',
+    contents: '마지막날 일정이 좀 빡빡한 것 같아요?',
     like: 1,
     userId: 1,
     createdAt: new Date('2024-05-12 10:10'),
@@ -195,7 +195,7 @@ export const dummy_comment = [
     id: 2,
     name: '도쿄타워',
     articleId: 1,
-    content: '마지막날 일정이 좀 빡빡한 것 같아요??',
+    contents: '마지막날 일정이 좀 빡빡한 것 같아요??',
     like: 5,
     userId: 1,
     createdAt: new Date('2024-05-12 10:20'),
@@ -204,7 +204,7 @@ export const dummy_comment = [
     id: 3,
     name: '도쿄타워',
     articleId: 1,
-    content: '마지막날 일정이 좀 빡빡한 것 같아요???',
+    contents: '마지막날 일정이 좀 빡빡한 것 같아요???',
     like: 3,
     userId: 1,
     createdAt: new Date('2024-05-14 16:20'),
@@ -213,7 +213,7 @@ export const dummy_comment = [
     id: 4,
     name: '도쿄타워',
     articleId: 1,
-    content: '마지막날 일정이 좀 빡빡한 것 같아요???',
+    contents: '마지막날 일정이 좀 빡빡한 것 같아요???',
     like: 3,
     userId: 1,
     createdAt: new Date('2024-05-14 16:20'),
@@ -222,7 +222,7 @@ export const dummy_comment = [
     id: 5,
     name: '김동영',
     articleId: 1,
-    content: '마지막날 일정이 좀 빡빡한 것 같아요???',
+    contents: '마지막날 일정이 좀 빡빡한 것 같아요???',
     like: 3,
     userId: 5,
     createdAt: new Date('2024-05-14 16:20'),
@@ -231,7 +231,7 @@ export const dummy_comment = [
     id: 6,
     name: '김동영',
     articleId: 1,
-    content: '마지막날 일정이 좀 빡빡한 것 같아요???',
+    contents: '마지막날 일정이 좀 빡빡한 것 같아요???',
     like: 3,
     userId: 5,
     createdAt: new Date('2024-05-15 16:20'),
@@ -240,7 +240,7 @@ export const dummy_comment = [
     id: 7,
     name: '김동영',
     articleId: 1,
-    content: '마지막날 일정이 좀 빡빡한 것 같아요???',
+    contents: '마지막날 일정이 좀 빡빡한 것 같아요???',
     like: 3,
     userId: 5,
     createdAt: new Date('2024-05-16 16:20'),
@@ -249,7 +249,7 @@ export const dummy_comment = [
     id: 8,
     name: '김동영',
     articleId: 1,
-    content: '마지막날 일정이 좀 빡빡한 것 같아요???',
+    contents: '마지막날 일정이 좀 빡빡한 것 같아요???',
     like: 3,
     userId: 5,
     createdAt: new Date('2024-05-17 16:20'),
@@ -979,5 +979,222 @@ export const dummy_attractions = [
     ],
     tel: '00-000-000',
     createAt: new Date().getTime(),
+  },
+];
+
+export const DummyPlanData = [
+  {
+    id: '1',
+    title: '뼈 J가 계획한 3박 4일 홍콩 여행',
+    tags: ['축제', '쇼핑', '디즈니랜드'],
+    likes: 16,
+    bookmarks: 32,
+  },
+  {
+    id: '2',
+    title: '6박 7일 남큐슈 드라이브 여행 계획입니다.',
+    tags: ['역사', '문화', '음식'],
+    likes: 20,
+    bookmarks: 15,
+  },
+  {
+    id: '3',
+    title: '어머니와 3박 4일 후쿠오카 계획 어떤가요',
+    tags: ['역사', '문화', '음식'],
+    likes: 30,
+    bookmarks: 25,
+  },
+  {
+    id: '4',
+    title: '2박 3일 제주도 여행 일정',
+    tags: ['자연', '힐링', '맛집'],
+    likes: 45,
+    bookmarks: 40,
+  },
+  {
+    id: '5',
+    title: '5박 6일 도쿄 디즈니랜드와 도쿄 시내 투어',
+    tags: ['디즈니랜드', '쇼핑', '문화'],
+    likes: 50,
+    bookmarks: 60,
+  },
+  {
+    id: '6',
+    title: '3박 4일 대만 야시장 투어',
+    tags: ['야시장', '음식', '쇼핑'],
+    likes: 35,
+    bookmarks: 28,
+  },
+  {
+    id: '7',
+    title: '7박 8일 유럽 배낭여행',
+    tags: ['역사', '문화', '사진'],
+    likes: 70,
+    bookmarks: 85,
+  },
+  {
+    id: '8',
+    title: '4박 5일 방콕과 치앙마이 여행',
+    tags: ['문화', '음식', '힐링'],
+    likes: 55,
+    bookmarks: 50,
+  },
+  {
+    id: '9',
+    title: '5박 6일 호주 시드니와 멜버른 여행',
+    tags: ['자연', '문화', '쇼핑'],
+    likes: 40,
+    bookmarks: 35,
+  },
+  {
+    id: '10',
+    title: '3박 4일 베트남 다낭과 호이안 여행',
+    tags: ['자연', '문화', '맛집'],
+    likes: 60,
+    bookmarks: 65,
+  },
+];
+
+export const DummyDiaryData = [
+  {
+    id: '1',
+    title: '오사카 마지막 날!',
+    heartCount: 16,
+    bookmarkCount: 32,
+    image: require('./assets/icons/Explore/diaryimage.png'),
+  },
+  {
+    id: '2',
+    title: '몰디브 실시간',
+    heartCount: 23,
+    bookmarkCount: 15,
+    image: require('./assets/images/myTrip/basicimage5.jpeg'),
+  },
+  {
+    id: '3',
+    title: '삿포로 왔어요!',
+    heartCount: 4,
+    bookmarkCount: 8,
+    image: require('./assets/images/myTrip/basicimage7.jpeg'),
+  },
+  {
+    id: '4',
+    title: '풍경이 너무 이뻐서',
+    heartCount: 14,
+    bookmarkCount: 18,
+    image: require('./assets/images/myTrip/basicimage2.jpeg'),
+  },
+];
+
+export const scheduleData = {
+  1: [
+    { time: '오전 09:00', activity: '비행기 출발' },
+    { time: '오전 11:00', activity: '호텔 체크인' },
+    { time: '오후 12:30', activity: '점심 식사' },
+    { time: '오후 02:00', activity: '침사추이 관광' },
+    { time: '오후 04:00', activity: '스타페리 탑승' },
+    { time: '오후 06:00', activity: '빅토리아 하버 야경' },
+    { time: '오후 08:00', activity: '저녁 식사' },
+    { time: '오후 10:00', activity: '호텔 귀환' },
+  ],
+  2: [
+    { time: '오전 08:00', activity: '조식' },
+    { time: '오전 09:00', activity: '홍콩 디즈니랜드 이동' },
+    { time: '오전 10:00', activity: '홍콩 디즈니랜드 입장' },
+    { time: '오후 01:00', activity: '점심 식사' },
+    { time: '오후 03:00', activity: '디즈니랜드 퍼레이드' },
+    { time: '오후 06:00', activity: '저녁 식사' },
+    { time: '오후 08:00', activity: '디즈니랜드 불꽃놀이' },
+    { time: '오후 10:00', activity: '호텔 귀환' },
+  ],
+  3: [
+    { time: '오전 09:00', activity: '빅토리아 피크 이동' },
+    { time: '오전 10:00', activity: '피크트램 탑승' },
+    { time: '오전 11:00', activity: '빅토리아 피크 관광' },
+    { time: '오후 12:30', activity: '점심 식사' },
+    { time: '오후 02:00', activity: '센트럴 탐방' },
+    { time: '오후 04:00', activity: '란콰이퐁 이동' },
+    { time: '오후 06:00', activity: '저녁 식사' },
+    { time: '오후 08:00', activity: '란콰이퐁 야경' },
+    { time: '오후 10:00', activity: '호텔 귀환' },
+  ],
+  4: [
+    { time: '오전 08:00', activity: '아침 운동' },
+    { time: '오전 09:00', activity: '조식' },
+    { time: '오전 10:00', activity: '마카오 페리 이동' },
+    { time: '오전 11:00', activity: '마카오 관광' },
+    { time: '오후 01:00', activity: '점심 식사' },
+    { time: '오후 03:00', activity: '마카오 타워' },
+    { time: '오후 05:00', activity: '호텔 체크아웃' },
+    { time: '오후 06:00', activity: '공항 이동' },
+    { time: '오후 09:00', activity: '비행기 출발' },
+  ],
+};
+export const dummy_event = [
+  {
+    id: 1,
+    date: '2024-05-03',
+    events: [
+      {
+        eventId: 1,
+        eventName: '구라야미 마쓰리',
+        eventDuration: '2024-05-03 ~ 2024-05-06',
+        detail:
+          '오쿠니타마 신사에서 거행되는 이 축제는 신위가마 순행이 밤에 이루어진다 하여 ‘구라야미 마쓰리(어둠 축제)’라 불리고 있습니다.',
+      },
+      {
+        eventId: 2,
+        eventName: '구라야미 마쓰리',
+        eventDuration: '2024-05-03 ~ 2024-05-06',
+        detail:
+          '오쿠니타마 신사에서 거행되는 이 축제는 신위가마 순행이 밤에 이루어진다 하여 ‘구라야미 마쓰리(어둠 축제)’라 불리고 있습니다.',
+      },
+      {
+        eventId: 3,
+        eventName: '구라야미 마쓰리',
+        eventDuration: '2024-05-03 ~ 2024-05-06',
+        detail:
+          '오쿠니타마 신사에서 거행되는 이 축제는 신위가마 순행이 밤에 이루어진다 하여 ‘구라야미 마쓰리(어둠 축제)’라 불리고 있습니다.',
+      },
+    ],
+  },
+  {
+    id: 2,
+    date: '2024-05-16',
+    events: [
+      {
+        eventId: 1,
+        eventName: '산자 마쓰리',
+        eventDuration: '2024-05-16 ~ 2024-05-22',
+        detail:
+          '산자 마쓰리 축제는 아사쿠사의 유명한 센소지 절 창건과 관련된 세 사람을 모신 신사의 제례로, 매년 5월 중순에 3일간 열립니다. 인정미 넘치는 도쿄의 서민거리 분위기를 체험할 수 있는 절호의 기회입니다.',
+      },
+    ],
+  },
+  {
+    id: 3,
+    date: '2024-05-29',
+    events: [
+      {
+        eventId: 1,
+        eventName: '도쿄 디자인 페스타',
+        eventDuration: '2024-05-29 ~ 2024-05-30',
+        detail:
+          '‘디자인 페스타’는 국제적인 아트와 디자인의 대규모 이벤트입니다. 도쿄 빅사이트에서 개최되는 이 행사에는 음악, 회화, 패션, 공예, 사진, 퍼포먼스 등 다양한 분야에서 활약하는 1만 명 이상의 아티스트들이 집결합니다.',
+      },
+    ],
+  },
+  {
+    id: 4,
+    date: '2024-06-13',
+    events: [
+      {
+        eventId: 1,
+        eventName: '아쓰타 축제',
+        eventDuration: '2024-06-13 ~ 2024-06-20',
+        detail:
+          '등불 전시와 맛난 음식, 무용이 한데 어우러져 활기찬 분위기를 자아냅니다. 약 2,000년의 역사를 가진 신사에서 열리는 이 축제는 독특한 일본의 전통을 탐방할 훌륭한 기회입니다.',
+      },
+    ],
   },
 ];

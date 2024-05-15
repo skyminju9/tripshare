@@ -36,6 +36,8 @@ import DoneIcon from './icons/community/meeting/doneIcon.svg';
 import AttractionMapIcon from './icons/community/AttractionMap.svg';
 import RightArrowIcon from './icons/community/right_arrow.svg';
 import MenuIcon from './icons/community/menuIcon.svg';
+import MoreInfoIcon from './icons/community/more_down.svg';
+import CalendarIcon from './icons/community/calendar.svg';
 import ListIcon from './icons/community/listIcon.svg';
 import BlueWriteIcon from './icons/community/blueWriteIcon.svg';
 import PhoneIcon from './icons/community/phoneIcon.svg';
@@ -64,6 +66,11 @@ import NotiIcon from '../assets/icons/header/notification.svg';
 import ThemeIcon from './icons/myPage/themeIcon.svg';
 import LogoutIcon from './icons/myPage/logoutIcon.svg';
 import DummyProfileImg from './icons/myPage/dummyProfileImg.png';
+import BlueChatIcon from './icons/myPage/blueChatIcon.svg';
+import BlueCloseIcon from './icons/myPage/blueCloseIcon.svg';
+import BlueFlightIcon from './icons/myPage/blueFlightIcon.svg';
+import BlueSummarizeIcon from './icons/myPage/blueSummarizeIcon.svg';
+import ReportIcon from './icons/myPage/reportIcon.svg';
 
 //mytrip
 import SearchLocationIcon from './icons/myTrip/location.svg';
@@ -124,6 +131,11 @@ export {
   PositionIcon,
   NotiIcon,
   ThemeIcon,
+  BlueChatIcon,
+  BlueFlightIcon,
+  BlueCloseIcon,
+  BlueSummarizeIcon,
+  ReportIcon,
   WhiteLogoIcon,
   WhiteAlertIcon,
   WhiteBackArrowIcon,
@@ -143,6 +155,8 @@ export {
   RightArrowIcon,
   MenuIcon,
   MapIcon,
+  MoreInfoIcon,
+  CalendarIcon,
   ListIcon,
   BlueWriteIcon,
   PhoneIcon,

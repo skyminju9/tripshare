@@ -38,6 +38,8 @@ import CommunitySearchPage from './pages/community/CommunitySearchPage';
 import ChattingDetail from './pages/chat/ChattingDetail';
 import MyRecordMore from './pages/tripPlan/MyTripTab/MyRecordMore';
 import Attractions from './pages/community/Attractions';
+import AttractionDetail from './pages/community/AttractionDetail';
+import EventPage from './pages/community/EventPage';
 import AttractionsMap from './components/community/AttractionsMap';
 import PublicSplash from './pages/register/PublicSplash';
 
@@ -93,6 +95,8 @@ export const MainStack = () => {
       <Stack.Screen name="CommunityArticleDetail" component={CommunityArticleDetail} />
       <Stack.Screen name="CommunitySearchPage" component={CommunitySearchPage} />
       <Stack.Screen name="Attractions" component={Attractions} />
+      <Stack.Screen name="AttractionDetail" component={AttractionDetail} />
+      <Stack.Screen name="EventPage" component={EventPage} />
       <Stack.Screen
         name="CommunitySearchResultPage"
         component={CommmunitySearchResultPage}

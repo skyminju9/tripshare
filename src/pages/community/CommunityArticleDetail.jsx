@@ -8,8 +8,10 @@ import {
   ScrollView,
   KeyboardAvoidingView,
 } from 'react-native';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 import { Shadow } from 'react-native-shadow-2';
+import Modal from 'react-native-modal';
+
 import BasicHeader from '../../components/BasicHeader';
 import {
   BookmarkOffIcon,
@@ -27,7 +29,6 @@ import FeedComment from '../../components/FeedComment';
 import CommentInput from '../../components/CommentInput';
 import { dummy_user } from '../../dummyData';
 import { useAuthUser } from '../../contexts/AuthUserContext';
-import Modal from 'react-native-modal';
 import { APP_WIDTH } from '../../constants';
 
 import { articleCollection } from '../../firebase/firebase';
@@ -195,6 +196,7 @@ const CommunityArticleDetail = ({ route }) => {
             ))}
         </View>
       </ScrollView>
+
       <KeyboardAvoidingView behavior="padding">
         <CommentInput
           chatPlaceHolder="댓글을 입력해주세요"
@@ -339,7 +341,6 @@ const styles = StyleSheet.create({
   commentsContainer: {
     marginTop: 20,
     marginBottom: 80,
-    paddingHorizontal: 10,
   },
   commentText: {
     marginBottom: 14,

@@ -1,17 +1,34 @@
 import React, { useState } from 'react';
-import { View, SafeAreaView, StyleSheet, Image, Text, ScrollView, TextInput } from 'react-native';
+import {
+  View,
+  SafeAreaView,
+  StyleSheet,
+  Image,
+  Text,
+  TextInput,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import fontStyles from '../../../styles/fontStyles';
 import color from '../../../styles/colorPalette';
 import BasicHeader from '../../../components/BasicHeader';
 import SearchBarIcon from '../../../assets/icons/Explore/searchbaricon.png';
-import PlanList from '../../../components/ExploreTabComponents/PlanList';
+import HeartIcon from '../../../assets/icons/Explore/heart.png';
+import HeartIconFilled from '../../../assets/icons/Explore/heartfilled.png';
+import BookmarkIcon from '../../../assets/icons/Explore/bookmark.png';
+import BookmarkIconFilled from '../../../assets/icons/Explore/bookmarkfilled.png';
+import { useNavigation } from '@react-navigation/native';
+import { DummyPlanData } from '../../../dummyData';
 
 const HotPlan = () => {
+  const navigation = useNavigation();
   const [selectedOption, setSelectedOption] = useState(null);
   const [open, setOpen] = useState(false);
   const [searchText, setSearchText] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [likedItems, setLikedItems] = useState({});
+  const [bookmarkedItems, setBookmarkedItems] = useState({});
 
   const items = [
     { label: '최신순', value: 'latest' },
@@ -26,12 +43,59 @@ const HotPlan = () => {
     setIsSearchFocused(false);
   };
 
+  const handleDetailPress = () => {
+    navigation.navigate('PlanDetail');
+  };
+
+  const handleLikePress = id => {
+    setLikedItems(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const handleBookmarkPress = id => {
+    setBookmarkedItems(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const renderItem = ({ item }) => (
+    <TouchableOpacity onPress={handleDetailPress} style={styles.planListbox}>
+      <Text style={fontStyles.basicFont01}>{item.title}</Text>
+      <View style={styles.bottomArea}>
+        <View style={styles.hashTagArea}>
+          {item.tags.map((tag, index) => (
+            <View key={index} style={styles.hashTag}>
+              <Text style={[fontStyles.basicFont02, { color: color.BLUE_600 }]}>#{tag}</Text>
+            </View>
+          ))}
+        </View>
+        <View style={styles.statsArea}>
+          <View style={styles.statsContainer}>
+            <TouchableOpacity onPress={() => handleLikePress(item.id)}>
+              <Image
+                source={likedItems[item.id] ? HeartIconFilled : HeartIcon}
+                style={styles.icon}
+              />
+            </TouchableOpacity>
+            <Text style={styles.statsText1}>{item.likes}</Text>
+          </View>
+          <View style={styles.statsContainer}>
+            <TouchableOpacity onPress={() => handleBookmarkPress(item.id)}>
+              <Image
+                source={bookmarkedItems[item.id] ? BookmarkIconFilled : BookmarkIcon}
+                style={styles.icon}
+              />
+            </TouchableOpacity>
+            <Text style={styles.statsText2}>{item.bookmarks}</Text>
+          </View>
+        </View>
+      </View>
+    </TouchableOpacity>
+  );
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <BasicHeader title="실시간 인기 계획" />
       <View style={styles.container}>
         <View style={[styles.searchBar, isSearchFocused && styles.searchBarFocused]}>
-          <Image source={SearchBarIcon} style={styles.icon} />
+          <Image source={SearchBarIcon} style={styles.searchBarIcon} />
           <TextInput
             style={[fontStyles.basicFont02, styles.textInput]}
             placeholder="계정 또는 키워드로 검색"
@@ -66,13 +130,15 @@ const HotPlan = () => {
           listItemContainerStyle={styles.listItemContainerStyle}
         />
 
-        <ScrollView>
-          <View style={[styles.planListContainer, isSearchFocused && styles.hidden]}>
-            {[...Array(9)].map((_, index) => (
-              <PlanList key={index} id={index} />
-            ))}
-          </View>
-        </ScrollView>
+        {!isSearchFocused && (
+          <FlatList
+            data={DummyPlanData}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+            style={styles.planListContainer}
+            showsVerticalScrollIndicator={false}
+          />
+        )}
       </View>
     </SafeAreaView>
   );
@@ -101,9 +167,9 @@ const styles = StyleSheet.create({
     borderColor: color.BLUE_500,
     borderWidth: 1,
   },
-  icon: {
-    width: 20,
-    height: 20,
+  searchBarIcon: {
+    width: 16,
+    height: 16,
     marginHorizontal: 8,
   },
   textInput: {
@@ -135,11 +201,23 @@ const styles = StyleSheet.create({
     height: 30,
   },
   planListContainer: {
-    alignItems: 'center',
     marginVertical: 8,
+    width: '100%',
+    flex: 1,
   },
-  hidden: {
-    display: 'none',
+  planListbox: {
+    width: '100%',
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#EEEEEE',
+    borderRadius: 8,
+    marginBottom: 8,
+    padding: 12,
+  },
+  bottomArea: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 8,
   },
   hashTag: {
     flexDirection: 'row',
@@ -151,16 +229,42 @@ const styles = StyleSheet.create({
     backgroundColor: '#CBDDFF',
     borderRadius: 24,
   },
+  hashTagArea: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+  },
+  statsArea: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 8,
+    gap: 2,
+  },
+  icon: {
+    width: 16,
+    height: 16,
+  },
+  statsText1: {
+    color: '#FF5E5E',
+    fontSize: 14,
+    letterSpacing: -0.28,
+  },
+  statsText2: {
+    color: '#0041CB',
+    fontSize: 14,
+    letterSpacing: -0.28,
+  },
+  hidden: {
+    display: 'none',
+  },
   hashText: {
     fontWeight: '300',
     fontSize: 14,
     letterSpacing: -0.28,
     color: '#002676',
-  },
-  hashTagArea: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    marginBottom: 8,
   },
 });
 

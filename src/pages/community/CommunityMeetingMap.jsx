@@ -85,7 +85,9 @@ const CommunityMeetingMap = ({ navigation }) => {
     if (!event.nativeEvent.action) {
       setMarkerData('');
     } else if (event.nativeEvent.action === 'marker-press') {
-      marker.address = await convertLocationToAddress(marker.location);
+      marker.address = await convertLocationToAddress(marker.location).catch(err => {
+        console.log(err);
+      });
       setMarkerData(marker);
       event.stopPropagation();
     }
@@ -105,16 +107,17 @@ const CommunityMeetingMap = ({ navigation }) => {
       ':' +
       ('0' + impromptuMin).slice(-2);
 
-    dummy_meet.push({
-      id: dummy_meet.length + 1,
-      location: { latitude: 37.78815, longitude: -122.4318 },
-      title: impromptuTitle,
-      content: impromptuContent,
-      name: '도쿄최고',
-      category: 'impromptu',
-      createAt: today,
-      meetingAt: new Date(meetingDate),
-    });
+    //db 연결
+    // dummy_meet.push({
+    //   id: dummy_meet.length + 1,
+    //   location: { latitude: 37.78815, longitude: -122.4318 },
+    //   title: impromptuTitle,
+    //   content: impromptuContent,
+    //   name: '도쿄최고',
+    //   category: 'impromptu',
+    //   createAt: today,
+    //   meetingAt: new Date(meetingDate),
+    // });
     setImpromptuModalIsVisible(false);
   };
 

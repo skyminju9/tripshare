@@ -46,7 +46,6 @@ const MyPageArticle = () => {
     if (articleData[index - 1]) {
       isPrevSameDate = formatDate(item.createdAt) === formatDate(articleData[index - 1]?.createdAt);
     }
-
     item.authorImage = user.profileImage || DummyProfileImg;
     item.authorName = user.name;
 
