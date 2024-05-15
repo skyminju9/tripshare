@@ -10,8 +10,8 @@ const authUserReducer = (user, action) => {
       return action.userData;
     case 'LOGOUT':
       return {};
-    case 'CHANGE_NAME':
-      return { ...user, name: action.name };
+    case 'UPDATE_USER':
+      return { ...user, ...action.updateInfo };
     default:
       return user;
   }
@@ -41,13 +41,13 @@ export const AuthUserProvider = ({ children, firebaseAuthUser }) => {
     dispatch({ type: 'LOGOUT' });
   };
 
-  const changeName = name => {
-    dispatch({ type: 'CHANGE_NAME', name });
+  const updateUserInfo = updateInfo => {
+    dispatch({ type: 'UPDATE_USER', updateInfo });
   };
 
   return (
     <AuthUserContext.Provider value={authUser}>
-      <AuthUserDispatchContext.Provider value={{ login, logout, changeName }}>
+      <AuthUserDispatchContext.Provider value={{ login, logout, updateUserInfo }}>
         {children}
       </AuthUserDispatchContext.Provider>
     </AuthUserContext.Provider>

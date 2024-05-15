@@ -32,7 +32,7 @@ import Toast from 'react-native-toast-message';
 
 const MyPageHome = ({ navigation }) => {
   const user = useAuthUser();
-  const { logout, changeName } = useAutuUserDispatch();
+  const { logout, updateUserInfo } = useAutuUserDispatch();
 
   const [username, setUsername] = useState(user.name || '');
   const [profileImg, setProfileImg] = useState(user.profileImage || DummyProfileImg);
@@ -54,7 +54,7 @@ const MyPageHome = ({ navigation }) => {
       const isExistName = await checkUniqueName(username);
       if (isExistName) throw new Error('닉네임이 중복됩니다.');
       await changeUserName({ name: username, email: user.email });
-      changeName(username);
+      updateUserInfo({ name: username });
       setEdit(false);
     } catch (e) {
       showToast('error', e.message);
