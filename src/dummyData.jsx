@@ -954,6 +954,154 @@ export const dummy_attractions = [
   },
 ];
 
+export const DummyPlanData = [
+  {
+    id: '1',
+    title: '뼈 J가 계획한 3박 4일 홍콩 여행',
+    tags: ['축제', '쇼핑', '디즈니랜드'],
+    likes: 16,
+    bookmarks: 32,
+  },
+  {
+    id: '2',
+    title: '6박 7일 남큐슈 드라이브 여행 계획입니다.',
+    tags: ['역사', '문화', '음식'],
+    likes: 20,
+    bookmarks: 15,
+  },
+  {
+    id: '3',
+    title: '어머니와 3박 4일 후쿠오카 계획 어떤가요',
+    tags: ['역사', '문화', '음식'],
+    likes: 30,
+    bookmarks: 25,
+  },
+  {
+    id: '4',
+    title: '2박 3일 제주도 여행 일정',
+    tags: ['자연', '힐링', '맛집'],
+    likes: 45,
+    bookmarks: 40,
+  },
+  {
+    id: '5',
+    title: '5박 6일 도쿄 디즈니랜드와 도쿄 시내 투어',
+    tags: ['디즈니랜드', '쇼핑', '문화'],
+    likes: 50,
+    bookmarks: 60,
+  },
+  {
+    id: '6',
+    title: '3박 4일 대만 야시장 투어',
+    tags: ['야시장', '음식', '쇼핑'],
+    likes: 35,
+    bookmarks: 28,
+  },
+  {
+    id: '7',
+    title: '7박 8일 유럽 배낭여행',
+    tags: ['역사', '문화', '사진'],
+    likes: 70,
+    bookmarks: 85,
+  },
+  {
+    id: '8',
+    title: '4박 5일 방콕과 치앙마이 여행',
+    tags: ['문화', '음식', '힐링'],
+    likes: 55,
+    bookmarks: 50,
+  },
+  {
+    id: '9',
+    title: '5박 6일 호주 시드니와 멜버른 여행',
+    tags: ['자연', '문화', '쇼핑'],
+    likes: 40,
+    bookmarks: 35,
+  },
+  {
+    id: '10',
+    title: '3박 4일 베트남 다낭과 호이안 여행',
+    tags: ['자연', '문화', '맛집'],
+    likes: 60,
+    bookmarks: 65,
+  },
+];
+
+export const DummyDiaryData = [
+  {
+    id: '1',
+    title: '오사카 마지막 날!',
+    heartCount: 16,
+    bookmarkCount: 32,
+    image: require('./assets/icons/Explore/diaryimage.png'),
+  },
+  {
+    id: '2',
+    title: '몰디브 실시간',
+    heartCount: 23,
+    bookmarkCount: 15,
+    image: require('./assets/images/myTrip/basicimage5.jpeg'),
+  },
+  {
+    id: '3',
+    title: '삿포로 왔어요!',
+    heartCount: 4,
+    bookmarkCount: 8,
+    image: require('./assets/images/myTrip/basicimage7.jpeg'),
+  },
+  {
+    id: '4',
+    title: '풍경이 너무 이뻐서',
+    heartCount: 14,
+    bookmarkCount: 18,
+    image: require('./assets/images/myTrip/basicimage2.jpeg'),
+  },
+];
+
+export const scheduleData = {
+  1: [
+    { time: '오전 09:00', activity: '비행기 출발' },
+    { time: '오전 11:00', activity: '호텔 체크인' },
+    { time: '오후 12:30', activity: '점심 식사' },
+    { time: '오후 02:00', activity: '침사추이 관광' },
+    { time: '오후 04:00', activity: '스타페리 탑승' },
+    { time: '오후 06:00', activity: '빅토리아 하버 야경' },
+    { time: '오후 08:00', activity: '저녁 식사' },
+    { time: '오후 10:00', activity: '호텔 귀환' },
+  ],
+  2: [
+    { time: '오전 08:00', activity: '조식' },
+    { time: '오전 09:00', activity: '홍콩 디즈니랜드 이동' },
+    { time: '오전 10:00', activity: '홍콩 디즈니랜드 입장' },
+    { time: '오후 01:00', activity: '점심 식사' },
+    { time: '오후 03:00', activity: '디즈니랜드 퍼레이드' },
+    { time: '오후 06:00', activity: '저녁 식사' },
+    { time: '오후 08:00', activity: '디즈니랜드 불꽃놀이' },
+    { time: '오후 10:00', activity: '호텔 귀환' },
+  ],
+  3: [
+    { time: '오전 09:00', activity: '빅토리아 피크 이동' },
+    { time: '오전 10:00', activity: '피크트램 탑승' },
+    { time: '오전 11:00', activity: '빅토리아 피크 관광' },
+    { time: '오후 12:30', activity: '점심 식사' },
+    { time: '오후 02:00', activity: '센트럴 탐방' },
+    { time: '오후 04:00', activity: '란콰이퐁 이동' },
+    { time: '오후 06:00', activity: '저녁 식사' },
+    { time: '오후 08:00', activity: '란콰이퐁 야경' },
+    { time: '오후 10:00', activity: '호텔 귀환' },
+  ],
+  4: [
+    { time: '오전 08:00', activity: '아침 운동' },
+    { time: '오전 09:00', activity: '조식' },
+    { time: '오전 10:00', activity: '마카오 페리 이동' },
+    { time: '오전 11:00', activity: '마카오 관광' },
+    { time: '오후 01:00', activity: '점심 식사' },
+    { time: '오후 03:00', activity: '마카오 타워' },
+    { time: '오후 05:00', activity: '호텔 체크아웃' },
+    { time: '오후 06:00', activity: '공항 이동' },
+    { time: '오후 09:00', activity: '비행기 출발' },
+  ],
+};
 export const dummy_event = [
   {
     id: 1,

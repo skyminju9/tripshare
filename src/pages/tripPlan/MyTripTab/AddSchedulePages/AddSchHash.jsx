@@ -1,24 +1,41 @@
-import React, { useState } from 'react';
-import {
-  Text,
-  View,
-  SafeAreaView,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
-import BasicHeader from '../../../../components/BasicHeader';
+import React, { useState, useEffect } from 'react';
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
 import fontStyles from '../../../../styles/fontStyles';
+import { useNavigation } from '@react-navigation/native';
 import color from '../../../../styles/colorPalette';
 import PlusIcon from '../../../../assets/icons/myTrip/plusicon.png';
+import { BlueButton, GrayButton } from '../../../../components/BasicButtons';
+import { useTravelSchedule } from '../../../../contexts/TravelScheduleContext'; // 변경된 import 경로
 
 const AddSchHash = () => {
-  const [hashTags, setHashTags] = useState([]);
+  const { currentSchedule, setCurrentSchedule } = useTravelSchedule(); // 변경된 훅 사용
+  const [hashTags, setHashTags] = useState(currentSchedule.hashtags || []);
+  const [hashTagInput, setHashTagInput] = useState('');
+
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    if (currentSchedule.hashtags) {
+      setHashTags(currentSchedule.hashtags);
+    }
+  }, [currentSchedule.hashtags]);
+
+  const handleNextPress = () => {
+    if (hashTags.length > 0) {
+      setCurrentSchedule(prev => ({ ...prev, hashtags: hashTags }));
+      navigation.navigate('AddSchComplete');
+    }
+  };
+
+  const handlePreviousPress = () => {
+    navigation.goBack();
+  };
+
   const handleAddHashTag = () => {
     const inputHashTag = hashTagInput.trim();
-    if (inputHashTag) {
-      setHashTags([...hashTags, inputHashTag]);
+    if (inputHashTag && !hashTags.includes(inputHashTag)) {
+      const updatedHashTags = [...hashTags, inputHashTag];
+      setHashTags(updatedHashTags);
       setHashTagInput('');
     }
   };
@@ -28,66 +45,66 @@ const AddSchHash = () => {
     setHashTags(updatedTags);
   };
 
-  const [hashTagInput, setHashTagInput] = useState('');
-
   return (
-    <View>
-      <SafeAreaView style={styles.wrapper} />
-
-      <SafeAreaView>
-        <BasicHeader title="나의 여행 일정 추가" />
-
-        <View style={styles.container}>
-          <View style={styles.titleContainer}>
-            <Text style={[fontStyles.title02]}>나의 여행을 위한 해시태그를 작성해 보세요.</Text>
-          </View>
-          <View style={{ marginVertical: 12 }}>
-            <Text style={[fontStyles.basicFont02, { color: color.TEXT_SECONDARY }]}>
-              좀 더 기억에 남을 여행 계획이 될 거예요.
-            </Text>
-          </View>
-          <View style={styles.hashStatusBar}>
-            <TextInput
-              placeholder="해시태그를 입력하세요."
-              placeholderTextColor={color.GRAY_300}
-              value={hashTagInput}
-              onChangeText={setHashTagInput}
-            />
-
-            <TouchableOpacity style={styles.plusIconContainer} onPress={handleAddHashTag}>
-              <Image source={PlusIcon} style={{ width: 26, height: 26 }} />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.selectedHashTagsContainer}>
-            {hashTags.map(tag => (
-              <View key={tag} style={styles.selectedHashTag}>
-                <Text style={[fontStyles.basicFont02, { color: color.WHITE }]}>#{tag}</Text>
-                <TouchableOpacity onPress={() => handleDeleteHashTag(tag)}>
-                  <Text
-                    style={[
-                      fontStyles.basicFont02,
-                      { color: color.GRAY_50, marginLeft: 4, marginBottom: 2 },
-                    ]}>
-                    ×
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            ))}
-          </View>
+    <View style={styles.container}>
+      <View style={styles.main}>
+        <View style={styles.titleContainer}>
+          <Text style={[fontStyles.title02]}>나의 여행을 위한 해시태그를 작성해 보세요.</Text>
         </View>
-      </SafeAreaView>
+        <View style={{ marginVertical: 12 }}>
+          <Text style={[fontStyles.basicFont02, { color: color.TEXT_SECONDARY }]}>
+            좀 더 기억에 남을 여행 계획이 될 거예요.
+          </Text>
+        </View>
+        <View style={styles.hashStatusBar}>
+          <TextInput
+            placeholder="해시태그를 입력하세요."
+            placeholderTextColor={color.GRAY_300}
+            value={hashTagInput}
+            onChangeText={setHashTagInput}
+            onSubmitEditing={handleAddHashTag}
+            style={{ flex: 1 }}
+          />
+          <TouchableOpacity style={styles.plusIconContainer} onPress={handleAddHashTag}>
+            <Image source={PlusIcon} style={{ width: 26, height: 26 }} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.selectedHashTagsContainer}>
+          {hashTags.map(tag => (
+            <View key={tag} style={styles.selectedHashTag}>
+              <Text style={[fontStyles.basicFont02, { color: color.WHITE }]}>#{tag}</Text>
+              <TouchableOpacity onPress={() => handleDeleteHashTag(tag)}>
+                <Text
+                  style={[
+                    fontStyles.basicFont02,
+                    { color: color.GRAY_50, marginLeft: 4, marginBottom: 2 },
+                  ]}>
+                  ×
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ))}
+        </View>
+      </View>
+      <View style={styles.footer}>
+        <View style={styles.buttonContainer}>
+          <GrayButton title="이전" onPress={handlePreviousPress} />
+          <BlueButton title="다음" onPress={handleNextPress} disabled={hashTags.length === 0} />
+        </View>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  wrapper: {
-    backgroundColor: '#FFF',
-  },
   container: {
-    height: '100%',
-    padding: 20,
     backgroundColor: color.BLUE_30,
+    padding: 20,
+    justifyContent: 'space-between',
+    height: '100%',
+  },
+  main: {
+    flex: 1,
   },
   titleContainer: {
     marginTop: 20,
@@ -105,6 +122,7 @@ const styles = StyleSheet.create({
     borderColor: color.GRAY_50,
     paddingHorizontal: 16,
     marginBottom: 16,
+    alignItems: 'center',
   },
   plusIconContainer: {
     justifyContent: 'center',
@@ -112,21 +130,30 @@ const styles = StyleSheet.create({
   },
   selectedHashTagsContainer: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     marginBottom: 5,
   },
   selectedHashTag: {
-    width: 'auto',
-    height: 'auto',
     justifyContent: 'center',
     alignItems: 'center',
     fontSize: 14,
     paddingHorizontal: 6,
     paddingVertical: 4,
     marginRight: 6,
+    marginBottom: 6,
     borderRadius: 10,
-    borderStyle: 'solid',
     backgroundColor: color.BLUE_500,
     flexDirection: 'row',
+  },
+  footer: {},
+  buttonContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    marginLeft: 15,
+    marginRight: 5,
+    gap: 0,
   },
 });
 

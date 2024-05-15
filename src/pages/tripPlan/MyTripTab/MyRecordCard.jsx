@@ -5,7 +5,7 @@ import HeartIcon from '../../../assets/icons/myTrip/favorite_blank.svg';
 import color from '../../../styles/colorPalette';
 import fontStyles from '../../../styles/fontStyles';
 
-const dummyRecordImage = require('../../../assets/images/dummy/dummyRecord.png');
+const dummyRecordImage = require('../../../assets/icons/Explore/diaryimage.png');
 
 const MyRecordCard = ({ item }) => {
   return (
@@ -36,29 +36,41 @@ const styles = StyleSheet.create({
   cardWrapper: {
     width: 160,
     height: 200,
-    borderRadius: 8,
+    borderRadius: 12,
     borderWidth: 1,
     borderColor: color.GRAY_50,
     marginRight: 8,
     overflow: 'hidden',
   },
-
   recordCoverImageWrapper: {
     flex: 0.7,
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
     overflow: 'hidden',
   },
-  recordCoverImage: { width: 160, height: 200 },
-  recordDescriptWrapper: { flex: 0.3, backgroundColor: '#FFF', padding: 8, gap: 20 },
+  recordCoverImage: {
+    width: '100%',
+    height: '100%',
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+  },
+  recordDescriptWrapper: {
+    flex: 0.3,
+    backgroundColor: '#FFF',
+    padding: 8,
+    gap: 20,
+  },
   recordViews: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',
     gap: 8,
   },
-  viewElementsWrapper: { flexDirection: 'row', alignItems: 'center', gap: 2 },
+  viewElementsWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 2,
+  },
   heartIconText: [fontStyles.basicFont02, { color: color.RED_400 }],
   bookmarkIconText: [fontStyles.basicFont02, { color: color.BLUE_600 }],
 });
+
 export default MyRecordCard;

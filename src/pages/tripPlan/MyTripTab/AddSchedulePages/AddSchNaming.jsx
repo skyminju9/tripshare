@@ -1,42 +1,61 @@
-import React from 'react';
-import { Text, View, SafeAreaView, StyleSheet, TextInput } from 'react-native';
-import BasicHeader from '../../../../components/BasicHeader';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import fontStyles from '../../../../styles/fontStyles';
 import color from '../../../../styles/colorPalette';
+import { BlueButton } from '../../../../components/BasicButtons';
+import { useTravelSchedule } from '../../../../contexts/TravelScheduleContext'; // 변경된 import 경로
 
 const AddSchNaming = () => {
+  const navigation = useNavigation();
+  const { currentSchedule, setCurrentSchedule } = useTravelSchedule(); // 변경된 훅 사용
+  const [name, setName] = useState(currentSchedule.name);
+
+  useEffect(() => {
+    setName(currentSchedule.name);
+  }, [currentSchedule.name]);
+
+  const handleNextPress = () => {
+    if (name.trim()) {
+      setCurrentSchedule(prev => ({ ...prev, name }));
+      navigation.navigate('AddSchWhen');
+    }
+  };
+
   return (
-    <View>
-      <SafeAreaView style={styles.wrapper} />
-
-      <SafeAreaView>
-        <BasicHeader title="나의 여행 일정 추가" />
-
-        <View style={styles.container}>
-          <View style={styles.titleContainer}>
-            <Text style={fontStyles.title02}>여행의 이름을 지어주세요</Text>
-          </View>
-          <View style={styles.inputContainer}>
-            <TextInput
-              placeholder="제목을 입력하세요."
-              placeholderTextColor={color.GRAY_300}
-              style={[fontStyles.basicFont02, styles.textInput]}
-            />
-          </View>
+    <View style={styles.container}>
+      <View style={styles.main}>
+        <View style={styles.titleContainer}>
+          <Text style={fontStyles.title02}>여행의 이름을 지어주세요</Text>
         </View>
-      </SafeAreaView>
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="제목을 입력하세요."
+            placeholderTextColor={color.GRAY_300}
+            style={[fontStyles.basicFont02, styles.textInput]}
+            value={name}
+            onChangeText={setName}
+          />
+        </View>
+      </View>
+      <View style={styles.footer}>
+        <View style={styles.buttonContainer}>
+          <BlueButton title="다음" onPress={handleNextPress} disabled={!name.trim()} />
+        </View>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  wrapper: {
-    backgroundColor: '#FFF',
-  },
   container: {
-    height: '100%',
-    padding: 20,
     backgroundColor: color.BLUE_30,
+    padding: 20,
+    justifyContent: 'space-between',
+    height: '100%',
+  },
+  main: {
+    flex: 1,
   },
   titleContainer: {
     marginVertical: 20,
@@ -51,6 +70,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     marginBottom: 20,
     justifyContent: 'center',
+  },
+  footer: {},
+  buttonContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    marginLeft: 15,
+    marginRight: 5,
+    gap: 0,
   },
 });
 
