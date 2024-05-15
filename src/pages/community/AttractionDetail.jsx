@@ -4,6 +4,7 @@ import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 import BasicHeader from '../../components/BasicHeader';
 import SeeMoreBtn from '../../components/SeeMoreBtn';
+import { setAgoDays } from '../../utils/date';
 
 const writeButton = require('../../assets/icons/community/write_review.png');
 const locationIcon = require('../../assets/icons/community/location.png');
@@ -12,21 +13,12 @@ const starIcon = require('../../assets/icons/community/star.png');
 
 const AttractionDetail = ({ route }) => {
   const attraction = route.params.params;
-  console.log(attraction);
+
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: color.WHITE }}>
+    <SafeAreaView style={styles.wrapper}>
       <BasicHeader title={'상세페이지'} />
-      <View style={{ alignItems: 'center', marginHorizontal: 20, marginTop: 16 }}>
-        <Image
-          source={attraction.coverImage}
-          style={{
-            width: 350,
-            height: 180,
-            borderRadius: 8,
-            borderColor: color.GRAY_50,
-            borderWidth: 1,
-          }}
-        />
+      <View style={styles.detailContainer}>
+        <Image source={attraction.coverImage} style={styles.coverImageStyle} />
         <View style={{ width: 350, marginTop: 16 }}>
           <View
             style={{
@@ -83,16 +75,19 @@ const AttractionDetail = ({ route }) => {
                   <TouchableOpacity
                     key={item.id}
                     style={{
+                      flexDirection: 'row',
                       width: 340,
                       height: 35,
                       borderWidth: 2,
                       borderRadius: 12,
                       borderColor: color.BLUE_200,
-                      justifyContent: 'center',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
                       paddingHorizontal: 16,
                       marginBottom: 8,
                     }}>
                     <Text style={fontStyles.basicFont02}>{item.comment}</Text>
+                    <Text style={fontStyles.basicFont02}>{setAgoDays(item.createdAt)}</Text>
                   </TouchableOpacity>
                 );
               })}
@@ -103,5 +98,17 @@ const AttractionDetail = ({ route }) => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  wrapper: { flex: 1, backgroundColor: color.WHITE },
+  detailContainer: { alignItems: 'center', marginHorizontal: 20, marginTop: 16 },
+  coverImageStyle: {
+    width: 350,
+    height: 180,
+    borderRadius: 8,
+    borderColor: color.GRAY_50,
+    borderWidth: 1,
+  },
+});
 
 export default AttractionDetail;
