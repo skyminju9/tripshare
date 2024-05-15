@@ -8,8 +8,10 @@ import {
   ScrollView,
   KeyboardAvoidingView,
 } from 'react-native';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 import { Shadow } from 'react-native-shadow-2';
+import Modal from 'react-native-modal';
+
 import BasicHeader from '../../components/BasicHeader';
 import { BookmarkOffIcon, HeartOffIcon, CommentIcon, MenuIcon } from '../../assets/index';
 import color from '../../styles/colorPalette';
@@ -20,10 +22,9 @@ import FeedComment from '../../components/FeedComment';
 import CommentInput from '../../components/CommentInput';
 import { dummy_comment, dummy_user } from '../../dummyData';
 import { useAuthUser } from '../../contexts/AuthUserContext';
-import Modal from 'react-native-modal';
 import { APP_WIDTH } from '../../constants';
 
-const CommunityArticleDetail = () => {
+const CommunityArticleDetail = ({ navigation }) => {
   const article = useRoute().params;
   const comments = dummy_comment
     .filter(comment => comment.articleId === article.id)
@@ -37,7 +38,6 @@ const CommunityArticleDetail = () => {
 
   const loginUser = useAuthUser();
   const isPostOwner = article.authorName === loginUser.name;
-  const navigation = useNavigation();
   const [isMenuVisible, setMenuVisible] = useState(false);
   const [isNotiVisible, setNotiVisible] = useState(false);
 
@@ -100,6 +100,7 @@ const CommunityArticleDetail = () => {
           ))}
         </View>
       </ScrollView>
+
       <KeyboardAvoidingView behavior="padding">
         <CommentInput chatPlaceHolder="댓글을 입력해주세요" />
       </KeyboardAvoidingView>

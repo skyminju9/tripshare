@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, View, Image } from 'react-native';
+import { Text, StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 import { setAgoDays } from '../../utils/date';

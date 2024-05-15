@@ -20,9 +20,6 @@ const MyPageArticle = ({ route }) => {
       isPrevSameDate = formatDate(item.createdAt) === formatDate(articleData[index - 1]?.createdAt);
     }
 
-    item.authorImage = user.profileImage;
-    item.authorName = user.name;
-
     return (
       <View style={styles.cardContainer}>
         {!isPrevSameDate && <Text style={styles.cardDate}>{formatDate(item.createdAt)}</Text>}
