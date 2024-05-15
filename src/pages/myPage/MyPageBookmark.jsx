@@ -20,8 +20,8 @@ const MyPageBookmark = () => {
 
   const handleContent = (data, userList) => {
     const initialArticles = data.map(article => {
+      const content = article._data;
       if (userList !== undefined) {
-        const content = article.data();
         const articleUser = userList.find(user => user.id === content.creator);
 
         return {
@@ -31,7 +31,6 @@ const MyPageBookmark = () => {
           authorImage: articleUser.profileImage || DummyProfileImg,
         };
       } else {
-        const content = article.data();
         const articleUser = dummy_user.find(user => user.id === content.creator);
 
         return {
