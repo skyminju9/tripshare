@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, Image, ScrollView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 import fontStyles from '../../styles/fontStyles';
 import color from '../../styles/colorPalette';
 import shadowStyles from '../../styles/shadowStyles';
@@ -20,6 +22,8 @@ const HomePage = () => {
   const locationContext = useLocation();
   const user = useAuthUser();
 
+  const navigation = useNavigation();
+
   const [selectedCountry, setSelectedCountry] = useState(
     locationContext.selectedCountry || '대한민국',
   );
@@ -36,6 +40,10 @@ const HomePage = () => {
   const [error, setError] = useState(null);
 
   const defaultFlagUrl = 'https://example.com/south-korea-flag.png';
+
+  useEffect(() => {
+    if (!user.currentCity) navigation.navigate('SetMyLocationPage');
+  }, []);
 
   useEffect(() => {
     const loadData = async () => {

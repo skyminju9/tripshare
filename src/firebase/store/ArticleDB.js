@@ -1,4 +1,4 @@
-import { articleCollection } from '../firebase';
+import { articleCollection, userCollection } from '../firebase';
 
 export const addArticle = async data => {
   try {
@@ -31,6 +31,27 @@ export const getArticleList = async () => {
   try {
     const res = await articleCollection.orderBy('createdAt', 'desc').get();
     return res.docs;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const getArticleAndAuthorList = async () => {
+  try {
+    const getArticles = await articleCollection.orderBy('createdAt', 'desc').get();
+    const articles = getArticles.docs.map(doc => doc.data());
+
+    let newArticles = [];
+
+    for (let i = 0; i < articles.length; i++) {
+      const getUser = await userCollection.where('id', '==', articles[i].creator).get();
+      if (getUser) {
+        const userInfo = getUser.docs.map(doc => doc.data())[0];
+        newArticles.push({ ...articles[i], author: userInfo });
+      } else newArticles.push(articles[i]);
+    }
+
+    return newArticles;
   } catch (err) {
     console.error(err);
   }
