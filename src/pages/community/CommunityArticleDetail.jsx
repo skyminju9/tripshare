@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
-import { Text, SafeAreaView, StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
-import { useRoute, useNavigation } from '@react-navigation/native';
+import {
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  KeyboardAvoidingView,
+} from 'react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { Shadow } from 'react-native-shadow-2';
 import BasicHeader from '../../components/BasicHeader';
 import { BookmarkOffIcon, HeartOffIcon, CommentIcon, MenuIcon } from '../../assets/index';
@@ -92,9 +100,9 @@ const CommunityArticleDetail = () => {
           ))}
         </View>
       </ScrollView>
-      <View>
-        <CommentInput />
-      </View>
+      <KeyboardAvoidingView behavior="padding">
+        <CommentInput chatPlaceHolder="댓글을 입력해주세요" />
+      </KeyboardAvoidingView>
 
       {/* 게시글 메뉴 모달 */}
       <Modal

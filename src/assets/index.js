@@ -21,7 +21,7 @@ import SearchIcon from './icons/articleIcons/searchIcon.svg';
 import FlashIcon from './icons/community/flash.svg';
 import PlaceIcon from './icons/community/place.svg';
 import EventIcon from './icons/community/event.svg';
-import FreeTalkIcon from './icons/community/free.svg';
+import FreeTalkIcon from './icons/community/freeTalk.svg';
 import PostIcon from './icons/community/postIcon.svg';
 import UploadIcon from './icons/community/uploadIcon.svg';
 import DeleteIcon from './icons/community/deleteIcon.svg';
@@ -36,6 +36,16 @@ import DoneIcon from './icons/community/meeting/doneIcon.svg';
 import AttractionMapIcon from './icons/community/AttractionMap.svg';
 import RightArrowIcon from './icons/community/right_arrow.svg';
 import MenuIcon from './icons/community/menuIcon.svg';
+import MoreInfoIcon from './icons/community/more_down.svg';
+import CalendarIcon from './icons/community/calendar.svg';
+import ListIcon from './icons/community/listIcon.svg';
+import BlueWriteIcon from './icons/community/blueWriteIcon.svg';
+import PhoneIcon from './icons/community/phoneIcon.svg';
+
+// chat icon
+import WhiteLogoIcon from './icons/chat/whiteLogo.svg';
+import WhiteAlertIcon from './icons/chat/whiteAlertIcon.svg';
+import WhiteBackArrowIcon from './icons/chat/WhiteBackArrow.svg';
 
 // register
 import PersonIcon from './icons/register/person.svg';
@@ -114,6 +124,9 @@ export {
   PositionIcon,
   NotiIcon,
   ThemeIcon,
+  WhiteLogoIcon,
+  WhiteAlertIcon,
+  WhiteBackArrowIcon,
   SearchLocationIcon,
   SearchTimeIcon,
   BlueHeartIcon,
@@ -129,5 +142,10 @@ export {
   AttractionMapIcon,
   RightArrowIcon,
   MenuIcon,
-  MapIcon
+  MapIcon,
+  MoreInfoIcon,
+  CalendarIcon,
+  ListIcon,
+  BlueWriteIcon,
+  PhoneIcon,
 };

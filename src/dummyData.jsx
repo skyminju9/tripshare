@@ -161,7 +161,7 @@ export const dummy_comment = [
     content: '마지막날 일정이 좀 빡빡한 것 같아요?',
     like: 1,
     userId: 1,
-    createdAt: new Date(),
+    createdAt: new Date('2024-05-12 10:10'),
   },
   {
     id: 2,
@@ -170,7 +170,7 @@ export const dummy_comment = [
     content: '마지막날 일정이 좀 빡빡한 것 같아요??',
     like: 5,
     userId: 1,
-    createdAt: new Date('2024-05-18 10:20'),
+    createdAt: new Date('2024-05-12 10:20'),
   },
   {
     id: 3,
@@ -179,7 +179,7 @@ export const dummy_comment = [
     content: '마지막날 일정이 좀 빡빡한 것 같아요???',
     like: 3,
     userId: 1,
-    createdAt: new Date('2024-05-20 16:20'),
+    createdAt: new Date('2024-05-14 16:20'),
   },
   {
     id: 4,
@@ -188,7 +188,7 @@ export const dummy_comment = [
     content: '마지막날 일정이 좀 빡빡한 것 같아요???',
     like: 3,
     userId: 1,
-    createdAt: new Date('2024-05-20 16:20'),
+    createdAt: new Date('2024-05-14 16:20'),
   },
   {
     id: 5,
@@ -197,7 +197,7 @@ export const dummy_comment = [
     content: '마지막날 일정이 좀 빡빡한 것 같아요???',
     like: 3,
     userId: 5,
-    createdAt: new Date('2024-05-20 16:20'),
+    createdAt: new Date('2024-05-14 16:20'),
   },
   {
     id: 6,
@@ -206,7 +206,7 @@ export const dummy_comment = [
     content: '마지막날 일정이 좀 빡빡한 것 같아요???',
     like: 3,
     userId: 5,
-    createdAt: new Date('2024-05-20 16:20'),
+    createdAt: new Date('2024-05-15 16:20'),
   },
   {
     id: 7,
@@ -215,7 +215,7 @@ export const dummy_comment = [
     content: '마지막날 일정이 좀 빡빡한 것 같아요???',
     like: 3,
     userId: 5,
-    createdAt: new Date('2024-05-10 16:20'),
+    createdAt: new Date('2024-05-16 16:20'),
   },
   {
     id: 8,
@@ -224,7 +224,7 @@ export const dummy_comment = [
     content: '마지막날 일정이 좀 빡빡한 것 같아요???',
     like: 3,
     userId: 5,
-    createdAt: new Date('2024-05-10 16:20'),
+    createdAt: new Date('2024-05-17 16:20'),
   },
 ];
 
@@ -239,8 +239,8 @@ export const dummy_meet = [
     userId: 4,
     profileImage: require('./assets/images/dummy/dummyProfile_1.png'),
     category: 'impromptu',
-    createAt: new Date(),
-    meetingAt: new Date(),
+    createAt: new Date().getTime(),
+    meetingAt: new Date().getTime(),
   },
   {
     id: 2,
@@ -251,8 +251,8 @@ export const dummy_meet = [
     name: '도쿄최고',
     profileImage: require('./assets/images/dummy/dummyProfile_2.png'),
     category: 'impromptu',
-    createAt: new Date(),
-    meetingAt: new Date(),
+    createAt: new Date().getTime(),
+    meetingAt: new Date().getTime(),
   },
   {
     id: 3,
@@ -264,8 +264,8 @@ export const dummy_meet = [
     profileImage: require('./assets/images/dummy/dummyProfile_3.png'),
     name: '도쿄최고',
     category: 'accompany',
-    createAt: new Date(),
-    meetingAt: new Date(),
+    createAt: new Date().getTime(),
+    meetingAt: new Date().getTime(),
   },
   {
     id: 4,
@@ -277,8 +277,193 @@ export const dummy_meet = [
     userId: 4,
     profileImage: require('./assets/images/dummy/dummyProfile_4.png'),
     category: 'impromptu',
-    createAt: new Date(),
-    meetingAt: new Date(),
+    createAt: new Date().getTime(),
+    meetingAt: new Date().getTime(),
+  },
+];
+
+export const dummy_chat = [
+  {
+    id: 1,
+    sendUserId: 5,
+    receiveUserId: 4,
+    chatList: [
+      {
+        id: 1,
+        userId: 5,
+        text: '안녕하세요',
+        createdAt: new Date('2024-05-12 10:20').getTime(),
+        isRead: true,
+      },
+      {
+        id: 2,
+        userId: 4,
+        text: '안녕하세요',
+        createdAt: new Date('2024-05-12 10:21').getTime(),
+        isRead: true,
+      },
+      {
+        id: 3,
+        userId: 5,
+        text: '올라온 동행글 보고 연락했어요. 아직도 동행 구하시나요?',
+        createdAt: new Date('2024-05-12 10:22').getTime(),
+        isRead: true,
+      },
+      {
+        id: 4,
+        userId: 4,
+        text: '네 아직 못구했어요 ㅠㅠ ',
+        createdAt: new Date('2024-05-12 10:23').getTime(),
+        isRead: true,
+      },
+      {
+        id: 5,
+        userId: 5,
+        text: '그럼 저랑 같이 가실래요?',
+        createdAt: new Date('2024-05-12 10:24').getTime(),
+        isRead: false,
+      },
+    ],
+  },
+  {
+    id: 2,
+    sendUserId: 5,
+    receiveUserId: 3,
+    chatList: [
+      {
+        id: 1,
+        userId: 5,
+        text: '안녕하세요',
+        createdAt: new Date('2024-05-12 10:20').getTime(),
+        isRead: true,
+      },
+      {
+        id: 2,
+        userId: 3,
+        text: '안녕하세요',
+        createdAt: new Date('2024-05-12 10:21').getTime(),
+        isRead: true,
+      },
+      {
+        id: 3,
+        userId: 5,
+        text: '올라온 동행글 보고 연락했어요. 아직도 동행 구하시나요?',
+        createdAt: new Date('2024-05-12 10:22').getTime(),
+        isRead: true,
+      },
+      {
+        id: 4,
+        userId: 3,
+        text: '네 아직 못구했어요 ㅠㅠ ',
+        createdAt: new Date('2024-05-12 10:23').getTime(),
+        isRead: true,
+      },
+      {
+        id: 5,
+        userId: 5,
+        text: '그럼 저랑 같이 가실래요?',
+        createdAt: new Date('2024-05-12 10:24').getTime(),
+        isRead: true,
+      },
+    ],
+  },
+  {
+    id: 3,
+    sendUserId: 5,
+    receiveUserId: 2,
+    chatList: [
+      {
+        id: 1,
+        userId: 5,
+        text: '안녕하세요',
+        createdAt: new Date('2024-05-12 10:20').getTime(),
+        isRead: true,
+      },
+      {
+        id: 2,
+        userId: 2,
+        text: '안녕하세요',
+        createdAt: new Date('2024-05-12 10:21').getTime(),
+        isRead: true,
+      },
+      {
+        id: 3,
+        userId: 5,
+        text: '올라온 동행글 보고 연락했어요. 아직도 동행 구하시나요?',
+        createdAt: new Date('2024-05-12 10:22').getTime(),
+        isRead: true,
+      },
+      {
+        id: 4,
+        userId: 2,
+        text: '네 아직 못구했어요 ㅠㅠ ',
+        createdAt: new Date('2024-05-12 10:23').getTime(),
+        isRead: true,
+      },
+      {
+        id: 5,
+        userId: 5,
+        text: '그럼 저랑 같이 가실래요?',
+        createdAt: new Date('2024-05-12 10:24').getTime(),
+        isRead: true,
+      },
+      {
+        id: 6,
+        userId: 2,
+        text: '네 좋아요!',
+        createdAt: new Date('2024-05-13 10:10').getTime(),
+        isRead: true,
+      },
+      {
+        id: 7,
+        userId: 2,
+        text: '뭔가 긴글이 필요할 것 같아 이렇게 남겨보는 텍스트입니다!',
+        createdAt: new Date('2024-05-13 10:10').getTime(),
+        isRead: true,
+      },
+    ],
+  },
+  {
+    id: 4,
+    sendUserId: 1,
+    receiveUserId: 5,
+    chatList: [
+      {
+        id: 1,
+        userId: 1,
+        text: '안녕하세요',
+        createdAt: new Date('2024-05-12 10:20').getTime(),
+        isRead: true,
+      },
+      {
+        id: 2,
+        userId: 5,
+        text: '안녕하세요',
+        createdAt: new Date('2024-05-12 10:21').getTime(),
+        isRead: true,
+      },
+      {
+        id: 3,
+        userId: 1,
+        text: '올라온 동행글 보고 연락했어요. 아직도 동행 구하시나요?',
+        createdAt: new Date('2024-05-12 10:22').getTime(),
+        isRead: true,
+      },
+      {
+        id: 4,
+        userId: 5,
+        text: '네 아직 못구했어요 ㅠㅠ ',
+        createdAt: new Date('2024-05-12 10:23').getTime(),
+        isRead: true,
+      },
+      {
+        id: 5,
+        userId: 1,
+        text: '그럼 저랑 같이 가실래요?',
+        createdAt: new Date('2024-05-12 10:24').getTime(),
+        isRead: false,
+      },
+    ],
   },
 ];
 
@@ -616,6 +801,7 @@ export const dummy_attractions = [
     placeName: '메이지신궁',
     tag: '명소',
     detail: '도쿄에 위치한 문화 유산으로, 일본의 역사와 전통을 경험할 수 있는 아름다운 장소입니다.',
+    location: { latitude: 37.78815, longitude: -122.4315 },
     coverImage: require('./assets/images/attraction/palace.png'),
     star: 3,
     reviews: [
@@ -655,6 +841,7 @@ export const dummy_attractions = [
     id: 2,
     placeName: '교파오 롯폰기',
     detail: '롯폰기에 위치한 교자 전문점, 직접 하이볼을 만들어 마실 수 있다.',
+    location: { latitude: 37.78827, longitude: -122.4322 },
     tag: '맛집',
     coverImage: require('./assets/images/attraction/food.jpeg'),
     star: 3,
@@ -681,6 +868,7 @@ export const dummy_attractions = [
     id: 3,
     placeName: '스크럼블 교차로',
     detail: '시부야 역 하치코 출구에서 여러 방향으로 한번에 건널 수 있도록 만들어진 시부야의 현관',
+    location: { latitude: 37.78825, longitude: -122.4324 },
     tag: '명소',
     coverImage: require('./assets/images/attraction/scrumble.jpeg'),
     star: 3,
@@ -714,6 +902,7 @@ export const dummy_attractions = [
     id: 4,
     placeName: '이치란 시부야점',
     detail: '진하고 부드러운 돈코츠 라멘으로 유명한 체인점',
+    location: { latitude: 37.78822, longitude: -122.4322 },
     tag: '맛집',
     coverImage: require('./assets/images/attraction/food2.jpeg'),
     star: 3,
@@ -747,6 +936,7 @@ export const dummy_attractions = [
     id: 5,
     placeName: '우에노 공원',
     detail: '공원 숲속 아트 삼매경에 빠지고, 봄 벚꽃, 가을 낙엽으로 사계절이 아름다움을 즐기자.',
+    location: { latitude: 37.7882, longitude: -122.4315 },
     tag: '명소',
     coverImage: require('./assets/images/attraction/park.jpeg'),
     star: 3,
@@ -761,5 +951,74 @@ export const dummy_attractions = [
     ],
     tel: '00-000-000',
     createAt: new Date().getTime(),
+  },
+];
+
+export const dummy_event = [
+  {
+    id: 1,
+    date: '2024-05-03',
+    events: [
+      {
+        eventId: 1,
+        eventName: '구라야미 마쓰리',
+        eventDuration: '2024-05-03 ~ 2024-05-06',
+        detail:
+          '오쿠니타마 신사에서 거행되는 이 축제는 신위가마 순행이 밤에 이루어진다 하여 ‘구라야미 마쓰리(어둠 축제)’라 불리고 있습니다.',
+      },
+      {
+        eventId: 2,
+        eventName: '구라야미 마쓰리',
+        eventDuration: '2024-05-03 ~ 2024-05-06',
+        detail:
+          '오쿠니타마 신사에서 거행되는 이 축제는 신위가마 순행이 밤에 이루어진다 하여 ‘구라야미 마쓰리(어둠 축제)’라 불리고 있습니다.',
+      },
+      {
+        eventId: 3,
+        eventName: '구라야미 마쓰리',
+        eventDuration: '2024-05-03 ~ 2024-05-06',
+        detail:
+          '오쿠니타마 신사에서 거행되는 이 축제는 신위가마 순행이 밤에 이루어진다 하여 ‘구라야미 마쓰리(어둠 축제)’라 불리고 있습니다.',
+      },
+    ],
+  },
+  {
+    id: 2,
+    date: '2024-05-16',
+    events: [
+      {
+        eventId: 1,
+        eventName: '산자 마쓰리',
+        eventDuration: '2024-05-16 ~ 2024-05-22',
+        detail:
+          '산자 마쓰리 축제는 아사쿠사의 유명한 센소지 절 창건과 관련된 세 사람을 모신 신사의 제례로, 매년 5월 중순에 3일간 열립니다. 인정미 넘치는 도쿄의 서민거리 분위기를 체험할 수 있는 절호의 기회입니다.',
+      },
+    ],
+  },
+  {
+    id: 3,
+    date: '2024-05-29',
+    events: [
+      {
+        eventId: 1,
+        eventName: '도쿄 디자인 페스타',
+        eventDuration: '2024-05-29 ~ 2024-05-30',
+        detail:
+          '‘디자인 페스타’는 국제적인 아트와 디자인의 대규모 이벤트입니다. 도쿄 빅사이트에서 개최되는 이 행사에는 음악, 회화, 패션, 공예, 사진, 퍼포먼스 등 다양한 분야에서 활약하는 1만 명 이상의 아티스트들이 집결합니다.',
+      },
+    ],
+  },
+  {
+    id: 4,
+    date: '2024-06-13',
+    events: [
+      {
+        eventId: 1,
+        eventName: '아쓰타 축제',
+        eventDuration: '2024-06-13 ~ 2024-06-20',
+        detail:
+          '등불 전시와 맛난 음식, 무용이 한데 어우러져 활기찬 분위기를 자아냅니다. 약 2,000년의 역사를 가진 신사에서 열리는 이 축제는 독특한 일본의 전통을 탐방할 훌륭한 기회입니다.',
+      },
+    ],
   },
 ];

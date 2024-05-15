@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomePage from './pages/home/HomePage';
 import TripPlanHome from './pages/tripPlan/TripPlanHome';
 import CommunityHome from './pages/community/CommunityHome';
-import ChattingHome from './pages/chat/ChattingPage';
+import ChattingHome from './pages/chat/ChattingHome';
 import MyPageHome from './pages/myPage/MyPageHome';
 import CommunityMeetingMap from './pages/community/CommunityMeetingMap';
 import TripShareBottomTab from './components/TripShareBottomTab';
@@ -35,9 +35,12 @@ import FavoriteLocationList from './pages/tripPlan/MyTripTab/FavoriteLocationLis
 import SearchLocationList from './pages/tripPlan/MyTripTab/SearchLocationList';
 import CommmunitySearchResultPage from './pages/community/CommunitySearchResultPage';
 import CommunitySearchPage from './pages/community/CommunitySearchPage';
+import ChattingDetail from './pages/chat/ChattingDetail';
 import MyRecordMore from './pages/tripPlan/MyTripTab/MyRecordMore';
 import Attractions from './pages/community/Attractions';
 import AttractionDetail from './pages/community/AttractionDetail';
+import EventPage from './pages/community/EventPage';
+import AttractionsMap from './components/community/AttractionsMap';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -91,12 +94,14 @@ export const MainStack = () => {
       <Stack.Screen name="CommunitySearchPage" component={CommunitySearchPage} />
       <Stack.Screen name="Attractions" component={Attractions} />
       <Stack.Screen name="AttractionDetail" component={AttractionDetail} />
+      <Stack.Screen name="EventPage" component={EventPage} />
       <Stack.Screen
         name="CommunitySearchResultPage"
         component={CommmunitySearchResultPage}
         options={{ animation: 'none' }}
       />
       {/* CHATTING */}
+      <Stack.Screen name="ChattingDetail" component={ChattingDetail} />
       {/* MY TRIP */}
       <Stack.Screen name="MyTrip" component={MyTrip} />
       <Stack.Screen name="MyTripDetail" component={MyTripDetail} />
