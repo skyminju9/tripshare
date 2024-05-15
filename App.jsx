@@ -30,9 +30,7 @@ function App() {
       <GeolocationProvider>
         <LocationProvider>
           <ScheduleProvider>
-            <NavigationContainer>
-              <NavigationContainer>{!user ? <LoginStack /> : <MainStack />}</NavigationContainer>
-            </NavigationContainer>
+            <NavigationContainer>{!user ? <LoginStack /> : <MainStack />}</NavigationContainer>
           </ScheduleProvider>
         </LocationProvider>
       </GeolocationProvider>
