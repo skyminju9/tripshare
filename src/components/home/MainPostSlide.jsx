@@ -1,13 +1,18 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Swiper from 'react-native-swiper';
+import { useNavigation } from '@react-navigation/native';
 import fontStyles from '../../styles/fontStyles';
 import color from '../../styles/colorPalette';
 
 const MainPostSlide = () => {
+  const navigation = useNavigation();
+
   return (
     <Swiper showsButtons={false} loop={false} showsPagination={false}>
-      <View style={styles.slide}>
+      <TouchableOpacity
+        style={styles.slide}
+        onPress={() => navigation.navigate('CommunityHotBoard')}>
         <View style={styles.slideCircleContainer}>
           <View style={styles.slideCircleFilled}></View>
           <View style={styles.slideCircle}></View>
@@ -15,8 +20,10 @@ const MainPostSlide = () => {
         </View>
         <Text style={[fontStyles.title03, styles.articleTitle]}>실시간 HOT 게시글</Text>
         <Text style={fontStyles.basicFont01}>도쿄역 근처 맛집 추천 리스트</Text>
-      </View>
-      <View style={styles.slide}>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.slide}
+        onPress={() => navigation.navigate('CommunityFreeBoard')}>
         <View style={styles.slideCircleContainer}>
           <View style={styles.slideCircle}></View>
           <View style={styles.slideCircleFilled}></View>
@@ -24,8 +31,8 @@ const MainPostSlide = () => {
         </View>
         <Text style={[fontStyles.title03, styles.articleTitle]}>자유게시판</Text>
         <Text style={fontStyles.basicFont01}>오늘 시부야에서 혐한 시위가있다네요</Text>
-      </View>
-      <View style={styles.slide}>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.slide}>
         <View style={styles.slideCircleContainer}>
           <View style={styles.slideCircle}></View>
           <View style={styles.slideCircle}></View>
@@ -33,7 +40,7 @@ const MainPostSlide = () => {
         </View>
         <Text style={[fontStyles.title03, styles.articleTitle]}>동행/번개</Text>
         <Text style={fontStyles.basicFont01}>요코하마 쪽으로 이동할 예정인데 같이 렌트</Text>
-      </View>
+      </TouchableOpacity>
     </Swiper>
   );
 };

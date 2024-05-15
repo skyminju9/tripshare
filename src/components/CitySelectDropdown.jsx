@@ -22,10 +22,10 @@ const Dropdown = ({ showModal, setShowModal, handleCloseModal }) => {
   };
 
   const confirmSelection = () => {
-    if (data[selectedCountryTemp] && data[selectedCountryTemp].length > 0) {
+    if (data[selectedCountryTemp] && data[selectedCountryTemp].도시들) {
       setCountryConfirmed(true);
     } else {
-      alert('No city data available for this country. Please choose another country.');
+      alert('국가와 지역을 선택해 주세요.');
     }
   };
 
@@ -67,7 +67,11 @@ const Dropdown = ({ showModal, setShowModal, handleCloseModal }) => {
                 style={styles.picker}>
                 <Picker.Item label="국가 선택" value="" />
                 {Object.keys(data).map(country => (
-                  <Picker.Item key={country} label={country} value={country} />
+                  <Picker.Item
+                    key={country}
+                    label={data[country].국가명.한국어} // Accessing the Korean name for the country
+                    value={country}
+                  />
                 ))}
               </Picker>
               <View style={styles.buttonGroup}>
@@ -86,8 +90,12 @@ const Dropdown = ({ showModal, setShowModal, handleCloseModal }) => {
                 onValueChange={handleCityChange}
                 style={styles.picker}>
                 <Picker.Item label="도시 선택" value="" />
-                {data[selectedCountryTemp].map(city => (
-                  <Picker.Item key={city} label={city} value={city} />
+                {Object.keys(data[selectedCountryTemp].도시들).map(city => (
+                  <Picker.Item
+                    key={city}
+                    label={data[selectedCountryTemp].도시들[city].한국어} // Accessing the Korean name for the city
+                    value={city}
+                  />
                 ))}
               </Picker>
               <View style={styles.buttonGroup}>

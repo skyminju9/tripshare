@@ -39,6 +39,7 @@ import ChattingDetail from './pages/chat/ChattingDetail';
 import MyRecordMore from './pages/tripPlan/MyTripTab/MyRecordMore';
 import Attractions from './pages/community/Attractions';
 import EventPage from './pages/community/EventPage';
+import AttractionsMap from './components/community/AttractionsMap';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
