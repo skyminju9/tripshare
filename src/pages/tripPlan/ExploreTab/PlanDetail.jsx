@@ -4,6 +4,7 @@ import fontStyles from '../../../styles/fontStyles';
 import color from '../../../styles/colorPalette';
 import BasicHeader from '../../../components/BasicHeader';
 import ScheduleList from '../../../components/ExploreTabComponents/ScheduleList';
+import { scheduleData } from '../../../dummyData';
 
 const PlanDetail = () => {
   const [selectedDay, setSelectedDay] = useState(1);
@@ -26,13 +27,13 @@ const PlanDetail = () => {
               key={day}
               style={[
                 styles.byDate,
-                { borderColor: selectedDay === day ? color.BLUE_500 : color.GRAY_200 }, // 선택된 원일 때 파란색, 그 외 회색
+                { borderColor: selectedDay === day ? color.BLUE_500 : color.GRAY_200 },
               ]}
               onPress={() => handleDayClick(day)}>
               <Text
                 style={[
                   fontStyles.boldFont01,
-                  { color: selectedDay === day ? color.BLUE_500 : color.GRAY_200 }, // 선택된 원일 때 글자 파란색, 그 외 회색
+                  { color: selectedDay === day ? color.BLUE_500 : color.GRAY_200 },
                 ]}>
                 {day}일차
               </Text>
@@ -40,18 +41,10 @@ const PlanDetail = () => {
           ))}
         </View>
         <View style={styles.scheduleListArea}>
-          <ScrollView>
-            <ScheduleList />
-            <ScheduleList />
-            <ScheduleList />
-            <ScheduleList />
-            <ScheduleList />
-            <ScheduleList />
-            <ScheduleList />
-            <ScheduleList />
-            <ScheduleList />
-            <ScheduleList />
-            <ScheduleList />
+          <ScrollView showsVerticalScrollIndicator={false}>
+            {scheduleData[selectedDay].map((schedule, index) => (
+              <ScheduleList key={index} time={schedule.time} activity={schedule.activity} />
+            ))}
           </ScrollView>
         </View>
       </View>
@@ -66,7 +59,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-
     paddingHorizontal: 20,
     paddingVertical: 30,
   },
@@ -86,7 +78,6 @@ const styles = StyleSheet.create({
   },
   scheduleListArea: {
     flex: 1,
-
     backgroundColor: '#FFFFFF',
     borderColor: color.BLUE_30,
     borderWidth: 1,

@@ -3,15 +3,15 @@ import { View, StyleSheet, Text } from 'react-native';
 import fontStyles from '../../styles/fontStyles';
 import color from '../../styles/colorPalette';
 
-const ScheduleList = () => {
+const ScheduleList = ({ time, activity }) => {
   return (
     <View style={styles.scheduleList}>
       <View style={styles.topArea}>
         <View style={styles.circle}></View>
-        <Text style={[fontStyles.basicFont02, { color: color.TEXT_SECONDARY }]}>오전 09:00</Text>
+        <Text style={[fontStyles.basicFont02, { color: color.TEXT_SECONDARY }]}>{time}</Text>
       </View>
       <View style={styles.shceduleName}>
-        <Text style={[fontStyles.basicFont02, { color: color.BLUE_600 }]}>비행기 출발</Text>
+        <Text style={[fontStyles.basicFont02, { color: color.BLUE_600 }]}>{activity}</Text>
       </View>
     </View>
   );
