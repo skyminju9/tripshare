@@ -11,23 +11,36 @@ import fontStyles from '../../styles/fontStyles';
 import { useIsFocused } from '@react-navigation/native';
 import { getMyBookmarkedList } from '../../firebase/store/ArticleDB';
 import { DummyProfileImg } from '../../assets';
+import { setUserList } from '../../firebase/store/UserDB';
 
 const MyPageBookmark = () => {
   const user = useAuthUser();
   const [articleData, setArticleData] = useState([]);
   const isFocused = useIsFocused();
 
-  const handleContent = data => {
+  const handleContent = (data, userList) => {
     const initialArticles = data.map(article => {
-      const content = article._data;
-      const articleUser = dummy_user.find(user => user.id === content.creator);
+      if (userList !== undefined) {
+        const content = article.data();
+        const articleUser = userList.find(user => user.id === content.creator);
 
-      return {
-        id: article.id,
-        ...content,
-        authorName: articleUser.name,
-        authorImage: articleUser.profileImage || DummyProfileImg,
-      };
+        return {
+          id: article.id,
+          ...content,
+          authorName: articleUser.name,
+          authorImage: articleUser.profileImage || DummyProfileImg,
+        };
+      } else {
+        const content = article.data();
+        const articleUser = dummy_user.find(user => user.id === content.creator);
+
+        return {
+          id: article.id,
+          ...content,
+          authorName: articleUser.name,
+          authorImage: articleUser.profileImage || DummyProfileImg,
+        };
+      }
     });
 
     return initialArticles;
@@ -35,7 +48,10 @@ const MyPageBookmark = () => {
 
   const getMyBookmarked = async () => {
     const lists = await getMyBookmarkedList(user.bookmarkList);
-    setArticleData(handleContent(lists));
+    const userList = await setUserList();
+    if (userList !== undefined) {
+      setArticleData(handleContent(lists, userList));
+    }
   };
 
   useEffect(() => {

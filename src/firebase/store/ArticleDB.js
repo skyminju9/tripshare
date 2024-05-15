@@ -79,9 +79,7 @@ export const addComment = async (id, comments, data) => {
 
 export const setLiked = async (id, liked, isLiked) => {
   try {
-    await articleCollection
-      .doc(id)
-      .update(!isLiked ? { liked: liked + 1 } : { liked: liked - 1 || 0 });
+    await articleCollection.doc(id).update(!isLiked ? { liked: liked + 1 } : { liked: liked - 1 });
     return true;
   } catch (err) {
     console.error(err);
@@ -92,7 +90,7 @@ export const setBookmarked = async (id, bookmarked, isBookmarked) => {
   try {
     await articleCollection
       .doc(id)
-      .update(!isBookmarked ? { bookmarked: bookmarked + 1 } : { bookmarked: bookmarked - 1 || 0 });
+      .update(!isBookmarked ? { bookmarked: bookmarked + 1 } : { bookmarked: bookmarked - 1 });
     return true;
   } catch (err) {
     console.error(err);

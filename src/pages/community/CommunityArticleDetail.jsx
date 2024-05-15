@@ -92,7 +92,7 @@ const CommunityArticleDetail = ({ route }) => {
       setBookmarked(article.id, singleArticle.bookmarked, false);
     } else {
       setIsBookmarked(false);
-      setBookmarked(article.id, singleArticle.libookmarkedked, true);
+      setBookmarked(article.id, singleArticle.bookmarked, true);
     }
   };
 
