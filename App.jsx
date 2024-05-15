@@ -8,6 +8,8 @@ import { GeolocationProvider } from './src/contexts/GeolocationContext';
 import { AuthUserProvider } from './src/contexts/AuthUserContext';
 import { ScheduleProvider } from './src/contexts/AddScheduleContext';
 import { TravelScheduleProvider } from './src/contexts/TravelScheduleContext';
+import ModalProvider from './src/contexts/profileModalContext';
+import ModalContainer from './src/components/ModalContainer';
 
 function App() {
   const [initializing, setInitializing] = useState(true);
@@ -28,15 +30,26 @@ function App() {
 
   return (
     <AuthUserProvider firebaseAuthUser={user}>
-      <GeolocationProvider>
-        <LocationProvider>
-          <TravelScheduleProvider>
-            <ScheduleProvider>
-              <NavigationContainer>{!user ? <LoginStack /> : <MainStack />}</NavigationContainer>
-            </ScheduleProvider>
-          </TravelScheduleProvider>
-        </LocationProvider>
-      </GeolocationProvider>
+      <ModalProvider>
+        <GeolocationProvider>
+          <LocationProvider>
+            <TravelScheduleProvider>
+              <ScheduleProvider>
+                <NavigationContainer>
+                  {!user ? (
+                    <LoginStack />
+                  ) : (
+                    <>
+                      <MainStack />
+                      <ModalContainer />
+                    </>
+                  )}
+                </NavigationContainer>
+              </ScheduleProvider>
+            </TravelScheduleProvider>
+          </LocationProvider>
+        </GeolocationProvider>
+      </ModalProvider>
     </AuthUserProvider>
   );
 }

@@ -3,14 +3,19 @@ import { Text, StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 import { setAgoDays } from '../../utils/date';
+import { useProfileModal } from '../../contexts/profileModalContext';
 
 const ArticleCardHeader = ({ authorImg, authorName, createdAt }) => {
+  const { openProfile } = useProfileModal();
+
   return (
     <View style={styles.articleHeader}>
-      <View style={styles.authorProfile}>
+      <TouchableOpacity
+        style={styles.authorProfile}
+        onPress={() => openProfile({ user: { profileImage: authorImg, profileName: authorName } })}>
         <Image source={authorImg} style={styles.authorImage} />
         <Text style={fontStyles.boldFont01}>{authorName}</Text>
-      </View>
+      </TouchableOpacity>
       <View>
         <Text style={[fontStyles.basicFont02, styles.createdAtText]}>{setAgoDays(createdAt)}</Text>
       </View>
