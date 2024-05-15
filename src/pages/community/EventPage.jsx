@@ -32,11 +32,13 @@ const EventPage = () => {
   };
 
   const daySchedule = day => {
-    list.forEach(item => {
-      if (item.date === day) {
-        setShowEvent(item);
-      }
-    });
+    const dayEvent = list.filter(item => item.date === day);
+    if (!dayEvent.length) {
+      setShowEvent(null);
+      return;
+    }
+    console.log(dayEvent.events);
+    setShowEvent(...dayEvent);
   };
 
   const handlePressItem = item => {
@@ -93,12 +95,14 @@ const EventPage = () => {
           />
         </View>
         <View style={styles.eventInfoArea}>
-          {showEvent && (
+          {showEvent ? (
             <FlatList
               data={showEvent.events}
               keyExtractor={item => item.eventId}
               renderItem={renderItem}
             />
+          ) : (
+            <Text style={fontStyles.grayFont01}>이벤트가 없습니다</Text>
           )}
         </View>
       </View>
