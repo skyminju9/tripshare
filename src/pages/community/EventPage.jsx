@@ -37,16 +37,19 @@ const EventPage = () => {
       setShowEvent(null);
       return;
     }
-    console.log(dayEvent.events);
     setShowEvent(...dayEvent);
   };
 
   const handlePressItem = item => {
-    setShowDetail(!showDetail);
+    if (showItem === item) {
+      setShowDetail(!showDetail);
+      return;
+    }
+    setShowDetail(true);
     setShowItem(item);
   };
 
-  const renderItem = ({ item }) => {
+  const renderItem = ({ item, index }) => {
     return (
       <TouchableOpacity
         onPress={() => handlePressItem(item)}
