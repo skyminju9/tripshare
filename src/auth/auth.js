@@ -119,13 +119,7 @@ export const updateUser = async ({ email, updateData }) => {
   try {
     const querySnapshot = await firestore().collection('users').where('email', '==', email).get();
     const userDocId = querySnapshot.docs[0]?.id;
-    if (userDocId)
-      await firestore()
-        .collection('users')
-        .doc(userDocId)
-        .update({
-          ...updateData,
-        });
+    if (userDocId) await firestore().collection('users').doc(userDocId).update(updateData);
   } catch (e) {
     throw new Error(e);
   }
