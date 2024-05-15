@@ -15,8 +15,6 @@ import BasicHeader from '../../../components/BasicHeader';
 import { PeopleIcon } from '../../../assets';
 import { APP_WIDTH } from '../../../constants';
 
-const coverImage = require('../../../assets/images/myTrip/basicimage1.jpeg');
-
 const MyTripMore = () => {
   const plans = dummy_plans.filter(item => item.dDay < 0);
 
@@ -25,7 +23,7 @@ const MyTripMore = () => {
       <View style={styles.cardsBottom}>
         <TouchableOpacity style={styles.tripPlanCard}>
           <View style={styles.planCoverImageWrapper}>
-            <Image source={coverImage} resizeMode="cover" style={styles.planCoverImage} />
+            <Image source={item.coverImage} resizeMode="cover" style={styles.planCoverImage} />
           </View>
           <View style={styles.planDescriptWrapper}>
             <Text style={fontStyles.title03}>{item.title}</Text>
