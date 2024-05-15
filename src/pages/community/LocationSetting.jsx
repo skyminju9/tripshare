@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import React, { useState } from 'react';
 import BasicHeader from '../../components/BasicHeader';
@@ -9,6 +9,7 @@ import { dummy_meet } from '../../dummyData';
 import { convertLocationToAddress } from '../../utils/convertLocation';
 import { useAuthUser } from '../../contexts/AuthUserContext';
 import { useGeolocation } from '../../contexts/GeolocationContext';
+import color from '../../styles/colorPalette';
 
 const LocationSetting = ({ navigation, route }) => {
   const [locationData, setLocationData] = useState({
@@ -29,11 +30,14 @@ const LocationSetting = ({ navigation, route }) => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={styles.wrapper}>
       <BasicHeader
         title="번개/동행"
-        RightIcon={DoneIcon}
-        pressRightIcon={() => doneLocationSettingHandler()}
+        rightComponent={
+          <TouchableOpacity onPress={() => doneLocationSettingHandler()}>
+            <DoneIcon />
+          </TouchableOpacity>
+        }
       />
 
       <MapView
@@ -60,6 +64,7 @@ const LocationSetting = ({ navigation, route }) => {
 export default LocationSetting;
 
 const styles = StyleSheet.create({
+  wrapper: { flex: 1, backgroundColor: color.WHITE },
   centeredMarker: {
     position: 'absolute',
     left: 0,
