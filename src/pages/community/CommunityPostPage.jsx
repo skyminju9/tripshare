@@ -7,6 +7,8 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  Pressable,
+  Keyboard,
 } from 'react-native';
 import BasicHeader from '../../components/BasicHeader';
 import fontStyles from '../../styles/fontStyles';
@@ -33,6 +35,7 @@ const CommunityPostPage = ({ navigation, route }) => {
 
   const onPressTag = useCallback(
     activeTag => {
+      Keyboard.dismiss();
       if (activeTag) {
         setTag(activeTag);
       }
@@ -109,7 +112,7 @@ const CommunityPostPage = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.wrapper}>
       <BasicHeader title={isEdit ? '게시글 수정하기' : '게시글 등록하기'} />
-      <View style={styles.mainWrapper}>
+      <Pressable style={styles.mainWrapper} onPress={() => Keyboard.dismiss()}>
         <View style={styles.titleWrapper}>
           <Text style={fontStyles.title03}>제목</Text>
           <View style={styles.titleInputBox}>
@@ -160,7 +163,7 @@ const CommunityPostPage = ({ navigation, route }) => {
             </Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </Pressable>
     </SafeAreaView>
   );
 };
