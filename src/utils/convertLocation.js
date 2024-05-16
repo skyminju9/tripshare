@@ -23,6 +23,16 @@ export const convertMyCityToAddress = async ({ latitude, longitude }) => {
     .catch(err => {
       console.log(err);
     });
-  const cityAddress = regionData[4].short_name + ' ' + regionData[3].short_name;
-  return cityAddress;
+  console.log(
+    regionData[5].long_name + ' ' + regionData[4].short_name + ' ' + regionData[3].short_name,
+  );
+  const country =
+    regionData[4].short_name === '경기도' ? regionData[5].long_name : regionData[4].long_name;
+  const city =
+    regionData[4].short_name === 'KR'
+      ? regionData[3].short_name + ' ' + regionData[2].short_name
+      : regionData[4].short_name + ' ' + regionData[3].short_name;
+
+  const address = country + ' ' + city;
+  return address;
 };

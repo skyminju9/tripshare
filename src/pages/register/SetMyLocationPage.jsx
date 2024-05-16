@@ -10,6 +10,7 @@ import { BlueButton } from '../../components/BasicButtons';
 import Toast from 'react-native-toast-message';
 import { updateUser } from '../../auth/auth';
 import { useAuthUser, useAuthUserDispatch } from '../../contexts/AuthUserContext';
+import { useLocation } from '../../contexts/LocationContext';
 
 const appLogo = require('../../assets/icons/register/logo_blue.png');
 
@@ -18,14 +19,18 @@ const SetMyLocationPage = ({ navigation }) => {
   const { updateUserInfo } = useAuthUserDispatch();
   const geolocation = useGeolocation();
   const [address, setAddress] = useState('');
-  const [isModalVisible, setIsModalVisible] = useState(true);
+  const { setSelectedCountry, setSelectedCity } = useLocation();
 
   useEffect(() => {
     if (geolocation) {
       const getCurrentAddress = async () => {
         const { latitude, longitude } = geolocation;
-        const currentCity = await convertMyCityToAddress({ latitude, longitude });
-        setAddress(currentCity);
+        const currentAddress = await convertMyCityToAddress({ latitude, longitude });
+        const [country, city1, city2] = currentAddress.split(' ');
+
+        setSelectedCountry(country);
+        setSelectedCity(city2);
+        setAddress(currentAddress);
       };
 
       getCurrentAddress();
