@@ -27,7 +27,7 @@ import { APP_WIDTH } from '../../constants';
 import ImagePicker from 'react-native-image-crop-picker';
 import { getLongText } from '../../utils/getLongText';
 import { useAuthUser, useAuthUserDispatch } from '../../contexts/AuthUserContext';
-import { checkUniqueName, userLogout, changeUserName } from '../../auth/auth';
+import { checkUniqueName, userLogout, changeUserName, updateUser } from '../../auth/auth';
 import Toast from 'react-native-toast-message';
 
 const MyPageHome = ({ navigation }) => {
@@ -137,6 +137,17 @@ const MyPageHome = ({ navigation }) => {
       {
         icon: <PositionIcon />,
         title: '위치',
+        action: async () => {
+          try {
+            console.log('test');
+            await updateUser({ email: user.email, updateData: { currentCity: '' } });
+            logout();
+            showToast('success', '로그아웃 되었습니다.');
+            await userLogout();
+          } catch (e) {
+            showToast('error', e.message);
+          }
+        },
       },
       {
         icon: <NotiIcon width={24} height={24} color={color.BLUE_500} />,
