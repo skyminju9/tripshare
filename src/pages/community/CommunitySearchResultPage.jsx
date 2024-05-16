@@ -18,15 +18,18 @@ import { dummy_article, dummy_user } from '../../dummyData';
 import ArticleCard from '../../components/community/ArticleCard';
 import { DummyProfileImg } from '../../assets';
 import { getSearchArticleList } from '../../firebase/store/ArticleDB';
+import { setUserList } from '../../firebase/store/UserDB';
 
 const CommmunitySearchResultPage = () => {
   const navigation = useNavigation();
   const keyword = useRoute().params?.keyword || '';
   const [articles, setArticles] = useState([]);
+  const [users, setUsers] = useState([]);
 
   const getArticles = async () => {
     try {
       const getArticleQuery = await getSearchArticleList(keyword);
+      const userList = await setUserList();
 
       setArticles(
         getArticleQuery.map(article => {
@@ -37,6 +40,9 @@ const CommmunitySearchResultPage = () => {
           };
         }),
       );
+      if (userList !== undefined) {
+        setUsers(userList);
+      }
     } catch (e) {
       console.log(e);
     }
@@ -45,7 +51,7 @@ const CommmunitySearchResultPage = () => {
   useEffect(() => {
     getArticles();
 
-    console.log('testeststs: ', articles);
+    // console.log('testeststs: ', articles);
   }, []);
 
   const resultData = articles;
@@ -66,7 +72,7 @@ const CommmunitySearchResultPage = () => {
           removeClippedSubviews
           showsVerticalScrollIndicator={false}
           keyExtractor={(item, idx) => idx.toString()}
-          renderItem={({ item }) => <ArticleCard item={item} />}
+          renderItem={({ item }) => <ArticleCard item={item} users={users} />}
           scrollEventThrottle={20}
           contentContainerStyle={styles.flatListBottomPadding}
         />
