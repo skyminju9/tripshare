@@ -7,11 +7,11 @@ import regionsData from '../../../../PrimaryRegions.json';
 import LocationSearchIcon from '../../../../assets/icons/myTrip/locationsearch.png';
 import CloseIcon from '../../../../assets/icons/myTrip/closeicon.png';
 import { BlueButton, GrayButton } from '../../../../components/BasicButtons';
-import { useTravelSchedule } from '../../../../contexts/TravelScheduleContext'; // 변경된 import 경로
+import { useSchedule } from '../../../../contexts/ScheduleContext';
 
 const AddSchWhere = () => {
   const navigation = useNavigation();
-  const { currentSchedule, setCurrentSchedule } = useTravelSchedule(); // 변경된 훅 사용
+  const { currentSchedule, setCurrentSchedule } = useSchedule();
   const [searchText, setSearchText] = useState(currentSchedule.location || '');
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [filteredRegions, setFilteredRegions] = useState([]);

@@ -6,6 +6,7 @@ import auth from '@react-native-firebase/auth';
 import { LocationProvider } from './src/contexts/LocationContext';
 import { GeolocationProvider } from './src/contexts/GeolocationContext';
 import { AuthUserProvider } from './src/contexts/AuthUserContext';
+import { ScheduleProvider2 } from './src/contexts/ScheduleContext';
 import { ScheduleProvider } from './src/contexts/AddScheduleContext';
 import { TravelScheduleProvider } from './src/contexts/TravelScheduleContext';
 import ModalProvider from './src/contexts/profileModalContext';

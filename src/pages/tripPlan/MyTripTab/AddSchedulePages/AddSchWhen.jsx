@@ -5,11 +5,11 @@ import fontStyles from '../../../../styles/fontStyles';
 import color from '../../../../styles/colorPalette';
 import DateRangePicker from './CustomCalendar';
 import { BlueButton, GrayButton } from '../../../../components/BasicButtons';
-import { useTravelSchedule } from '../../../../contexts/TravelScheduleContext'; // 변경된 import 경로
+import { useSchedule } from '../../../../contexts/ScheduleContext';
 
 const AddSchWhen = () => {
   const navigation = useNavigation();
-  const { currentSchedule, setCurrentSchedule } = useTravelSchedule(); // 변경된 훅 사용
+  const { currentSchedule, setCurrentSchedule } = useSchedule();
   const [selectedDates, setSelectedDates] = useState(
     currentSchedule.date || { start: '', end: '' },
   );

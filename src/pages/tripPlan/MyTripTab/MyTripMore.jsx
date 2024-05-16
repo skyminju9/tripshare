@@ -10,44 +10,55 @@ import {
 } from 'react-native';
 import color from '../../../styles/colorPalette';
 import fontStyles from '../../../styles/fontStyles';
-import { dummy_plans } from '../../../dummyData';
+import { dummyPlans } from '../../../dummyData';
 import BasicHeader from '../../../components/BasicHeader';
 import { PeopleIcon } from '../../../assets';
 import { APP_WIDTH } from '../../../constants';
+import moment from 'moment';
+
+const calculateDday = (startDate, format) => {
+  const today = moment().startOf('day');
+  const start = moment(startDate, format);
+  const diff = start.diff(today, 'days');
+  return diff;
+};
 
 const MyTripMore = () => {
-  const plans = dummy_plans.filter(item => item.dDay < 0);
+  const plans = dummyPlans
+    .map(plan => ({
+      ...plan,
+      dDay: calculateDday(plan.dates[0], 'YY.MM.DD'),
+    }))
+    .filter(item => item.dDay < 0);
 
-  const renderItem = ({ item }) => {
-    return (
-      <View style={styles.cardsBottom}>
-        <TouchableOpacity style={styles.tripPlanCard}>
-          <View style={styles.planCoverImageWrapper}>
-            <Image source={item.coverImage} resizeMode="cover" style={styles.planCoverImage} />
-          </View>
-          <View style={styles.planDescriptWrapper}>
-            <Text style={fontStyles.title03}>{item.title}</Text>
-            <View style={styles.planDatesWrapper}>
-              <Text style={fontStyles.basicFont02}>
-                {item.dates[0]} ~ {item.dates[1]}
-              </Text>
-              <View style={styles.planFriendsWrapper}>
-                <PeopleIcon width={24} height={24} />
-                {item.friendList.map((friend, friendId) => (
-                  <Text key={friendId} style={fontStyles.basicFont02}>
-                    {friend.name}
-                  </Text>
-                ))}
-              </View>
-            </View>
-            <View style={styles.planDdayWrapper}>
-              <Text style={fontStyles.title01}>D + {item.dDay * -1}</Text>
+  const renderItem = ({ item }) => (
+    <View style={styles.cardsBottom}>
+      <TouchableOpacity style={styles.tripPlanCard}>
+        <View style={styles.planCoverImageWrapper}>
+          <Image source={item.coverImage} resizeMode="cover" style={styles.planCoverImage} />
+        </View>
+        <View style={styles.planDescriptWrapper}>
+          <Text style={fontStyles.title03}>{item.title}</Text>
+          <View style={styles.planDatesWrapper}>
+            <Text style={fontStyles.basicFont02}>
+              {item.dates[0]} ~ {item.dates[1]}
+            </Text>
+            <View style={styles.planFriendsWrapper}>
+              <PeopleIcon width={24} height={24} />
+              {item.friendList.map((friend, friendId) => (
+                <Text key={friendId} style={fontStyles.basicFont02}>
+                  {friend.name}
+                </Text>
+              ))}
             </View>
           </View>
-        </TouchableOpacity>
-      </View>
-    );
-  };
+          <View style={styles.planDdayWrapper}>
+            <Text style={fontStyles.title01}>D + {Math.abs(item.dDay)}</Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+    </View>
+  );
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -75,7 +86,6 @@ const styles = StyleSheet.create({
   tripPlanCard: {
     width: APP_WIDTH - 100,
     height: 300,
-    marginRight: 8,
     borderRadius: 12,
     borderWidth: 1,
     borderColor: color.GRAY_50,
@@ -103,4 +113,5 @@ const styles = StyleSheet.create({
   planDdayWrapper: { alignItems: 'flex-end' },
   cardsBottom: { marginBottom: 8 },
 });
+
 export default MyTripMore;
