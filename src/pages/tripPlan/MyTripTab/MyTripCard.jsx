@@ -11,6 +11,10 @@ export const parseDate = (dateStr, format = 'YY.MM.DD') => {
   return moment(dateStr, format);
 };
 
+export const formatDate = (dateStr, inputFormat = 'YYYY-MM-DD', outputFormat = 'YY.MM.DD') => {
+  return moment(dateStr, inputFormat).format(outputFormat);
+};
+
 export const calculateDday = (startDate, format) => {
   const today = moment().startOf('day');
   const start = parseDate(startDate, format);
@@ -37,7 +41,9 @@ const MyTripCard = ({ item, combinedData }) => {
       <View style={styles.planDescriptWrapper}>
         <Text style={fontStyles.title03}>{item.title}</Text>
         <View style={styles.planDatesWrapper}>
-          <Text style={fontStyles.basicFont02}>{item.dates.join(' ~ ')}</Text>
+          <Text style={fontStyles.basicFont02}>
+            {item.dates.map(date => formatDate(date, 'YYYY-MM-DD', 'YY.MM.DD')).join(' ~ ')}
+          </Text>
           <View style={styles.planFriendsWrapper}>
             <PeopleIcon width={24} height={24} />
             <Text style={fontStyles.basicFont02}>

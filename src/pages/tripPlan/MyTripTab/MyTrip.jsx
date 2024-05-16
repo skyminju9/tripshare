@@ -17,7 +17,7 @@ import SeeMoreBtn from '../../../components/SeeMoreBtn';
 import { useSchedule } from '../../../contexts/ScheduleContext';
 import { dummyPlans } from '../../../dummyData';
 import MyRecordCard from './MyRecordCard';
-import MyTripCard, { calculateDday } from './MyTripCard';
+import MyTripCard, { calculateDday, formatDate } from './MyTripCard';
 
 const dummyRecords = [
   {
@@ -55,7 +55,10 @@ const MyTrip = () => {
     ...schedules.map((schedule, index) => ({
       id: `schedule-${index}`,
       title: schedule.name,
-      dates: [schedule.date.start, schedule.date.end],
+      dates: [
+        formatDate(schedule.date.start, 'YYYY-MM-DD', 'YY.MM.DD'),
+        formatDate(schedule.date.end, 'YYYY-MM-DD', 'YY.MM.DD'),
+      ],
       location: schedule.location,
       tags: schedule.hashtags,
       friendList: schedule.companions,
@@ -84,10 +87,7 @@ const MyTrip = () => {
               </TouchableOpacity>
             </View>
             <View>
-              <SeeMoreBtn
-                address="MyTripMore"
-                params={{ combinedData }} // 데이터를 전달합니다
-              />
+              <SeeMoreBtn address="MyTripMore" params={{ combinedData }} />
             </View>
           </View>
           <View style={styles.cardsContainer}>
