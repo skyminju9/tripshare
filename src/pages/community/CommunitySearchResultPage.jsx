@@ -24,11 +24,11 @@ const CommmunitySearchResultPage = () => {
   const resultData = dummy_article
     .filter(article => article.title.includes(keyword) || article.contents.includes(keyword))
     .map(article => {
-      const articleUser = dummy_user.find(user => user.id === article.userId);
+      const articleUser = dummy_user.find(user => user.id === article.creator);
 
       return {
         ...article,
-        authorName: articleUser.name,
+        authorName: articleUser.name || '',
         authorImage: articleUser.profileImage || DummyProfileImg,
       };
     });
