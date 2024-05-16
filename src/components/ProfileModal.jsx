@@ -12,6 +12,7 @@ import {
 import fontStyles from '../styles/fontStyles';
 import { useNavigation } from '@react-navigation/native';
 import { useProfileModal } from '../contexts/profileModalContext';
+import { DummyProfileImg } from '../assets';
 
 const ProfileModal = ({ user }) => {
   const navigation = useNavigation();
@@ -33,7 +34,7 @@ const ProfileModal = ({ user }) => {
         </TouchableOpacity>
       </View>
       <View style={styles.modalBodyWrapper}>
-        <Image source={user.profileImage} style={styles.profileImage} />
+        <Image source={user.profileImage || DummyProfileImg} style={styles.profileImage} />
         <Text style={styles.profileName}>{user.profileName}</Text>
       </View>
       <View style={styles.modalBottomWrapper}>
