@@ -1,13 +1,9 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Airplane from '../../assets/icons/register/Airplane.svg';
 import color from '../../styles/colorPalette';
-import { useAuthUser } from '../../contexts/AuthUserContext';
-import fontStyles from '../../styles/fontStyles';
 
 const Splash = ({ navigation }) => {
-  const user = useAuthUser();
-
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate('BottomTab');
@@ -16,7 +12,6 @@ const Splash = ({ navigation }) => {
 
   return (
     <View style={styles.wrapper}>
-      <Text style={fontStyles.blueFont01}>{user.name}님 환영합니다.</Text>
       <Airplane width={150} height={240} />
     </View>
   );
