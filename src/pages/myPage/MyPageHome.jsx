@@ -51,6 +51,11 @@ const MyPageHome = ({ navigation }) => {
 
   const editName = async () => {
     try {
+      if (user.name === username) {
+        setEdit(false);
+        return true;
+      }
+
       const isExistName = await checkUniqueName(username);
       if (isExistName) throw new Error('닉네임이 중복됩니다.');
       await changeUserName({ name: username, email: user.email });
