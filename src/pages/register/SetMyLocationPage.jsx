@@ -57,7 +57,7 @@ const SetMyLocationPage = ({ navigation }) => {
         </Text>
       </View>
       <MapView
-        style={{ height: APP_WIDTH }}
+        style={{ width: APP_WIDTH, height: APP_WIDTH }}
         provider={PROVIDER_GOOGLE}
         initialRegion={{
           latitude: geolocation.latitude,
