@@ -7,7 +7,7 @@ import fontStyles from '../../../styles/fontStyles';
 
 const dummyRecordImage = require('../../../assets/icons/Explore/diaryimage.png');
 
-const MyRecordCard = ({ item }) => {
+const MyRecordCard = ({ record }) => {
   return (
     <TouchableOpacity style={styles.cardWrapper}>
       <View style={styles.recordCoverImageWrapper}>
@@ -15,16 +15,16 @@ const MyRecordCard = ({ item }) => {
       </View>
       <View style={styles.recordDescriptWrapper}>
         <View>
-          <Text style={fontStyles.basicFont02}>{item.title}</Text>
+          <Text style={fontStyles.basicFont02}>{record.title}</Text>
         </View>
         <View style={styles.recordViews}>
           <View style={styles.viewElementsWrapper}>
             <HeartIcon />
-            <Text style={styles.heartIconText}>{item.like}</Text>
+            <Text style={styles.heartIconText}>{record.like}</Text>
           </View>
           <View style={styles.viewElementsWrapper}>
             <BookmarkIcon />
-            <Text style={styles.bookmarkIconText}>{item.bookmark}</Text>
+            <Text style={styles.bookmarkIconText}>{record.bookmark}</Text>
           </View>
         </View>
       </View>

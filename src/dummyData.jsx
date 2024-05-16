@@ -467,117 +467,57 @@ export const dummy_chat = [
   },
 ];
 
-export const dummy_plans = [
+export const dummyPlans = [
   {
-    id: 1,
+    id: '1',
     title: '싱가포르 여행',
     dates: ['24.05.20', '24.05.28'],
     location: '싱가포르',
     tags: ['싱가포르', '자유여행'],
     friendList: [
-      {
-        friendId: 1,
-        name: '오정혁',
-      },
-      {
-        friendId: 2,
-        name: '우예인',
-      },
-      {
-        friendId: 3,
-        name: '한서흔',
-      },
+      { friendId: 1, name: '오정혁' },
+      { friendId: 2, name: '우예인' },
+      { friendId: 3, name: '한서흔' },
     ],
     coverImage: require('./assets/images/myTrip/basicimage1.jpeg'),
-    dDay: 3,
   },
   {
-    id: 2,
+    id: '2',
     title: '도쿄 여행',
     dates: ['24.05.17', '24.05.20'],
     location: '도쿄, 일본',
     tags: ['도쿄', '디즈니랜드', '맛집탐방'],
     friendList: [
-      {
-        friendId: 1,
-        name: '오정혁',
-      },
-      {
-        friendId: 2,
-        name: '우예인',
-      },
+      { friendId: 1, name: '오정혁' },
+      { friendId: 2, name: '우예인' },
     ],
     coverImage: require('./assets/images/myTrip/basicimage2.jpeg'),
-    dDay: 0,
   },
   {
-    id: 3,
-    title: '홍콩 여행',
+    id: '3',
+    title: '벨기에 여행',
     dates: ['24.05.10', '24.05.16'],
-    location: '마카오, 홍콩',
-    tags: ['카지노', '찐맛집'],
+    location: '벨기에, 브뤼셀',
+    tags: ['와플', '유럽여행'],
     friendList: [
-      {
-        friendId: 1,
-        name: '오정혁',
-      },
-      {
-        friendId: 2,
-        name: '우예인',
-      },
-      {
-        friendId: 3,
-        name: '한서흔',
-      },
+      { friendId: 1, name: '오정혁' },
+      { friendId: 2, name: '우예인' },
+      { friendId: 3, name: '한서흔' },
     ],
     coverImage: require('./assets/images/myTrip/basicimage3.jpeg'),
-    dDay: -1,
   },
   {
-    id: 4,
+    id: '4',
     title: '홍콩 여행',
     dates: ['24.05.10', '24.05.16'],
     location: '마카오, 홍콩',
     tags: ['카지노', '찐맛집'],
     friendList: [
-      {
-        friendId: 1,
-        name: '오정혁',
-      },
-      {
-        friendId: 2,
-        name: '우예인',
-      },
-      {
-        friendId: 3,
-        name: '한서흔',
-      },
+      { friendId: 1, name: '오정혁' },
+      { friendId: 2, name: '우예인' },
+      { friendId: 3, name: '한서흔' },
     ],
     coverImage: require('./assets/images/myTrip/basicimage4.jpeg'),
-    dDay: -3,
-  },
-  {
-    id: 5,
-    title: '홍콩 여행',
-    dates: ['24.05.10', '24.05.16'],
-    location: '마카오, 홍콩',
-    tags: ['카지노', '찐맛집'],
-    friendList: [
-      {
-        friendId: 1,
-        name: '오정혁',
-      },
-      {
-        friendId: 2,
-        name: '우예인',
-      },
-      {
-        friendId: 3,
-        name: '한서흔',
-      },
-    ],
-    coverImage: require('./assets/images/myTrip/basicimage5.jpeg'),
-    dDay: -10,
   },
 ];
 
