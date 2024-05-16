@@ -72,7 +72,7 @@ const SearchLocations = ({ route }) => {
             autoComplete="none"
             autoCorrect={false}
             onChangeText={text => setSearchWord(text)}
-            editable="disable"
+            editable={false}
           />
         </TouchableOpacity>
         {selectedLocation ? (
