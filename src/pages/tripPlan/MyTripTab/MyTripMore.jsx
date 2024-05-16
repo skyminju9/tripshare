@@ -86,7 +86,6 @@ const styles = StyleSheet.create({
   tripPlanCard: {
     width: APP_WIDTH - 100,
     height: 300,
-    marginRight: 8,
     borderRadius: 12,
     borderWidth: 1,
     borderColor: color.GRAY_50,
