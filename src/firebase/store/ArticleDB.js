@@ -1,9 +1,10 @@
-import { Filter } from '@react-native-firebase/firestore';
 import { articleCollection, userCollection } from '../firebase';
+import uuid from 'react-native-uuid';
 
 export const addArticle = async data => {
   try {
-    await articleCollection.add(data);
+    const id = uuid.v4();
+    await articleCollection.doc(id).set({ ...data, id });
     return true;
   } catch (err) {
     console.error(err);
