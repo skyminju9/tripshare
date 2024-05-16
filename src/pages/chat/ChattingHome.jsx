@@ -28,6 +28,7 @@ const ChattingHome = ({ navigation }) => {
     dummy_chat.map(item =>
       user.id === item.sendUserId || user.id === item.receiveUserId ? chatData.push(item) : '',
     );
+    chatData.sort((a, b) => b.chatList.at(-1).createdAt - a.chatList.at(-1).createdAt);
     setChatList(chatData);
   };
 
