@@ -12,6 +12,8 @@ import {
 import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 import { PersonIcon, FaceIcon, LockIcon, CheckIcon, Google } from '../../assets/index';
+import { registerUser, signUp } from '../../auth/auth';
+import { useAuthUserDispatch } from '../../contexts/AuthUserContext';
 
 const appLogo = require('../../assets/icons/register/logo_blue.png');
 const appleIcon = require('../../assets/icons/register/apple.png');
@@ -22,9 +24,17 @@ const SignUpPage = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
+  const { login } = useAuthUserDispatch();
 
-  const handleSignUp = () => {
-    navigation.navigate('BottomTab');
+  const handleSignUp = async () => {
+    try {
+      await signUp({ name, email, password });
+      await login(email);
+      console.log('회원가입 성공');
+    } catch (e) {
+      console.log(e);
+    }
+    // navigation.navigate('BottomTab');
   };
 
   const handleLogin = () => {

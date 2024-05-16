@@ -58,6 +58,6 @@ export function useAuthUser() {
   return useContext(AuthUserContext);
 }
 
-export function useAutuUserDispatch() {
+export function useAuthUserDispatch() {
   return useContext(AuthUserDispatchContext);
 }

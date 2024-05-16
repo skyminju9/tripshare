@@ -11,7 +11,7 @@ import {
 import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 import { PersonIcon, LockIcon, Google } from '../../assets/index';
-import { useAutuUserDispatch } from '../../contexts/AuthUserContext';
+import { useAuthUserDispatch } from '../../contexts/AuthUserContext';
 
 // TODO: change DUMMY DATA
 import { dummy_user } from '../../dummyData';
@@ -29,7 +29,7 @@ const LoginPage = ({ navigation }) => {
   const [password, setPassword] = useState('');
 
   // TODO: Login Logic
-  const { login } = useAutuUserDispatch();
+  const { login } = useAuthUserDispatch();
 
   const handleShowButton = () => {
     setShow(!show);

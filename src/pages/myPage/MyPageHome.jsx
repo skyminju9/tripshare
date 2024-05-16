@@ -26,13 +26,13 @@ import fontStyles from '../../styles/fontStyles';
 import { APP_WIDTH } from '../../constants';
 import ImagePicker from 'react-native-image-crop-picker';
 import { getLongText } from '../../utils/getLongText';
-import { useAuthUser, useAutuUserDispatch } from '../../contexts/AuthUserContext';
+import { useAuthUser, useAuthUserDispatch } from '../../contexts/AuthUserContext';
 import { checkUniqueName, userLogout, changeUserName } from '../../auth/auth';
 import Toast from 'react-native-toast-message';
 
 const MyPageHome = ({ navigation }) => {
   const user = useAuthUser();
-  const { logout, updateUserInfo } = useAutuUserDispatch();
+  const { logout, updateUserInfo } = useAuthUserDispatch();
 
   const [username, setUsername] = useState(user.name || '');
   const [profileImg, setProfileImg] = useState(user.profileImage || DummyProfileImg);

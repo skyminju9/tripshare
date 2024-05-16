@@ -23,10 +23,10 @@ export const checkUniqueEmail = async email => {
   return true;
 };
 
-export const signUp = async ({ email, password }) => {
+export const signUp = async ({ name, email, password }) => {
   try {
     await auth().createUserWithEmailAndPassword(email, password);
-    await registerUser({ email });
+    await registerUser({ name, email });
     console.log('created successfully');
   } catch (e) {
     if (e.code === 'auth/email-already-in-use') {
@@ -85,13 +85,13 @@ export const userLogout = async () => {
   }
 };
 
-export const registerUser = async ({ email }) => {
+export const registerUser = async ({ name, email }) => {
   try {
     await usersCollection.add({
       id: uuid.v4(),
-      name: generate({ minLength: 4 }),
+      name: name || generate({ minLength: 4 }),
       email,
-      bookmarkArticles: [],
+      bookmarkList: [],
       likedArticles: [],
       myCity: [],
       status: 'ACTIVE',
@@ -119,7 +119,10 @@ export const updateUser = async ({ email, updateData }) => {
   try {
     const querySnapshot = await firestore().collection('users').where('email', '==', email).get();
     const userDocId = querySnapshot.docs[0]?.id;
-    if (userDocId) await firestore().collection('users').doc(userDocId).update(updateData);
+
+    if (!userDocId) throw new Error('유저를 찾을 수 없습니다.');
+
+    await firestore().collection('users').doc(userDocId).update(updateData);
   } catch (e) {
     throw new Error(e);
   }
