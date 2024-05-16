@@ -19,7 +19,7 @@ const AttractionDetail = ({ route }) => {
       <BasicHeader title={'상세페이지'} />
       <View style={styles.detailContainer}>
         <Image source={attraction.coverImage} style={styles.coverImageStyle} />
-        <View style={{ width: 350, marginTop: 16 }}>
+        <View style={{ width: '100%', marginTop: 16 }}>
           <View
             style={{
               flexDirection: 'row',
@@ -76,7 +76,7 @@ const AttractionDetail = ({ route }) => {
                     key={item.id}
                     style={{
                       flexDirection: 'row',
-                      width: 340,
+                      width: '100%',
                       height: 35,
                       borderWidth: 2,
                       borderRadius: 12,
@@ -101,9 +101,15 @@ const AttractionDetail = ({ route }) => {
 
 const styles = StyleSheet.create({
   wrapper: { flex: 1, backgroundColor: color.WHITE },
-  detailContainer: { alignItems: 'center', marginHorizontal: 20, marginTop: 16 },
+  detailContainer: {
+    width: '100%',
+    padding: 20,
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    marginTop: 16,
+  },
   coverImageStyle: {
-    width: 350,
+    width: '100%',
     height: 180,
     borderRadius: 8,
     borderColor: color.GRAY_50,

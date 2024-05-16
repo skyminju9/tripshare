@@ -8,7 +8,6 @@ import { GeolocationProvider } from './src/contexts/GeolocationContext';
 import { AuthUserProvider } from './src/contexts/AuthUserContext';
 import { ScheduleProvider2 } from './src/contexts/ScheduleContext';
 import { ScheduleProvider } from './src/contexts/AddScheduleContext';
-import { TravelScheduleProvider } from './src/contexts/TravelScheduleContext';
 import ModalProvider from './src/contexts/profileModalContext';
 import ModalContainer from './src/components/ModalContainer';
 
@@ -34,7 +33,7 @@ function App() {
       <ModalProvider>
         <GeolocationProvider>
           <LocationProvider>
-            <TravelScheduleProvider>
+            <ScheduleProvider2>
               <ScheduleProvider>
                 <NavigationContainer>
                   {!user ? (
@@ -47,7 +46,7 @@ function App() {
                   )}
                 </NavigationContainer>
               </ScheduleProvider>
-            </TravelScheduleProvider>
+            </ScheduleProvider2>
           </LocationProvider>
         </GeolocationProvider>
       </ModalProvider>

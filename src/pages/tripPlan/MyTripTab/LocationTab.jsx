@@ -35,7 +35,7 @@ export const LocationTab = () => {
 const styles = StyleSheet.create({
   wrapper: { flex: 1, backgroundColor: '#FFF' },
   savedLocationWrapper: { margin: 20, gap: 14 },
-  mapImage: { width: 360, height: 270, borderRadius: 12 },
+  mapImage: { width: '100%', paddingHorizontal: 10, height: 270, borderRadius: 12 },
   savedLocationListButton: {
     flexDirection: 'row',
     alignItems: 'center',
