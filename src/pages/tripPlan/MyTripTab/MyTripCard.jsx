@@ -1,41 +1,57 @@
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import React from 'react';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { PeopleIcon } from '../../../assets/index';
 import color from '../../../styles/colorPalette';
 import fontStyles from '../../../styles/fontStyles';
+import shadowStyles from '../../../styles/shadowStyles';
+import moment from 'moment';
 
-const MyTripCard = ({ item }) => {
+export const parseDate = (dateStr, format = 'YY.MM.DD') => {
+  return moment(dateStr, format);
+};
+
+export const calculateDday = (startDate, format) => {
+  const today = moment().startOf('day');
+  const start = parseDate(startDate, format);
+  const diff = start.diff(today, 'days');
+  return diff;
+};
+
+const MyTripCard = ({ item, combinedData }) => {
   const navigation = useNavigation();
+  const dateFormat =
+    typeof item.id === 'string' && item.id.startsWith('dummy') ? 'YY.MM.DD' : 'YYYY-MM-DD';
+  const dDay = calculateDday(item.dates[0], dateFormat);
+
+  const handlePress = () => {
+    const updatedItem = { ...item, dDay };
+    navigation.navigate('MyTripDetail', { tripId: item.id, combinedData, dDay: updatedItem.dDay });
+  };
 
   return (
-    <TouchableOpacity
-      onPress={() => navigation.navigate('MyTripDetail', { params: item.id })}
-      style={styles.tripPlanCard}>
+    <TouchableOpacity key={item.id} style={styles.tripPlanCard} onPress={handlePress}>
       <View style={styles.planCoverImageWrapper}>
         <Image source={item.coverImage} resizeMode="cover" style={styles.planCoverImage} />
       </View>
       <View style={styles.planDescriptWrapper}>
         <Text style={fontStyles.title03}>{item.title}</Text>
         <View style={styles.planDatesWrapper}>
-          <Text style={fontStyles.basicFont02}>
-            {item.dates[0]} ~ {item.dates[1]}
-          </Text>
+          <Text style={fontStyles.basicFont02}>{item.dates.join(' ~ ')}</Text>
           <View style={styles.planFriendsWrapper}>
             <PeopleIcon width={24} height={24} />
-            {item.friendList.map((friend, friendId) => (
-              <Text key={friendId} style={fontStyles.basicFont02}>
-                {friend.name}
-              </Text>
-            ))}
+            <Text style={fontStyles.basicFont02}>
+              {item.friendList.map(friend => friend.name).join(', ')}
+            </Text>
           </View>
         </View>
         <View style={styles.planDdayWrapper}>
-          {item.dDay > 0 ? (
-            <Text style={fontStyles.title01}>D - {item.dDay}</Text>
-          ) : item.dDay == 0 ? (
-            <Text style={fontStyles.title01}>D - day</Text>
+          {dDay > 0 ? (
+            <Text style={styles.planDday}>D - {dDay}</Text>
+          ) : dDay === 0 ? (
+            <Text style={styles.planDday}>D - day</Text>
           ) : (
-            <Text style={fontStyles.title01}>D + {item.dDay * -1}</Text>
+            <Text style={styles.planDday}>D + {Math.abs(dDay)}</Text>
           )}
         </View>
       </View>
@@ -51,6 +67,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     borderColor: color.GRAY_50,
+    ...shadowStyles.smallShadow,
   },
   planCoverImageWrapper: {
     flex: 1,
@@ -73,6 +90,7 @@ const styles = StyleSheet.create({
   planDatesWrapper: { gap: 6 },
   planFriendsWrapper: { flexDirection: 'row', gap: 2, alignItems: 'center' },
   planDdayWrapper: { alignItems: 'flex-end' },
+  planDday: { ...fontStyles.title01 },
 });
 
 export default MyTripCard;

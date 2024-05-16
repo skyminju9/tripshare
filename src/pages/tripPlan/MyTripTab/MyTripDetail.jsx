@@ -2,22 +2,29 @@ import React from 'react';
 import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import BasicHeader from '../../../components/BasicHeader';
-import { dummy_plans } from '../../../dummyData';
 import color from '../../../styles/colorPalette';
 import fontStyles from '../../../styles/fontStyles';
-import { MoreIcon, PeopleIcon } from '../../../assets/index';
+import { MoreIcon, PeopleIcon, MapIcon } from '../../../assets/index';
 import { LocationTab } from './LocationTab';
 import { ScheduleTab } from './ScheduleTab';
 import { ChecklistTab } from './ChecklistTab';
 import TripTag from '../../../components/myTrip/TripTag';
-import { MapIcon } from '../../../assets/index';
+import { dummyPlans } from '../../../dummyData';
 
 const Tab = createMaterialTopTabNavigator();
 
 const MyTripDetail = ({ route }) => {
-  const planId = route.params.params;
-  const item = dummy_plans[planId - 1];
-  console.log(item);
+  const { tripId, dDay } = route.params;
+  const combinedData = [...dummyPlans, ...route.params.combinedData];
+  const item = combinedData.find(plan => plan.id === tripId);
+
+  if (!item) {
+    return (
+      <SafeAreaView style={styles.wrapper}>
+        <Text style={fontStyles.title03}>일정을 찾을 수 없습니다.</Text>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -30,17 +37,17 @@ const MyTripDetail = ({ route }) => {
         }
       />
       <View style={styles.tripInfoWrapper}>
-        {item.dDay >= 0 ? (
-          item.dDay !== 0 ? (
+        {dDay >= 0 ? (
+          dDay !== 0 ? (
             <Text style={fontStyles.title03}>
-              여행까지 <Text style={styles.dDayText}>{item.dDay}</Text>일 남았어요!
+              여행까지 <Text style={styles.dDayText}>{dDay}</Text>일 남았어요!
             </Text>
           ) : (
             <Text style={fontStyles.title03}>여행 당일이에요!</Text>
           )
         ) : (
           <Text style={fontStyles.title03}>
-            여행이 끝난 지 <Text style={styles.dDayText}>{item.dDay * -1}</Text>일 되었어요!
+            여행이 끝난 지 <Text style={styles.dDayText}>{Math.abs(dDay)}</Text>일 되었어요!
           </Text>
         )}
         <Text style={fontStyles.basicFont02}>
@@ -49,8 +56,8 @@ const MyTripDetail = ({ route }) => {
         <View style={styles.listWrapper}>
           <PeopleIcon />
           <View style={styles.friendsList}>
-            {item.friendList.map((friend, frinedId) => (
-              <Text style={fontStyles.basicFont02} key={frinedId}>
+            {(item.friendList || []).map((friend, index) => (
+              <Text style={fontStyles.basicFont02} key={index}>
                 {friend.name}
               </Text>
             ))}
@@ -61,8 +68,8 @@ const MyTripDetail = ({ route }) => {
           <Text style={fontStyles.basicFont02}>{item.location}</Text>
         </View>
         <View style={{ flexDirection: 'row', marginTop: 4 }}>
-          {item.tags.map((item, index) => (
-            <TripTag key={index} text={item} />
+          {(item.tags || []).map((tag, index) => (
+            <TripTag key={index} text={tag} />
           ))}
         </View>
       </View>

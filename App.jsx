@@ -5,21 +5,21 @@ import { MainStack } from './src/router';
 import { LocationProvider } from './src/contexts/LocationContext';
 import { GeolocationProvider } from './src/contexts/GeolocationContext';
 import { AuthUserProvider } from './src/contexts/AuthUserContext';
+import { ScheduleProvider2 } from './src/contexts/ScheduleContext';
 import { ScheduleProvider } from './src/contexts/AddScheduleContext';
-import { TravelScheduleProvider } from './src/contexts/TravelScheduleContext';
 
 function App() {
   return (
     <AuthUserProvider>
       <GeolocationProvider>
         <LocationProvider>
-          <TravelScheduleProvider>
+          <ScheduleProvider2>
             <ScheduleProvider>
               <NavigationContainer>
                 <MainStack />
               </NavigationContainer>
             </ScheduleProvider>
-          </TravelScheduleProvider>
+          </ScheduleProvider2>
         </LocationProvider>
       </GeolocationProvider>
     </AuthUserProvider>

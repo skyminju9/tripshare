@@ -4,11 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 import fontStyles from '../../../../styles/fontStyles';
 import color from '../../../../styles/colorPalette';
 import { BlueButton } from '../../../../components/BasicButtons';
-import { useTravelSchedule } from '../../../../contexts/TravelScheduleContext'; // 변경된 import 경로
+import { useSchedule } from '../../../../contexts/ScheduleContext';
 
 const AddSchNaming = () => {
   const navigation = useNavigation();
-  const { currentSchedule, setCurrentSchedule } = useTravelSchedule(); // 변경된 훅 사용
+  const { currentSchedule, setCurrentSchedule } = useSchedule();
   const [name, setName] = useState(currentSchedule.name);
 
   useEffect(() => {

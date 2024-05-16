@@ -5,10 +5,10 @@ import { useNavigation } from '@react-navigation/native';
 import color from '../../../../styles/colorPalette';
 import PlusIcon from '../../../../assets/icons/myTrip/plusicon.png';
 import { BlueButton, GrayButton } from '../../../../components/BasicButtons';
-import { useTravelSchedule } from '../../../../contexts/TravelScheduleContext'; // 변경된 import 경로
+import { useSchedule } from '../../../../contexts/ScheduleContext';
 
 const AddSchHash = () => {
-  const { currentSchedule, setCurrentSchedule } = useTravelSchedule(); // 변경된 훅 사용
+  const { currentSchedule, setCurrentSchedule } = useSchedule();
   const [hashTags, setHashTags] = useState(currentSchedule.hashtags || []);
   const [hashTagInput, setHashTagInput] = useState('');
 

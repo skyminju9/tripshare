@@ -1,24 +1,21 @@
-import React, { useEffect } from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
-import fontStyles from "../../../../styles/fontStyles";
-import color from "../../../../styles/colorPalette";
-import { useNavigation } from "@react-navigation/native";
-import { useTravelSchedule } from "../../../../contexts/TravelScheduleContext"; // 변경된 import 경로
+import React, { useEffect } from 'react';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import fontStyles from '../../../../styles/fontStyles';
+import color from '../../../../styles/colorPalette';
+import { useNavigation } from '@react-navigation/native';
+import { useSchedule } from '../../../../contexts/ScheduleContext';
 
 const AddSchComplete = () => {
   const navigation = useNavigation();
-  const { addSchedule, currentSchedule, resetCurrentSchedule } =
-    useTravelSchedule(); // 변경된 훅 사용
+  const { addSchedule, currentSchedule, resetCurrentSchedule } = useSchedule();
 
   useEffect(() => {
-    console.log("AddSchComplete mounted");
-    addSchedule(currentSchedule); // Add current schedule to schedules
-    resetCurrentSchedule(); // Reset current schedule after adding
-  }, []); // 빈 배열을 의존성으로 설정하여 이 효과가 처음에만 실행되도록 합니다.
+    addSchedule(currentSchedule);
+    resetCurrentSchedule();
+  }, []);
 
   const handleNextPress = () => {
-    console.log("Navigating to TripPlan");
-    navigation.navigate("TripPlan");
+    navigation.navigate('TripPlan');
   };
 
   return (
@@ -33,13 +30,8 @@ const AddSchComplete = () => {
       </View>
       <View style={styles.footer}>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.completeButton}
-            onPress={handleNextPress}
-          >
-            <Text style={[fontStyles.title03, { color: color.WHITE }]}>
-              나의 여행으로 돌아가기
-            </Text>
+          <TouchableOpacity style={styles.completeButton} onPress={handleNextPress}>
+            <Text style={[fontStyles.title03, { color: color.WHITE }]}>나의 여행으로 돌아가기</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -51,8 +43,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: color.BLUE_30,
     padding: 20,
-    justifyContent: "space-between",
-    height: "100%",
+    justifyContent: 'space-between',
+    height: '100%',
   },
   main: {
     flex: 1,
@@ -61,11 +53,11 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   completeButton: {
-    width: "100%",
+    width: '100%',
     height: 54,
     borderRadius: 12,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: color.BLUE_500,
   },
 });

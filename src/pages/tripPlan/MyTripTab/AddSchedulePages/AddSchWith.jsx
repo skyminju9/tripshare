@@ -6,7 +6,7 @@ import color from '../../../../styles/colorPalette.js';
 import FriendsList from '../../../../components/AddScheduleComponents/FriendsList.jsx';
 import PeopleIcon from '../../../../assets/icons/myTrip/people.svg';
 import { BlueButton, GrayButton } from '../../../../components/BasicButtons';
-import { useTravelSchedule } from '../../../../contexts/TravelScheduleContext'; // 변경된 import 경로
+import { useSchedule } from '../../../../contexts/ScheduleContext';
 
 const dummyData = [
   { id: 1, name: '한서흔' },
@@ -26,7 +26,7 @@ const dummyData = [
 ];
 
 const AddSchWith = () => {
-  const { currentSchedule, setCurrentSchedule } = useTravelSchedule(); // 변경된 훅 사용
+  const { currentSchedule, setCurrentSchedule } = useSchedule();
   const [selectedFriends, setSelectedFriends] = useState(currentSchedule.companions || []);
   const navigation = useNavigation();
 
@@ -45,8 +45,10 @@ const AddSchWith = () => {
   };
 
   const handleNextPress = () => {
-    setCurrentSchedule(prev => ({ ...prev, companions: selectedFriends }));
-    navigation.navigate('AddSchImage');
+    if (selectedFriends.length > 0) {
+      setCurrentSchedule(prev => ({ ...prev, companions: selectedFriends }));
+      navigation.navigate('AddSchImage');
+    }
   };
 
   const handlePreviousPress = () => {

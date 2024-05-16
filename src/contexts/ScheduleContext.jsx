@@ -1,8 +1,8 @@
 import React, { createContext, useState, useContext } from 'react';
 
-const TravelScheduleContext = createContext();
+const ScheduleContext = createContext();
 
-export const TravelScheduleProvider = ({ children }) => {
+export const ScheduleProvider2 = ({ children }) => {
   const [schedules, setSchedules] = useState([]);
   const [currentSchedule, setCurrentSchedule] = useState({
     name: '',
@@ -14,13 +14,13 @@ export const TravelScheduleProvider = ({ children }) => {
   });
 
   const addSchedule = newSchedule => {
-    console.log('Adding new travel schedule:', newSchedule);
+    console.log('Adding new schedule:', newSchedule);
     setSchedules(prevSchedules => [...prevSchedules, newSchedule]);
     resetCurrentSchedule();
   };
 
   const resetCurrentSchedule = () => {
-    console.log('Resetting current travel schedule');
+    console.log('Resetting current schedule');
     setCurrentSchedule({
       name: '',
       date: { start: '', end: '' },
@@ -32,7 +32,7 @@ export const TravelScheduleProvider = ({ children }) => {
   };
 
   return (
-    <TravelScheduleContext.Provider
+    <ScheduleContext.Provider
       value={{
         schedules,
         currentSchedule,
@@ -41,8 +41,8 @@ export const TravelScheduleProvider = ({ children }) => {
         resetCurrentSchedule,
       }}>
       {children}
-    </TravelScheduleContext.Provider>
+    </ScheduleContext.Provider>
   );
 };
 
-export const useTravelSchedule = () => useContext(TravelScheduleContext);
+export const useSchedule = () => useContext(ScheduleContext);

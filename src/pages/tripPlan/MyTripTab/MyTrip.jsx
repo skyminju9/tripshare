@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   View,
   Text,
@@ -9,13 +10,14 @@ import {
 } from 'react-native';
 import PlusIcon from '../../../assets/icons/myTrip/add.svg';
 import shadowStyles from '../../../styles/shadowStyles';
-import MyTripCard from './MyTripCard';
-import { dummy_plans } from '../../../dummyData';
 import { useNavigation } from '@react-navigation/native';
-import MyRecordCard from './MyRecordCard';
 import color from '../../../styles/colorPalette';
 import fontStyles from '../../../styles/fontStyles';
 import SeeMoreBtn from '../../../components/SeeMoreBtn';
+import { useSchedule } from '../../../contexts/ScheduleContext';
+import { dummyPlans } from '../../../dummyData';
+import MyRecordCard from './MyRecordCard';
+import MyTripCard, { calculateDday } from './MyTripCard';
 
 const dummyRecords = [
   {
@@ -46,12 +48,28 @@ const dummyRecords = [
 
 const MyTrip = () => {
   const navigation = useNavigation();
+  const { schedules } = useSchedule();
+
+  const combinedData = [
+    ...dummyPlans,
+    ...schedules.map((schedule, index) => ({
+      id: `schedule-${index}`,
+      title: schedule.name,
+      dates: [schedule.date.start, schedule.date.end],
+      location: schedule.location,
+      tags: schedule.hashtags,
+      friendList: schedule.companions,
+      coverImage: { uri: schedule.image },
+      dDay: calculateDday(schedule.date.start, 'YYYY-MM-DD'),
+    })),
+  ];
+
   const renderPlan = ({ item }) => {
-    return <MyTripCard item={item} />;
+    return <MyTripCard item={item} combinedData={combinedData} />;
   };
 
   const renderRecord = ({ item }) => {
-    return <MyRecordCard item={item} />;
+    return <MyRecordCard record={item} />;
   };
 
   return (
@@ -66,14 +84,17 @@ const MyTrip = () => {
               </TouchableOpacity>
             </View>
             <View>
-              <SeeMoreBtn address={'MyTripMore'} />
+              <SeeMoreBtn
+                address="MyTripMore"
+                params={{ combinedData }} // 데이터를 전달합니다
+              />
             </View>
           </View>
           <View style={styles.cardsContainer}>
             <FlatList
-              data={dummy_plans}
+              data={combinedData}
               renderItem={renderPlan}
-              keyExtractor={item => item.id}
+              keyExtractor={item => item.id.toString()}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
             />
@@ -88,14 +109,14 @@ const MyTrip = () => {
               </TouchableOpacity>
             </View>
             <View>
-              <SeeMoreBtn address={'MyRecordMore'} />
+              <SeeMoreBtn address="MyRecordMore" />
             </View>
           </View>
           <View style={styles.cardsContainer}>
             <FlatList
               data={dummyRecords}
               renderItem={renderRecord}
-              keyExtractor={item => item.id}
+              keyExtractor={item => item.id.toString()}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
             />
@@ -112,7 +133,11 @@ const styles = StyleSheet.create({
     backgroundColor: color.WHITE,
   },
   myTripContainer: { marginBottom: 36 },
-  myTripPlanContainer: { marginTop: 36, marginHorizontal: 24, marginBottom: 100 },
+  myTripPlanContainer: {
+    marginTop: 36,
+    marginHorizontal: 24,
+    marginBottom: 100,
+  },
   titleWrapper: { flexDirection: 'row', justifyContent: 'space-between' },
   titlesContainer: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   more: { flexDirection: 'row', alignItems: 'center', marginRight: 12 },
