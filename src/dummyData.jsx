@@ -313,12 +313,12 @@ export const dummy_meet = [
 export const dummy_chat = [
   {
     id: 1,
-    sendUserId: 5,
+    sendUserId: 'f1ace8fb-d081-40ae-ab9b-b6002b8c0d06',
     receiveUserId: 4,
     chatList: [
       {
         id: 1,
-        userId: 5,
+        userId: 'f1ace8fb-d081-40ae-ab9b-b6002b8c0d06',
         text: '안녕하세요',
         createdAt: new Date('2024-05-12 10:20').getTime(),
         isRead: true,
@@ -332,7 +332,7 @@ export const dummy_chat = [
       },
       {
         id: 3,
-        userId: 5,
+        userId: 'f1ace8fb-d081-40ae-ab9b-b6002b8c0d06',
         text: '올라온 동행글 보고 연락했어요. 아직도 동행 구하시나요?',
         createdAt: new Date('2024-05-12 10:22').getTime(),
         isRead: true,
@@ -346,7 +346,7 @@ export const dummy_chat = [
       },
       {
         id: 5,
-        userId: 5,
+        userId: 'f1ace8fb-d081-40ae-ab9b-b6002b8c0d06',
         text: '그럼 저랑 같이 가실래요?',
         createdAt: new Date('2024-05-12 10:24').getTime(),
         isRead: false,
@@ -355,12 +355,12 @@ export const dummy_chat = [
   },
   {
     id: 2,
-    sendUserId: 5,
+    sendUserId: 'f1ace8fb-d081-40ae-ab9b-b6002b8c0d06',
     receiveUserId: 3,
     chatList: [
       {
         id: 1,
-        userId: 5,
+        userId: 'f1ace8fb-d081-40ae-ab9b-b6002b8c0d06',
         text: '안녕하세요',
         createdAt: new Date('2024-05-12 10:20').getTime(),
         isRead: true,
@@ -374,7 +374,7 @@ export const dummy_chat = [
       },
       {
         id: 3,
-        userId: 5,
+        userId: 'f1ace8fb-d081-40ae-ab9b-b6002b8c0d06',
         text: '올라온 동행글 보고 연락했어요. 아직도 동행 구하시나요?',
         createdAt: new Date('2024-05-12 10:22').getTime(),
         isRead: true,
@@ -388,7 +388,7 @@ export const dummy_chat = [
       },
       {
         id: 5,
-        userId: 5,
+        userId: 'f1ace8fb-d081-40ae-ab9b-b6002b8c0d06',
         text: '그럼 저랑 같이 가실래요?',
         createdAt: new Date('2024-05-12 10:24').getTime(),
         isRead: true,
@@ -397,12 +397,12 @@ export const dummy_chat = [
   },
   {
     id: 3,
-    sendUserId: 5,
+    sendUserId: 'f1ace8fb-d081-40ae-ab9b-b6002b8c0d06',
     receiveUserId: 2,
     chatList: [
       {
         id: 1,
-        userId: 5,
+        userId: 'f1ace8fb-d081-40ae-ab9b-b6002b8c0d06',
         text: '안녕하세요',
         createdAt: new Date('2024-05-12 10:20').getTime(),
         isRead: true,
@@ -416,7 +416,7 @@ export const dummy_chat = [
       },
       {
         id: 3,
-        userId: 5,
+        userId: 'f1ace8fb-d081-40ae-ab9b-b6002b8c0d06',
         text: '올라온 동행글 보고 연락했어요. 아직도 동행 구하시나요?',
         createdAt: new Date('2024-05-12 10:22').getTime(),
         isRead: true,
@@ -430,7 +430,7 @@ export const dummy_chat = [
       },
       {
         id: 5,
-        userId: 5,
+        userId: 'f1ace8fb-d081-40ae-ab9b-b6002b8c0d06',
         text: '그럼 저랑 같이 가실래요?',
         createdAt: new Date('2024-05-12 10:24').getTime(),
         isRead: true,
@@ -454,7 +454,7 @@ export const dummy_chat = [
   {
     id: 4,
     sendUserId: 1,
-    receiveUserId: 5,
+    receiveUserId: 'f1ace8fb-d081-40ae-ab9b-b6002b8c0d06',
     chatList: [
       {
         id: 1,
@@ -465,7 +465,7 @@ export const dummy_chat = [
       },
       {
         id: 2,
-        userId: 5,
+        userId: 'f1ace8fb-d081-40ae-ab9b-b6002b8c0d06',
         text: '안녕하세요',
         createdAt: new Date('2024-05-12 10:21').getTime(),
         isRead: true,
@@ -479,7 +479,7 @@ export const dummy_chat = [
       },
       {
         id: 4,
-        userId: 5,
+        userId: 'f1ace8fb-d081-40ae-ab9b-b6002b8c0d06',
         text: '네 아직 못구했어요 ㅠㅠ ',
         createdAt: new Date('2024-05-12 10:23').getTime(),
         isRead: true,
