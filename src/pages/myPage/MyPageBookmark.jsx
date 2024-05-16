@@ -17,6 +17,7 @@ const MyPageBookmark = () => {
   const user = useAuthUser();
   const [articleData, setArticleData] = useState([]);
   const isFocused = useIsFocused();
+  const [users, setUsers] = useState([]);
 
   const handleContent = (data, userList) => {
     const initialArticles = data.map(article => {
@@ -50,6 +51,7 @@ const MyPageBookmark = () => {
     const userList = await setUserList();
     if (userList !== undefined) {
       setArticleData(handleContent(lists, userList));
+      setUsers(userList);
     }
   };
 
@@ -67,7 +69,7 @@ const MyPageBookmark = () => {
       <View style={styles.cardContainer}>
         {!isSameDate && <Text style={styles.cardDate}>{formatDate(item.createdAt)}</Text>}
         <View style={styles.articleCardWrapper}>
-          <ArticleCard item={item} />
+          <ArticleCard item={item} users={users} />
         </View>
       </View>
     );

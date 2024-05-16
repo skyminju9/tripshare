@@ -11,11 +11,13 @@ import { useAuthUser } from '../../contexts/AuthUserContext';
 import { getMyArticleList } from '../../firebase/store/ArticleDB';
 import { useIsFocused } from '@react-navigation/native';
 import { DummyProfileImg } from '../../assets';
+import { setUserList } from '../../firebase/store/UserDB';
 
 const MyPageArticle = () => {
   const user = useAuthUser();
   const [articleData, setArticleData] = useState([]);
   const isFocused = useIsFocused();
+  const [users, setUsers] = useState([]);
 
   const handleContent = data => {
     const initialArticles = data.map(article => {
@@ -34,7 +36,11 @@ const MyPageArticle = () => {
 
   const getMyArticle = async () => {
     const lists = await getMyArticleList(user.id);
-    setArticleData(handleContent(lists));
+    const userList = await setUserList();
+    if (userList !== undefined) {
+      setArticleData(handleContent(lists, userList));
+      setUsers(userList);
+    }
   };
 
   useEffect(() => {
@@ -53,7 +59,7 @@ const MyPageArticle = () => {
       <View style={styles.cardContainer}>
         {!isPrevSameDate && <Text style={styles.cardDate}>{formatDate(item.createdAt)}</Text>}
         <View style={styles.articleCardWrapper}>
-          <ArticleCard item={item} />
+          <ArticleCard item={item} users={users} />
         </View>
       </View>
     );
