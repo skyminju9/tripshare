@@ -22,7 +22,7 @@ const CommmunitySearchResultPage = () => {
   const navigation = useNavigation();
   const keyword = useRoute().params?.keyword || '';
   const resultData = dummy_article
-    .filter(article => article.title.includes(keyword) || article.content.includes(keyword))
+    .filter(article => article.title.includes(keyword) || article.contents.includes(keyword))
     .map(article => {
       const articleUser = dummy_user.find(user => user.id === article.userId);
 
