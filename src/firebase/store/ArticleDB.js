@@ -1,3 +1,4 @@
+import { Filter } from '@react-native-firebase/firestore';
 import { articleCollection, userCollection } from '../firebase';
 
 export const addArticle = async data => {
@@ -54,6 +55,37 @@ export const getArticleAndAuthorList = async () => {
     return newArticles;
   } catch (err) {
     console.error(err);
+  }
+};
+
+export const getSearchArticleList = async keyword => {
+  try {
+    // const searchTitleQuery = await articleCollection
+    //   .where('title', '>=', keyword)
+    //   .where('title', '<', keyword + '\uf8ff')
+    //   .get();
+    // const searchContentQuery = await articleCollection
+    //   .where('contents', '>=', keyword)
+    //   .where('contents', '<', keyword + '\uf8ff')
+    //   .get();
+
+    const getArticlesQuery = await articleCollection.orderBy('createdAt', 'desc').get();
+    const articles = getArticlesQuery.docs
+      .map(doc => doc.data())
+      .filter(article => article.title.includes(keyword) || article.contents.includes(keyword));
+
+    let res = [];
+    for (let i = 0; i < articles.length; i++) {
+      const getUser = await userCollection.where('id', '==', articles[i].creator).get();
+      if (getUser) {
+        const userInfo = getUser.docs.map(doc => doc.data())[0];
+        res.push({ ...articles[i], authorName: userInfo.name, authorImage: '' });
+      } else res.push(articles[i]);
+    }
+    console.log(res, res.length);
+    return res;
+  } catch (e) {
+    console.error(e);
   }
 };
 

@@ -69,8 +69,8 @@ const CommunityArticleDetail = ({ route }) => {
       const initialArticle = {
         id: data.id,
         ...content,
-        authorName: articleUser.name,
-        authorImage: articleUser.profileImage || DummyProfileImg,
+        authorName: article.authorName || articleUser.name,
+        authorImage: article.authorImage || articleUser.profileImage || DummyProfileImg,
       };
 
       return initialArticle;

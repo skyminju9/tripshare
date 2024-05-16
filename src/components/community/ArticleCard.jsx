@@ -16,7 +16,7 @@ import { Shadow } from 'react-native-shadow-2';
 import { useNavigation } from '@react-navigation/native';
 import ArticleCardHeader from './ArticleCardHeader';
 
-const ArticleCard = ({ item: article, users }) => {
+const ArticleCard = ({ item: article, users = [] }) => {
   const user = useAuthUser();
   const bookmarkList = user.bookmarkList;
   const isBookmarked = bookmarkList.includes(article.id);

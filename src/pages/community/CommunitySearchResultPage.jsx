@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView,
   TextInput,
@@ -17,21 +17,38 @@ import BasicHeader from '../../components/BasicHeader';
 import { dummy_article, dummy_user } from '../../dummyData';
 import ArticleCard from '../../components/community/ArticleCard';
 import { DummyProfileImg } from '../../assets';
+import { getSearchArticleList } from '../../firebase/store/ArticleDB';
 
 const CommmunitySearchResultPage = () => {
   const navigation = useNavigation();
   const keyword = useRoute().params?.keyword || '';
-  const resultData = dummy_article
-    .filter(article => article.title.includes(keyword) || article.contents.includes(keyword))
-    .map(article => {
-      const articleUser = dummy_user.find(user => user.id === article.creator);
+  const [articles, setArticles] = useState([]);
 
-      return {
-        ...article,
-        authorName: articleUser.name || '',
-        authorImage: articleUser.profileImage || DummyProfileImg,
-      };
-    });
+  const getArticles = async () => {
+    try {
+      const getArticleQuery = await getSearchArticleList(keyword);
+
+      setArticles(
+        getArticleQuery.map(article => {
+          return {
+            ...article,
+            authorName: article.authorName || '',
+            authorImage: DummyProfileImg,
+          };
+        }),
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getArticles();
+
+    console.log('testeststs: ', articles);
+  }, []);
+
+  const resultData = articles;
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -48,7 +65,7 @@ const CommmunitySearchResultPage = () => {
           data={resultData}
           removeClippedSubviews
           showsVerticalScrollIndicator={false}
-          keyExtractor={item => item.id.toString()}
+          keyExtractor={(item, idx) => idx.toString()}
           renderItem={({ item }) => <ArticleCard item={item} />}
           scrollEventThrottle={20}
           contentContainerStyle={styles.flatListBottomPadding}
