@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, Image, ScrollView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 import fontStyles from '../../styles/fontStyles';
 import color from '../../styles/colorPalette';
 import shadowStyles from '../../styles/shadowStyles';
@@ -19,11 +21,12 @@ import Loading from '../../assets/images/Home/loading.gif';
 const HomePage = () => {
   const locationContext = useLocation();
   const user = useAuthUser();
+  const navigation = useNavigation();
 
   const [selectedCountry, setSelectedCountry] = useState(
-    locationContext.selectedCountry || '대한민국',
+    locationContext.selectedCountry || '스웨덴',
   );
-  const [selectedCity, setSelectedCity] = useState(locationContext.selectedCity || '서울');
+  const [selectedCity, setSelectedCity] = useState(locationContext.selectedCity || '스톡홀름');
   const [flagData, setFlagData] = useState([]);
   const [filteredFlag, setFilteredFlag] = useState(null);
   const [exchangeData, setExchangeData] = useState([]);
@@ -36,6 +39,15 @@ const HomePage = () => {
   const [error, setError] = useState(null);
 
   const defaultFlagUrl = 'https://example.com/south-korea-flag.png';
+
+  useEffect(() => {
+    if (!user.currentCity) navigation.navigate('SetMyLocationPage');
+    else {
+      const [country, city1, city2] = user.currentCity.split(' ');
+      locationContext.setSelectedCountry(country);
+      locationContext.setSelectedCity(city2);
+    }
+  }, []);
 
   useEffect(() => {
     const loadData = async () => {

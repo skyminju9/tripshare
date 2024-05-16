@@ -43,19 +43,19 @@ const AttractionsList = ({ attractionList }) => {
 export default AttractionsList;
 
 const styles = StyleSheet.create({
-  placeCardsWrapper: { padding: 20 },
-  placeCard: { flexDirection: 'row', marginBottom: 16 },
+  placeCardsWrapper: { paddingVertical: 20 },
+  placeCard: { flexDirection: 'row', gap: 16, marginBottom: 16 },
   coverImageStyle: {
-    width: 160,
+    flex: 1,
     height: 120,
     borderRadius: 8,
     borderWidth: 1,
     borderColor: color.GRAY_50,
+    marginLeft: 20,
   },
-  infoWrapper: { marginHorizontal: 16, gap: 6 },
+  infoWrapper: { marginRight: 20, flex: 1, gap: 6, justifyContent: 'space-between' },
   placeNameWrapper: { flexDirection: 'row' },
   detailWrapper: {
-    width: 180,
     height: 80,
     backgroundColor: color.BLUE_30,
     alignItems: 'center',

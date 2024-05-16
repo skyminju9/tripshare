@@ -8,34 +8,68 @@ import { formatDate } from '../../utils/date';
 import ArticleCard from '../../components/community/ArticleCard';
 import fontStyles from '../../styles/fontStyles';
 
+import { useIsFocused } from '@react-navigation/native';
+import { getMyBookmarkedList } from '../../firebase/store/ArticleDB';
+import { DummyProfileImg } from '../../assets';
+import { setUserList } from '../../firebase/store/UserDB';
+
 const MyPageBookmark = () => {
   const user = useAuthUser();
   const [articleData, setArticleData] = useState([]);
+  const isFocused = useIsFocused();
+  const [users, setUsers] = useState([]);
+
+  const handleContent = (data, userList) => {
+    const initialArticles = data.map(article => {
+      const content = article._data;
+      if (userList !== undefined) {
+        const articleUser = userList.find(user => user.id === content.creator);
+
+        return {
+          id: article.id,
+          ...content,
+          authorName: articleUser.name,
+          authorImage: articleUser.profileImage || DummyProfileImg,
+        };
+      } else {
+        const articleUser = dummy_user.find(user => user.id === content.creator);
+
+        return {
+          id: article.id,
+          ...content,
+          authorName: articleUser.name,
+          authorImage: articleUser.profileImage || DummyProfileImg,
+        };
+      }
+    });
+
+    return initialArticles;
+  };
+
+  const getMyBookmarked = async () => {
+    const lists = await getMyBookmarkedList(user.bookmarkList);
+    const userList = await setUserList();
+    if (userList !== undefined) {
+      setArticleData(handleContent(lists, userList));
+      setUsers(userList);
+    }
+  };
 
   useEffect(() => {
-    createArticleData();
-  }, []);
-
-  const createArticleData = () => {
-    const userData = dummy_user.filter(data => data.id === user.id).pop();
-    const bookmarkList = userData.bookmarkList;
-    const bookmarkedArticle = dummy_article.filter(item => bookmarkList.includes(item.id));
-    setArticleData(bookmarkedArticle);
-  };
+    getMyBookmarked();
+  }, [isFocused]);
 
   const renderItem = (item, index) => {
     let isSameDate = false;
-    if (!!articleData[index - 1]) {
+    if (articleData[index - 1]) {
       isSameDate = formatDate(item.createdAt) === formatDate(articleData[index - 1]?.createdAt);
     }
-    item.authorImage = user.profileImage;
-    item.authorName = user.name;
 
     return (
       <View style={styles.cardContainer}>
         {!isSameDate && <Text style={styles.cardDate}>{formatDate(item.createdAt)}</Text>}
         <View style={styles.articleCardWrapper}>
-          <ArticleCard item={item} />
+          <ArticleCard item={item} users={users} />
         </View>
       </View>
     );

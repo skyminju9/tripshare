@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView,
   TextInput,
@@ -16,21 +16,45 @@ import fontStyles from '../../styles/fontStyles';
 import BasicHeader from '../../components/BasicHeader';
 import { dummy_article, dummy_user } from '../../dummyData';
 import ArticleCard from '../../components/community/ArticleCard';
+import { DummyProfileImg } from '../../assets';
+import { getSearchArticleList } from '../../firebase/store/ArticleDB';
+import { setUserList } from '../../firebase/store/UserDB';
 
 const CommmunitySearchResultPage = () => {
   const navigation = useNavigation();
   const keyword = useRoute().params?.keyword || '';
-  const resultData = dummy_article
-    .filter(article => article.title.includes(keyword) || article.content.includes(keyword))
-    .map(article => {
-      const articleUser = dummy_user.find(user => user.id === article.userId);
+  const [articles, setArticles] = useState([]);
+  const [users, setUsers] = useState([]);
 
-      return {
-        ...article,
-        authorName: articleUser.name,
-        authorImage: articleUser.profileImage,
-      };
-    });
+  const getArticles = async () => {
+    try {
+      const getArticleQuery = await getSearchArticleList(keyword);
+      const userList = await setUserList();
+
+      setArticles(
+        getArticleQuery.map(article => {
+          return {
+            ...article,
+            authorName: article.authorName || '',
+            authorImage: DummyProfileImg,
+          };
+        }),
+      );
+      if (userList !== undefined) {
+        setUsers(userList);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getArticles();
+
+    // console.log('testeststs: ', articles);
+  }, []);
+
+  const resultData = articles;
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -47,8 +71,8 @@ const CommmunitySearchResultPage = () => {
           data={resultData}
           removeClippedSubviews
           showsVerticalScrollIndicator={false}
-          keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) => <ArticleCard item={item} />}
+          keyExtractor={(item, idx) => idx.toString()}
+          renderItem={({ item }) => <ArticleCard item={item} users={users} />}
           scrollEventThrottle={20}
           contentContainerStyle={styles.flatListBottomPadding}
         />

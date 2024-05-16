@@ -11,10 +11,13 @@ import {
 import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 import { PersonIcon, LockIcon, Google } from '../../assets/index';
-import { useAutuUserDispatch } from '../../contexts/AuthUserContext';
+import { useAuthUserDispatch } from '../../contexts/AuthUserContext';
 
 // TODO: change DUMMY DATA
 import { dummy_user } from '../../dummyData';
+import Toast from 'react-native-toast-message';
+import { validateEmail, validatePassword } from '../../utils/validateLogin';
+import { userLogin } from '../../auth/auth';
 
 const appLogo = require('../../assets/icons/register/logo_text.png');
 const appleIcon = require('../../assets/icons/register/apple.png');
@@ -26,15 +29,26 @@ const LoginPage = ({ navigation }) => {
   const [password, setPassword] = useState('');
 
   // TODO: Login Logic
-  const { login } = useAutuUserDispatch();
+  const { login } = useAuthUserDispatch();
 
   const handleShowButton = () => {
     setShow(!show);
   };
-  const handleLogin = () => {
-    const testUser = dummy_user[4];
-    login(testUser);
-    navigation.navigate('BottomTab');
+  const handleLogin = async () => {
+    try {
+      if (!email) throw new Error('이메일을 입력해 주세요.');
+      if (!password) throw new Error('비밀번호를 입력해 주세요.');
+
+      validateEmail(email);
+      validatePassword(password);
+
+      await userLogin({ email, password });
+      await login(email);
+      console.log('login successfully!');
+    } catch (e) {
+      console.log('login page Error: ', e.message);
+      showToast('error', e.message);
+    }
   };
   const handleSignUp = () => {
     navigation.navigate('SignUpPage');
@@ -110,8 +124,16 @@ const LoginPage = ({ navigation }) => {
           </View>
         </View>
       </View>
+      <Toast />
     </SafeAreaView>
   );
+};
+
+const showToast = (type, message) => {
+  Toast.show({
+    type,
+    text1: message,
+  });
 };
 
 const styles = StyleSheet.create({

@@ -1,14 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, Image, TextInput, TouchableOpacity, Keyboard } from 'react-native';
 import { ReplyRegisterIcon } from '../assets';
 import color from '../styles/colorPalette';
 
-const CommentInput = ({ onSubmit, chatPlaceHolder }) => {
+import { addComment } from '../firebase/store/ArticleDB';
+
+const CommentInput = ({ onSubmit, chatPlaceHolder, creator, article, comment = false }) => {
   const [contents, setContents] = useState('');
+
+  const setComment = async () => {
+    const data = {
+      contents: contents,
+      createdAt: new Date().getTime(),
+      creator: creator,
+      liked: 0,
+    };
+    const result = await addComment(article.id, article.comments, data);
+    if (result) {
+      console.log('댓글 작성');
+      setContents('');
+      Keyboard.dismiss();
+    }
+  };
 
   const handleContentSubmit = () => {
     onSubmit(contents);
     setContents('');
+    Keyboard.dismiss();
   };
 
   return (
@@ -21,7 +39,7 @@ const CommentInput = ({ onSubmit, chatPlaceHolder }) => {
           maxLength={100}
         />
       </View>
-      <TouchableOpacity onPress={() => handleContentSubmit()}>
+      <TouchableOpacity onPress={comment ? setComment : handleContentSubmit}>
         <Image source={ReplyRegisterIcon} style={styles.replyRegister} />
       </TouchableOpacity>
     </View>

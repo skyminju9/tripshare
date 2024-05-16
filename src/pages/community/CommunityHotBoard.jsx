@@ -3,36 +3,69 @@ import { SafeAreaView, StyleSheet, FlatList } from 'react-native';
 
 import BasicHeader from '../../components/BasicHeader';
 import ArticleCard from '../../components/community/ArticleCard';
-import { getHotArticle } from '../../utils/sortArticle';
-import { dummy_article, dummy_user } from '../../dummyData';
+import { dummy_user } from '../../dummyData';
+
+import { useIsFocused } from '@react-navigation/native';
+import { getHotArticleList } from '../../firebase/store/ArticleDB';
+import { DummyProfileImg } from '../../assets';
+import { setUserList } from '../../firebase/store/UserDB';
 
 const CommunityHotBoard = () => {
   const [hotArticle, setHotArticle] = useState([]);
+  const isFocused = useIsFocused();
+  const [users, setUsers] = useState([]);
+
+  const handleContent = (data, userList) => {
+    const initialArticles = data.map(article => {
+      if (userList !== undefined) {
+        const content = article.data();
+        const articleUser = userList.find(user => user.id === content.creator);
+
+        return {
+          id: article.id,
+          ...content,
+          authorName: articleUser.name,
+          authorImage: articleUser.profileImage || DummyProfileImg,
+        };
+      } else {
+        const content = article.data();
+        const articleUser = dummy_user.find(user => user.id === content.creator);
+
+        return {
+          id: article.id,
+          ...content,
+          authorName: articleUser.name,
+          authorImage: articleUser.profileImage || DummyProfileImg,
+        };
+      }
+    });
+
+    return initialArticles;
+  };
+
+  const getHotList = async () => {
+    const lists = await getHotArticleList();
+    const userList = await setUserList();
+    if (userList !== undefined) {
+      setHotArticle(handleContent(lists, userList));
+      setUsers(userList);
+    }
+  };
 
   useEffect(() => {
-    setHotArticle(getHotArticle(dummy_article, 10));
-  }, []);
-
-  const initialArticles = hotArticle.map(article => {
-    const articleUser = dummy_user.find(user => user.id === article.userId);
-
-    return {
-      ...article,
-      authorName: articleUser.name,
-      authorImage: articleUser.profileImage,
-    };
-  });
+    getHotList();
+  }, [isFocused]);
 
   return (
     <SafeAreaView style={styles.wrapper}>
       <BasicHeader title="HOT 게시글" />
       <FlatList
         style={styles.articleCardWrapper}
-        data={initialArticles}
+        data={hotArticle}
         removeClippedSubviews
         showsVerticalScrollIndicator={false}
         keyExtractor={item => item.id.toString()}
-        renderItem={({ item }) => <ArticleCard item={item} />}
+        renderItem={({ item }) => <ArticleCard item={item} users={users} />}
         scrollEventThrottle={20}
         contentContainerStyle={styles.flatListBottomPadding}
       />

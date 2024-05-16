@@ -1,34 +1,80 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { SafeAreaView, StyleSheet, FlatList, TouchableOpacity, View } from 'react-native';
 
 import BasicHeader from '../../components/BasicHeader';
 import ArticleCard from '../../components/community/ArticleCard';
 import ArticleTagList from '../../components/community/ArticleTagList';
 import { SearchIcon, PostIcon } from '../../assets/index';
-import { dummy_article, dummy_user } from '../../dummyData';
+import { dummy_user } from '../../dummyData';
 import color from '../../styles/colorPalette';
 import { Shadow } from 'react-native-shadow-2';
 import { APP_WIDTH } from '../../constants';
 
+import { useIsFocused } from '@react-navigation/native';
+import { getArticleList, getArticleTagList } from '../../firebase/store/ArticleDB';
+import { DummyProfileImg } from '../../assets/index';
+import { setUserList } from '../../firebase/store/UserDB';
+
 const tags = ['잡담', '질문', '정보'];
 
 const CommunityFreeBoard = ({ navigation }) => {
-  const [articles, setArticles] = useState(initialArticles);
-  const initialArticles = dummy_article.map(article => {
-    const articleUser = dummy_user.find(user => user.id === article.userId);
+  const [articles, setArticles] = useState([]);
+  const isFocused = useIsFocused();
+  const [users, setUsers] = useState([]);
 
-    return {
-      ...article,
-      authorName: articleUser.name,
-      authorImage: articleUser.profileImage,
-    };
-  });
+  const handleContent = (data, userList) => {
+    const initialArticles = data.map(article => {
+      if (userList !== undefined) {
+        const content = article.data();
+        const articleUser = userList.find(user => user.id === content.creator);
 
-  const onPressTag = useCallback(activeTag => {
-    if (activeTag) {
-      setArticles(initialArticles.filter(article => article.tag === activeTag));
-    } else setArticles(initialArticles);
-  }, []);
+        return {
+          id: article.id,
+          ...content,
+          authorName: articleUser.name,
+          authorImage: articleUser.profileImage || DummyProfileImg,
+        };
+      } else {
+        const content = article.data();
+        const articleUser = dummy_user.find(user => user.id === content.creator);
+
+        return {
+          id: article.id,
+          ...content,
+          authorName: articleUser.name,
+          authorImage: articleUser.profileImage || DummyProfileImg,
+        };
+      }
+    });
+
+    return initialArticles;
+  };
+
+  const getFreeBoard = async () => {
+    const lists = await getArticleList();
+    const userList = await setUserList();
+    if (userList !== undefined) {
+      setArticles(handleContent(lists, userList));
+      setUsers(userList);
+    }
+  };
+
+  const onPressTag = useCallback(
+    async activeTag => {
+      if (activeTag) {
+        const lists = await getArticleTagList(activeTag);
+        setArticles(handleContent(lists));
+      } else {
+        const lists = await getArticleList();
+        setArticles(handleContent(lists));
+      }
+    },
+    [isFocused],
+  );
+
+  useEffect(() => {
+    getFreeBoard();
+  }, [isFocused]);
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -60,8 +106,8 @@ const CommunityFreeBoard = ({ navigation }) => {
         data={articles}
         removeClippedSubviews
         showsVerticalScrollIndicator={false}
-        keyExtractor={item => item.id.toString()}
-        renderItem={({ item }) => <ArticleCard item={item} />}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => <ArticleCard item={item} users={users} />}
         scrollEventThrottle={20}
         contentContainerStyle={styles.flatListBottomPadding}
       />

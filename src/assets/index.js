@@ -64,6 +64,8 @@ import MyCommentIcon from './icons/myPage/myCommentIcon.svg';
 import PositionIcon from './icons/myPage/positionIcon.svg';
 import NotiIcon from '../assets/icons/header/notification.svg';
 import ThemeIcon from './icons/myPage/themeIcon.svg';
+import LogoutIcon from './icons/myPage/logoutIcon.svg';
+import DummyProfileImg from './icons/myPage/dummyProfileImg.png';
 import BlueChatIcon from './icons/myPage/blueChatIcon.svg';
 import BlueCloseIcon from './icons/myPage/blueCloseIcon.svg';
 import BlueFlightIcon from './icons/myPage/blueFlightIcon.svg';
@@ -158,4 +160,6 @@ export {
   ListIcon,
   BlueWriteIcon,
   PhoneIcon,
+  LogoutIcon,
+  DummyProfileImg,
 };

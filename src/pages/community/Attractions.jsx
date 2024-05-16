@@ -33,9 +33,9 @@ const Attractions = () => {
         rightComponent={
           <TouchableOpacity style={{ margin: 8 }} onPress={() => setIsMapVisible(!isMapVisible)}>
             {isMapVisible ? (
-              <AttractionMapIcon width={24} height={24} />
-            ) : (
               <ListIcon width={24} height={24} />
+            ) : (
+              <AttractionMapIcon width={24} height={24} />
             )}
           </TouchableOpacity>
         }

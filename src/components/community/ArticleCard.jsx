@@ -12,15 +12,13 @@ import {
   HeartOffIcon,
 } from '../../assets/index';
 import { useAuthUser } from '../../contexts/AuthUserContext';
-import { dummy_user } from '../../dummyData';
 import { Shadow } from 'react-native-shadow-2';
 import { useNavigation } from '@react-navigation/native';
 import ArticleCardHeader from './ArticleCardHeader';
 
-const ArticleCard = ({ item: article }) => {
+const ArticleCard = ({ item: article, users = [] }) => {
   const user = useAuthUser();
-  const userData = dummy_user.filter(data => data.id === user.id).pop();
-  const bookmarkList = userData.bookmarkList;
+  const bookmarkList = user.bookmarkList;
   const isBookmarked = bookmarkList.includes(article.id);
   const navigation = useNavigation();
 
@@ -28,7 +26,9 @@ const ArticleCard = ({ item: article }) => {
     <Shadow {...shadowStyles.smallShadow} stretch>
       <TouchableOpacity
         style={styles.articleContainer}
-        onPress={() => navigation.navigate('CommunityArticleDetail', { ...article })}>
+        onPress={() =>
+          navigation.navigate('CommunityArticleDetail', { article: article, users: users })
+        }>
         <ArticleCardHeader
           authorImg={article.authorImage}
           authorName={article.authorName}
@@ -38,7 +38,7 @@ const ArticleCard = ({ item: article }) => {
         <View style={styles.articleMain}>
           <Text style={fontStyles.basicFont01}>{article.title}</Text>
           <Text numberOfLines={1} style={[fontStyles.basicFont02, styles.articleContents]}>
-            {article.content}
+            {article.contents}
           </Text>
         </View>
         {/* Icon & Tag */}
@@ -46,19 +46,25 @@ const ArticleCard = ({ item: article }) => {
           <View style={styles.articleIconContainer}>
             <View style={styles.articleIcon}>
               <CommentIcon />
-              <Text style={[fontStyles.basicFont02, styles.commentNum]}>3</Text>
+              <Text style={[fontStyles.basicFont02, styles.commentNum]}>
+                {article.comments.length}
+              </Text>
             </View>
             <View style={styles.articleIcon}>
               <HeartOffIcon />
-              <Text style={[fontStyles.basicFont02, styles.heartNum]}>{article.like}</Text>
+              <Text style={[fontStyles.basicFont02, styles.heartNum]}>{article.liked}</Text>
             </View>
             <View style={styles.articleIcon}>
               {isBookmarked ? <BookmarkOnIcon /> : <BookmarkOffIcon />}
-              <Text style={[fontStyles.basicFont02, styles.bookmarkNum]}>{article.bookmark}</Text>
+              <Text style={[fontStyles.basicFont02, styles.bookmarkNum]}>{article.bookmarked}</Text>
             </View>
           </View>
           <View>
-            <Text style={[styles.basicFont02, styles.tag]}>#{article.tag}</Text>
+            {article.tag ? (
+              <Text style={[styles.basicFont02, styles.tag]}>#{article.tag}</Text>
+            ) : (
+              <></>
+            )}
           </View>
         </View>
       </TouchableOpacity>

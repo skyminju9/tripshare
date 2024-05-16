@@ -10,6 +10,7 @@ import { convertLocationToAddress } from '../../utils/convertLocation';
 import { useAuthUser } from '../../contexts/AuthUserContext';
 import { useGeolocation } from '../../contexts/GeolocationContext';
 import color from '../../styles/colorPalette';
+import { DummyProfileImg } from '../../assets';
 
 const LocationSetting = ({ navigation, route }) => {
   const [locationData, setLocationData] = useState({
@@ -21,7 +22,7 @@ const LocationSetting = ({ navigation, route }) => {
   const geolocation = useGeolocation();
   const marker = dummy_meet[0];
   marker.category = 'accompany';
-  marker.profileImage = user.profileImage;
+  marker.profileImage = user.profileImage || DummyProfileImg;
 
   const doneLocationSettingHandler = async () => {
     const returnData = await convertLocationToAddress(locationData);

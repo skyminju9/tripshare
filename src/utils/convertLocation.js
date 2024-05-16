@@ -14,3 +14,25 @@ export const convertLocationToAddress = async ({ latitude, longitude }) => {
   const initialAddress = regionData[1].short_name + ' ' + regionData[0].short_name;
   return initialAddress;
 };
+
+export const convertMyCityToAddress = async ({ latitude, longitude }) => {
+  const regionData = await Geocoder.from({ latitude, longitude })
+    .then(res => {
+      return res.results[0].address_components;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  console.log(
+    regionData[5].long_name + ' ' + regionData[4].short_name + ' ' + regionData[3].short_name,
+  );
+  const country =
+    regionData[4].short_name === '경기도' ? regionData[5].long_name : regionData[4].long_name;
+  const city =
+    regionData[4].short_name === 'KR'
+      ? regionData[3].short_name + ' ' + regionData[2].short_name
+      : regionData[4].short_name + ' ' + regionData[3].short_name;
+
+  const address = country + ' ' + city;
+  return address;
+};

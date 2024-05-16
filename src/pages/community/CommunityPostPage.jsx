@@ -7,6 +7,8 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  Pressable,
+  Keyboard,
 } from 'react-native';
 import BasicHeader from '../../components/BasicHeader';
 import fontStyles from '../../styles/fontStyles';
@@ -14,26 +16,32 @@ import color from '../../styles/colorPalette';
 import { UploadIcon, DeleteIcon } from '../../assets/index';
 import ArticleTagList from '../../components/community/ArticleTagList';
 import { APP_WIDTH } from '../../constants';
-
 import ImagePicker from 'react-native-image-crop-picker';
 import { useAuthUser } from '../../contexts/AuthUserContext';
+
+import { addArticle, editArticle } from '../../firebase/store/ArticleDB';
 
 const tags = ['잡담', '질문', '정보'];
 
 const CommunityPostPage = ({ navigation, route }) => {
   const user = useAuthUser();
   const isEdit = route.params.edit;
+  const [contentData, setContentData] = useState(route.params.data || []);
 
-  const [titleText, setTitleText] = useState('');
-  const [contentText, setContentText] = useState('');
-  const [tag, setTag] = useState('');
-  const [imagePath, setImagePath] = useState('');
+  const [titleText, setTitleText] = useState(contentData.title || '');
+  const [contentText, setContentText] = useState(contentData.contents || '');
+  const [tag, setTag] = useState(contentData.tag || '');
+  const [imagePath, setImagePath] = useState(contentData.images || []);
 
-  const onPressTag = useCallback(activeTag => {
-    if (activeTag) {
-      setTag(activeTag);
-    }
-  }, []);
+  const onPressTag = useCallback(
+    activeTag => {
+      Keyboard.dismiss();
+      if (activeTag) {
+        setTag(activeTag);
+      }
+    },
+    [tag],
+  );
 
   const handleImagePicker = () => {
     ImagePicker.openPicker({
@@ -75,13 +83,36 @@ const CommunityPostPage = ({ navigation, route }) => {
   };
 
   const onPressBtn = () => {
-    navigation.navigate('CommunityFreeBoard');
+    const data = {
+      title: titleText,
+      contents: contentText,
+      createdAt: new Date().getTime(),
+      creator: user.id,
+      bookmarked: !isEdit ? 0 : contentData.bookmarked,
+      liked: !isEdit ? 0 : contentData.liked,
+      tag: tag,
+      images: imagePath,
+      comments: !isEdit ? [] : contentData.comments,
+    };
+    if (!isEdit) {
+      const result = addArticle(data);
+      if (result) {
+        console.log('Article added!');
+        navigation.navigate('CommunityFreeBoard');
+      }
+    } else {
+      const result = editArticle(contentData.id, data);
+      if (result) {
+        console.log('Article edited!');
+        navigation.navigate('CommunityFreeBoard');
+      }
+    }
   };
 
   return (
     <SafeAreaView style={styles.wrapper}>
       <BasicHeader title={isEdit ? '게시글 수정하기' : '게시글 등록하기'} />
-      <View style={styles.mainWrapper}>
+      <Pressable style={styles.mainWrapper} onPress={() => Keyboard.dismiss()}>
         <View style={styles.titleWrapper}>
           <Text style={fontStyles.title03}>제목</Text>
           <View style={styles.titleInputBox}>
@@ -111,7 +142,7 @@ const CommunityPostPage = ({ navigation, route }) => {
           </View>
         </View>
         <View style={styles.tagWrapper}>
-          <ArticleTagList tags={tags} onPressTag={onPressTag} />
+          <ArticleTagList currentTag={tag} tags={tags} onPressTag={onPressTag} />
         </View>
         <View style={styles.titleWrapper}>
           <Text style={fontStyles.title03}>사진 등록하기</Text>
@@ -132,7 +163,7 @@ const CommunityPostPage = ({ navigation, route }) => {
             </Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </Pressable>
     </SafeAreaView>
   );
 };

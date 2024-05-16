@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   SafeAreaView,
@@ -18,19 +18,24 @@ import {
   PositionIcon,
   NotiIcon,
   ThemeIcon,
+  LogoutIcon,
+  DummyProfileImg,
 } from '../../assets/index';
 import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 import { APP_WIDTH } from '../../constants';
 import ImagePicker from 'react-native-image-crop-picker';
 import { getLongText } from '../../utils/getLongText';
-import { useAuthUser } from '../../contexts/AuthUserContext';
+import { useAuthUser, useAuthUserDispatch } from '../../contexts/AuthUserContext';
+import { checkUniqueName, userLogout, changeUserName, updateUser } from '../../auth/auth';
+import Toast from 'react-native-toast-message';
 
 const MyPageHome = ({ navigation }) => {
   const user = useAuthUser();
+  const { logout, updateUserInfo } = useAuthUserDispatch();
 
-  const [username, setUsername] = useState(user.nickname);
-  const [profileImg, setProfileImg] = useState(user.profileImage);
+  const [username, setUsername] = useState(user.name || '');
+  const [profileImg, setProfileImg] = useState(user.profileImage || DummyProfileImg);
   const [edit, setEdit] = useState(false);
 
   const handleImagePicker = () => {
@@ -42,6 +47,23 @@ const MyPageHome = ({ navigation }) => {
     }).then(image => {
       setProfileImg(image.path);
     });
+  };
+
+  const editName = async () => {
+    try {
+      if (user.name === username) {
+        setEdit(false);
+        return true;
+      }
+
+      const isExistName = await checkUniqueName(username);
+      if (isExistName) throw new Error('닉네임이 중복됩니다.');
+      await changeUserName({ name: username, email: user.email });
+      updateUserInfo({ name: username });
+      setEdit(false);
+    } catch (e) {
+      showToast('error', e.message);
+    }
   };
 
   const randerProfileEdit = isEdit => {
@@ -65,7 +87,7 @@ const MyPageHome = ({ navigation }) => {
           />
           <Text style={fontStyles.title01}> 님</Text>
         </View>
-        <TouchableOpacity onPress={() => setEdit(false)}>
+        <TouchableOpacity onPress={editName}>
           <EditCheckIcon />
         </TouchableOpacity>
       </>
@@ -91,12 +113,73 @@ const MyPageHome = ({ navigation }) => {
       <TouchableOpacity
         key={index}
         style={styles.menuWrapper}
-        onPress={() => navigation.navigate(item.navigateTo, { user: user })}>
+        onPress={item.navigateTo ? () => navigation.navigate(item.navigateTo) : item.action}>
         <View style={styles.menuBtnWrapper}>{item.icon}</View>
         <Text style={fontStyles.basicFont01}>{item.title}</Text>
       </TouchableOpacity>
     );
   };
+
+  const menuList = [
+    [
+      {
+        icon: <MyBookmarkIcon />,
+        title: '북마크한 게시글 보기',
+        navigateTo: 'MyPageBookmark',
+      },
+      {
+        icon: <PostIcon width={19} />,
+        title: '내가 작성한 게시글 보기',
+        navigateTo: 'MyPageArticle',
+      },
+      {
+        icon: <MyCommentIcon />,
+        title: '내가 작성한 댓글 보기',
+        navigateTo: 'MyPageComment',
+      },
+    ],
+    [
+      {
+        icon: <PositionIcon />,
+        title: '위치',
+        action: async () => {
+          try {
+            console.log('test');
+            await updateUser({ email: user.email, updateData: { currentCity: '' } });
+            logout();
+            showToast('success', '로그아웃 되었습니다.');
+            await userLogout();
+          } catch (e) {
+            showToast('error', e.message);
+          }
+        },
+      },
+      {
+        icon: <NotiIcon width={24} height={24} color={color.BLUE_500} />,
+        title: '알림',
+      },
+      {
+        icon: <ThemeIcon />,
+        title: '테마',
+        action: () => {
+          showToast('success', '로그아웃 되었습니다.');
+        },
+      },
+      {
+        icon: <LogoutIcon />,
+        title: '로그아웃',
+        action: async () => {
+          try {
+            logout();
+            showToast('success', '로그아웃 되었습니다.');
+            await userLogout();
+          } catch (e) {
+            showToast('error', e.message);
+          }
+        },
+      },
+    ],
+  ];
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -122,43 +205,17 @@ const MyPageHome = ({ navigation }) => {
           </View>
         </View>
       </View>
+      <Toast />
     </SafeAreaView>
   );
 };
 
-const menuList = [
-  [
-    {
-      icon: <MyBookmarkIcon />,
-      title: '북마크한 게시글 보기',
-      navigateTo: 'MyPageBookmark',
-    },
-    {
-      icon: <PostIcon width={19} />,
-      title: '내가 작성한 게시글 보기',
-      navigateTo: 'MyPageArticle',
-    },
-    {
-      icon: <MyCommentIcon />,
-      title: '내가 작성한 댓글 보기',
-      navigateTo: 'MyPageComment',
-    },
-  ],
-  [
-    {
-      icon: <PositionIcon />,
-      title: '위치',
-    },
-    {
-      icon: <NotiIcon width={24} height={24} color={color.BLUE_500} />,
-      title: '알림',
-    },
-    {
-      icon: <ThemeIcon />,
-      title: '테마',
-    },
-  ],
-];
+const showToast = (type, message) => {
+  Toast.show({
+    type,
+    text1: message,
+  });
+};
 
 const styles = StyleSheet.create({
   wrapper: {

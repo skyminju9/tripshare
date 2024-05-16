@@ -41,6 +41,8 @@ import Attractions from './pages/community/Attractions';
 import AttractionDetail from './pages/community/AttractionDetail';
 import EventPage from './pages/community/EventPage';
 import AttractionsMap from './components/community/AttractionsMap';
+import PublicSplash from './pages/register/PublicSplash';
+import SetMyLocationPage from './pages/register/SetMyLocationPage';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -65,7 +67,8 @@ const BottomTab = () => {
 
 export const LoginStack = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="PublickSplash" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="PublickSplash" component={PublicSplash} />
       <Stack.Screen name="LoginPage" component={LoginPage} />
       <Stack.Screen name="SignUpPage" component={SignUpPage} />
       <Stack.Screen name="MainStack" component={MainStack} />
@@ -76,6 +79,7 @@ export const LoginStack = () => {
 export const MainStack = () => {
   return (
     <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="SetMyLocationPage" component={SetMyLocationPage} />
       <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="LoginStack" component={LoginStack} />
       <Stack.Screen name="BottomTab" component={BottomTab} />

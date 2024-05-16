@@ -3,10 +3,10 @@ import { View, StyleSheet } from 'react-native';
 import Airplane from '../../assets/icons/register/Airplane.svg';
 import color from '../../styles/colorPalette';
 
-const Splash = ({ navigation }) => {
+const PublicSplash = ({ navigation }) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('BottomTab');
+      navigation.navigate('LoginPage');
     }, 2000);
   }, []);
 
@@ -23,8 +23,7 @@ const styles = StyleSheet.create({
     backgroundColor: color.BLUE_30,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 40,
   },
 });
 
-export default Splash;
+export default PublicSplash;

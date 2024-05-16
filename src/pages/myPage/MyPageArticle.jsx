@@ -1,30 +1,65 @@
 import { StyleSheet, Text, SafeAreaView, FlatList, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { dummy_article } from '../../dummyData';
 import BasicHeader from '../../components/BasicHeader';
 import color from '../../styles/colorPalette';
 import { formatDate } from '../../utils/date';
 import ArticleCard from '../../components/community/ArticleCard';
 import fontStyles from '../../styles/fontStyles';
 
-const MyPageArticle = ({ route }) => {
-  const user = route.params.user;
-  const [articleData, setArticleData] = useState(
-    dummy_article.filter(articleData => articleData.userId == user.id),
-  );
+import { useAuthUser } from '../../contexts/AuthUserContext';
+import { getMyArticleList } from '../../firebase/store/ArticleDB';
+import { useIsFocused } from '@react-navigation/native';
+import { DummyProfileImg } from '../../assets';
+import { setUserList } from '../../firebase/store/UserDB';
+
+const MyPageArticle = () => {
+  const user = useAuthUser();
+  const [articleData, setArticleData] = useState([]);
+  const isFocused = useIsFocused();
+  const [users, setUsers] = useState([]);
+
+  const handleContent = data => {
+    const initialArticles = data.map(article => {
+      const content = article.data();
+
+      return {
+        id: article.id,
+        ...content,
+        authorName: user.name,
+        authorImage: user.profileImage || DummyProfileImg,
+      };
+    });
+
+    return initialArticles;
+  };
+
+  const getMyArticle = async () => {
+    const lists = await getMyArticleList(user.id);
+    const userList = await setUserList();
+    if (userList !== undefined) {
+      setArticleData(handleContent(lists, userList));
+      setUsers(userList);
+    }
+  };
+
+  useEffect(() => {
+    getMyArticle();
+  }, [isFocused]);
 
   const renderItem = (item, index) => {
     let isPrevSameDate = false;
-    if (!!articleData[index - 1]) {
+    if (articleData[index - 1]) {
       isPrevSameDate = formatDate(item.createdAt) === formatDate(articleData[index - 1]?.createdAt);
     }
+    item.authorImage = user.profileImage || DummyProfileImg;
+    item.authorName = user.name;
 
     return (
       <View style={styles.cardContainer}>
         {!isPrevSameDate && <Text style={styles.cardDate}>{formatDate(item.createdAt)}</Text>}
         <View style={styles.articleCardWrapper}>
-          <ArticleCard item={item} />
+          <ArticleCard item={item} users={users} />
         </View>
       </View>
     );

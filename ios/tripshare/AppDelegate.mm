@@ -1,5 +1,5 @@
 #import "AppDelegate.h"
-
+#import <Firebase.h>
 #import <React/RCTBundleURLProvider.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import "RNCConfig.h"
@@ -8,6 +8,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  if([FIRApp defaultApp] == nil) {
+    [FIRApp configure];
+  }
+  
   NSString *mapsApiKey = [RNCConfig envFor:@"GOOGLEMAP_IOS_KEY"];
   [GMSServices provideAPIKey: mapsApiKey];
   self.moduleName = @"tripshare";

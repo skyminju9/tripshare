@@ -9,7 +9,7 @@ import {
   Image,
 } from 'react-native';
 import color from '../../styles/colorPalette';
-import { WhiteAlertIcon, WhiteLogoIcon } from '../../assets';
+import { WhiteAlertIcon, WhiteLogoIcon, DummyProfileImg } from '../../assets';
 import { useAuthUser } from '../../contexts/AuthUserContext';
 import { dummy_chat, dummy_user } from '../../dummyData';
 import { setAgoDays } from '../../utils/date';
@@ -28,6 +28,7 @@ const ChattingHome = ({ navigation }) => {
     dummy_chat.map(item =>
       user.id === item.sendUserId || user.id === item.receiveUserId ? chatData.push(item) : '',
     );
+    chatData.sort((a, b) => b.chatList.at(-1).createdAt - a.chatList.at(-1).createdAt);
     setChatList(chatData);
   };
 
@@ -45,7 +46,11 @@ const ChattingHome = ({ navigation }) => {
     const isRead = lastChat.isRead || lastChat.userId === user.id;
     return (
       <TouchableOpacity style={styles.chatWrapper} onPress={() => handleChatClick(chatData)}>
-        <Image source={userData.profileImage} style={styles.profileImage} alt="프로필 이미지" />
+        <Image
+          source={userData.profileImage || DummyProfileImg}
+          style={styles.profileImage}
+          alt="프로필 이미지"
+        />
         <View style={styles.chatContainer}>
           <View style={styles.chatTopWrapper}>
             <Text style={fontStyles.boldFont01}>{userData.name}</Text>

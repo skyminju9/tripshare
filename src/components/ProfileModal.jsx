@@ -1,5 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import React from 'react';
+import Modal from 'react-native-modal';
 import color from '../styles/colorPalette';
 import {
   BlueChatIcon,
@@ -9,12 +10,18 @@ import {
   ReportIcon,
 } from '../assets';
 import fontStyles from '../styles/fontStyles';
+import { useNavigation } from '@react-navigation/native';
+import { useProfileModal } from '../contexts/profileModalContext';
+import { DummyProfileImg } from '../assets';
 
-const ProfileModal = ({ setIsProfileModalVisible, user, navigation }) => {
+const ProfileModal = ({ user }) => {
+  const navigation = useNavigation();
   const articleButtonHandler = () => {
-    setIsProfileModalVisible(false);
-    navigation.navigate('MyPageArticle', { user: { id: user.userId } });
+    console.log('이동한다');
+    // navigation.navigate('MyPageArticle');
   };
+
+  const { closeProfile } = useProfileModal();
 
   return (
     <View style={styles.modalWrapper}>
@@ -22,13 +29,13 @@ const ProfileModal = ({ setIsProfileModalVisible, user, navigation }) => {
         <TouchableOpacity style={styles.reportIconWrapper}>
           <ReportIcon width={30} height={30} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => setIsProfileModalVisible(false)}>
+        <TouchableOpacity onPress={() => closeProfile()}>
           <BlueCloseIcon width={30} height={30} />
         </TouchableOpacity>
       </View>
       <View style={styles.modalBodyWrapper}>
-        <Image source={user.profileImage} style={styles.profileImage} />
-        <Text style={styles.profileName}>{user.name}</Text>
+        <Image source={user.profileImage || DummyProfileImg} style={styles.profileImage} />
+        <Text style={styles.profileName}>{user.profileName}</Text>
       </View>
       <View style={styles.modalBottomWrapper}>
         <TouchableOpacity style={styles.bottomButtonWrapper}>

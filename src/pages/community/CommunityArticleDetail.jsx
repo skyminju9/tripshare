@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Text,
   SafeAreaView,
@@ -8,38 +8,106 @@ import {
   ScrollView,
   KeyboardAvoidingView,
 } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 import { Shadow } from 'react-native-shadow-2';
 import Modal from 'react-native-modal';
 
 import BasicHeader from '../../components/BasicHeader';
-import { BookmarkOffIcon, HeartOffIcon, CommentIcon, MenuIcon } from '../../assets/index';
+import {
+  BookmarkOffIcon,
+  BookmarkOnIcon,
+  HeartOffIcon,
+  HeartOnIcon,
+  CommentIcon,
+  MenuIcon,
+} from '../../assets/index';
 import color from '../../styles/colorPalette';
 import fontStyles from '../../styles/fontStyles';
 import shadowStyles from '../../styles/shadowStyles';
 import ArticleCardHeader from '../../components/community/ArticleCardHeader';
 import FeedComment from '../../components/FeedComment';
 import CommentInput from '../../components/CommentInput';
-import { dummy_comment, dummy_user } from '../../dummyData';
+import { dummy_user } from '../../dummyData';
 import { useAuthUser } from '../../contexts/AuthUserContext';
 import { APP_WIDTH } from '../../constants';
 
-const CommunityArticleDetail = ({ navigation }) => {
-  const article = useRoute().params;
-  const comments = dummy_comment
-    .filter(comment => comment.articleId === article.id)
-    .map(comment => {
-      const user = dummy_user.find(du => du.id === comment.userId);
-      return {
-        ...comment,
-        user,
-      };
-    });
+import { articleCollection } from '../../firebase/firebase';
+import { setLiked, setBookmarked, deleteArticle } from '../../firebase/store/ArticleDB';
+import { DummyProfileImg } from '../../assets/index';
 
+const CommunityArticleDetail = ({ route }) => {
+  const [singleArticle, setSingleArticle] = useState([]);
+
+  const article = route.params.article;
+  const users = route.params.users;
   const loginUser = useAuthUser();
-  const isPostOwner = article.authorName === loginUser.name;
+  const isPostOwner = singleArticle.authorName === loginUser.name;
+  const isMyBookmark = loginUser.bookmarkList.includes(article.id);
+
+  const navigation = useNavigation();
   const [isMenuVisible, setMenuVisible] = useState(false);
   const [isNotiVisible, setNotiVisible] = useState(false);
+
+  const [isLiked, setIsLiked] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(isMyBookmark);
+
+  const handleContent = data => {
+    const content = data.data();
+    if (content !== undefined) {
+      const articleUser = users.find(user => user.id === content.creator);
+      content.comments = content.comments.map(comment => {
+        const user = users.find(du => du.id === comment.creator);
+        return {
+          ...comment,
+          user: {
+            name: user.name,
+            profileImage: user.profileImage,
+          },
+        };
+      });
+
+      const initialArticle = {
+        id: data.id,
+        ...content,
+        authorName: article.authorName || articleUser.name,
+        authorImage: article.authorImage || articleUser.profileImage || DummyProfileImg,
+      };
+
+      return initialArticle;
+    }
+  };
+
+  const handleLiked = async () => {
+    if (!isLiked) {
+      setIsLiked(true);
+      setLiked(article.id, singleArticle.liked, false);
+    } else {
+      setIsLiked(false);
+      setLiked(article.id, singleArticle.liked, true);
+    }
+  };
+
+  const handleBookmarked = async () => {
+    if (!isBookmarked) {
+      setIsBookmarked(true);
+      setBookmarked(article.id, singleArticle.bookmarked, false);
+    } else {
+      setIsBookmarked(false);
+      setBookmarked(article.id, singleArticle.bookmarked, true);
+    }
+  };
+
+  const handleDelete = () => {
+    navigation.navigate('CommunityFreeBoard');
+    deleteArticle(singleArticle.id);
+    console.log('Article deleted!');
+  };
+
+  useEffect(() => {
+    articleCollection.doc(article.id).onSnapshot(snapshot => {
+      snapshot && setSingleArticle(handleContent(snapshot));
+    });
+  }, []);
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -55,37 +123,64 @@ const CommunityArticleDetail = ({ navigation }) => {
         <Shadow {...shadowStyles.smallShadow} stretch>
           <View style={styles.articleContainer}>
             <ArticleCardHeader
-              authorImg={article.authorImage}
-              authorName={article.authorName}
-              createdAt={article.createdAt}
+              // 이미지 오류
+              authorImg={singleArticle.authorImage || article.authorImage}
+              authorName={singleArticle.authorName}
+              createdAt={singleArticle.createdAt}
             />
             {/* Title & Contents */}
             <View style={styles.articleMain}>
-              <Text style={fontStyles.boldFont01}>{article.title}</Text>
+              <Text style={fontStyles.boldFont01}>{singleArticle.title}</Text>
               <Text style={[fontStyles.basicFont02, styles.articleContents]}>
-                {article.content}
+                {singleArticle.contents}
               </Text>
             </View>
             {/* Icon & Tag */}
             <View style={styles.articleBottom}>
               <View>
-                <Text style={[styles.basicFont02, styles.tag]}>#{article.tag}</Text>
+                {singleArticle.tag ? (
+                  <Text style={[styles.basicFont02, styles.tag]}>#{singleArticle.tag}</Text>
+                ) : (
+                  <></>
+                )}
               </View>
               <View style={styles.articleIconContainer}>
-                <TouchableOpacity style={styles.articleIcon}>
+                <View style={styles.articleIcon}>
                   <CommentIcon />
-                  <Text style={[fontStyles.basicFont02, styles.commentNum]}>{comments.length}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.articleIcon}>
-                  <HeartOffIcon />
-                  <Text style={[fontStyles.basicFont02, styles.heartNum]}>{article.like}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.articleIcon}>
-                  <BookmarkOffIcon />
-                  <Text style={[fontStyles.basicFont02, styles.bookmarkNum]}>
-                    {article.bookmark}
+                  <Text style={[fontStyles.basicFont02, styles.commentNum]}>
+                    {singleArticle.comments && singleArticle.comments.length}
                   </Text>
-                </TouchableOpacity>
+                </View>
+                {!isLiked ? (
+                  <TouchableOpacity style={styles.articleIcon} onPress={handleLiked}>
+                    <HeartOffIcon />
+                    <Text style={[fontStyles.basicFont02, styles.heartNum]}>
+                      {singleArticle.liked}
+                    </Text>
+                  </TouchableOpacity>
+                ) : (
+                  <TouchableOpacity style={styles.articleIcon} onPress={handleLiked}>
+                    <HeartOnIcon width={21} height={20} />
+                    <Text style={[fontStyles.basicFont02, styles.heartNum]}>
+                      {singleArticle.liked}
+                    </Text>
+                  </TouchableOpacity>
+                )}
+                {!isBookmarked ? (
+                  <TouchableOpacity style={styles.articleIcon} onPress={handleBookmarked}>
+                    <BookmarkOffIcon />
+                    <Text style={[fontStyles.basicFont02, styles.bookmarkNum]}>
+                      {singleArticle.bookmarked}
+                    </Text>
+                  </TouchableOpacity>
+                ) : (
+                  <TouchableOpacity style={styles.articleIcon} onPress={handleBookmarked}>
+                    <BookmarkOnIcon width={21} height={20} />
+                    <Text style={[fontStyles.basicFont02, styles.bookmarkNum]}>
+                      {singleArticle.bookmarked}
+                    </Text>
+                  </TouchableOpacity>
+                )}
               </View>
             </View>
           </View>
@@ -93,16 +188,22 @@ const CommunityArticleDetail = ({ navigation }) => {
         {/* Comment */}
         <View style={styles.commentsContainer}>
           <Text style={[fontStyles.boldFont01, styles.commentText]}>
-            댓글 {comments.length || 0}
+            댓글 {singleArticle.comments && singleArticle.comments.length}
           </Text>
-          {comments.map(comment => (
-            <FeedComment key={comment.id} comment={comment} />
-          ))}
+          {singleArticle.comments &&
+            singleArticle.comments.map((comment, index) => (
+              <FeedComment key={index} comment={comment} />
+            ))}
         </View>
       </ScrollView>
 
       <KeyboardAvoidingView behavior="padding">
-        <CommentInput chatPlaceHolder="댓글을 입력해주세요" />
+        <CommentInput
+          chatPlaceHolder="댓글을 입력해주세요"
+          creator={loginUser.id}
+          article={singleArticle}
+          comment={true}
+        />
       </KeyboardAvoidingView>
 
       {/* 게시글 메뉴 모달 */}
@@ -118,7 +219,9 @@ const CommunityArticleDetail = ({ navigation }) => {
             <>
               <TouchableOpacity
                 style={styles.modalBtnWrapper}
-                onPress={() => navigation.navigate('CommunityPostPage', { edit: true })}>
+                onPress={() =>
+                  navigation.navigate('CommunityPostPage', { edit: true, data: singleArticle })
+                }>
                 <Text style={fontStyles.boldFont01}>수정하기</Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -137,6 +240,7 @@ const CommunityArticleDetail = ({ navigation }) => {
           )}
         </View>
       </Modal>
+
       {/* 삭제 확인 모달 */}
       <Modal
         isVisible={isNotiVisible}
@@ -148,7 +252,7 @@ const CommunityArticleDetail = ({ navigation }) => {
         <View style={styles.notiContainer}>
           <Text style={fontStyles.boldFont01}>정말 삭제하시겠습니까?</Text>
           <View style={styles.notiBtnWrapper}>
-            <TouchableOpacity style={styles.notiBtn}>
+            <TouchableOpacity style={styles.notiBtn} onPress={handleDelete}>
               <Text style={fontStyles.boldFont01}>예</Text>
             </TouchableOpacity>
             <View style={styles.notiBtnLine} />

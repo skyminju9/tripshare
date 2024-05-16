@@ -3,17 +3,21 @@ import { Text, StyleSheet, View, Image } from 'react-native';
 import fontStyles from '../styles/fontStyles';
 import color from '../styles/colorPalette';
 import { setAgoDays } from '../utils/date';
+import { DummyProfileImg } from '../assets';
 
 const FeedComment = ({ comment }) => {
   return (
     <View style={styles.commentContainer}>
       <View style={styles.leftArea}>
-        <Image source={comment.user.profileImage} style={styles.commentProfileImage} />
+        <Image
+          source={comment.user.profileImage || DummyProfileImg}
+          style={styles.commentProfileImage}
+        />
       </View>
       <View style={styles.rightArea}>
         <Text style={fontStyles.boldFont01}>{comment.user.name}</Text>
         <View style={styles.contentsArea}>
-          <Text style={styles.commentContent}>{comment.content}</Text>
+          <Text style={styles.commentContent}>{comment.contents}</Text>
           <Text style={styles.createdAtText}>{setAgoDays(comment.createdAt)}</Text>
         </View>
       </View>
