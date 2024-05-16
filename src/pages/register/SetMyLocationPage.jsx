@@ -9,13 +9,13 @@ import fontStyles from '../../styles/fontStyles';
 import { BlueButton } from '../../components/BasicButtons';
 import Toast from 'react-native-toast-message';
 import { updateUser } from '../../auth/auth';
-import { useAuthUser, useAutuUserDispatch } from '../../contexts/AuthUserContext';
+import { useAuthUser, useAuthUserDispatch } from '../../contexts/AuthUserContext';
 
 const appLogo = require('../../assets/icons/register/logo_blue.png');
 
 const SetMyLocationPage = ({ navigation }) => {
   const user = useAuthUser();
-  const { updateUserInfo } = useAutuUserDispatch();
+  const { updateUserInfo } = useAuthUserDispatch();
   const geolocation = useGeolocation();
   const [address, setAddress] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(true);
@@ -38,6 +38,7 @@ const SetMyLocationPage = ({ navigation }) => {
       await updateUserInfo({ currentCity: address });
       navigation.navigate('BottomTab');
     } catch (e) {
+      console.log(e);
       showToast('error', e.message);
     }
   };
